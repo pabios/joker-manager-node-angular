@@ -1,0 +1,18 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-content {
+  display: flex;
+  align-items: center;
+  a{
+    text-decoration: none;
+    Color: black;
+  }
+}
+
+.right-content {
+  display: flex;
+  align-items: center;
+}

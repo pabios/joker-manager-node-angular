@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; // theme blog
+//@import '@angular/material/prebuilt-themes/indigo-pink.css'; // theme monimba
+
+html, body {
+  height: 100%;
+  background-color: black;
+  color: white;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  //background-image: url('./assets/img/bg_blog.png');
+  //background-repeat: no-repeat;
+  //background-size: cover;
+  //background-attachment: fixed;
+  //color: white;
+}
+.main-content {
+  box-sizing: border-box;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
