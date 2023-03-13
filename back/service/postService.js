@@ -11,7 +11,7 @@ export async function getAllPosts() {
 
 export async function add_post(req,res){
     try {
-        const { title, description, imageUrl, snaps, location, fichier,site,author,category } = req.body;
+        const { title, description, images, snaps, location, fichier,site,author,category } = req.body;
 
         const authorObjectId = mongoose.Types.ObjectId(author);
         const categoryObjectId = mongoose.Types.ObjectId(category);
@@ -19,7 +19,7 @@ export async function add_post(req,res){
         const newPost = new PostModel({
             title,
             description,
-            imageUrl,
+            images,
             snaps,
             location,
             fichier,

@@ -6,9 +6,7 @@ import {AuthGuard} from "../core/guards/auth.guard";
 import {NewPostComponent} from "./components/new-post/new-post.component";
 
 const routes: Routes = [
-  {path:'create',component:NewPostComponent,canActivate:[AuthGuard]},
-// { path: ':id', component: SingleFaceSnapComponent,canActivate:[AuthGuard] },
-// { path: ':id', component: SingleFaceSnapComponent },
+  {path:'create',component:NewPostComponent}, //,canActivate:[AuthGuard]
   { path: '', component: PostListComponent, resolve: { posts: PostsResolver } } // blog/r
 ];
 

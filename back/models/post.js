@@ -6,7 +6,7 @@ const { Schema, model } = mongoose;
 const postSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
-    imageUrl: { type: String, required: true },
+    images: { type: String, required: true },
     createdDate: { type: Date, default: Date.now },
     snaps: { type: String },
     location: { type: String },

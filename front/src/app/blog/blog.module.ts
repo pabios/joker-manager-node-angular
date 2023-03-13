@@ -9,6 +9,15 @@ import { PostListItemComponent } from './components/post-list-item/post-list-ite
 import {SharedModule} from "../shared/shared.module";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {NewPostComponent} from "./components/new-post/new-post.component";
+import {AuthModule} from "../auth/auth.module";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatButtonModule} from "@angular/material/button";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {MatIconModule} from "@angular/material/icon";
+import {MatDividerModule} from "@angular/material/divider";
 
 
 @NgModule({
@@ -21,7 +30,9 @@ import {NewPostComponent} from "./components/new-post/new-post.component";
     CommonModule,
     BlogRoutingModule,
     SharedModule,
-    MatGridListModule
+    MatGridListModule,
+    AuthModule,
+    MatDividerModule
   ],
   providers:[
     PostsService,

@@ -1,0 +1,8 @@
+.form-card {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card.form-card .form-group {
+  width: 100%;
+}
