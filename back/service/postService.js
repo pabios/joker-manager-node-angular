@@ -19,7 +19,7 @@ export async function add_post(req,res){
         const newPost = new PostModel({
             title,
             description,
-            images,
+            images: images.map(image => image.name), // envois un tableau d'images
             snaps,
             location,
             fichier,

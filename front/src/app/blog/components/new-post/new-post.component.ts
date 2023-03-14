@@ -80,7 +80,7 @@ export class NewPostComponent implements OnInit {
   }
 
   /*---- file upload----*/
-  imageSrc:any = '';
+  fichier:any = '';
   status:boolean = false
 
 
@@ -106,7 +106,7 @@ export class NewPostComponent implements OnInit {
         if((file.size/1048576)<=5) //max file size is 4 mb
         {
           // this.imageSrc = file.name;
-          this.imageSrc = file;
+          this.fichier = file;
         }else{
           //this.snackBar.open('File size exceeds 4 MB. Please choose less than 4 MB','',{duration: 2000});
           // this.notif.showError("ooups","la taille du fichier  ne doit pas depasser 5 Mb ")
@@ -136,45 +136,7 @@ export class NewPostComponent implements OnInit {
 
 
 
-  /**
-   *  nouvelle enregistrement
-   * @param title
-   * @param description
-   * @param photo
-   * @param location
-   * @param categoryName
-   * @todo a finir
-   */
-  onSend(title:string,description:string,photo:string,location:string,categoryName:string){
-    this.getCategoryId(categoryName);
 
-    const formData : FormData = new FormData();
-    formData.append('title',title)
-    formData.append('description',description)
-    formData.append('photo',photo)
-    formData.append('location',location)
-    formData.append('fichier',this.imageSrc)
-    formData.append('site',environment.site)
-    formData.append('site',this.categorySelectedId)
-    // formData.append('laDate',laDate)
-    formData.append('author',this.user_id)
-    this.postsService.ajout(formData).subscribe(
-      (res=>{
-        // console.log(res)
-        if(res == 'sucesss'){
-          // this.notif.showSuccess("super","Votre article est bien poster vous pouvez reactiliser ");
-        }else{
-          // this.notif.showError("ooups","une erreur s'est produite")
-        }
-      })
-    )
-    this.router.navigateByUrl('/facesnaps');
-
-  }
-
-  goChat(){
-    this.router.navigateByUrl('/channel/chat');
-  }
 
 
   //
@@ -202,7 +164,52 @@ export class NewPostComponent implements OnInit {
       this.file_list.push(this.file_store[i].name);
     }
 
-    // do submit ajax
+    // do submit
+  }
+
+
+
+  /**
+   *  nouvelle enregistrement
+   * @param title
+   * @param description
+   * @param photo
+   * @param location
+   * @param categoryName
+   * @todo a finir
+   */
+  onSend(title:string,description:string,photo:string,location:string,categoryName:string){
+    this.getCategoryId(categoryName);
+
+    const formData : FormData = new FormData();
+    formData.append('title',title)
+    formData.append('description',description)
+    formData.append('photo',photo)
+    formData.append('location',location)
+    formData.append('fichier',this.fichier)
+    this.file_list.forEach((file) => {
+      formData.append('images[]', file);
+    });
+    formData.append('site',environment.site)
+    formData.append('category',this.categorySelectedId)
+    // formData.append('laDate',laDate)
+    formData.append('author',this.user_id)
+    this.postsService.ajout(formData).subscribe(
+      (res=>{
+        // console.log(res)
+        if(res == 'sucesss'){
+          // this.notif.showSuccess("super","Votre article est bien poster vous pouvez reactiliser ");
+        }else{
+          // this.notif.showError("ooups","une erreur s'est produite")
+        }
+      })
+    )
+    this.router.navigateByUrl('/blog');
+
+  }
+
+  goChat(){
+    this.router.navigateByUrl('/channel/chat');
   }
 
 }
