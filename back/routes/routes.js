@@ -4,6 +4,7 @@ import { getUserById, login, randomUser, users, editProfil, deleteUser,  create,
 import {posts, addPost, likePost, editPost,getPost,deletePost} from '../controllers/postController.js';
 import { authGuard } from '../middlewares/AuthGuard.js';
 import {addCategory,getAllCategory} from "../controllers/categoryController.js";
+import {getAllRegion} from "../controllers/regionController.js";
 
 const router = Router();
 
@@ -49,6 +50,12 @@ router.delete("/posts/delete/:id", deletePost)
 router.get("/category", getAllCategory);
 router.post("/posts/category/add", addCategory);
 
+
+/**
+ *  REGION
+ */
+
+router.get("/api/gn/regions", getAllRegion);
 
 
 

@@ -188,7 +188,7 @@ export class NewPostComponent implements OnInit {
     formData.append('location',location)
     formData.append('fichier',this.fichier)
     this.file_list.forEach((file) => {
-      formData.append('images[]', file);
+      formData.append('images[]', file); //@todo fix
     });
     formData.append('site',environment.site)
     formData.append('category',this.categorySelectedId)

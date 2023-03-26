@@ -1,12 +1,12 @@
 <h1>Bonjour le monde </h1>
 
-<div   style="color: red;margin-top: 20%">
-  <ul>
-    <li *ngFor="let categoryName of category$ | async">{{ categoryName }}</li>
-  </ul>
-</div>
+<!--<div   style="color: red;margin-top: 20%">-->
+<!--  <ul>-->
+<!--    <li *ngFor="let categoryName of category$ | async">{{ categoryName }}</li>-->
+<!--  </ul>-->
+<!--</div>-->
 
-<div >
+<div class="wrapper-new"  >
   <form [formGroup]="postForm" enctype="multipart/form-data" class="form-card">
     <mat-form-field appearance="outline">
       <mat-label>Donne un titre a votre article</mat-label>
@@ -31,7 +31,7 @@
     <mat-form-field appearance="outline" style="color: red">
       <mat-select #category required>
         <mat-option>-- None --</mat-option>
-        <mat-option *ngFor="let categoryName of category$ | async" [value]="categoryName"> {{ categoryName }}</mat-option>
+        <mat-option  *ngFor="let categoryName of category$ | async" [value]="categoryName"> {{ categoryName }}</mat-option>
       </mat-select>
       <mat-label><mat-icon>favorite</mat-icon> <b> Fancy</b> <i> label</i></mat-label>
     </mat-form-field>
@@ -73,7 +73,7 @@
       <input type="file"  id="title" class="file-input" #fichier (change)="onFileChange($event)">
     </div>
     <div class="action-buttons">
-      <button mat-stroked-button color="primary" type="submit" (click)="onSend(title.value,description.value,photo.value,location.value)" [disabled]="postForm.invalid">Enregistrer</button>
+      <button mat-stroked-button color="primary" type="submit" (click)="onSend(title.value,description.value,photo.value,location.value,category.value)" [disabled]="postForm.invalid">Enregistrer</button>
     </div>
   </form>
 </div>

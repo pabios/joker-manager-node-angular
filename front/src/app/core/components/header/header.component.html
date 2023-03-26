@@ -1,15 +1,44 @@
 <mat-toolbar class="toolbar">
-  <span routerLink="/blog" class="left-content">
-    <a routerLink="/blog">Pabiosoft</a>
-  </span>
+  <div class="left-content">
+    <a routerLink="/blog" class="logo-link">
+<!--      <img src="monimba-logo.png" alt="Logo de Monimba">-->
+      Nimba
+    </a>
+
+    <a routerLink="/accueil" class="nav-link">
+      <mat-icon>home</mat-icon>
+      Accueil
+    </a>
+
+    <a routerLink="/hebergement" class="nav-link">
+      <mat-icon>hotel</mat-icon>
+      Hébergement
+    </a>
+
+    <a routerLink="/reservation" class="nav-link">
+      <mat-icon>event_seat</mat-icon>
+      Réservation
+    </a>
+
+    <a routerLink="/publier" class="nav-link">
+      <mat-icon>add_location</mat-icon>
+      Publier un établissement
+    </a>
+  </div>
+
   <span class="example-spacer"></span>
 
   <div class="right-content">
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
+    <a routerLink="/recherche" class="nav-link">
+      <mat-icon>search</mat-icon>
+      Recherche
+    </a>
+
+
+
+    <a routerLink="/connexion" class="nav-link">
+      <mat-icon>account_circle</mat-icon>
+      Connexion
+    </a>
   </div>
 </mat-toolbar>
