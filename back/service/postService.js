@@ -39,7 +39,7 @@ export async function add_post(req,res){
         console.error(error);
         return res.status(500).json({
             success: false,
-            message: 'Could not create post',
+            message: 'Could not create post',d
         });
     }
 }

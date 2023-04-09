@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {AsyncPipe, CommonModule} from '@angular/common';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -9,7 +10,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     LandingPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule,
   ],
   exports:[
     LandingPageComponent
