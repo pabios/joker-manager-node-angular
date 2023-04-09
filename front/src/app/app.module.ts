@@ -6,18 +6,24 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CoreModule} from "./core/core.module";
 import {AuthModule} from "./auth/auth.module";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatIconModule} from "@angular/material/icon";
+import {LandingPageComponent} from "./landing-page/components/landing-page/landing-page.component";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    AuthModule
+    AuthModule,
+    NgbModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

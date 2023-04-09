@@ -1,0 +1,38 @@
+$color-footer: #F29E01;
+
+.footer {
+  background-color: $color-footer;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  z-index: 999;
+}
+
+.back-to-top:hover {
+  cursor: pointer;
+  background-color: #444;
+}
+
+.back-to-top:focus {
+  outline: none;
+}
+
+.back-to-top.show {
+  display: block;
+}

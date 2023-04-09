@@ -19,5 +19,4 @@ export class PostListComponent implements OnInit {
       map(data => data['posts'])
     );
   }
-
 }

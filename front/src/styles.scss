@@ -4,8 +4,8 @@
 
 html, body {
   height: 100%;
-  background-color: black;
-  color: white;
+  //background-color: #ece8e8;
+  //color: white;
 }
 body {
   margin: 0;
@@ -22,3 +22,6 @@ body {
   max-width: 800px;
   margin: auto;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
