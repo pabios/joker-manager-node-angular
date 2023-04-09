@@ -6,6 +6,8 @@ const routes: Routes = [
   { path: 'nimba', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
   // { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   // { path: '**', redirectTo: 'blog'}
+  { path: 'element', loadChildren: () => import('./element/element.module').then(m => m.ElementModule) },
+
   { path: '', component: LandingPageComponent }
 ];
 

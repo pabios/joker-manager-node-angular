@@ -1,0 +1,54 @@
+.mat-card {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+
+  .card-content {
+
+    //display: flex;
+    //flex-direction: row;
+    //align-items: center;
+    //justify-content: space-between;
+    //width: 100%;
+    //padding: 0 16px;
+
+    .description {
+      //display: flex;
+      //flex-direction: column;
+      //justify-content: center;
+      //width: 60%;
+
+      p {
+        margin: 0;
+        padding: 8px 0;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .img-info{
+    background-color: red;
+    display: flex;
+    color: red;
+  }
+
+  img {
+    //width: 40%;
+    //border-radius: 4px;
+  }
+
+  .mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+}
