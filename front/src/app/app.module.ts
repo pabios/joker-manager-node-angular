@@ -9,6 +9,7 @@ import {AuthModule} from "./auth/auth.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatIconModule} from "@angular/material/icon";
 import {LandingPageComponent} from "./landing-page/components/landing-page/landing-page.component";
+import {GoogleMapsModule} from "@angular/google-maps";
 
 
 @NgModule({
@@ -23,7 +24,11 @@ import {LandingPageComponent} from "./landing-page/components/landing-page/landi
     CoreModule,
     AuthModule,
     NgbModule,
-    MatIconModule
+
+    MatIconModule,
+
+
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
