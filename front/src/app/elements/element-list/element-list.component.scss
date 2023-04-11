@@ -1,11 +1,23 @@
 mat-card{
   margin-bottom: 20px;
 }
-.stars {
-  color: #ffd700;
-  font-size: 24px;
-}
 
+mat-card-subtitle{
+  display: flex;
+
+  .card-type{
+    font-size: 19px;
+    margin-right: 20px;
+  }
+  .stars {
+    color: #ffd700;
+    font-size: 24px;
+    float: right;
+  }
+}
+.green-icon{
+  color: green;
+}
 .map-tile {
   width: 55%;
   background-color: red;
@@ -17,14 +29,16 @@ mat-card{
 }
 
 c-carousel-item{
-   height: 190px;
+   height: 226px;
 }
+
 at-card-header{
   position: relative;
 }
 .card-status{
   position: absolute;
   right: 10px;
+  top: 2px;
   color: blue;
 }
 .description{
