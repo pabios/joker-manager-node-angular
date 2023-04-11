@@ -1,4 +1,6 @@
 <h2> Les cards</h2>
+<!--<app-element *ngFor="let element of cards"></app-element>-->
+
 <div class="container">
 
   <!-- Afficher la pagination -->
@@ -15,11 +17,12 @@
     <mat-card-header>
       <div class="card-status">
         <button mat-icon-button class="verified">
-          <mat-icon>check_circle</mat-icon>
+
+          <mat-icon [ngClass]="card.verified  === 1 ? 'green-icon' : 'red'">{{ card.verified == 1 ? 'done_all' : 'check' }}</mat-icon>
         </button>
       </div>
-      <mat-card-title>{{card.type}}</mat-card-title>
       <mat-card-subtitle>
+        <div class="card-type">{{card.type}}</div>
         <div class="stars">
           <mat-icon>star</mat-icon>
           <mat-icon>star</mat-icon>
@@ -27,8 +30,8 @@
           <mat-icon>star</mat-icon>
           <mat-icon>star_half</mat-icon>
         </div>
-
       </mat-card-subtitle>
+
     </mat-card-header>
 
     <div class="card-content">
@@ -38,11 +41,10 @@
           <c-carousel>
             <c-carousel-indicators></c-carousel-indicators>
             <c-carousel-inner>
-              <c-carousel-item *ngFor="let slide of slides">
-
+              <c-carousel-item *ngFor="let image of card.images">
                 <img
-                  [src]="slide.src"
-                  alt="{{ slide.title }}"
+                  [src]="image.src"
+                  alt="{{ card.type }}"
                   class="d-block w-100"
                   loading="lazy" style="height: 100%" />
               </c-carousel-item>
@@ -52,8 +54,9 @@
           </c-carousel>
         </div>
         <div class="description">
-          <p><strong><mat-icon>attach_money</mat-icon> </strong> <span> <b>Prix :</b> {{card.price}} FCFA/mois</span></p>
-          <p><strong><mat-icon>location_on</mat-icon>  </strong> <span> <b>Localisation :</b>  Conakry, Kipe </span></p>
+          <p><strong><mat-icon>attach_money</mat-icon> </strong> <span> <b>Loyer :</b> {{card.price}} FCFA/mois</span></p>
+          <p><strong><mat-icon>location_on</mat-icon>  </strong> <span> <b>Localisation :</b>  {{card.location}} </span></p>
+          <p><strong><mat-icon>square</mat-icon>  </strong> <span> <b>Surface :</b>  {{card.surface}} m2  </span></p>
           <p><strong><mat-icon>description</mat-icon> </strong>
             <span> <b>Description :</b>
               {{card.description}}
@@ -65,9 +68,6 @@
         </div>
       </div>
     </div>
-
-
-
   </mat-card>
 </div>
 
@@ -84,15 +84,5 @@
   </mat-paginator>
 </div>
 
-<h3> Bonjour Maps</h3>
 
-<!--<google-map  style="max-height: 10px !important;" [center]="markers[0]?.position">-->
-<!--  <map-marker-->
-<!--    *ngFor="let marker of markers"-->
-<!--    [position]="marker.position"-->
-<!--    [label]="marker.label"-->
-<!--    [title]="marker.title"-->
-<!--    [options]="marker.options"-->
-<!--  >-->
-<!--  </map-marker>-->
-<!--</google-map>-->
+

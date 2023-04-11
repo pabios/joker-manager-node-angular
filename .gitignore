@@ -1,0 +1,6 @@
+# Ignore index.html in front/src
+front/src/index.html
+
+# Ignore environment directory
+front/src/environments/
+

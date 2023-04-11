@@ -5,5 +5,4 @@ export const environment = {
   apiUrl:"https://api.pabiosoft.com/index.php",
   url:'http://localhost:3000',
   token: 'xxxx.xxxx.yyyy.zzzzz',
-  googleMapsApiKey: 'AIzaSyDhVDyZazCKAmDr32sIMeM5H2E-KDRBIFE'
 };
