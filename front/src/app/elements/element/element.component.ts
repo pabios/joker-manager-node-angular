@@ -37,8 +37,10 @@ export class ElementComponent implements  OnInit{
   addMarker() {
     this.markers.push({
       position:{
-        lat: this.center.lat,
-        lng: this.center.lng
+        // lat: this.center.lat,
+        // lng: this.center.lng
+        lat: 9.509167,
+        lng: -13.712222
       },
       label: {
         color: 'red',

@@ -6,6 +6,7 @@ export class Root {
   type!: string
   description!: string
   price!: string
+  createdDate!: string
   location!: string
   verified!: string
   stars!: string

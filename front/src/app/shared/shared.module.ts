@@ -9,16 +9,39 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
+import { FormComponent } from './form/form.component';
 
 
+
+// @NgModule({
+//   declarations: [
+//     FormComponent
+//   ],
+//   imports: [
+//     CommonModule
+//   ],
+//     exports: [
+//         MatToolbarModule,// bizare mais on l'exporte sans l'importer
+//         MatCardModule,
+//         ReactiveFormsModule,
+//         MatButtonModule,
+//         MatRadioModule,
+//         MatFormFieldModule,
+//         MatInputModule,
+//         MatSelectModule,
+//         MatIconModule,
+//         FormComponent
+//     ]
+// })
+// export class SharedModule { }
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
+  declarations: [
+    FormComponent
   ],
-  exports:[
-    MatToolbarModule,// bizare mais on l'importe sans l'exporter
+  imports: [
+    CommonModule,
+    MatToolbarModule,
     MatCardModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -27,6 +50,20 @@ import {MatIconModule} from "@angular/material/icon";
     MatInputModule,
     MatSelectModule,
     MatIconModule
+  ],
+  exports: [
+    CommonModule,
+    MatToolbarModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatRadioModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule,
+    FormComponent
   ]
 })
 export class SharedModule { }
+

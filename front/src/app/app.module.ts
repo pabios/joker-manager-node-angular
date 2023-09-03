@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatIconModule} from "@angular/material/icon";
 import {LandingPageComponent} from "./landing-page/components/landing-page/landing-page.component";
 import {GoogleMapsModule} from "@angular/google-maps";
+import {SharedModule} from "./shared/shared.module";
 
 
 @NgModule({
@@ -24,11 +25,9 @@ import {GoogleMapsModule} from "@angular/google-maps";
     CoreModule,
     AuthModule,
     NgbModule,
-
     MatIconModule,
-
-
-    GoogleMapsModule
+    GoogleMapsModule,
+    SharedModule //   le SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

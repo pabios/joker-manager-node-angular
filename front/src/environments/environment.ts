@@ -1,8 +1,9 @@
 export const environment = {
   production: false,
   site:'pabiosoft.com',
-  urlApi:'http//localhost:9000',
+  urlApi:'http://localhost:80/api',
   apiUrl:"https://api.pabiosoft.com/index.php",
   url:'http://localhost:3000',
   token: 'xxxx.xxxx.yyyy.zzzzz',
+  googleMapsApiKey: 'AIzaSyDhVDyZazCKAmDr32sIMeM5H2E-KDRBIFE'
 };

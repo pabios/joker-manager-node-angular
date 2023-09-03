@@ -10,27 +10,34 @@ import {CarouselModule} from "@coreui/angular";
 import {MatButtonModule} from "@angular/material/button";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {ElementComponent} from "./element/element.component";
+import {ElementAddComponent} from "./element-add/element-add.component";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {SharedModule} from "../shared/shared.module";
 
 
 
 @NgModule({
   declarations: [
+    ElementAddComponent,
     ElementListComponent,
     ElementComponent
   ],
-  imports: [
-    CommonModule,
-    ElementRoutingModule,
-    MatCardModule,
-    MatGridListModule,
-    GoogleMapsModule,
-    MatIconModule,
-    CarouselModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatIconModule
-  ],
+    imports: [
+        CommonModule,
+        ElementRoutingModule,
+        MatCardModule,
+        MatGridListModule,
+        GoogleMapsModule,
+        MatIconModule,
+        CarouselModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatIconModule,
+        MatButtonToggleModule,
+        SharedModule
+    ],
   exports:[
+    ElementAddComponent,
     ElementListComponent,
     ElementComponent
   ]

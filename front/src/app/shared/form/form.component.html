@@ -1,0 +1,79 @@
+
+<div style="text-align: center">
+  <div class="form-card">
+    <mat-card style="margin: 20px;text-align: center">
+      <mat-card-title class="mat-headline">Ajout d'un Readme</mat-card-title>
+    </mat-card>
+    <form [formGroup]="elementForm" enctype="multipart/form-data">
+      <p>
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>Donne un titre a ton Readme</mat-label>
+          <input formControlName="title"   #title  matInput placeholder="Titre du Readme">
+          <mat-icon matSuffix>title</mat-icon>
+          <mat-hint>Titre</mat-hint>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>Enonce un objectif que ton lecteur va atteindre </mat-label>
+          <input formControlName="description" #description matInput placeholder="Objectif apres lecture">
+          <mat-icon matSuffix>description</mat-icon>
+          <mat-hint>Objectif</mat-hint>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>URL de l'image de la techno </mat-label>
+          <input formControlName="imageUrl"  #photo matInput placeholder="https://wikipedia.org/techno/image.png">
+          <mat-icon matSuffix>image</mat-icon>
+          <mat-hint>image url</mat-hint>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>Le Nom de la Techno </mat-label>
+          <input formControlName="location"  #location matInput placeholder="React | arduino | PHP">
+          <mat-icon matSuffix>category</mat-icon>
+          <mat-hint>Techno</mat-hint>
+        </mat-form-field>
+      </p>
+
+      <div class="upload-wrapper">
+        <label for="file-input" class="file-label">
+          <mat-icon class="upload-icon">cloud_upload</mat-icon>
+          <span class="upload-text">Choisir un fichier .md</span>
+        </label>
+        <input  id="file-input" type="file" class="file-input" #fichier (change)="onFileChange($event)">
+        <span class="file-name" *ngIf="fichier.files?.length">{{ imageSrc.name }}</span>
+      </div>
+
+
+      <button mat-raised-button color="primary"
+              (click)="onSend(title.value,description.value,photo.value,location.value)"
+              [disabled]="elementForm.invalid || !fileFormatStatus"
+      >
+        Publier
+      </button>
+
+
+    </form>
+  </div>
+
+
+
+
+
+  <!--<div id="edit" [froalaEditor]>Hello, Froala!</div>-->
+
+  <div class="face-snap-card" *ngIf="elementProview$ | async as element">
+    <h2>{{ element.type | uppercase }}</h2>
+    <p>Mis en ligne {{ element.createdDate | date: 'à HH:mm, le d MMMM yyyy' }}</p>
+    <img [src]="element.images" [alt]="element.type">
+    <p>{{ element.description }}</p>
+    <p *ngIf="element.location">Tu a choisi {{ element.location }} comme techno</p>
+  </div>
+</div>
+

@@ -1,74 +1,22 @@
 <div class="container">
   <div class="city-cards">
 
-      <div class="city-card"  >
-        <a href=""  routerLink="element/thiselement" class="card-link">
-            <img src="https://via.assets.so/shoe.png?id=1&q=95&w=360&h=360&fit=fill" alt="Conakry">
-            <div class="titre-icon-region">
-              <p>
-                <mat-icon>location_city</mat-icon> <span class="name"> Basse Guinée</span>
-              </p>
-              <p>
-                <mat-icon>people</mat-icon> <span class="name">≈ 4 254 434 habitants </span>
-              </p>
-            </div>
-            <p class="icon-text">
-              <mat-icon  >hotel</mat-icon>  3000 logements disponibles
+      <div class="city-card" *ngFor="let categoryItem of category$ | async">
+        <a [routerLink]="'element/' + categoryItem.id" class="card-link">
+          <img [src]="categoryItem.imageUrl" alt="{{ categoryItem.name }}">
+          <div class="titre-icon-region">
+            <p>
+              <mat-icon>location_city</mat-icon> <span class="name">{{ categoryItem.name }}</span>
             </p>
+            <p>
+              <mat-icon>people</mat-icon> <span class="name">≈ {{ categoryItem.info }} habitants</span>
+            </p>
+          </div>
+          <p class="icon-text">
+            <mat-icon>hotel</mat-icon> {{ categoryItem.nombreElement }} logements
+          </p>
         </a>
       </div>
-
-
-    <div class="city-card">
-      <a href=""  class="card-link">
-          <img src="https://via.assets.so/shoe.png?id=1&q=95&w=360&h=360&fit=fill" alt="Conakry">
-          <div class="titre-icon-region">
-            <p>
-              <mat-icon>location_city</mat-icon> <span class="name"> Moyenne Guinée</span>
-            </p>
-            <p>
-              <mat-icon>people</mat-icon> <span class="name">≈ 2 188 232 habitants </span>
-            </p>
-          </div>
-          <p class="icon-text">
-            <mat-icon  >hotel</mat-icon>  120 logements disponibles
-          </p>
-      </a>
-    </div>
-
-    <div class="city-card">
-      <a href=""  class="card-link">
-          <img src="https://via.assets.so/shoe.png?id=1&q=95&w=360&h=360&fit=fill" alt="Conakry">
-          <div class="titre-icon-region">
-            <p>
-              <mat-icon>location_city</mat-icon> <span class="name"> Haute Guinée</span>
-            </p>
-            <p>
-              <mat-icon>people</mat-icon> <span class="name">≈ 2 800 628 habitants </span>
-            </p>
-          </div>
-          <p class="icon-text">
-            <mat-icon  >hotel</mat-icon>  420 logements disponibles
-          </p>
-      </a>
-    </div>
-
-    <div class="city-card">
-      <a href="" class="card-link">
-          <img src="https://via.assets.so/shoe.png?id=1&q=95&w=360&h=360&fit=fill" alt="Conakry">
-          <div class="titre-icon-region">
-            <p>
-              <mat-icon>location_city</mat-icon> <span class="name"> Guinée Forestière</span>
-            </p>
-            <p>
-              <mat-icon>people</mat-icon> <span class="name">≈ 1 989 740 habitants </span>
-            </p>
-          </div>
-          <p class="icon-text">
-            <mat-icon  >hotel</mat-icon>  510 logements disponibles
-          </p>
-      </a>
-    </div>
 
 
   </div>
