@@ -69,11 +69,11 @@
   <!--<div id="edit" [froalaEditor]>Hello, Froala!</div>-->
 
   <div class="face-snap-card" *ngIf="elementProview$ | async as element">
-    <h2>{{ element.type | uppercase }}</h2>
+    <h2>{{ element.name | uppercase }}</h2>
     <p>Mis en ligne {{ element.createdDate | date: 'à HH:mm, le d MMMM yyyy' }}</p>
-    <img [src]="element.images" [alt]="element.type">
+    <img [src]="element.images" [alt]="element.name">
     <p>{{ element.description }}</p>
-    <p *ngIf="element.location">Tu a choisi {{ element.location }} comme techno</p>
+    <p *ngIf="element.locate">Tu a choisi {{ element.locate }} comme techno</p>
   </div>
 </div>
 

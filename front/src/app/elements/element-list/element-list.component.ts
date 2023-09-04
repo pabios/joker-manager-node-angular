@@ -71,10 +71,15 @@ export class ElementListComponent implements OnInit {
 
 
   // Obtenir les cartes pour affichage
-  getCardsForPage() {
+  getCardsForPageCard() {
     const start = this.currentPage * this.pageSize;
     const end = start + this.pageSize;
     return this.cards.slice(start, end);
+  }
+  getCardsForPage(element: Root[]) {
+    const start = this.currentPage * this.pageSize;
+    const end = start + this.pageSize;
+    return element.slice(start, end);
   }
 
   onPageChange(event: PageEvent) {

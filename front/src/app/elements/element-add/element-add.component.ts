@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-element-add',
+  selector: 'app-element-single-add',
   templateUrl: './element-add.component.html',
   styleUrls: ['./element-add.component.scss']
 })

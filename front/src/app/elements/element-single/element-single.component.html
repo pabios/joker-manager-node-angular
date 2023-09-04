@@ -1,14 +1,13 @@
-<div>
-  <mat-card>
+<div class="container">
+<mat-card>
     <mat-card-header>
       <div class="card-status">
         <button mat-icon-button class="verified">
-
-          <mat-icon [ngClass]="element.categorie_id  === 4 ? 'green-icon' : 'red'">{{ element.categorie_id == 5 ? 'done_all' : 'check' }}</mat-icon>
+          <mat-icon [ngClass]="element.categorie_id  == 4 ? 'green-icon' : 'red'">{{ element.categorie_id == 5 ? 'done_all' : 'check' }}</mat-icon>
         </button>
       </div>
+      <mat-card-title>{{element.name}}</mat-card-title>
       <mat-card-subtitle>
-        <div class="card-type">{{element.name}}</div>
         <div class="stars">
           <mat-icon>star</mat-icon>
           <mat-icon>star</mat-icon>
@@ -16,8 +15,8 @@
           <mat-icon>star</mat-icon>
           <mat-icon>star_half</mat-icon>
         </div>
-      </mat-card-subtitle>
 
+      </mat-card-subtitle>
     </mat-card-header>
 
     <div class="card-content">
@@ -28,11 +27,13 @@
             <c-carousel-indicators></c-carousel-indicators>
             <c-carousel-inner>
               <c-carousel-item *ngFor="let image of element.images">
+
                 <img
                   [src]="image.src"
                   alt="{{ element.name }}"
                   class="d-block w-100"
                   loading="lazy" style="height: 100%" />
+
               </c-carousel-item>
             </c-carousel-inner>
             <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
@@ -40,9 +41,8 @@
           </c-carousel>
         </div>
         <div class="description">
-          <p><strong><mat-icon>attach_money</mat-icon> </strong> <span> <b>Loyer :</b> {{element.price}} FCFA/mois</span></p>
-          <p><strong><mat-icon>location_on</mat-icon>  </strong> <span> <b>Localisation :</b>  {{element.locate}} </span></p>
-          <p><strong><mat-icon>square</mat-icon>  </strong> <span> <b>Surface :</b>  {{element.size}} m2  </span></p>
+          <p><strong><mat-icon>attach_money</mat-icon> </strong> <span> <b>Prix :</b> {{element.price}} FCFA/mois</span></p>
+          <p><strong><mat-icon>location_on</mat-icon>  </strong> <span> <b>Localisation :</b>  Conakry, Kipe </span></p>
           <p><strong><mat-icon>description</mat-icon> </strong>
             <span> <b>Description :</b>
               {{element.description}}
@@ -55,4 +55,42 @@
       </div>
     </div>
   </mat-card>
+
+  <div  class="carte-and-carousel">
+    <div class="laMaps">
+      <google-map style="width: 100%"  [center]="markers[0]?.position">
+        <map-marker
+          *ngFor="let marker of markers"
+          [position]="marker.position"
+          [label]="marker.label"
+          [title]="marker.title"
+          [options]="marker.options"
+        >
+        </map-marker>
+      </google-map>
+    </div>
+
+    <div class="laCarousel">
+      <c-carousel>
+        <c-carousel-indicators></c-carousel-indicators>
+        <c-carousel-inner>
+          <c-carousel-item *ngFor="let image of element.images">
+
+            <img
+              [src]="image.src"
+              alt="{{ element.name }}"
+              class="d-block w-100"
+              loading="lazy"   />
+
+          </c-carousel-item>
+        </c-carousel-inner>
+        <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+        <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+      </c-carousel>
+    </div>
+  </div>
+
+  <div>
+    bonjour
+  </div>
 </div>

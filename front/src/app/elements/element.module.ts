@@ -9,10 +9,11 @@ import {MatIconModule} from "@angular/material/icon";
 import {CarouselModule} from "@coreui/angular";
 import {MatButtonModule} from "@angular/material/button";
 import {MatPaginatorModule} from "@angular/material/paginator";
-import {ElementComponent} from "./element/element.component";
+import {ElementSingleComponent} from "./element-single/element-single.component";
 import {ElementAddComponent} from "./element-add/element-add.component";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {SharedModule} from "../shared/shared.module";
+import {ElementComponent} from "./element/element.component";
 
 
 
@@ -20,6 +21,7 @@ import {SharedModule} from "../shared/shared.module";
   declarations: [
     ElementAddComponent,
     ElementListComponent,
+    ElementSingleComponent,
     ElementComponent
   ],
     imports: [
@@ -39,6 +41,7 @@ import {SharedModule} from "../shared/shared.module";
   exports:[
     ElementAddComponent,
     ElementListComponent,
+    ElementSingleComponent,
     ElementComponent
   ]
 })

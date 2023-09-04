@@ -3,13 +3,18 @@ export type Element = Root
 
 export class Root {
   id!: string
-  type!: string
+  content!: string
   description!: string
-  price!: string
+  name!: string
   createdDate!: string
-  location!: string
+  locate!: string
+  price!:number
+  size!:number
   verified!: string
   stars!: string
+  categorie_id!:number
+
+
   images!: Image[]
 }
 

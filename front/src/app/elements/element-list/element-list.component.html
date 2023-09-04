@@ -1,9 +1,9 @@
 <h2> Les cards</h2>
-<!--<app-element *ngFor="let element of cards"></app-element>-->
+<!--<app-element-single *ngFor="let element-single of cards"></app-element-single>-->
 
-<!--<ng-container *ngIf="elements$ | async as element">-->
-<!--  <app-element *ngFor="let element of getCardsForPage(element)" [element]="element"></app-element>-->
-<!--</ng-container>-->
+
+
+GOOD BYE
 
 <div class="container">
 
@@ -15,65 +15,67 @@
                  aria-label="Select page">
   </mat-paginator>
 
+  <ng-container *ngIf="elements$ | async as element">
+    <app-element *ngFor="let element of getCardsForPage(element)" [element]="element"></app-element>
+  </ng-container>
+<!--  <div *ngFor="let card of getCardsForPage()">-->
+<!--  <mat-card>-->
+<!--    <mat-card-header>-->
+<!--      <div class="card-status">-->
+<!--        <button mat-icon-button class="verified">-->
 
-  <div *ngFor="let card of getCardsForPage()">
-  <mat-card>
-    <mat-card-header>
-      <div class="card-status">
-        <button mat-icon-button class="verified">
+<!--          <mat-icon [ngClass]="card.verified  === 1 ? 'green-icon' : 'red'">{{ card.verified == 1 ? 'done_all' : 'check' }}</mat-icon>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <mat-card-subtitle>-->
+<!--        <div class="card-type">{{card.type}}</div>-->
+<!--        <div class="stars">-->
+<!--          <mat-icon>star</mat-icon>-->
+<!--          <mat-icon>star</mat-icon>-->
+<!--          <mat-icon>star</mat-icon>-->
+<!--          <mat-icon>star</mat-icon>-->
+<!--          <mat-icon>star_half</mat-icon>-->
+<!--        </div>-->
+<!--      </mat-card-subtitle>-->
 
-          <mat-icon [ngClass]="card.verified  === 1 ? 'green-icon' : 'red'">{{ card.verified == 1 ? 'done_all' : 'check' }}</mat-icon>
-        </button>
-      </div>
-      <mat-card-subtitle>
-        <div class="card-type">{{card.type}}</div>
-        <div class="stars">
-          <mat-icon>star</mat-icon>
-          <mat-icon>star</mat-icon>
-          <mat-icon>star</mat-icon>
-          <mat-icon>star</mat-icon>
-          <mat-icon>star_half</mat-icon>
-        </div>
-      </mat-card-subtitle>
+<!--    </mat-card-header>-->
 
-    </mat-card-header>
+<!--    <div class="card-content">-->
 
-    <div class="card-content">
-
-      <div class="container-img-maps">
-        <div class="image-container">
-          <c-carousel>
-            <c-carousel-indicators></c-carousel-indicators>
-            <c-carousel-inner>
-              <c-carousel-item *ngFor="let image of card.images">
-                <img
-                  [src]="image.src"
-                  alt="{{ card.type }}"
-                  class="d-block w-100"
-                  loading="lazy" style="height: 100%" />
-              </c-carousel-item>
-            </c-carousel-inner>
-            <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
-            <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
-          </c-carousel>
-        </div>
-        <div class="description">
-          <p><strong><mat-icon>attach_money</mat-icon> </strong> <span> <b>Loyer :</b> {{card.price}} FCFA/mois</span></p>
-          <p><strong><mat-icon>location_on</mat-icon>  </strong> <span> <b>Localisation :</b>  {{card.location}} </span></p>
-          <p><strong><mat-icon>square</mat-icon>  </strong> <span> <b>Surface :</b>  {{card.surface}} m2  </span></p>
-          <p><strong><mat-icon>description</mat-icon> </strong>
-            <span> <b>Description :</b>
-              {{card.description}}
-            </span>
-          </p>
-          <mat-card-actions>
-            <button mat-button color="primary">Réserver</button>
-          </mat-card-actions>
-        </div>
-      </div>
-    </div>
-  </mat-card>
-</div>
+<!--      <div class="container-img-maps">-->
+<!--        <div class="image-container">-->
+<!--          <c-carousel>-->
+<!--            <c-carousel-indicators></c-carousel-indicators>-->
+<!--            <c-carousel-inner>-->
+<!--              <c-carousel-item *ngFor="let image of card.images">-->
+<!--                <img-->
+<!--                  [src]="image.src"-->
+<!--                  alt="{{ card.type }}"-->
+<!--                  class="d-block w-100"-->
+<!--                  loading="lazy" style="height: 100%" />-->
+<!--              </c-carousel-item>-->
+<!--            </c-carousel-inner>-->
+<!--            <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>-->
+<!--            <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>-->
+<!--          </c-carousel>-->
+<!--        </div>-->
+<!--        <div class="description">-->
+<!--          <p><strong><mat-icon>attach_money</mat-icon> </strong> <span> <b>Loyer :</b> {{card.price}} FCFA/mois</span></p>-->
+<!--          <p><strong><mat-icon>location_on</mat-icon>  </strong> <span> <b>Localisation :</b>  {{card.location}} </span></p>-->
+<!--          <p><strong><mat-icon>square</mat-icon>  </strong> <span> <b>Surface :</b>  {{card.surface}} m2  </span></p>-->
+<!--          <p><strong><mat-icon>description</mat-icon> </strong>-->
+<!--            <span> <b>Description :</b>-->
+<!--              {{card.description}}-->
+<!--            </span>-->
+<!--          </p>-->
+<!--          <mat-card-actions>-->
+<!--            <button mat-button color="primary">Réserver</button>-->
+<!--          </mat-card-actions>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </mat-card>-->
+<!--</div>-->
 
 
 
