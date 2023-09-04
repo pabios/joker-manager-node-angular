@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CarouselConfig} from "ngx-bootstrap/carousel";
 import {PageEvent} from "@angular/material/paginator";
 import {ElementService} from "../../core/services/element.service";
+import {Observable} from "rxjs";
+import {Root} from "../../core/models/element.model";
 
 @Component({
   selector: 'app-elements-list',
@@ -32,7 +34,9 @@ export class ElementListComponent implements OnInit {
   currentPage = 0; // Page actuelle
   currentCards: any[] = [];
   pageSizeOptions!: number[];
+//
 
+  elements$!: Observable<Root[]>
 
   constructor(private elementService: ElementService) {
   }
@@ -43,6 +47,9 @@ export class ElementListComponent implements OnInit {
     this.setPageSizeOptions();
 
     this.addMarker();
+    //
+
+    this.elements$ = this.elementService.getAllElements();
   }
 
   addMarker() {

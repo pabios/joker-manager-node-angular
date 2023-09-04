@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import {Observable} from "rxjs";
+import {Root} from "../models/element.model";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -187,5 +191,12 @@ export class ElementService {
     }
   ]
 
-  constructor() { }
+
+
+  constructor(private http: HttpClient) { }
+
+
+  getAllElements(): Observable<Root[]> {
+    return this.http.get<Root[]>(`${environment.urlApi}/elements`)
+  }
 }
