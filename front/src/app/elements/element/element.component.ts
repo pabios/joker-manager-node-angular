@@ -1,55 +1,32 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ElementService} from "../../core/services/element.service";
-import {Element} from "../../core/models/element.model";
+import {Component, Input} from '@angular/core';
+import {Element, Images} from "../../core/models/element.model";
 import {Observable} from "rxjs";
+import {ImageService} from "../../core/services/imageService";
+import {NavigationEnd, Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-element',
   templateUrl: './element.component.html',
   styleUrls: ['./element.component.scss']
 })
+export class ElementComponent {
 
-export class ElementComponent implements  OnInit{
   @Input() element!: Element;
-  element$!: Observable<Element> // @todo use this
+  @Input() images!: Images[];
 
-  cards!: any[];
-
-  card!: any;
-
-  markers: any[] = [];
-  center: any = {
-    lat: 48.68439921578848,
-    lng:6.188186803578728
-  };
-
-  constructor(private elementService: ElementService) {
-  }
+  api_url!:string;
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.cards = this.elementService.cards;
-    this.card = this.cards[0];
-    console.log(this.card);
-
-    this.addMarker();
-  }
-
-  addMarker() {
-    this.markers.push({
-      position:{
-        lat: this.center.lat,
-        lng: this.center.lng
-      },
-      label: {
-        color: 'red',
-        text: 'Localisation ',
-      },
-      title: 'Le titre ',
-      options: {
-        animation: google.maps.Animation.BOUNCE ,
-      },
+    this.api_url = environment.backend+"/";
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        console.log('Route demandée :', event.url);
+      }
     });
   }
-
-
+  onViewElement(){
+      this.router.navigateByUrl(`elements/${this.element.id}`);
+  }
 }

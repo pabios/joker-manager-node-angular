@@ -1,0 +1,92 @@
+<div class="container">
+<mat-card *ngIf="element$ | async as element">
+    <mat-card-header>
+      <div class="card-status">
+        <button mat-icon-button class="verified">
+          <mat-icon [ngClass]="element.categorie_id  == 4 ? 'green-icon' : 'red'">{{ element.categorie_id == 5 ? 'done_all' : 'check' }}</mat-icon>
+        </button>
+      </div>
+      <mat-card-title>{{element.name}}</mat-card-title>
+      <mat-card-subtitle>
+        <div class="stars">
+          <mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon>
+          <mat-icon>star_half</mat-icon>
+        </div>
+
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <div class="card-content">
+
+      <div class="container-img-maps">
+        <div class="image-container">
+          <c-carousel>
+            <c-carousel-indicators></c-carousel-indicators>
+            <c-carousel-inner *ngIf="images$ | async as images">
+              <c-carousel-item *ngFor="let img of  images">
+
+                <img
+                  [src]="api_url+img.url"
+                  alt="{{ img.alt }}"
+                  class="d-block w-100"
+                  loading="lazy" style="height: 100%" />
+
+              </c-carousel-item>
+            </c-carousel-inner>
+            <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+            <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+          </c-carousel>
+        </div>
+        <div class="description">
+          <p><strong><mat-icon>attach_money</mat-icon> </strong> <span> <b>Prix :</b> {{element.price}} FCFA/mois</span></p>
+          <p><strong><mat-icon>location_on</mat-icon>  </strong> <span> <b>Localisation :</b>  Conakry, Kipe </span></p>
+          <p><strong><mat-icon>description</mat-icon> </strong>
+            <span> <b>Description :</b>
+              {{element.description}}
+            </span>
+          </p>
+          <mat-card-actions>
+            <button mat-button (click)="goBooking(element.id,element.price)" color="primary">Réserver</button>
+          </mat-card-actions>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+  <div  class="carte-and-carousel">
+    <div class="laMaps">
+      <google-map style="width: 100%"  [center]="markers[0]?.position">
+        <map-marker
+          *ngFor="let marker of markers"
+          [position]="marker.position"
+          [label]="marker.label"
+          [title]="marker.title"
+          [options]="marker.options"
+        >
+        </map-marker>
+      </google-map>
+    </div>
+
+    <div class="laCarousel">
+      <c-carousel>
+        <c-carousel-indicators></c-carousel-indicators>
+        <c-carousel-inner *ngIf="images$ | async as images">
+          <c-carousel-item *ngFor="let img of images">
+
+            <img
+              [src]="api_url+img.url"
+              alt="{{ img.alt }}"
+              class="d-block w-100"
+              loading="lazy"   />
+
+          </c-carousel-item>
+        </c-carousel-inner>
+        <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+        <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+      </c-carousel>
+    </div>
+  </div>
+</div>

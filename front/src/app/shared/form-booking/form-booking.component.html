@@ -1,0 +1,42 @@
+<form [formGroup]="form">
+
+  <mat-form-field>
+    <mat-label>Date de début</mat-label>
+    <mat-hint>Ex: 20/09/2023</mat-hint>
+    <input (dateChange)="onDateChangeBegin($event)" formControlName="beginDate" matInput [matDatepicker]="beginDate">
+    <mat-datepicker-toggle matSuffix [for]="beginDate"></mat-datepicker-toggle>
+    <mat-datepicker #beginDate></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Date de fin</mat-label>
+    <mat-hint>Ex: 20/09/2023</mat-hint>
+    <input (dateChange)="onDateChangeEnd($event)" formControlName="endDate" matInput [matDatepicker]="endDate">
+    <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+    <mat-datepicker #endDate></mat-datepicker>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <mat-label>Nombre de personnes</mat-label>
+    <input #nbPeople type="number" matInput formControlName="nbPeople">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Voici le prix en GNF</mat-label>
+    <input matInput #price value="{{priceItem}}" readonly>
+  </mat-form-field>
+
+<!--  <mat-form-field>-->
+<!--    <mat-label>Prix par personne</mat-label>-->
+<!--    <input #price type="number" matInput formControlName="price">-->
+<!--  </mat-form-field>-->
+
+<!--  <mat-form-field>-->
+<!--    <mat-label>Prix total</mat-label>-->
+<!--    <input #priceTotal type="number" matInput formControlName="priceTotal">-->
+<!--  </mat-form-field>-->
+  <div id="myPaypalButtons"></div>
+
+  <button mat-raised-button type="submit" (click)="onSend(nbPeople.value, price.value)">Réserver</button>
+</form>
+

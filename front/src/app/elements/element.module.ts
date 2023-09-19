@@ -9,14 +9,20 @@ import {MatIconModule} from "@angular/material/icon";
 import {CarouselModule} from "@coreui/angular";
 import {MatButtonModule} from "@angular/material/button";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {ElementSingleComponent} from "./element-single/element-single.component";
+import {ElementAddComponent} from "./element-add/element-add.component";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {SharedModule} from "../shared/shared.module";
 import {ElementComponent} from "./element/element.component";
 
 
 
 @NgModule({
   declarations: [
+    ElementAddComponent,
     ElementListComponent,
-    ElementComponent
+    ElementSingleComponent,
+    ElementComponent,
   ],
   imports: [
     CommonModule,
@@ -28,11 +34,15 @@ import {ElementComponent} from "./element/element.component";
     CarouselModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonToggleModule,
+    SharedModule,
   ],
   exports:[
+    ElementAddComponent,
     ElementListComponent,
-    ElementComponent
+    ElementSingleComponent,
+    ElementComponent,
   ]
 })
 export class ElementModule { }

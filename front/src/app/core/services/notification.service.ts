@@ -9,7 +9,6 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class NotificationService {
-  channel!:any;
   info!: string;
 
   constructor(private toastr: ToastrService,
@@ -28,11 +27,7 @@ export class NotificationService {
 
   }
 
-  voirNotifPusher(){
-    this.channel.bind('pusher:subscription_succeeded', function(data:any) {
-      //alert(JSON.stringify(data));
-    });
-  }
+
 
   showSuccess(message:string, title:string){
     this.toastr.success(message, title)
@@ -50,9 +45,6 @@ export class NotificationService {
     this.toastr.warning(message, title)
   }
 
-  likes(id:number):Observable<any> {
-    // return this.http.get<any>("http://localhost:9000/index.php?action=nbPostApi");
-    return this.http.get<any>(`http://localhost:9000/like/${id}`);
-  }
+
 
 }

@@ -1,0 +1,80 @@
+.city-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 -16px;
+
+  .card-link{
+    width: 100%;
+    text-decoration: none;
+    display: block
+
+  }
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+.city-card{
+  mat-icon{
+    margin-right: 15px;
+  }
+}
+.titre-icon-region{
+  display: flex;
+  justify-content: space-between;
+
+  .name{
+    display: block;
+    margin-top: -25px;
+    margin-left: 28px;
+  }
+}
+.icon-text{
+  display: flex;
+}
+
+.city-card {
+  //width: calc(50% - 32px);
+  width: 20%;
+  margin: 16px;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+    margin: 16px 0;
+  }
+}
+
+.city-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 0 0 2px rgba(0,0,0,0.1);
+}
+
+
+.city-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.city-card h3 {
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
+.city-card p {
+  font-size: 16px;
+  color: #999;
+  margin: 0;
+}
+
+//
+.button-add{
+  margin-top: 3%;
+}

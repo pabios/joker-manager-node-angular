@@ -9,16 +9,45 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
+import { FormComponent } from './form/form.component';
+import { FormBookingComponent } from './form-booking/form-booking.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {BrowserModule} from "@angular/platform-browser";
+import {MatNativeDateModule} from "@angular/material/core";
+import {ElementModule} from "../elements/element.module";
 
 
+
+// @NgModule({
+//   declarations: [
+//     FormComponent
+//   ],
+//   imports: [
+//     CommonModule
+//   ],
+//     exports: [
+//         MatToolbarModule,// bizare mais on l'exporte sans l'importer
+//         MatCardModule,
+//         ReactiveFormsModule,
+//         MatButtonModule,
+//         MatRadioModule,
+//         MatFormFieldModule,
+//         MatInputModule,
+//         MatSelectModule,
+//         MatIconModule,
+//         FormComponent
+//     ]
+// })
+// export class SharedModule { }
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
+  declarations: [
+    FormComponent,
+    FormBookingComponent
   ],
-  exports:[
-    MatToolbarModule,// bizare mais on l'importe sans l'exporter
+  imports: [
+    CommonModule,
+    MatToolbarModule,
     MatCardModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -26,7 +55,25 @@ import {MatIconModule} from "@angular/material/icon";
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    // BrowserModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
+  exports: [
+    CommonModule,
+    MatToolbarModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatRadioModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule,
+    FormComponent,
+    FormBookingComponent,
   ]
 })
 export class SharedModule { }
+

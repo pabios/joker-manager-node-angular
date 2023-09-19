@@ -1,38 +1,212 @@
-$color-footer: #F29E01;
+//$color-footer: #F29E01;
+//$color-footer: #f8f7f4;
+//
+//.footer {
+//  background-color: $color-footer;
+//  position: relative;
+//  padding-top: 20px;
+//  padding-bottom: 20px;
+//  text-align: center;
+//}
+//
+//.back-to-top {
+//  position: fixed;
+//  bottom: 20px;
+//  right: 20px;
+//  display: none;
+//  width: 50px;
+//  height: 50px;
+//  border-radius: 50%;
+//  background-color: #000;
+//  color: #fff;
+//  text-align: center;
+//  line-height: 50px;
+//  font-size: 24px;
+//  z-index: 999;
+//}
+//
+//.back-to-top:hover {
+//  cursor: pointer;
+//  background-color: #444;
+//}
+//
+//.back-to-top:focus {
+//  outline: none;
+//}
+//
+//.back-to-top.show {
+//  display: block;
+//}
 
-.footer {
-  background-color: $color-footer;
-  position: relative;
-  padding-top: 20px;
-  padding-bottom: 20px;
+
+
+
+
+$them-color : rgb(13, 1, 21);
+
+.laSideNav{
+  //background-color: $them-color;
+  //color: white;
+}
+
+.example-menu-row{
+  width:90%;
+  //background-color: white;
+  button{
+    float: right;
+  }
+}
+.uxg-avatar-title-block{
   text-align: center;
 }
 
-.back-to-top {
+.head-them__blue{
+  background-color: $them-color;
+}
+
+.list-content {
+  display: flex;
+  align-items: center;
+}
+
+.list-content mat-icon {
+  margin-right: 5px;
+}
+
+
+/** footer **/
+footer{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: $them-color;
+  color: white;
+  padding-left: 5%;
+  padding-right: 20%;
+
+  a{
+    text-decoration: none;
+    color: white;
+  }
+}
+
+/***************************************
+* Responsive Tablette breakpoints 992px
+************************************/
+
+@media only screen and (max-width:992px)  {
+  footer{
+    flex-direction: column;
+  }
+}
+/**
+ material footerrrrrr
+ */
+
+.logo{
+  padding:20px;
+  text-decoration: none;
+  color: white;
+}
+.logo::first-letter {
+  font-size: 2rem;
+  color: #0ae848;
+  font-style: italic;
+  font-family: "Comic Sans MS", cursive, sans-serif; /* Remplacez avec la police de votre choix */
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-style: italic;
+  font-family: "Comic Sans MS", cursive, sans-serif; /* Remplacez avec la police de votre choix */
+}
+
+.lien{
+  text-decoration: none;
+  color: white;
+}
+.manage-account{
+  background-color:$them-color;
+  mat-icon{
+    color: white;
+  }
+}
+.lien_button{
+  text-decoration: none;
+  color: white;
+  border: none;
+}
+.monTheme{
+  background-color: white;
+  color: black;
+}
+.foot_sidebar{ // version
+  text-align: center;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #000;
-  color: #fff;
+  bottom: 0px;
+}
+.version_num{
+  padding-top: 5px;
+  padding-left: 2px;
+  font-size: 15px;
+}
+.text-info{
+  padding-bottom: 20px;
+  background-color: white;
+  color: black;
+}
+
+
+/*
+ * Actual Sticky Footer Styles
+ */
+.all-wrap {
+  min-height: 100vh;
+}
+
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+
+/*
+ * Make the Component injected by Router Outlet full height:
+ */
+main {
+  display: flex;
+  flex-direction: column;
+
+  > *:not(router-outlet) {
+    flex: 1;
+    display: block;
+  }
+}
+
+/** accessibilité **/
+
+.a11y-nav{
+  position: absolute;
+  top: -10em;
+  z-index: 100;
+  width: 100%;
+}
+.a11y-nav a{
+  font-weight: 700;
+  position: absolute;
+  left: 0;
+  right: 0;
   text-align: center;
-  line-height: 50px;
-  font-size: 24px;
-  z-index: 999;
+  /** top: 10em;**/
+  padding: 10px;
 }
-
-.back-to-top:hover {
-  cursor: pointer;
-  background-color: #444;
-}
-
-.back-to-top:focus {
-  outline: none;
-}
-
-.back-to-top.show {
-  display: block;
+.a11y-nav a:focus,
+.a11y-nav a:hover{
+  top: 10em;
+  text-decoration: none;
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,27 +10,36 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatIconModule} from "@angular/material/icon";
 import {LandingPageComponent} from "./landing-page/components/landing-page/landing-page.component";
 import {GoogleMapsModule} from "@angular/google-maps";
+import {SharedModule} from "./shared/shared.module";
+import {httpInterceptorProviders} from "./core/interceptors";
+import { MaintenceDayComponent } from './maitenance/maintence-day/maintence-day.component';
+import {ToastrModule} from "ngx-toastr";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    MaintenceDayComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     CoreModule,
     AuthModule,
-    NgbModule,
+    // NgbModule,
+    GoogleMapsModule,
+    SharedModule, //   le SharedModule
+    ToastrModule.forRoot()
 
-    MatIconModule,
-
-
-    GoogleMapsModule
   ],
-  providers: [],
+  providers: [
+    // { provide: LOCALE_ID, useValue: 'fr-FR' },
+    // httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

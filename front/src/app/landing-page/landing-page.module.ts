@@ -7,14 +7,14 @@ import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
-    LandingPageComponent
+    // LandingPageComponent
   ],
   imports: [
     CommonModule,
     MatIconModule,
   ],
   exports:[
-    LandingPageComponent
+    // LandingPageComponent
   ]
 })
 export class LandingPageModule { }

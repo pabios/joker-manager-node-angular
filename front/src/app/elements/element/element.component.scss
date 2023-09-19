@@ -18,15 +18,15 @@ mat-card-subtitle{
 .green-icon{
   color: green;
 }
-//.map-tile {
-//  width: 55%;
-//  background-color: red;
-//
-//  google-map{
-//    height: 50px !important;
-//    width: 100%;
-//  }
-//}
+.map-tile {
+  width: 55%;
+  background-color: red;
+
+  google-map{
+    height: 50px !important;
+    width: 100%;
+  }
+}
 
 c-carousel-item{
   height: 226px;
@@ -150,23 +150,3 @@ at-card-header{
     margin-top: 16px;
   }
 }
-
-
-.carte-and-carousel{
-  display: flex;
-
-  .laCarousel{
-    margin-left: 1%;
-    width: 60%;
-
-    c-carousel-item{
-      height: 100%;
-      img{
-        height: 500px;
-      }
-
-    }
-  }
-}
-
-

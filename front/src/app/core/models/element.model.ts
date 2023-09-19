@@ -3,16 +3,36 @@ export type Element = Root
 
 export class Root {
   id!: string
-  type!: string
+  content!: string
   description!: string
-  price!: string
-  location!: string
+  name!: string
+  createdDate!: string
+  locate!: string
+  price!:number
+  size!:number
   verified!: string
   stars!: string
-  images!: Image[]
+  categorie_id!:number
+
+
+  images!: Images[]
 }
 
-export class Image {
+export class Images {
   id!: any
-  src!: string
+  url!: string
+  alt!:string
+  elementId!:any
 }
+
+//
+// export class Element {
+//   id!: number;
+//   title!: string;
+//   description!: string;
+//   imageUrl!: string;
+//   createdDate!: Date;
+//   snaps!: number;
+//   location?: string;
+//   fichier?:string;
+// }

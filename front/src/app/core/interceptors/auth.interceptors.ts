@@ -2,6 +2,7 @@ import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } fro
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import {ImageService} from "../services/imageService";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -10,7 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const headers = new HttpHeaders()
-       // .append('Authorization', `Bearer ${this.authService.getToken()}`);
+       .append('Authorization', `Bearer ${this.authService.getToken()}`);
     const modifiedReq = req.clone({ headers });
     return next.handle(modifiedReq);
   }

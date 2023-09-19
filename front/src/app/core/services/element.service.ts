@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import {Observable} from "rxjs";
+import { Root} from "../models/element.model";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -187,5 +191,25 @@ export class ElementService {
     }
   ]
 
-  constructor() { }
+
+
+  constructor(private http: HttpClient) { }
+
+
+  getAllElements(): Observable<Root[]> {
+    return this.http.get<Root[]>(`${environment.urlApi}/elements`)
+  }
+
+  getElementById(elementId: number): Observable<Root>{ //@todo created  slug properties
+    return this.http.get<Root>(`${environment.urlApi}/element/${elementId}`)
+  }
+
+  /**
+   * nouvelle enregistrement
+   * @param formData
+   */
+  add(formData:FormData):Observable<any>{
+    return this.http.post<any>(`${environment.urlApi}/element/add`,formData)
+  }
+
 }
