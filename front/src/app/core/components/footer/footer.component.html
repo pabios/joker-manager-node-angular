@@ -139,14 +139,17 @@
     <footer>
       <div class="apropos leDiv">
         <h4>A propos</h4>
-        <p> <a routerLink="/readme" >Articles</a> </p>
-        <p><a routerLink="av/avenir">Fonctionnement du site</a> </p>
-        <p><a routerLink="av/avenir">Données et confidentialité</a> </p>
+        <p><a [routerLink]="['spec/about', 'Articles']">Articles</a></p>
+        <p><a [routerLink]="['spec/about', 'Fonctionnement-du-site']">Fonctionnement du site</a></p>
+        <p><a [routerLink]="['spec/about', 'Donnees-et-confidentialite']">Données et confidentialité</a></p>
+
       </div>
       <div class="hebergement leDiv">
         <h4>Nos Articles</h4>
-        <p><a routerLink="av/avenir">Charte qualité</a> </p>
-        <p><a routerLink="av/avenir">Soumettre un Article </a> </p>
+        <p><a [routerLink]="['spec/about', 'Charte-qualite']">Charte qualité</a></p>
+
+
+        <p><a routerLink="elements/add">Soumettre un Logement </a> </p>
       </div>
       <div class="assistance leDiv">
         <h4>Assistance</h4>

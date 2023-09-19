@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'elements', loadChildren: () => import('./elements/element.module').then(m => m.ElementModule) },
   { path: 'maintenance', loadChildren: () => import('./maintenace/maintenace.module').then(m => m.MaintenaceModule) },
   { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule) },
+  { path: 'spec', loadChildren: () => import('./spec-pages/spec-pages.module').then(m => m.SpecPagesModule) },
   { path: '', component: LandingPageComponent },
 
   //maintenace

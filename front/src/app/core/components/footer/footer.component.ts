@@ -46,8 +46,12 @@ export class FooterComponent  implements OnInit {
   }
 
   goAvenir(){
-    this.router.navigateByUrl('av/avenir')
+    this.router.navigateByUrl('spec/about')
   }
+  goAbout(nomArticle: string) {
+    this.router.navigateByUrl(`spec/about/${nomArticle}`);
+  }
+
   goLogin(){
     this.router.navigateByUrl('auth/login')
   }
