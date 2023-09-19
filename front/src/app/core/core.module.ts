@@ -7,6 +7,9 @@ import {MatButtonModule} from "@angular/material/button";
 import {RouterModule} from "@angular/router";
 import { HttpClientModule} from "@angular/common/http";
 import { FooterComponent } from './components/footer/footer.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -18,10 +21,12 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [
     CommonModule,
     SharedModule,
-    MatIconModule,
     MatButtonModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
+    MatListModule,
+    MatMenuModule
   ],
   exports:[
     HeaderComponent,

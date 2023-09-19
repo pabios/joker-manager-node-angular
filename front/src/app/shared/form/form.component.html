@@ -1,4 +1,3 @@
-
 <div style="text-align: center">
   <div class="form-card">
     <mat-card style="margin: 20px;text-align: center">
@@ -7,53 +6,92 @@
     <form [formGroup]="elementForm" enctype="multipart/form-data">
       <p>
         <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>Donne un titre a ton Readme</mat-label>
-          <input formControlName="title"   #title  matInput placeholder="Titre du Readme">
+          <mat-label>Donne un titre a ton logement</mat-label>
+          <input formControlName="name"   #name  matInput placeholder="Donne un titre a ton logement">
           <mat-icon matSuffix>title</mat-icon>
           <mat-hint>Titre</mat-hint>
         </mat-form-field>
       </p>
-
       <p>
         <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>Enonce un objectif que ton lecteur va atteindre </mat-label>
-          <input formControlName="description" #description matInput placeholder="Objectif apres lecture">
+          <mat-label>Donne une description a ton logement</mat-label>
+          <input formControlName="description"   #description  matInput placeholder="description du logement">
           <mat-icon matSuffix>description</mat-icon>
-          <mat-hint>Objectif</mat-hint>
+          <mat-hint>Titre</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>Dites nous en plus sur le logement</mat-label>
+          <input formControlName="content"   #content  matInput placeholder="dite nous plus sur logement">
+          <mat-icon matSuffix>description</mat-icon>
+          <mat-hint>Content</mat-hint>
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>URL de l'image de la techno </mat-label>
-          <input formControlName="imageUrl"  #photo matInput placeholder="https://wikipedia.org/techno/image.png">
-          <mat-icon matSuffix>image</mat-icon>
-          <mat-hint>image url</mat-hint>
-        </mat-form-field>
-      </p>
-
-      <p>
-        <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>Le Nom de la Techno </mat-label>
-          <input formControlName="location"  #location matInput placeholder="React | arduino | PHP">
+          <mat-label>Precisez ou se trouve votre logement </mat-label>
+          <input formControlName="location" #location matInput placeholder="localisation du logement">
           <mat-icon matSuffix>category</mat-icon>
-          <mat-hint>Techno</mat-hint>
+          <mat-hint>Localisation</mat-hint>
         </mat-form-field>
       </p>
+
+      <p>
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>Precisez la taille de votre logement </mat-label>
+          <input formControlName="sizee" #sizee matInput placeholder="vos type de lit">
+          <mat-icon matSuffix>category</mat-icon>
+          <mat-hint>Localisation</mat-hint>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>Donner un prix mensuel a votre logement  </mat-label>
+          <input formControlName="price"  #price matInput placeholder="Donner un prix mensuel ">
+          <mat-icon matSuffix>Prix</mat-icon>
+          <mat-hint>Prix</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>choisir le type de lit</mat-label>
+          <mat-select formControlName="item">
+            <mat-option  *ngFor="let item of items$|async" value="{{item.id}}">{{item.type}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field style="width: 100%" appearance="fill">
+            <mat-label>choisir une region geographique</mat-label>
+          <mat-select formControlName="category">
+            <mat-option   *ngFor="let category of category$|async" value="{{category.id}}">{{category.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+
 
       <div class="upload-wrapper">
         <label for="file-input" class="file-label">
           <mat-icon class="upload-icon">cloud_upload</mat-icon>
-          <span class="upload-text">Choisir un fichier .md</span>
+          <span class="upload-text">Choisir 5 images pour le logement</span>
         </label>
-        <input  id="file-input" type="file" class="file-input" #fichier (change)="onFileChange($event)">
+        <input id="file-input" type="file" class="file-input" multiple accept="image/*" #fichier (change)="onFileChangeImage($event)">
+
         <span class="file-name" *ngIf="fichier.files?.length">{{ imageSrc.name }}</span>
       </div>
 
+<!--      <button mat-raised-button color="primary"-->
+<!--              (click)="onSend(title.value,description.value,location.value,price.value,sizee.value,typeBed.value)"-->
+<!--              [disabled]="elementForm.invalid || !fileFormatStatus"-->
+<!--      >-->
+<!--        Publier-->
+<!--      </button>-->
 
       <button mat-raised-button color="primary"
-              (click)="onSend(title.value,description.value,photo.value,location.value)"
-              [disabled]="elementForm.invalid || !fileFormatStatus"
+              (click)="onSend(name.value,content.value,description.value,location.value,price.value,sizee.value)"
       >
         Publier
       </button>
@@ -73,7 +111,7 @@
     <p>Mis en ligne {{ element.createdDate | date: 'à HH:mm, le d MMMM yyyy' }}</p>
     <img [src]="element.images" [alt]="element.name">
     <p>{{ element.description }}</p>
-    <p *ngIf="element.locate">Tu a choisi {{ element.locate }} comme techno</p>
   </div>
 </div>
+
 

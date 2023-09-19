@@ -10,6 +10,11 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import { FormComponent } from './form/form.component';
+import { FormBookingComponent } from './form-booking/form-booking.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {BrowserModule} from "@angular/platform-browser";
+import {MatNativeDateModule} from "@angular/material/core";
+import {ElementModule} from "../elements/element.module";
 
 
 
@@ -37,7 +42,8 @@ import { FormComponent } from './form/form.component';
 
 @NgModule({
   declarations: [
-    FormComponent
+    FormComponent,
+    FormBookingComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +55,11 @@ import { FormComponent } from './form/form.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    // BrowserModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ElementModule,
   ],
   exports: [
     CommonModule,
@@ -62,7 +72,8 @@ import { FormComponent } from './form/form.component';
     MatInputModule,
     MatSelectModule,
     MatIconModule,
-    FormComponent
+    FormComponent,
+    FormBookingComponent,
   ]
 })
 export class SharedModule { }

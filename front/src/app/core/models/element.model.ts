@@ -15,12 +15,14 @@ export class Root {
   categorie_id!:number
 
 
-  images!: Image[]
+  images!: Images[]
 }
 
-export class Image {
+export class Images {
   id!: any
-  src!: string
+  url!: string
+  alt!:string
+  elementId!:any
 }
 
 //

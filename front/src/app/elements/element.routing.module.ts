@@ -5,9 +5,9 @@ import {ElementSingleComponent} from "./element-single/element-single.component"
 import {ElementAddComponent} from "./element-add/element-add.component";
 
 const routes: Routes =[
-  {path: 'list',component:ElementListComponent},
-  {path: 'element',component:ElementSingleComponent},
   {path: 'add',component:ElementAddComponent},
+  {path: 'list',component:ElementListComponent},
+  {path: ':element',component:ElementSingleComponent},
 ]
 @NgModule(
   {

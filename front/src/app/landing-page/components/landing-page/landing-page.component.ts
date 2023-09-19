@@ -4,6 +4,7 @@ import {map, Observable} from "rxjs";
 import { AsyncPipe } from '@angular/common';
 import {CategoryService} from "../../../core/services/category.service";
 import {Category} from "../../../core/models/category.model";
+import {Router} from "@angular/router";
 
 
 
@@ -19,7 +20,8 @@ export class LandingPageComponent implements OnInit {
 
   constructor(
     private countryService: CountryService,
-    private catergoryService: CategoryService
+    private catergoryService: CategoryService,
+    private router:Router
   ){
 
   }
@@ -32,5 +34,9 @@ export class LandingPageComponent implements OnInit {
     this.category$ = this.catergoryService.getAllCategory();
   }
 
+
+  goViewAllElem():void{
+    this.router.navigateByUrl('/elements/list').then(r => '');
+  }
 
 }

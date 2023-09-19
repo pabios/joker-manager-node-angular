@@ -22,7 +22,7 @@ import {ElementComponent} from "./element/element.component";
     ElementAddComponent,
     ElementListComponent,
     ElementSingleComponent,
-    ElementComponent
+    ElementComponent,
   ],
     imports: [
         CommonModule,
@@ -42,7 +42,7 @@ import {ElementComponent} from "./element/element.component";
     ElementAddComponent,
     ElementListComponent,
     ElementSingleComponent,
-    ElementComponent
+    ElementComponent,
   ]
 })
 export class ElementModule { }

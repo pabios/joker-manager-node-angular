@@ -1,10 +1,15 @@
 import {Component, Input} from '@angular/core';
 import {Property, PropertyType} from "../../core/models/form-proporty.model";
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
-import {map, Observable} from "rxjs";
+import {FormControl, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
+import {map, Observable, tap} from "rxjs";
 import {Element} from "../../core/models/element.model";
 import {ElementService} from "../../core/services/element.service";
 import {Router} from "@angular/router";
+import {ItemType} from "../../core/models/Piece.model";
+import {Category} from "../../core/models/category.model";
+import {CategoryService} from "../../core/services/category.service";
+import {ItemService} from "../../core/services/item.service";
+import {NotificationService} from "../../core/services/notification.service";
 
 @Component({
   selector: 'app-form',
@@ -26,20 +31,42 @@ export class FormComponent {
 
   fileFormatStatus = true;
 
+  // hello new
+  itemType!: ItemType;
+  itemTypeGroup!: FormGroup;
+  category$!: Observable<Category[]>
+  items$!: Observable<ItemType[]>
+
   constructor(private  formBuilder: UntypedFormBuilder,
               private elementService: ElementService,
-              private router:Router
+              private catergoryService: CategoryService,
+              private itemsService: ItemService,
+              private router:Router,
+              private notificationService:NotificationService
     ) { }
 
   ngOnInit(): void {
+    this.itemTypeGroup = new FormGroup({
+      itemType: new FormControl(new ItemType())
+    });
+
+    this.category$ = this.catergoryService.getAllCategory();
+    this.items$ = this.itemsService.getAllItems();
+    // end new
+    //
     this.urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/;
     this.fichierRegex = /([a-zA-Z0-9\s_\\.\-\(\):])+(.md)$/;
 
     this.elementForm = this.formBuilder.group({
-        title:[null,Validators.required],
+        name:[null,Validators.required],
         description: [null,Validators.required],
+        content: [null,Validators.required],
         imageUrl: [null,[Validators.required,Validators.pattern(this.urlRegex)]],
-        location:[null],
+        sizee:[null],
+        price:[null],
+        item:[null,Validators.required],
+        category:[null,Validators.required],
+        location:[''],
         // fichier:['',[Validators.required,Validators.pattern(this.fichierRegex)]]
       },{
         updateOn: 'blur' // formulaire mis a jours lorsqu'on change de champs
@@ -58,7 +85,8 @@ export class FormComponent {
 
     // console.log(this.auth.userId);console.log('********** dans new post')
     // this.user_id = localStorage.getItem('user_id');
-    this.user_id = sessionStorage.getItem('user_id');
+    // this.user_id = sessionStorage.getItem('user_id');
+    this.user_id = 1;
   }
 
   // onSubmitForm():void{
@@ -75,6 +103,11 @@ export class FormComponent {
 
   /*---- file upload----*/
   imageSrc:any = '';
+  // imagesSrc: { url: string[], alt: string } = { url: [], alt: 'this is an image' };
+  // imagesSrc: any = ''
+  imagesSrc: any[] = [];
+
+
   status:boolean = false
 
 
@@ -87,41 +120,69 @@ export class FormComponent {
     // console.log('hello fichier---------')
     this.fichierRegex = /([a-zA-Z0-9\s_\\.\-\(\):])+(.md)$/;
 
+    console.log(fileList)
 
 
     if (fileList.length > 0) {
 
       const file = fileList[0];
       //get file information such as name, size and type
-      // console.log('finfo',file.name,file.size,file.type);
+      console.log('finfo',file.name,file.size,file.type);
 
       if (this.fichierRegex.test(file.name)) {
         console.log("Valid");
         if((file.size/1048576)<=5) //max file size is 4 mb
         {
-          // this.imageSrc = file.name;
           this.imageSrc = file;
 
-          // this.notif.showSuccess('cool','votre fichier est good')
           this.fileFormatStatus = true;
 
         }else{
-          //this.snackBar.open('File size exceeds 4 MB. Please choose less than 4 MB','',{duration: 2000});
-          // this.notif.showError("ooups","la taille du fichier  ne doit pas depasser 5 Mb ")
           this.fileFormatStatus = false;
 
         }
       } else {
-        // this.notif.showError("ooups","Le Fichier doit etre au format markdown article.md")
         this.fileFormatStatus = false;
       }
 
-      // if(file.name !== 'resume.md'){
-      //   this.notif.showError("ooups","le fichier doit etre au format markdown exemple: article.md")
-      //
-      // }
+    }
+  }
 
+  // ok mais juste 1
+  // onFileChangeImage(event: any) {
+  //   const files = event.target.files;
+  //   if (files) {
+  //     for (let i = 0; i < files.length; i++) {
+  //       const reader = new FileReader();
+  //       const file = files[i];
+  //       const fileName = file.name; // Nom du fichier
+  //
+  //
+  //       this.imagesSrc = file;
+  //       console.log('Nom du fichier :', fileName);
+  //     }
+  //   }
+  // }
 
+  onFileChangeImage(event: any) {
+    const files = event.target.files;
+    if (files) {
+      // Assurez-vous que this.imagesSrc est initialisé comme un tableau vide
+      this.imagesSrc = [];
+
+      console.log("le nombre de fichier")
+      console.log(files.length)
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const fileName = file.name; // Nom du fichier
+
+        // Ajoutez le fichier au tableau this.imagesSrc
+        this.imagesSrc.push(file);
+
+        // Accédez au nom du fichier ici
+        console.log('Nom du fichier :', fileName);
+      }
     }
   }
 
@@ -130,34 +191,62 @@ export class FormComponent {
 
   /**
    *  nouvelle enregistrement
-   * @param title
+   * @param name
+   * @param content
    * @param description
-   * @param photo
-   * @param laDate
    * @param location
-   * @param fichier
+   * @param price
+   * @param size
    */
-  onSend(title:string,description:string,photo:string,location:string){
-    const formData : FormData = new FormData();
-    formData.append('title',title)
-    formData.append('description',description)
-    formData.append('photo',photo)
-    formData.append('location',location)
-    formData.append('fichier',this.imageSrc)
-    // formData.append('laDate',laDate)
-    formData.append('user_id',this.user_id)
-    // this.elementService.ajout(formData).subscribe(
-    //   (res=>{
-    //     // console.log(res)
-    //     if(res == 'sucesss'){
-    //       this.notif.showSuccess("super","Votre article est bien poster vous pouvez reactiliser ");
+// (click)="onSend(title.value,description.value,locate.value,price.value,sizee.value,typeBed.value,region.value)"
+
+  onSend(name: string,content:string, description: string, location: string,price:string,  size:string){
+    const selectedCategoryId = this.elementForm!.get('category')?.value;
     //
-    //     }else{
-    //       this.notif.showError("ooups","une erreur s'est produite")
-    //     }
-    //   })
-    // )
-    this.router.navigateByUrl('/readme');
+    console.log('ID de la catégorie sélectionnée :', selectedCategoryId);
+    const selectedItemId = this.elementForm!.get('item')?.value;
+    //
+    console.log('ID de la item sélectionnée :', selectedItemId);
+
+    console.log("le nome ")
+
+    console.log(name)
+    const formData : FormData = new FormData();
+    formData.append('name',name)
+    formData.append('content',content)
+    formData.append('description',description)
+    formData.append('locate',location)
+    formData.append('price',price)
+    formData.append('size',size)
+
+    for (let i = 0; i < this.imagesSrc.length; i++) {
+      formData.append(`fichier${i + 1}`, this.imagesSrc[i]);
+    }
+    formData.append('user_id',this.user_id)
+    formData.append('category_id', selectedCategoryId)
+    formData.append('element_type', selectedItemId)
+
+    this.elementService.add(formData).subscribe(
+      (response) => {
+        // Traitez la réponse du serveur ici
+        console.log('Réponse du serveur :', response);
+        this.notificationService.showSuccess(response,"cool")
+      },
+      (error) => {
+        this.notificationService.showError(error,"erreur")
+
+        console.error('Erreur lors de l\'envoi des données au serveur :', error);
+      }
+    );
+
+    // this.elementService.add(formData)
+    //   .pipe(
+    //     tap(response => console.log('Réponse du serveur :', response)),
+    //   )
+    //   .subscribe();
+
+
+    // this.router.navigateByUrl('/readme');
   }
 
   goChat(){

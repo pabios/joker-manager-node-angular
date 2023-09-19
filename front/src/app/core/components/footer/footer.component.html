@@ -1,11 +1,185 @@
-<footer class="footer">
-  <div class="social-icons">
-    <a href="https://www.facebook.com/votrepage" target="_blank"><i class="fa fa-facebook"></i></a>
-    <a href="https://www.linkedin.com/votrepage" target="_blank"><i class="fa fa-linkedin"></i></a>
+<!--<footer class="footer">-->
+<!--  <div class="social-icons">-->
+<!--    <a href="https://www.facebook.com/votrepage" target="_blank"><i class="fa fa-facebook"></i></a>-->
+<!--    <a href="https://www.linkedin.com/votrepage" target="_blank"><i class="fa fa-linkedin"></i></a>-->
+<!--  </div>-->
+<!--  <div class="footer-content">-->
+<!--    <p>&copy; 2023 {{ agencyName }}. Tous droits réservés.</p>-->
+<!--    <p><a href="/privacy">Politique de confidentialité</a></p>-->
+<!--  </div>-->
+<!--  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>-->
+<!--</footer>-->
+
+
+
+
+
+<mat-sidenav-container class="all-wrap monTheme paragraphe" >
+
+  <mat-sidenav class="laSideNav" #sidenav (click)="sidenav.close()">
+    <mat-list>
+      <a class="lien " href="/" >
+        <mat-list-item [routerLink]="['/']">
+          <div class="list-content">
+            <mat-icon>home</mat-icon>
+            <span class="lien__menu">Accueil</span>
+          </div>
+        </mat-list-item>
+      </a>
+
+      <a class="lien " routerLink="/readme" >
+        <mat-list-item [routerLink]="['/elements/list']">
+          <div class="list-content">
+            <mat-icon> attach_file</mat-icon>
+            <span class="lien__menu">Logement</span>
+          </div>
+
+        </mat-list-item>
+      </a>
+      <a class="lien " routerLink="/readme/create" >
+        <mat-list-item [routerLink]="['/elements/add']">
+          <div class="list-content">
+            <mat-icon> import_export</mat-icon>
+            <span class="lien__menu">Publier</span>
+          </div>
+        </mat-list-item>
+      </a>
+      <a class="lien " routerLink="/channel/chat" >
+        <mat-list-item [routerLink]="['/channel/chat']">
+          <div class="list-content">
+            <mat-icon> chat</mat-icon>
+            <span class="lien__menu">Forum</span>
+          </div>
+        </mat-list-item>
+      </a>
+      <a class="lien ">
+        <mat-list-item >
+          <mat-icon>fast_rewind</mat-icon><span class="lien__menu"> </span>
+        </mat-list-item>
+      </a>
+
+      <!--      <mat-list-item [routerLink]="['/reactive-state']" >Reactive State </mat-list-item>-->
+      <div class="foot_sidebar"> <mat-icon>repeat</mat-icon> <p class="version_num">Version 1.0.4  </p> </div>
+
+    </mat-list>
+  </mat-sidenav>
+
+  <div class="page-wrap">
+    <header role="banner">
+      <mat-toolbar class="head-them__blue   ">
+        <button
+          type="button"
+          mat-icon-button
+          (click)="sidenav.open()"
+          title="Open sidenav">
+          <mat-icon style="color: white">menu</mat-icon>
+        </button>
+
+        <!--        debut insert old header-->
+        <span class="logo "> <a class="lien " routerLink="/" >   Monimba</a></span>
+
+        <!--        debut insertion user Profils-->
+        <div class="example-menu-row" >
+          <!--          <span  > <a class="lien " routerLink="/readme" >    Articles</a></span>-->
+          <button *ngIf="isLoged() == true" class="lien_button  manage-account" mat-stroked-button [matMenuTriggerFor]="menu"    ng-init><mat-icon>manage_accounts</mat-icon></button>
+          <button *ngIf="isLoged() == false" class="lien_button manage-account " mat-stroked-button [matMenuTriggerFor]="menu"     ng-init><mat-icon>account_circle</mat-icon></button>
+          <mat-menu   #menu="matMenu" class="uxg-user-profile">
+            <div    class="uxg-menu-header">
+              <div  class="uxg-avatar-title-block">
+                <img width="50px" mat-card-sm-image src="assets/profil.png" alt="photo" >
+                <p *ngIf="isLoged() == true" class="uxg-caption">tu es connecter</p>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div *ngIf="isLoged() == true">
+              <button  (click)="goAvenir()" mat-menu-item>
+                <mat-icon>dashboard</mat-icon>
+                Tableau de bord
+              </button>
+              <button (click)="goAvenir()" mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                Paramètre
+              </button>
+            </div>
+            <!--            pas connecter go login-->
+
+            <div *ngIf="isLoged() == false">
+              <button  (click)="goLogin()" mat-menu-item>
+                <mat-icon>login</mat-icon>
+                Connexion
+              </button>
+              <button (click)="goSignUp()" mat-menu-item>
+                <mat-icon>login</mat-icon>
+                Inscription
+              </button>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="uxg-menu-footer">
+              <button *ngIf="isLoged() == true" (click)="goWrite()" mat-flat-button color="primary" dense>
+                <mat-icon>exit_to_app</mat-icon>
+                Publier
+              </button>
+            </div>
+          </mat-menu>
+        </div>
+
+        <!--        debut insert old header-->
+
+      </mat-toolbar>
+    </header>
+
+    <!--    <mat-card class="text-info" >-->
+    <!--      <mat-icon>create</mat-icon> <span >Il y'a actuellement  {{ nombrePost$ | async }}   article   disponibles </span>-->
+    <!--    </mat-card>-->
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+    <footer>
+      <div class="apropos leDiv">
+        <h4>A propos</h4>
+        <p> <a routerLink="/readme" >Articles</a> </p>
+        <p><a routerLink="av/avenir">Fonctionnement du site</a> </p>
+        <p><a routerLink="av/avenir">Données et confidentialité</a> </p>
+      </div>
+      <div class="hebergement leDiv">
+        <h4>Nos Articles</h4>
+        <p><a routerLink="av/avenir">Charte qualité</a> </p>
+        <p><a routerLink="av/avenir">Soumettre un Article </a> </p>
+      </div>
+      <div class="assistance leDiv">
+        <h4>Assistance</h4>
+        <p><a href="https://discord.gg/dZqgXHy"  target="_blank">Discord</a> </p>
+        <p><a routerLink="channel/chat">Nous Contacter</a> </p>
+      </div>
+    </footer>
   </div>
-  <div class="footer-content">
-    <p>&copy; 2023 {{ agencyName }}. Tous droits réservés.</p>
-    <p><a href="/privacy">Politique de confidentialité</a></p>
-  </div>
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-</footer>
+</mat-sidenav-container>
+
+
+<!--hello profils -->
+<!--<h5 class="uxg-h5">User Profile Hero</h5>-->
+<!--<div class="example-menu-row">-->
+<!--  <button mat-stroked-button [matMenuTriggerFor]="menuHero" color="primary" ng-init>Click </button>-->
+<!--  <mat-menu #menuHero="matMenu" class="uxg-user-profile">-->
+<!--    <div class="uxg-menu-header">-->
+<!--      <div class="uxg-avatar-hero-block">-->
+<!--        <div class="uxg-avatar" large>RH</div>-->
+<!--        <h6 class="uxg-h6">Raya Hristova</h6>-->
+<!--        <span class="uxg-caption">raya.hristova@finastra.com</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <mat-divider></mat-divider>-->
+<!--    <div class="uxg-menu-footer">-->
+<!--      <button mat-flat-button color="primary" dense>-->
+<!--        <mat-icon>exit_to_app</mat-icon>-->
+<!--        Logout-->
+<!--      </button>-->
+<!--      <button mat-button color="primary" dense>-->
+<!--        View profile-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </mat-menu>-->
+<!--</div>-->
+
+<!--<h5 class="uxg-h5">User Profile</h5>-->

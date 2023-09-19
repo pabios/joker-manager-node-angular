@@ -1,6 +1,7 @@
 <h2> Les cards</h2>
 <!--<app-element-single *ngFor="let element-single of cards"></app-element-single>-->
 
+<!--<app-element-add></app-element-add>-->
 
 
 GOOD BYE
@@ -8,16 +9,19 @@ GOOD BYE
 <div class="container">
 
   <!-- Afficher la pagination -->
-  <mat-paginator [length]="cards.length"
+  {{numberOfElements}}
+  <mat-paginator [length]="numberOfElements"
                  [pageSize]="pageSize"
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="onPageChange($event)"
                  aria-label="Select page">
   </mat-paginator>
 
-  <ng-container *ngIf="elements$ | async as element">
-    <app-element *ngFor="let element of getCardsForPage(element)" [element]="element"></app-element>
+    <ng-container *ngIf="elements$ | async as element">
+    <app-element *ngFor="let element of getCardsForPage(element)" [element]="element" [images]="filterImagesByElement(element)"></app-element>
   </ng-container>
+
+
 <!--  <div *ngFor="let card of getCardsForPage()">-->
 <!--  <mat-card>-->
 <!--    <mat-card-header>-->
@@ -82,7 +86,7 @@ GOOD BYE
 
 
   <!-- Afficher la pagination -->
-  <mat-paginator [length]="cards.length"
+  <mat-paginator [length]="numberOfElements"
                  [pageSize]="pageSize"
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="onPageChange($event)"

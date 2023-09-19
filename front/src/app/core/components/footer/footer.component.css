@@ -1,0 +1,142 @@
+.example-menu-row {
+  width: 90%;
+}
+.example-menu-row button {
+  float: right;
+}
+
+.uxg-avatar-title-block {
+  text-align: center;
+}
+
+.head-them__blue {
+  background-color: indigo;
+}
+
+.list-content {
+  display: flex;
+  align-items: center;
+}
+
+.list-content mat-icon {
+  margin-right: 5px;
+}
+
+/** footer **/
+footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: indigo;
+  color: white;
+  padding-left: 5%;
+  padding-right: 20%;
+}
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+/***************************************
+* Responsive Tablette breakpoints 992px
+************************************/
+@media only screen and (max-width: 992px) {
+  footer {
+    flex-direction: column;
+  }
+}
+/**
+ material footerrrrrr
+ */
+.logo {
+  padding: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.logo::first-letter {
+  font-size: 2rem;
+  color: #0ae848;
+  font-style: italic;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  /* Remplacez avec la police de votre choix */
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-style: italic;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  /* Remplacez avec la police de votre choix */
+}
+
+.lien {
+  text-decoration: none;
+  color: white;
+}
+
+.manage-account {
+  background-color: indigo;
+}
+.manage-account mat-icon {
+  color: white;
+}
+
+.lien_button {
+  text-decoration: none;
+  color: white;
+  border: none;
+}
+
+.monTheme {
+  background-color: white;
+  color: black;
+}
+
+.foot_sidebar {
+  text-align: center;
+  position: fixed;
+  bottom: 0px;
+}
+
+.version_num {
+  padding-top: 5px;
+  padding-left: 2px;
+  font-size: 15px;
+}
+
+.text-info {
+  padding-bottom: 20px;
+  background-color: white;
+  color: black;
+}
+
+/*
+ * Actual Sticky Footer Styles
+ */
+.all-wrap {
+  min-height: 100vh;
+}
+
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+/*
+ * Make the Component injected by Router Outlet full height:
+ */
+main {
+  display: flex;
+  flex-direction: column;
+}
+main > *:not(router-outlet) {
+  flex: 1;
+  display: block;
+}
+
+/*# sourceMappingURL=footer.component.css.map */

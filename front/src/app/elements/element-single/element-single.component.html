@@ -1,5 +1,7 @@
 <div class="container">
-<mat-card>
+<mat-card *ngIf="element$ | async as element">
+ bonjour {{element.name}}
+  bonsoir {{element.id}}
     <mat-card-header>
       <div class="card-status">
         <button mat-icon-button class="verified">
@@ -25,12 +27,12 @@
         <div class="image-container">
           <c-carousel>
             <c-carousel-indicators></c-carousel-indicators>
-            <c-carousel-inner>
-              <c-carousel-item *ngFor="let image of element.images">
+            <c-carousel-inner *ngIf="images$ | async as images">
+              <c-carousel-item *ngFor="let img of  images">
 
                 <img
-                  [src]="image.src"
-                  alt="{{ element.name }}"
+                  [src]="api_url+img.url"
+                  alt="{{ img.alt }}"
                   class="d-block w-100"
                   loading="lazy" style="height: 100%" />
 
@@ -49,7 +51,7 @@
             </span>
           </p>
           <mat-card-actions>
-            <button mat-button color="primary">Réserver</button>
+            <button mat-button (click)="goBooking(element.id,element.price)" color="primary">Réserver</button>
           </mat-card-actions>
         </div>
       </div>
@@ -73,12 +75,12 @@
     <div class="laCarousel">
       <c-carousel>
         <c-carousel-indicators></c-carousel-indicators>
-        <c-carousel-inner>
-          <c-carousel-item *ngFor="let image of element.images">
+        <c-carousel-inner *ngIf="images$ | async as images">
+          <c-carousel-item *ngFor="let img of images">
 
             <img
-              [src]="image.src"
-              alt="{{ element.name }}"
+              [src]="api_url+img.url"
+              alt="{{ img.alt }}"
               class="d-block w-100"
               loading="lazy"   />
 
@@ -88,9 +90,5 @@
         <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
       </c-carousel>
     </div>
-  </div>
-
-  <div>
-    bonjour
   </div>
 </div>
