@@ -7,7 +7,10 @@ import {ElementAddComponent} from "./element-add/element-add.component";
 const routes: Routes =[
   {path: 'add',component:ElementAddComponent},
   {path: 'list',component:ElementListComponent},
-  {path: ':element',component:ElementSingleComponent},
+  { path: 'list/:categoryId', component: ElementListComponent },
+  { path: ':id', component: ElementSingleComponent },
+  { path: '', component: ElementListComponent },
+
 ]
 @NgModule(
   {

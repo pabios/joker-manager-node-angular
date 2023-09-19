@@ -42,7 +42,7 @@
 
 
 
-$them-color : rgb(75, 0, 130);
+$them-color : rgb(13, 1, 21);
 
 .laSideNav{
   //background-color: $them-color;
@@ -188,3 +188,25 @@ main {
   }
 }
 
+/** accessibilité **/
+
+.a11y-nav{
+  position: absolute;
+  top: -10em;
+  z-index: 100;
+  width: 100%;
+}
+.a11y-nav a{
+  font-weight: 700;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  /** top: 10em;**/
+  padding: 10px;
+}
+.a11y-nav a:focus,
+.a11y-nav a:hover{
+  top: 10em;
+  text-decoration: none;
+}

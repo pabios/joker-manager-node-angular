@@ -1,7 +1,8 @@
-<div style="text-align: center">
+<div  class="containerForme__preview">
   <div class="form-card">
+<!--  <div>-->
     <mat-card style="margin: 20px;text-align: center">
-      <mat-card-title class="mat-headline">Ajout d'un Readme</mat-card-title>
+      <mat-card-title class="mat-headline">Ajout d'un logement</mat-card-title>
     </mat-card>
     <form [formGroup]="elementForm" enctype="multipart/form-data">
       <p>
@@ -106,11 +107,19 @@
 
   <!--<div id="edit" [froalaEditor]>Hello, Froala!</div>-->
 
-  <div class="face-snap-card" *ngIf="elementProview$ | async as element">
-    <h2>{{ element.name | uppercase }}</h2>
+<!--  <div *ngIf="elementProview$ | async as state-list">-->
+  <div class="face-snap-cardnap-card" *ngIf="elementProview$ | async as element">
+    <mat-card style="margin: 20px;text-align: center">
+      <mat-card-title class="mat-headline">Preview due logement</mat-card-title>
+    </mat-card>
+    <h3>Titre:{{ element.name | uppercase }}</h3>
     <p>Mis en ligne {{ element.createdDate | date: 'à HH:mm, le d MMMM yyyy' }}</p>
-    <img [src]="element.images" [alt]="element.name">
+
+    <img src="https://placehold.co/600x400" [alt]="element.name">
     <p>{{ element.description }}</p>
+    <p>{{ element.locate }}</p>
+    <p>{{ element.content }}</p>
+    <p>{{ element.price }}</p>
   </div>
 </div>
 

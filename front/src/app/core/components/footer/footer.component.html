@@ -11,6 +11,14 @@
 <!--</footer>-->
 
 
+  <div class="a11y-nav"><!--accessibilite-->
+    <ul >
+      <li>
+        <a routerLink="elements"  >clicker pour choisir un logement dans votre ville</a>
+      </li>
+
+    </ul>
+  </div>
 
 
 
@@ -44,14 +52,7 @@
           </div>
         </mat-list-item>
       </a>
-      <a class="lien " routerLink="/channel/chat" >
-        <mat-list-item [routerLink]="['/channel/chat']">
-          <div class="list-content">
-            <mat-icon> chat</mat-icon>
-            <span class="lien__menu">Forum</span>
-          </div>
-        </mat-list-item>
-      </a>
+
       <a class="lien ">
         <mat-list-item >
           <mat-icon>fast_rewind</mat-icon><span class="lien__menu"> </span>
@@ -86,7 +87,7 @@
           <mat-menu   #menu="matMenu" class="uxg-user-profile">
             <div    class="uxg-menu-header">
               <div  class="uxg-avatar-title-block">
-                <img width="50px" mat-card-sm-image src="assets/profil.png" alt="photo" >
+                <img width="50px" mat-card-sm-image src="assets/img/profil.png" alt="photo" >
                 <p *ngIf="isLoged() == true" class="uxg-caption">tu es connecter</p>
               </div>
             </div>

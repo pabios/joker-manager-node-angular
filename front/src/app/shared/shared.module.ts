@@ -59,7 +59,6 @@ import {ElementModule} from "../elements/element.module";
     // BrowserModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ElementModule,
   ],
   exports: [
     CommonModule,

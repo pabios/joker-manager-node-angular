@@ -5,6 +5,7 @@ import {ElementService} from "../../core/services/element.service";
 import {catchError, concatMap, forkJoin, map, mergeMap, Observable, of, switchMap, take} from "rxjs";
 import {Images, Root} from "../../core/models/element.model";
 import {ImageService} from "../../core/services/imageService";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-elements-list',
@@ -46,14 +47,16 @@ export class ElementListComponent implements OnInit {
 
   constructor(
     private elementService: ElementService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private route: ActivatedRoute
   ) {
   }
 
 
 
   ngOnInit() {
-    this.elements$ = this.elementService.getAllElements();
+    this.catExiste()
+    // this.elements$ = this.elementService.getAllElements();
 
     this.cards = this.elementService.cards;
 
@@ -82,7 +85,7 @@ export class ElementListComponent implements OnInit {
         });
 
         // Comptez le nombre d'éléments
-          this.numberOfElements = elements.length;
+        this.numberOfElements = elements.length;
         console.log('Nombre d\'éléments :', this.numberOfElements);
 
         // Utilisez forkJoin pour attendre que toutes les requêtes se terminent
@@ -103,8 +106,27 @@ export class ElementListComponent implements OnInit {
       console.log(this.imagesList);
     });
 
+
   }
 
+  public catExiste(){
+    this.route.paramMap.subscribe((params) => {
+      const categoryId = params.get('categoryId');
+      console.log(categoryId)
+
+      if (categoryId) {
+        // Si categoryId existe, filtrez les éléments par categoryId
+        this.elements$ = this.elementService.getAllElements().pipe(
+          map(elements => elements.filter(element => element.categorie_id === Number(categoryId)))
+        );
+      } else {
+        // Si categoryId n'existe pas, obtenez tous les éléments
+        this.elements$ = this.elementService.getAllElements();
+      }
+
+      // Le reste de votre code pour obtenir les images, etc.
+    });
+  }
   filterImagesByElement(element: Root) {
     return this.imagesList.filter(image => image.elementId === element.id);
   }

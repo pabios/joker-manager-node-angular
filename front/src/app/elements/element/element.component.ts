@@ -28,7 +28,5 @@ export class ElementComponent {
   }
   onViewElement(){
       this.router.navigateByUrl(`elements/${this.element.id}`);
-
-
   }
 }

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .example-menu-row {
   width: 90%;
 }
@@ -10,7 +11,7 @@
 }
 
 .head-them__blue {
-  background-color: indigo;
+  background-color: #0d0115;
 }
 
 .list-content {
@@ -27,7 +28,7 @@ footer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: indigo;
+  background-color: #0d0115;
   color: white;
   padding-left: 5%;
   padding-right: 20%;
@@ -75,7 +76,7 @@ footer a {
 }
 
 .manage-account {
-  background-color: indigo;
+  background-color: #0d0115;
 }
 .manage-account mat-icon {
   color: white;
@@ -137,6 +138,30 @@ main {
 main > *:not(router-outlet) {
   flex: 1;
   display: block;
+}
+
+/** accessibilité **/
+.a11y-nav {
+  position: absolute;
+  top: -10em;
+  z-index: 100;
+  width: 100%;
+}
+
+.a11y-nav a {
+  font-weight: 700;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  /** top: 10em;**/
+  padding: 10px;
+}
+
+.a11y-nav a:focus,
+.a11y-nav a:hover {
+  top: 10em;
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=footer.component.css.map */

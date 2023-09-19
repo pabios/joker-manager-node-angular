@@ -13,10 +13,11 @@ import {environment} from "../../../environments/environment";
 })
 
 export class ElementSingleComponent implements  OnInit{
-  // @Input() element!: Element;
+  // @Input() state-list!: Element;
   element!: Root
   element$!: Observable<Root> // @todo use this
   images$!: Observable<Images[]> // @todo use this
+  elementId!:number
 
   cards!: any[];
 
@@ -36,6 +37,12 @@ export class ElementSingleComponent implements  OnInit{
     private imageService : ImageService,
     private router: Router
   ) {
+
+    this.route.params.subscribe(params => {
+      this.elementId  = +params['id']; // Convertir en nombre
+      // Utilisez l'identifiant dans votre logique
+    });
+
   }
 
   ngOnInit() {
@@ -48,10 +55,10 @@ export class ElementSingleComponent implements  OnInit{
     this.addMarker();
 
     //
-    const elementId = +this.route.snapshot.params['element'];
+    // const elementId = +this.route.snapshot.params['element'];
 
-    this.element$ = this.elementService.getElementById(elementId);
-    this.images$ = this.imageService.getImagesForElement(elementId);
+    this.element$ = this.elementService.getElementById(this.elementId);
+    this.images$ = this.imageService.getImagesForElement(this.elementId);
 
     //console.log(this.images$.pipe(image =>image.url))
 

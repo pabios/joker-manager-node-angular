@@ -37,6 +37,8 @@ export class FormComponent {
   category$!: Observable<Category[]>
   items$!: Observable<ItemType[]>
 
+  imageForPreview!:any;
+
   constructor(private  formBuilder: UntypedFormBuilder,
               private elementService: ElementService,
               private catergoryService: CategoryService,
@@ -78,8 +80,7 @@ export class FormComponent {
       map(elementForm => ({
         ...elementForm,
         createdDate: new Date(),
-        id:0,
-        snaps:0
+        // snaps:0
       }))
     );
 
@@ -121,6 +122,7 @@ export class FormComponent {
     this.fichierRegex = /([a-zA-Z0-9\s_\\.\-\(\):])+(.md)$/;
 
     console.log(fileList)
+
 
 
     if (fileList.length > 0) {
@@ -183,6 +185,7 @@ export class FormComponent {
         // Accédez au nom du fichier ici
         console.log('Nom du fichier :', fileName);
       }
+      this.imageForPreview = this.imagesSrc[0];
     }
   }
 
@@ -228,12 +231,16 @@ export class FormComponent {
 
     this.elementService.add(formData).subscribe(
       (response) => {
-        // Traitez la réponse du serveur ici
+
+        let rep = response.toString();
         console.log('Réponse du serveur :', response);
-        this.notificationService.showSuccess(response,"cool")
+        this.notificationService.showSuccess(rep,"cool")
+
       },
       (error) => {
-        this.notificationService.showError(error,"erreur")
+        let rep = error.toString();
+
+        this.notificationService.showError("verifier ta saisie","erreur")
 
         console.error('Erreur lors de l\'envoi des données au serveur :', error);
       }

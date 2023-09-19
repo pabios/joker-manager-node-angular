@@ -1,3 +1,10 @@
+.containerForme__preview {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
 .chat-design {
   display: flex;
   flex-direction: column;

@@ -1,10 +1,9 @@
 
 <div class="container">
-  <button (click)="goViewAllElem()" > elements all </button>
   <div class="city-cards">
 
       <div class="city-card" *ngFor="let categoryItem of category$ | async">
-        <a [routerLink]="'element-single/' + categoryItem.id" class="card-link">
+        <a [routerLink]="'elements/list/' + categoryItem.id" class="card-link">
           <img [src]="categoryItem.imageUrl" alt="{{ categoryItem.name }}">
           <div class="titre-icon-region">
             <p>

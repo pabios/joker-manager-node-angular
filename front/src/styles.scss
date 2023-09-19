@@ -1,22 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; // theme blog
+//@import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; // theme blog
 //@import '@angular/material/prebuilt-themes/indigo-pink.css'; // theme monimba
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
-html, body {
-  height: 100%;
-  //background-color: #ece8e8;
-  //color: white;
-}
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  //background-image: url('./assets/img/bg_blog.png');
-  //background-repeat: no-repeat;
-  //background-size: cover;
-  //background-attachment: fixed;
-  //color: white;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+  margin : 0 auto;
+  /*width :100%;*/
+  max-width: 1440px;
+  overflow-x: hidden;
 }
+
+
 .main-content {
   box-sizing: border-box;
   padding: 20px;
@@ -140,7 +139,7 @@ TOASTR Notification CSS
 }
 
 /*Additional properties for button version
- iOS requires the button element instead of an anchor tag.
+ iOS requires the button state-list instead of an anchor tag.
  If you want the anchor version, it requires `href="#"`.*/
 button.toast-close-button {
   padding: 0;

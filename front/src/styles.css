@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'bootstrap/dist/css/bootstrap.min.css';
-html, body {
-  height: 100%;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  margin: 0 auto;
+  /*width :100%;*/
+  max-width: 1440px;
+  overflow-x: hidden;
 }
 
 .main-content {
@@ -113,7 +113,7 @@ TOASTR Notification CSS
 }
 
 /*Additional properties for button version
- iOS requires the button element instead of an anchor tag.
+ iOS requires the button state-list instead of an anchor tag.
  If you want the anchor version, it requires `href="#"`.*/
 button.toast-close-button {
   padding: 0;

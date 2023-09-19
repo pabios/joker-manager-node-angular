@@ -14,6 +14,7 @@ import {SharedModule} from "./shared/shared.module";
 import {httpInterceptorProviders} from "./core/interceptors";
 import { MaintenceDayComponent } from './maitenance/maintence-day/maintence-day.component';
 import {ToastrModule} from "ngx-toastr";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -26,12 +27,12 @@ import {ToastrModule} from "ngx-toastr";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     CoreModule,
     AuthModule,
-    NgbModule,
-    MatIconModule,
+    // NgbModule,
     GoogleMapsModule,
-    // SharedModule, //   le SharedModule
+    SharedModule, //   le SharedModule
     ToastrModule.forRoot()
 
   ],

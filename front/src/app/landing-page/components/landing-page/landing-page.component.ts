@@ -32,6 +32,7 @@ export class LandingPageComponent implements OnInit {
 
     //
     this.category$ = this.catergoryService.getAllCategory();
+
   }
 
 
