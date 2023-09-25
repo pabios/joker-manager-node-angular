@@ -50,9 +50,15 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/environments"
+              "src/environments",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
+              "src/theme.less",
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css"

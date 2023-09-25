@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
   site:'pabiosoft.com',
+  siteId:'1',
   urlApi:'http://localhost:80/api',
   backend:'http://localhost:80',
   apiUrl:"https://api.pabiosoft.com/index.php",

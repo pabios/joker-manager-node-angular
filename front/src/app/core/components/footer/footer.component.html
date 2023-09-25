@@ -10,6 +10,7 @@
 <!--  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>-->
 <!--</footer>-->
 
+<!--<div  *ngFor="let style of style$ | async">-->
 
   <div class="a11y-nav"><!--accessibilite-->
     <ul >
@@ -35,7 +36,7 @@
         </mat-list-item>
       </a>
 
-      <a class="lien " routerLink="/readme" >
+      <a class="lien " routerLink="/elements/list" >
         <mat-list-item [routerLink]="['/elements/list']">
           <div class="list-content">
             <mat-icon> attach_file</mat-icon>
@@ -44,7 +45,7 @@
 
         </mat-list-item>
       </a>
-      <a class="lien " routerLink="/readme/create" >
+      <a class="lien " routerLink="/elements/add" >
         <mat-list-item [routerLink]="['/elements/add']">
           <div class="list-content">
             <mat-icon> import_export</mat-icon>
@@ -79,11 +80,29 @@
         <!--        debut insert old header-->
         <span class="logo "> <a class="lien " routerLink="/" >   Monimba</a></span>
 
+<!--          <div>-->
+<!--            <button mat-icon-button class="example-icon lien" aria-label="Example icon-button with menu icon">-->
+<!--              <mat-icon>menu</mat-icon>-->
+<!--            </button>-->
+<!--            <span>My App</span>-->
+<!--            <span class="example-spacer"></span>-->
+<!--            <button mat-icon-button class="example-icon favorite-icon lien" aria-label="Example icon-button with heart icon">-->
+<!--              <mat-icon>favorite</mat-icon>-->
+<!--            </button>-->
+<!--            <button mat-icon-button class="example-icon lien" aria-label="Example icon-button with share icon">-->
+<!--              <mat-icon>search</mat-icon>-->
+<!--            </button>-->
+<!--          </div>-->
+
+
         <!--        debut insertion user Profils-->
         <div class="example-menu-row" >
-          <!--          <span  > <a class="lien " routerLink="/readme" >    Articles</a></span>-->
+<!--                    <span  > <a class="lien " routerLink="/readme" >    Articles</a></span>-->
           <button *ngIf="isLoged() == true" class="lien_button  manage-account" mat-stroked-button [matMenuTriggerFor]="menu"    ng-init><mat-icon>manage_accounts</mat-icon></button>
           <button *ngIf="isLoged() == false" class="lien_button manage-account " mat-stroked-button [matMenuTriggerFor]="menu"     ng-init><mat-icon>account_circle</mat-icon></button>
+          <button routerLink="reactive/states" mat-icon-button class="lien_button search" aria-label="Example icon-button with share icon">
+            <mat-icon>search</mat-icon>
+          </button>
           <mat-menu   #menu="matMenu" class="uxg-user-profile">
             <div    class="uxg-menu-header">
               <div  class="uxg-avatar-title-block">
@@ -102,7 +121,6 @@
                 Paramètre
               </button>
             </div>
-            <!--            pas connecter go login-->
 
             <div *ngIf="isLoged() == false">
               <button  (click)="goLogin()" mat-menu-item>

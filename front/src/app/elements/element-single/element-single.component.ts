@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 import {ImageService} from "../../core/services/imageService";
 import {environment} from "../../../environments/environment";
+import {StateService} from "../../reactive-state/services/state-service";
 
 @Component({
   selector: 'app-element-single',
@@ -86,6 +87,9 @@ export class ElementSingleComponent implements  OnInit{
     });
   }
 
+  // private initObservable(){
+  //   this.element$ = this.stateService.getElementById(this.elementId)
+  // }
   goBooking(id:any,price:number):void{
 
     sessionStorage.setItem('price',String(price))

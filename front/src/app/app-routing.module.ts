@@ -1,18 +1,9 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {LandingPageComponent} from "./landing-page/components/landing-page/landing-page.component";
+import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  { path: 'elements', loadChildren: () => import('./elements/element.module').then(m => m.ElementModule) },
-  { path: 'maintenance', loadChildren: () => import('./maintenace/maintenace.module').then(m => m.MaintenaceModule) },
-  { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule) },
-  { path: 'spec', loadChildren: () => import('./spec-pages/spec-pages.module').then(m => m.SpecPagesModule) },
-  { path: '', component: LandingPageComponent },
-
-  //maintenace
-  // { path: 'maintenance', loadChildren: () => import('./maintenace/maintenace.module').then(m => m.MaintenaceModule) },
-  // { path: '**', pathMatch: 'full', redirectTo: 'maintenance' },
+  { path: '', pathMatch: 'full', redirectTo: '/welcome' },
+  { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) }
 ];
 
 @NgModule({
