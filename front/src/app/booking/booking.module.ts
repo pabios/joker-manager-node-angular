@@ -11,6 +11,17 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {SharedModule} from "../shared/shared.module";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzDescriptionsModule} from "ng-zorro-antd/descriptions";
+import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
+import {NzPopoverModule} from "ng-zorro-antd/popover";
+// import {NzSpaceModule} from "ng-zorro-antd/space";
+// import {NzTransitionPatchModule} from "ng-zorro-antd/core/transition-patch/transition-patch.module";
+import {NzWaveModule} from "ng-zorro-antd/core/wave";
+import {NzCalendarModule} from "ng-zorro-antd/calendar";
+import {NzBadgeModule} from "ng-zorro-antd/badge";
+import {NzSpaceModule} from "ng-zorro-antd/space";
+import {NzDrawerModule} from "ng-zorro-antd/drawer";
 
 
 
@@ -32,8 +43,22 @@ import {SharedModule} from "../shared/shared.module";
     MatPaginatorModule,
     MatIconModule,
     MatButtonToggleModule,
-    SharedModule
+    SharedModule,
+    NzButtonModule,
+    NzDescriptionsModule,
+    NzPageHeaderModule,
+    NzPopoverModule,
+    // NzSpaceModule,
+    // NzTransitionPatchModule,
+    NzWaveModule,
+    NzCalendarModule,
+    NzBadgeModule,
+    NzSpaceModule,
+    NzDrawerModule
 
+  ],
+  exports:[
+    BookingAddComponent
   ]
 })
 export class BookingModule { }

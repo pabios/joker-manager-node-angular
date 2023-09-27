@@ -1,16 +1,23 @@
+
 <form [formGroup]="form">
 
   <mat-form-field>
     <mat-label>Date de début</mat-label>
     <mat-hint>Ex: 20/09/2023</mat-hint>
-    <input (dateChange)="onDateChangeBegin($event)" formControlName="beginDate" matInput [matDatepicker]="beginDate">
+    <input (dateChange)="onDateChangeBegin($event)" formControlName="beginDate"
+           matInput [matDatepicker]="beginDate"
+           [matDatepickerFilter]="myHolidayFilter"
+    >
     <mat-datepicker-toggle matSuffix [for]="beginDate"></mat-datepicker-toggle>
     <mat-datepicker #beginDate></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Date de fin</mat-label>
     <mat-hint>Ex: 20/09/2023</mat-hint>
-    <input (dateChange)="onDateChangeEnd($event)" formControlName="endDate" matInput [matDatepicker]="endDate">
+    <input (dateChange)="onDateChangeEnd($event)" formControlName="endDate" matInput
+           [matDatepicker]="endDate"
+           [matDatepickerFilter]="myHolidayFilter"
+    >
     <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
     <mat-datepicker #endDate></mat-datepicker>
   </mat-form-field>

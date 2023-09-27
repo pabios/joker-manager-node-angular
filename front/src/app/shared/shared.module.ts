@@ -15,6 +15,13 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {BrowserModule} from "@angular/platform-browser";
 import {MatNativeDateModule} from "@angular/material/core";
 import {ElementModule} from "../elements/element.module";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzDescriptionsModule} from "ng-zorro-antd/descriptions";
+import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
+import {NzPopoverModule} from "ng-zorro-antd/popover";
+// import {NzSpaceModule} from "ng-zorro-antd/space";
+// import {NzTransitionPatchModule} from "ng-zorro-antd/core/transition-patch/transition-patch.module";
+// import {NzWaveModule} from "ng-zorro-antd/core/wave";
 
 
 
@@ -45,21 +52,28 @@ import {ElementModule} from "../elements/element.module";
     FormComponent,
     FormBookingComponent
   ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatRadioModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatIconModule,
-    // BrowserModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-  ],
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatRadioModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatIconModule,
+        // BrowserModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        NzButtonModule,
+        NzDescriptionsModule,
+        NzPageHeaderModule,
+        NzPopoverModule,
+        // NzSpaceModule,
+        // NzTransitionPatchModule,
+        // NzWaveModule,
+    ],
   exports: [
     CommonModule,
     MatToolbarModule,

@@ -1,17 +1,19 @@
 
-<div class="container">
+<!--<div class="container">-->
 
-  <!-- Afficher la pagination -->
-<!--  {{numberOfElements}}-->
-  <mat-paginator [length]="numberOfElements"
-                 [pageSize]="pageSize"
-                 [pageSizeOptions]="pageSizeOptions"
-                 (page)="onPageChange($event)"
-                 aria-label="Select page">
-  </mat-paginator>
-    <ng-container *ngIf="elements$ | async as element">
-    <app-element *ngFor="let element of getCardsForPage(element)" [element]="element" [images]="filterImagesByElement(element)"></app-element>
-  </ng-container>
+<!--  &lt;!&ndash; Afficher la pagination &ndash;&gt;-->
+<!--&lt;!&ndash;  {{numberOfElements}}&ndash;&gt;-->
+<!--  <mat-paginator [length]="numberOfElements"-->
+<!--                 [pageSize]="pageSize"-->
+<!--                 [pageSizeOptions]="pageSizeOptions"-->
+<!--                 (page)="onPageChange($event)"-->
+<!--                 aria-label="Select page">-->
+<!--  </mat-paginator>-->
+<!--    <ng-container *ngIf="elements$ | async as element">-->
+<!--    <app-element *ngFor="let element of getCardsForPage(element)" [element]="element" [images]="filterImagesByElement(element)"></app-element>-->
+<!--  </ng-container>-->
+
+
 
 
 <!--  <div *ngFor="let card of getCardsForPage()">-->
@@ -78,13 +80,31 @@
 
 
   <!-- Afficher la pagination -->
-  <mat-paginator [length]="numberOfElements"
-                 [pageSize]="pageSize"
-                 [pageSizeOptions]="pageSizeOptions"
-                 (page)="onPageChange($event)"
-                 aria-label="Select page">
-  </mat-paginator>
-</div>
+<!--  <mat-paginator [length]="numberOfElements"-->
+<!--                 [pageSize]="pageSize"-->
+<!--                 [pageSizeOptions]="pageSizeOptions"-->
+<!--                 (page)="onPageChange($event)"-->
+<!--                 aria-label="Select page">-->
+<!--  </mat-paginator>-->
+<!--</div>-->
 
 
 
+<nz-overflow-container  class="container__element">
+    <mat-paginator [length]="numberOfElements"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="onPageChange($event)"
+                   aria-label="Select page">
+    </mat-paginator>
+    <nz-content  class="container-element__item" nz-row  [nzGutter]="8" *ngIf="elements$ | async as element">
+      <app-element style="margin-bottom: 20px" nz-col [nzSpan]="8"  *ngFor="let element of getCardsForPage(element)" [element]="element" [images]="filterImagesByElement(element)"></app-element>
+    </nz-content>
+    <mat-paginator [length]="numberOfElements"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="onPageChange($event)"
+                   aria-label="Select page">
+    </mat-paginator>
+
+</nz-overflow-container>

@@ -30,7 +30,7 @@ registerLocaleData(fr);
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent,
+    // LandingPageComponent,
     MaintenceDayComponent
   ],
   imports: [
@@ -49,7 +49,7 @@ registerLocaleData(fr);
   providers: [
     // { provide: LOCALE_ID, useValue: 'fr-FR' },
     // httpInterceptorProviders
-  
+
     { provide: NZ_I18N, useValue: fr_FR }
   ],
   bootstrap: [AppComponent]

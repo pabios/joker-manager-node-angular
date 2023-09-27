@@ -1,4 +1,96 @@
-<mat-card style="margin: 20px;text-align: center">
-  <mat-card-title class="mat-headline">Reservation</mat-card-title>
-</mat-card>
-<app-form-booking></app-form-booking>
+<div class="container" *ngIf="element$ | async as element">
+
+  <div class="site-page-header-ghost-wrapper">
+    <nz-page-header nzBackIcon="left" [nzGhost]="false">
+      <nz-page-header-title>Retour</nz-page-header-title>
+      <nz-page-header-subtitle>Réservation</nz-page-header-subtitle>
+      <nz-page-header-content>
+        <nz-descriptions class="large-text" nzSize="small" [nzColumn]="3">
+          <nz-descriptions-item nzTitle="Prix" [nzSpan]="1">
+            <div class="d-flex align-items-center">
+              <!--              <span class="large-text">{{element.price}} GNF/Mois</span>-->
+              <button  nz-button nz-popover nzPopoverTitle="Explication" [nzPopoverContent]="'Le prix par mois en money Local'" nzPopoverTrigger="hover">
+                {{ element.price | number:'1.0-0' }} GNF/Mois
+              </button>
+            </div>
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Localisation" [nzSpan]="1">
+            <div class="d-flex align-items-center">
+              <mat-icon>location_on</mat-icon>
+              <span>{{element.locate}}</span>
+            </div>
+
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Mis en ligne" [nzSpan]="1">
+            <div *ngFor="let keyValuePair of element.createdDate | keyvalue">
+              {{ keyValuePair.key === 'date' ? 'le '+ formatDate(keyValuePair.value.toString())  : keyValuePair.value }}
+            </div>
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Taille" [nzSpan]="1">
+            <div class="d-flex align-items-center">
+              <span>{{ element.size }} m²</span>
+            </div>
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Description" [nzSpan]="2">
+            {{element.description}}
+          </nz-descriptions-item>
+        </nz-descriptions>
+      </nz-page-header-content>
+    </nz-page-header>
+  </div>
+</div>
+
+<!--space-->
+
+<nz-space>
+  <button *nzSpaceItem nz-button nzType="primary" (click)="showLarge()">Voire les date disponible</button>
+</nz-space>
+<nz-drawer
+  [nzSize]="size"
+  [nzVisible]="visible"
+  nzPlacement="right"
+  [nzTitle]="title"
+  [nzExtra]="extra"
+  (nzOnClose)="close()"
+>
+  <ng-container *nzDrawerContent>
+    <nz-calendar *ngIf="bookings$ | async as bookings">
+      <ul *nzDateCell="let date" class="events">
+        <ng-container [ngSwitch]="date.getDate()">
+          <ng-container>
+            <li *ngFor="let item of arrayOfDate">
+              <span *ngFor="let msg of this.listDataMap.booked">
+                  <ng-container *ngIf="date >= item.beginDate && date <= item.endDate">
+                    <nz-badge  *ngIf="msg.type ==='warning'"  [nzStatus]="msg.type" [nzText]="msg.content"></nz-badge>
+                </ng-container>
+<!--                 <ng-template #elseBlock>-->
+<!--                   <nz-badge    [nzStatus]="'success'" [nzText]="'oups'"></nz-badge>-->
+<!--              </ng-template>-->
+              </span>
+            </li>
+          </ng-container>
+        </ng-container>
+      </ul>
+    </nz-calendar>
+  </ng-container>
+</nz-drawer>
+<ng-template #extra>
+  <button nz-button nzType="primary" (click)="close()">OK</button>
+</ng-template>
+
+
+<!--space-->
+<div *ngIf="bookings$ | async as bookings">
+  <app-form-booking [booking]="bookings"></app-form-booking>
+</div>
+
+
+
+
+
+<!--<ng-container *nzMonthCell="let month">-->
+<!--  <div *ngIf="getMonthData(month) as monthData" class="notes-month">-->
+<!--    <section>{{ monthData }}</section>-->
+<!--    <span>Backlog number</span>-->
+<!--  </div>-->
+<!--</ng-container>-->

@@ -1,92 +1,172 @@
-<div class="container">
-<mat-card *ngIf="element$ | async as element">
-    <mat-card-header>
-      <div class="card-status">
-        <button mat-icon-button class="verified">
-          <mat-icon [ngClass]="element.categorie_id  == 4 ? 'green-icon' : 'red'">{{ element.categorie_id == 5 ? 'done_all' : 'check' }}</mat-icon>
-        </button>
-      </div>
-      <mat-card-title>{{element.name}}</mat-card-title>
-      <mat-card-subtitle>
-        <div class="stars">
-          <mat-icon>star</mat-icon>
-          <mat-icon>star</mat-icon>
-          <mat-icon>star</mat-icon>
-          <mat-icon>star</mat-icon>
-          <mat-icon>star_half</mat-icon>
-        </div>
+<div class="container" *ngIf="element$ | async as element">
 
-      </mat-card-subtitle>
-    </mat-card-header>
+  <div class="site-page-header-ghost-wrapper">
+    <nz-page-header nzBackIcon="left" [nzGhost]="false">
+      <nz-page-header-title>Retour</nz-page-header-title>
+      <nz-page-header-subtitle>{{ element.name }}</nz-page-header-subtitle>
+      <nz-page-header-extra>
+        <nz-space>
+<!--          <button *nzSpaceItem nz-button>Modifier si proprio</button>-->
+          <button *nzSpaceItem nz-button nzType="primary" (click)="goBooking(element.id,element.price)">Réserver</button>
+        </nz-space>
+      </nz-page-header-extra>
+      <nz-page-header-content>
+        <nz-descriptions class="large-text" nzSize="small" [nzColumn]="3">
+          <nz-descriptions-item nzTitle="Prix" [nzSpan]="1">
+            <div class="d-flex align-items-center">
+<!--              <span class="large-text">{{element.price}} GNF/Mois</span>-->
+              <button  nz-button nz-popover nzPopoverTitle="Explication" [nzPopoverContent]="'Le prix par mois en money Local'" nzPopoverTrigger="hover">
+                {{ element.price | number:'1.0-0' }} GNF/Mois
+              </button>
+            </div>
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Localisation" [nzSpan]="1">
+            <div class="d-flex align-items-center">
+              <mat-icon>location_on</mat-icon>
+              <span>{{element.locate}}</span>
+            </div>
 
-    <div class="card-content">
-
-      <div class="container-img-maps">
-        <div class="image-container">
-          <c-carousel>
-            <c-carousel-indicators></c-carousel-indicators>
-            <c-carousel-inner *ngIf="images$ | async as images">
-              <c-carousel-item *ngFor="let img of  images">
-
-                <img
-                  [src]="api_url+img.url"
-                  alt="{{ img.alt }}"
-                  class="d-block w-100"
-                  loading="lazy" style="height: 100%" />
-
-              </c-carousel-item>
-            </c-carousel-inner>
-            <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
-            <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
-          </c-carousel>
-        </div>
-        <div class="description">
-          <p><strong><mat-icon>attach_money</mat-icon> </strong> <span> <b>Prix :</b> {{element.price}} FCFA/mois</span></p>
-          <p><strong><mat-icon>location_on</mat-icon>  </strong> <span> <b>Localisation :</b>  Conakry, Kipe </span></p>
-          <p><strong><mat-icon>description</mat-icon> </strong>
-            <span> <b>Description :</b>
-              {{element.description}}
-            </span>
-          </p>
-          <mat-card-actions>
-            <button mat-button (click)="goBooking(element.id,element.price)" color="primary">Réserver</button>
-          </mat-card-actions>
-        </div>
-      </div>
-    </div>
-  </mat-card>
-
-  <div  class="carte-and-carousel">
-    <div class="laMaps">
-      <google-map style="width: 100%"  [center]="markers[0]?.position">
-        <map-marker
-          *ngFor="let marker of markers"
-          [position]="marker.position"
-          [label]="marker.label"
-          [title]="marker.title"
-          [options]="marker.options"
-        >
-        </map-marker>
-      </google-map>
-    </div>
-
-    <div class="laCarousel">
-      <c-carousel>
-        <c-carousel-indicators></c-carousel-indicators>
-        <c-carousel-inner *ngIf="images$ | async as images">
-          <c-carousel-item *ngFor="let img of images">
-
-            <img
-              [src]="api_url+img.url"
-              alt="{{ img.alt }}"
-              class="d-block w-100"
-              loading="lazy"   />
-
-          </c-carousel-item>
-        </c-carousel-inner>
-        <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
-        <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
-      </c-carousel>
-    </div>
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Mis en ligne" [nzSpan]="1">
+            <div *ngFor="let keyValuePair of element.createdDate | keyvalue">
+              {{ keyValuePair.key === 'date' ? 'le '+ formatDate(keyValuePair.value.toString())  : keyValuePair.value }}
+            </div>
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Taille" [nzSpan]="1">
+            <div class="d-flex align-items-center">
+              <span>{{ element.size }} m²</span>
+            </div>
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Description" [nzSpan]="2">
+            {{element.description}}
+          </nz-descriptions-item>
+        </nz-descriptions>
+      </nz-page-header-content>
+    </nz-page-header>
   </div>
+
+
+
+  <nz-list-item-meta [nzAvatar]="'https://placehold.co/600x400'" [nzTitle]="nzTitle" [nzDescription]="element.content">
+    <ng-template #nzTitle>
+      <a href="https://placehold.co/600x400">{{ element.name }}</a>
+    </ng-template>
+  </nz-list-item-meta>
+
+  <mat-grid-list cols="2" rowHeight="2:1" *ngIf="images$ | async as images">
+    <mat-grid-tile  *ngFor="let img of  images">
+      <img nz-image  nzSrc="{{api_url+img.url}}" alt="{{img.alt}}" />
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <nz-tag nzColor="#34cc94">
+    <span nz-icon  nzType="safety-certificate" nzTheme="twotone" nzTwotoneColor="#34cc94"></span>
+    <span>Garantie par l'agence</span>
+  </nz-tag>
+
+  <nz-result
+    nzStatus="success"
+    nzTitle="Arrivée garantie par l'Agence, images conformes!"
+    nzSubTitle="Nous garantissons que vous arriverez en toute sécurité et que les images du logement correspondent à la réalité."
+  >
+  <div nz-result-extra>
+      <button (click)="goBooking(element.id,element.price)" nz-button nzType="primary">Réserver</button>
+<!--      <button nz-button>Buy Again</button>-->
+      <button nz-button (click)="showModal()">
+        <span>Comprendre la Garantie</span>
+      </button>
+      <nz-modal
+        [(nzVisible)]="isVisible"
+        nzTitle="Garantie"
+        (nzOnCancel)="handleCancel()"
+        (nzOnOk)="handleOk()"
+        [nzOkLoading]="isOkLoading"
+      >
+        <p *nzModalContent>
+          Une fois que vous aurez réservé votre logement, vous pourrez entrer en contact avec le propriétaire et convenir de votre heure d'arrivée.
+          En cas de problème persistant, n'hésitez pas à nous contacter. Dans ce cas, nous vous réserverons une chambre d'hôtel en ville.
+        </p>
+      </nz-modal>
+    </div>
+  </nz-result>
+
+
+<!--  -->
+
+
+  <!--  old-->
+
+<!--<mat-card >-->
+<!--    <mat-card-header>-->
+<!--      <div class="card-status">-->
+<!--        <button mat-icon-button class="verified">-->
+<!--          <mat-icon [ngClass]="element.categorie_id  == 4 ? 'green-icon' : 'red'">{{ element.categorie_id == 5 ? 'done_all' : 'check' }}</mat-icon>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <mat-card-title>{{element.name}}</mat-card-title>-->
+<!--      <mat-card-subtitle>-->
+<!--        <div class="stars">-->
+<!--          <mat-icon>star</mat-icon>-->
+<!--          <mat-icon>star</mat-icon>-->
+<!--          <mat-icon>star</mat-icon>-->
+<!--          <mat-icon>star</mat-icon>-->
+<!--          <mat-icon>star_half</mat-icon>-->
+<!--        </div>-->
+
+<!--      </mat-card-subtitle>-->
+<!--    </mat-card-header>-->
+
+<!--    <div class="card-content">-->
+
+<!--      <div class="container-img-maps">-->
+<!--        <div class="image-container">-->
+<!--          <c-carousel>-->
+<!--            <c-carousel-indicators></c-carousel-indicators>-->
+<!--            <c-carousel-inner *ngIf="images$ | async as images">-->
+<!--              <c-carousel-item *ngFor="let img of  images">-->
+
+<!--                <img-->
+<!--                  [src]="api_url+img.url"-->
+<!--                  alt="{{ img.alt }}"-->
+<!--                  class="d-block w-100"-->
+<!--                  loading="lazy" style="height: 100%" />-->
+
+<!--              </c-carousel-item>-->
+<!--            </c-carousel-inner>-->
+<!--            <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>-->
+<!--            <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>-->
+<!--          </c-carousel>-->
+<!--        </div>-->
+<!--        <div class="description">-->
+<!--          <p><strong><mat-icon>attach_money</mat-icon> </strong> <span> <b>Prix :</b> {{element.price}} FCFA/mois</span></p>-->
+<!--          <p><strong><mat-icon>location_on</mat-icon>  </strong> <span> <b>Localisation :</b>  Conakry, Kipe </span></p>-->
+<!--          <p><strong><mat-icon>description</mat-icon> </strong>-->
+<!--            <span> <b>Description :</b>-->
+<!--              {{element.description}}-->
+<!--            </span>-->
+<!--          </p>-->
+<!--          <mat-card-actions>-->
+<!--            <button mat-button (click)="goBooking(element.id,element.price)" color="primary">Réserver</button>-->
+<!--          </mat-card-actions>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </mat-card>-->
+<!--  <mat-card style="width: 100%; border:2px solid red;">-->
+
+<!--      <google-map [center]="markers[0]?.position" >-->
+<!--        <map-marker-->
+<!--          *ngFor="let marker of markers"-->
+<!--          [position]="marker.position"-->
+<!--          [label]="marker.label"-->
+<!--          [title]="marker.title"-->
+<!--          [options]="marker.options"-->
+<!--        >-->
+<!--        </map-marker>-->
+<!--      </google-map>-->
+<!--  </mat-card>-->
+
+
+
+
 </div>

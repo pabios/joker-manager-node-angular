@@ -1,3 +1,55 @@
+
+nz-carousel-content {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  color: #fff;
+  overflow: hidden;
+
+}
+
+h3{
+  color: #fff;
+  margin-bottom: 0;
+  user-select: none;
+}
+
+//
+ng-template  nz-carousel {
+  height: 300px !important;
+  padding:0;
+  background-color: #007bff;
+}
+
+.slider {
+  width: 50%;
+}
+.slider-container {
+  margin-bottom: 16px;
+}
+.grid-config {
+  height: 120px;
+  font-size: 14px;
+  line-height: 120px;
+  background: #0092ff;
+  border-radius: 4px;
+}
+
+.container__element{
+  display:flex;
+  flex-direction: column;
+  height: 100%;
+  .container-element__item{
+    height: 100%;
+    //background-color: #0d0115;
+  }
+}
+
+//
+
+
+
 mat-card{
   margin-bottom: 20px;
 }
