@@ -1,0 +1,167 @@
+<span *ngIf="isDeleteButtonDisabled">
+   <nz-alert nzType="success" nzMessage="Success Tips" nzShowIcon></nz-alert>
+</span>
+<nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+  <ng-template #item let-item>
+    <nz-list-item [nzActions]="[viewAction]">
+      <ng-template #viewAction>
+        <a (click)="open()">
+<!--          <span class="icon__size" nz-icon nzType="setting" nzTheme="twotone"></span>-->
+          <span class="icon__size" nz-icon nzType="eye" nzTheme="twotone"></span>
+        </a>
+      </ng-template>
+      <nz-list-item-meta
+        [nzTitle]="nzTitle"
+        (click)="open()"
+        nzAvatar="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
+        nzDescription="628 31 96 45"
+      >
+        <ng-template #nzTitle>
+          <a (click)="open()">{{ item.name }}</a>
+        </ng-template>
+      </nz-list-item-meta>
+    </nz-list-item>
+  </ng-template>
+</nz-list>
+
+
+<nz-drawer [nzVisible]="visible" [nzWidth]="640" [nzClosable]="false" (nzOnClose)="close()">
+  <ng-container *nzDrawerContent>
+    <p class="title" style=" margin-bottom: 24px;">Profil utilisateur</p>
+    <nz-descriptions [nzColumn]="2" nzTitle="Informations">
+      <nz-descriptions-item   nzTitle="Nom complet" [nzSpan]="1">Balde</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Email" [nzSpan]="1">BALDE@example.com</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Ville" [nzSpan]="1">BALDE</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="pays de résidence" [nzSpan]="1">Guinee </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="age" [nzSpan]="1">99 ans</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Téléphone" [nzSpan]="1">628 31 88 88</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Bio" [nzSpan]="2">
+        Rendre les choses aussi simples que possible, mais pas plus simples.
+      </nz-descriptions-item>
+    </nz-descriptions>
+
+    <nz-divider></nz-divider>
+    <nz-descriptions [nzColumn]="2" nzTitle="Badges"></nz-descriptions>
+
+    <nz-ribbon nzText="Sans garantie">
+      <nz-card nzTitle="Badge simple utilisateur" nzSize="small"> Publier sans Garantie <nz-badge nzStatus="error"></nz-badge> </nz-card>
+    </nz-ribbon>
+    <br />
+    <nz-ribbon nzText="Garantie par l'agence" nzColor="green">
+      <nz-card nzTitle="Badge Garantie" nzSize="small"> Veuillez nous contacter
+        <nz-badge nzStatus="processing"></nz-badge>
+        <nz-badge nzStatus="processing"></nz-badge>
+        <nz-badge nzStatus="processing"></nz-badge>
+
+      </nz-card>
+    </nz-ribbon>
+
+
+    <nz-divider></nz-divider>
+    <nz-result nzStatus="500" nzTitle="Vérification" nzSubTitle="Nous pouvons garantir la conformité de vos logements">
+      <div nz-result-extra>
+        <button (click)="sendEmail()" nz-button nzType="primary">J'envois ma pièce d'identité</button>
+      </div>
+    </nz-result>
+  </ng-container>
+</nz-drawer>
+
+<!--debut booking list-->
+<nz-divider></nz-divider>
+
+<div class="container">
+  <mat-card>
+    <mat-card-title style="text-align: center">Mes Réservations</mat-card-title>
+  </mat-card>
+</div>
+<div *ngIf="bookings$ | async as bookings">
+
+  <div *ngIf="bookings != null; else elseBlock" class="site-page-header-ghost-wrapper">
+    <nz-page-header *ngFor="let booking of bookings; let i = index">
+      <nz-page-header-title>Réservation</nz-page-header-title>
+      <nz-page-header-subtitle>N°{{i + 1}}</nz-page-header-subtitle>
+      <nz-page-header-extra>
+        <nz-space>
+          <button routerLink="/elements/{{booking.elementId}}" *nzSpaceItem  nz-button>Voir</button>
+          <button [disabled]="isDeleteButtonDisabled" nz-popconfirm nzPopconfirmTitle="Êtes-vous sûrs ?"  (nzOnConfirm)="deleteBookingById(booking.id)"
+
+                  *nzSpaceItem nz-button nzType="primary" nzDanger>Annuler</button>
+
+        </nz-space>
+      </nz-page-header-extra>
+      <nz-page-header-content>
+        <nz-descriptions nzSize="small" [nzColumn]="3">
+          <nz-descriptions-item nzTitle="Nombre de personne" [nzSpan]="1">{{booking.nbPeople}}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="A partir du" [nzSpan]="1">{{ formatBookingDate(booking.beginDate)}}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Jusqu'au" [nzSpan]="1">{{formatBookingDate(booking.endDate)}}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Prix" [nzSpan]="1"><a>{{booking.priceTotal}} GNF/MOIS</a></nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Taille" [nzSpan]="2">
+            90  m²
+          </nz-descriptions-item>
+        </nz-descriptions>
+      </nz-page-header-content>
+    </nz-page-header>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <nz-page-header >
+    <nz-page-header-title> Mes Réservation</nz-page-header-title>
+  </nz-page-header>
+  <nz-result [nzIcon]="'smile-twotone'" [nzTitle]="'Vous n\'avez aucune réservation'">
+    <div nz-result-extra>
+      <button nz-button nzType="primary">Voir les Logements</button>
+    </div>
+  </nz-result>
+</ng-template>
+
+<nz-divider></nz-divider>
+
+<!--debut Mes logements-->
+
+<div class="container">
+  <mat-card>
+    <mat-card-title style="text-align: center">Mes logements</mat-card-title>
+  </mat-card>
+</div>
+
+<div *ngIf="elements$ | async as elements">
+  <div *ngIf="listOfData != null; else elseBlock" class="site-page-header-ghost-wrapper">
+    <nz-page-header *ngFor="let element of elements; let i = index">
+      <nz-page-header-title>Logement</nz-page-header-title>
+      <nz-page-header-subtitle>N°{{i +1}}</nz-page-header-subtitle>
+      <nz-page-header-extra>
+        <nz-space>
+          <button routerLink="/elements/{{element.id}}" *nzSpaceItem nz-button>Voir</button>
+          <button nz-popconfirm nzPopconfirmTitle="Êtes-vous sûrs ?"  (nzOnConfirm)="deleteElementById(element.id)"
+                  *nzSpaceItem nz-button nzType="primary" nzDanger>Supprimer</button>
+
+        </nz-space>
+      </nz-page-header-extra>
+      <nz-page-header-content>
+        <nz-descriptions nzSize="small" [nzColumn]="3">
+          <nz-descriptions-item nzTitle="Nom" [nzSpan]="1">{{element.name}}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Description" [nzSpan]="1">{{element.description}}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Localisation" [nzSpan]="1">{{element.locate}}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Prix" [nzSpan]="1"><a>{{element.price}} GNF/MOIS</a></nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Taille" [nzSpan]="2">
+            90  m²
+          </nz-descriptions-item>
+        </nz-descriptions>
+      </nz-page-header-content>
+    </nz-page-header>
+  </div>
+</div>
+
+<ng-template #elseBlock>
+  <nz-page-header >
+    <nz-page-header-title> Mes Réservation</nz-page-header-title>
+  </nz-page-header>
+  <nz-result [nzIcon]="'smile-twotone'" [nzTitle]="'Vous n\'avez aucune réservation'">
+    <div nz-result-extra>
+      <button nz-button nzType="primary">Voir les Logements</button>
+    </div>
+  </nz-result>
+</ng-template>
+
+
+

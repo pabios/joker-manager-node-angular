@@ -1,0 +1,38 @@
+
+
+<div class="example-input">
+  <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixIconButton">
+    <input
+      placeholder="Votre cible ...i.e: Labe ou 2000 franc ou chambre"
+      nz-input
+      [(ngModel)]="inputValue"
+      (input)="onChange($event)"
+      [nzAutocomplete]="auto"
+    />
+  </nz-input-group>
+
+
+  <ng-template  #suffixIconButton >
+    <span *ngIf="options ">
+    <button (click)="goFirstResult()"  nz-button nzType="primary" nzSize="large" nzSearch>
+      <span nz-icon nzType="search" nzTheme="outline"></span>
+    </button>
+  </span>
+  </ng-template>
+  <nz-autocomplete #auto>
+    <ng-container *ngIf="options && options.length > 0">
+      <nz-auto-option class="global-search-item" *ngFor="let option of options" [nzValue]="option.rep" (click)="setSelectedId(option.id)">
+        < {{option.value}} > Figure {{ option.count }} fois dans :
+        <a [href]="'/elements/' + option.id"
+          class="global-search-item-desc"
+          rel="noopener noreferrer"
+        >
+             {{ option.rep }}
+        </a>
+      </nz-auto-option>
+    </ng-container>
+
+  </nz-autocomplete>
+</div>
+
+

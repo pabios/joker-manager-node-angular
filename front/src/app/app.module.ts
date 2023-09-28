@@ -23,6 +23,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import {NzAvatarModule} from "ng-zorro-antd/avatar";
+import {SearchGlobalModule} from "./search-global/search-global.module";
+import {NzListModule} from "ng-zorro-antd/list";
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 registerLocaleData(fr);
 
@@ -43,7 +47,7 @@ registerLocaleData(fr);
     // NgbModule,
     GoogleMapsModule,
     SharedModule, //   le SharedModule
-    ToastrModule.forRoot(), FormsModule, HttpClientModule, IconsProviderModule, NzLayoutModule, NzMenuModule
+    ToastrModule.forRoot(), FormsModule, HttpClientModule, IconsProviderModule, NzLayoutModule, NzMenuModule, NzAvatarModule, SearchGlobalModule, NzListModule, NzButtonModule
 
   ],
   providers: [

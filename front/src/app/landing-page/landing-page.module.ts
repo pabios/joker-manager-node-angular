@@ -3,6 +3,7 @@ import {AsyncPipe, CommonModule} from '@angular/common';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import {MatIconModule} from "@angular/material/icon";
 import {LandingPageRoutingModule} from "./landing-page.routing.module";
+import {FiltreModule} from "../filtre/filtre.module";
 
 
 
@@ -10,11 +11,12 @@ import {LandingPageRoutingModule} from "./landing-page.routing.module";
   declarations: [
     LandingPageComponent
   ],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    LandingPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        LandingPageRoutingModule,
+        FiltreModule
+    ],
   exports:[
     LandingPageComponent
   ]

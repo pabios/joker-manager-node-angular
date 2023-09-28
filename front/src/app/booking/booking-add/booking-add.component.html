@@ -1,7 +1,7 @@
 <div class="container" *ngIf="element$ | async as element">
 
   <div class="site-page-header-ghost-wrapper">
-    <nz-page-header nzBackIcon="left" [nzGhost]="false">
+    <nz-page-header   nzBackIcon="left" [nzGhost]="false">
       <nz-page-header-title>Retour</nz-page-header-title>
       <nz-page-header-subtitle>Réservation</nz-page-header-subtitle>
       <nz-page-header-content>
@@ -43,7 +43,7 @@
 <!--space-->
 
 <nz-space>
-  <button *nzSpaceItem nz-button nzType="primary" (click)="showLarge()">Voire les date disponible</button>
+  <button *nzSpaceItem nz-button nzType="primary" (click)="showLarge()">Voir le Calendrier</button>
 </nz-space>
 <nz-drawer
   [nzSize]="size"
@@ -80,8 +80,11 @@
 
 
 <!--space-->
-<div *ngIf="bookings$ | async as bookings">
-  <app-form-booking [booking]="bookings"></app-form-booking>
+<div *ngIf="element$ | async as element">
+  <span *ngIf="bookings$ | async as booking">
+  <app-form-booking  [booking]="booking" [element]="element" ></app-form-booking>
+
+  </span>
 </div>
 
 

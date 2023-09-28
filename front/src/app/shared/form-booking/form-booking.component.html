@@ -28,22 +28,12 @@
     <input #nbPeople type="number" matInput formControlName="nbPeople">
   </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Voici le prix en GNF</mat-label>
-    <input matInput #price value="{{priceItem}}" readonly>
-  </mat-form-field>
-
-<!--  <mat-form-field>-->
-<!--    <mat-label>Prix par personne</mat-label>-->
-<!--    <input #price type="number" matInput formControlName="price">-->
-<!--  </mat-form-field>-->
-
-<!--  <mat-form-field>-->
-<!--    <mat-label>Prix total</mat-label>-->
-<!--    <input #priceTotal type="number" matInput formControlName="priceTotal">-->
+<!--  <mat-form-field *ngIf="booking">-->
+<!--    <mat-label>Voici le prix en GNF</mat-label>-->
+<!--    <input matInput #price value="{{element.price}}" readonly>-->
 <!--  </mat-form-field>-->
   <div id="myPaypalButtons"></div>
 
-  <button mat-raised-button type="submit" (click)="onSend(nbPeople.value, price.value)">Réserver</button>
+  <button mat-raised-button type="submit" (click)="onSend(nbPeople.value)">Réserver</button>
 </form>
 

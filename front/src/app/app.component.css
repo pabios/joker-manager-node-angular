@@ -12,18 +12,6 @@
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
 }
 
-.header-trigger {
-  height: 64px;
-  padding: 20px 24px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all 0.3s, padding 0s;
-}
-
-.trigger:hover {
-  color: #1890ff;
-}
-
 .sidebar-logo {
   position: relative;
   height: 64px;
@@ -57,12 +45,41 @@ nz-header {
   z-index: 2;
 }
 
+.header-trigger {
+  height: 64px;
+  padding: 20px 24px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s, padding 0s;
+}
+
 .app-header {
   position: relative;
   height: 64px;
   padding: 0;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  display: flex;
+  justify-content: space-between;
+}
+.app-header .search__bar {
+  width: 70%;
+  padding: 10px 24px;
+}
+.app-header .trigger {
+  float: left;
+  padding-top: -24px;
+}
+.app-header .trigger:hover {
+  color: #1890ff;
+}
+.app-header .user-icon {
+  font-size: 20px;
+  float: right;
+  padding: 10px 24px;
+}
+.app-header .user-icon:hover {
+  color: #1890ff;
 }
 
 nz-content {

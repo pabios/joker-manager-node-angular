@@ -8,6 +8,7 @@ import {BookingService} from "../../core/services/booking.service";
 import {render} from "creditcardpayments/creditCardPayments";
 import {NotificationService} from "../../core/services/notification.service";
 import {Booking} from "../../core/models/booking.model";
+import {Root} from "../../core/models/element.model";
 
 @Component({
   selector: 'app-form-booking',
@@ -17,6 +18,7 @@ import {Booking} from "../../core/models/booking.model";
 export class FormBookingComponent {
 
   @Input() booking!: Booking[] ;
+  @Input() element!: Root ;
 
   form!: FormGroup;
   elementId!: any;
@@ -50,17 +52,7 @@ export class FormBookingComponent {
       this.booking?.forEach(b =>{
         this.priceItem = b.price;
       })
-    let item: any;
 
-    // if (this.priceItem && typeof this.priceItem === "string") {
-    //   item = JSON.parse(this.priceItem);
-    // }
-    //
-    // if (item) {
-    //   this.price = item;
-    //   console.log(this.price);
-    //   console.log("bonjour item")
-    // }
 
 //
     let amount = this.priceItem
@@ -89,15 +81,7 @@ export class FormBookingComponent {
 
     );
 
-    // this.price.valueChanges.subscribe(() => {
-    //   this.calculateTotalPrice();
-    // });
 
-    // this.nbPeople.valueChanges.subscribe(() => {
-    //   this.calculateTotalPrice();
-    // });
-
-    //
 
   }
 
@@ -124,7 +108,7 @@ export class FormBookingComponent {
     this.priceTotal = this.price.value * this.nbPeople.value;
   }
 
-  onSend(nbPeople: any,price:any){
+  onSend(nbPeople: any){
 
     const beginDateValue = this.form.get('beginDate')
     const endDateValue = this.form.get('endDate');
@@ -136,8 +120,8 @@ export class FormBookingComponent {
 
     const formData : FormData = new FormData();
     formData.append('nbPeople',nbPeople)
-    formData.append('price',price)
-    formData.append('priceTotal',price)
+    formData.append('price',this.element.price.toString())
+    formData.append('priceTotal',this.element.price.toString())
     formData.append('beginDate',this.newBeginDate.toISOString())
     formData.append('endDate',this.newEndDate.toISOString())
     formData.append('elementId',this.elementId)
@@ -183,36 +167,8 @@ export class FormBookingComponent {
     return arrayOfDate;
   }
 
-    disabledDates  (date:  Date | null) {
-      const arrayOfDate: { beginDate: Date, endDate: Date }[] = [];
-      console.log('+++++++========+++++++=++++++++++++++++==========')
 
-      console.log(this.booking)
-      this.booking.forEach(booking => {
-        const beginDate = new Date(booking.beginDate);
-        const endDate = new Date(booking.endDate);
-
-        arrayOfDate.push({ beginDate, endDate });
-      });
-      console.log('==================')
-      console.log(
-        date !== null &&
-        arrayOfDate.some(book => date >= book.beginDate && date <= book.endDate)
-      );
-
-
-    if (date === null) {
-      return false;
-    }else{
-      console.log( arrayOfDate.some(book => date >= book.beginDate && date <= book.endDate))
-
-    }
-
-    return arrayOfDate.some(book => date >= book.beginDate && date <= book.endDate);
-  }
-
-  arrayOfDatesBooked = [
-    new Date("09/28/2023"),
+  arrayOfDatesBooked:Date[] = [
   ];
 
   parseToEnglishDate(date:string){

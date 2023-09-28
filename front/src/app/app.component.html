@@ -46,13 +46,34 @@
                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
             ></span>
         </span>
-      </div>
+        <span class="search__bar">
+          <app-search-global></app-search-global>
+
+        </span>
+        <button routerLink="/filtre" nz-button nzType="primary">
+          <span nz-icon nzType="search"></span>
+          Filtre
+        </button>
+<!--        <nz-list-item-meta-->
+<!--          [nzTitle]="''"-->
+<!--          routerLink="/profils"-->
+<!--          nzAvatar="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"-->
+<!--          nzDescription=""-->
+<!--          class="user-icon"-->
+<!--        >-->
+<!--        </nz-list-item-meta>-->
+        <span routerLink="/profils" class="user-icon" nz-icon nzType="user" nzTheme="outline"></span>
+<!--        <span class="user-icon">-->
+
+<!--        </span>-->
+
+       </div>
     </nz-header>
     <nz-content>
       <div class="inner-content">
         <router-outlet></router-outlet>
       </div>
     </nz-content>
-    <nz-footer>Footer</nz-footer>
+    <nz-footer>Footer ils nous font confiance</nz-footer>
   </nz-layout>
 </nz-layout>

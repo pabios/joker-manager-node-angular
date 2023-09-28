@@ -22,4 +22,11 @@ export class BookingService {
   getBookingByElementId(elementId: number): Observable<Booking[]>{ //@todo created  slug properties
     return this.http.get<Booking[]>(`${environment.urlApi}/booking/element/${elementId}`)
   }
+
+  getBookingByUserId(userId: number): Observable<Booking[]>{ //@todo created  slug properties
+    return this.http.get<Booking[]>(`${environment.urlApi}/bookings/user/${userId}`)
+  }
+  remove(bookingId: number): Observable<any>{ //@todo created  slug properties
+    return this.http.get<any>(`${environment.urlApi}/booking/delete/${bookingId}`)
+  }
 }
