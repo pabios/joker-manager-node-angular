@@ -190,7 +190,7 @@ export class ElementListComponent implements OnInit {
         } else if (faceSnaps.length > 25) {
           this.pageSizeOptions = [4, 8, 25];
         } else if (faceSnaps.length >= 6) {
-          this.pageSizeOptions = [4, 6];
+          this.pageSizeOptions = [3, 6];
         } else {
           this.pageSizeOptions = [4];
         }
@@ -209,6 +209,7 @@ export class ElementListComponent implements OnInit {
   //     this.pageSizeOptions = [3];
   //   }
   // }
+
 
 }
 

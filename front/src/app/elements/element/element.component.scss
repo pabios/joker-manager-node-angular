@@ -1,3 +1,37 @@
+
+gridStyle {
+  width: 25%;
+  text-align: center;
+}
+
+.laTimeline{
+  margin-top: 20px;
+  background-color: red;
+}
+div.timeline_container div.ant-timeline-item {
+  margin-top: 20px !important;
+  position: relative;
+  /* margin: 0; */
+  padding-bottom: 20px;
+  font-size: 14px;
+  list-style: none;
+}
+
+div.timeline_container div.ant-timeline-item-label {
+  width: calc(10% - 12px) !important;
+}
+
+div.timeline_container div.ant-timeline-item-content {
+  left: calc(11% - 4px) !important;
+  width: calc(89% - 4px) !important;
+}
+
+div.timeline_container div.ant-timeline-item-tail,
+div.ant-timeline-item-head {
+  left: 11% !important;
+}
+
+//
 mat-card{
   margin-bottom: 20px;
 }

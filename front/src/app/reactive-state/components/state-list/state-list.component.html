@@ -1,0 +1,92 @@
+<!--<nz-drawer-->
+<!--  [nzSize]="size"-->
+<!--  [nzVisible]="visible"-->
+<!--  nzPlacement="right"-->
+<!--  [nzTitle]="title"-->
+<!--  [nzExtra]="extra"-->
+<!--  (nzOnClose)="close()"-->
+<!--&gt;-->
+<!--  <ng-container *nzDrawerContent>-->
+<!--    <p>Some contents...</p>-->
+<!--    <p>Some contents...</p>-->
+<!--    <p>Some contents...</p>-->
+<!--  </ng-container>-->
+<!--</nz-drawer>-->
+<!--<ng-template #extra>-->
+<!--  <button nz-button nzType="default" (click)="close()">Cancel</button>-->
+<!--  &nbsp;-->
+<!--  <button nz-button nzType="primary" (click)="close()">OK</button>-->
+<!--</ng-template>-->
+
+<!--lakdflak-->
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>
+      Elements
+    </mat-card-title>
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <input matInput type="text" [formControl]="searchCtrl">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-select [formControl]="searchTypeCtrl">
+          <mat-option *ngFor="let option of searchTypeOptions" [value]="option.value">{{ option.label }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </mat-card-title-group>
+  <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+
+<div *ngIf="elements$ | async as elements">
+  <mat-card  *ngFor="let element of elements">
+    <mat-card-header>
+      <div class="card-status">
+<!--        <button mat-icon-button class="verified">-->
+<!--        hello-->
+<!--        </button>-->
+      </div>
+      <mat-card-subtitle>
+        <div class="card-type">{{element.name}}</div>
+      </mat-card-subtitle>
+
+    </mat-card-header>
+
+    <div class="card-content">
+
+      <div class="container-img-maps">
+        <div class="image-container">
+          <c-carousel>
+            <c-carousel-indicators></c-carousel-indicators>
+            <c-carousel-inner>
+<!--              <c-carousel-item *ngFor="let image of images">-->
+<!--                <img-->
+<!--                  [src]="api_url+image.url"-->
+<!--                  alt="{{ element.name }}"-->
+<!--                  class="d-block w-100"-->
+<!--                  loading="lazy" style="height: 100%" />-->
+<!--              </c-carousel-item>-->
+            </c-carousel-inner>
+            <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+            <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+          </c-carousel>
+        </div>
+        <div class="description">
+          <p><strong><mat-icon>attach_money</mat-icon> </strong> <span> <b>Loyer :</b> {{element.price}} FCFA/mois</span></p>
+          <p><strong><mat-icon>location_on</mat-icon>  </strong> <span> <b>Localisation :</b>  {{element.locate}} </span></p>
+          <p><strong><mat-icon>square</mat-icon>  </strong> <span> <b>Surface :</b>  {{element.size}} m2  </span></p>
+          <p><strong><mat-icon>description</mat-icon> </strong>
+            <span> <b>Description :</b>
+              {{element.description}}
+            </span>
+          </p>
+          <mat-card-actions>
+            <button mat-button color="primary" [routerLink]="'/elements/'+element.id">Voir plus</button>
+          </mat-card-actions>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
+</mat-card>

@@ -29,4 +29,10 @@ export class ElementComponent {
   onViewElement(){
       this.router.navigateByUrl(`elements/${this.element.id}`);
   }
+
+
+  goBooking(id:any,price:number):void{
+    sessionStorage.setItem('price',String(price))
+    this.router.navigateByUrl(`/booking/${id}`).then(r => '')
+  }
 }

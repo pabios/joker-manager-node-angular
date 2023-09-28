@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {FormControl, FormGroup, UntypedFormBuilder, Validators} from "@angular/forms";
+import {Component, Input} from '@angular/core';
+import {FormControl, FormGroup, UntypedFormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 import {BookingService} from "../../core/services/booking.service";
@@ -7,6 +7,8 @@ import {BookingService} from "../../core/services/booking.service";
 //
 import {render} from "creditcardpayments/creditCardPayments";
 import {NotificationService} from "../../core/services/notification.service";
+import {Booking} from "../../core/models/booking.model";
+import {Root} from "../../core/models/element.model";
 
 @Component({
   selector: 'app-form-booking',
@@ -14,6 +16,9 @@ import {NotificationService} from "../../core/services/notification.service";
   styleUrls: ['./form-booking.component.scss']
 })
 export class FormBookingComponent {
+
+  @Input() booking!: Booking[] ;
+  @Input() element!: Root ;
 
   form!: FormGroup;
   elementId!: any;
@@ -24,14 +29,15 @@ export class FormBookingComponent {
   priceTotal!:any
   newBeginDate!:any
   newEndDate!:any
+
+
+  minDate: any;
   constructor(private  formBuilder: UntypedFormBuilder,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private bookingService:BookingService,
               private notificationService:NotificationService
               ) {
-
-
   }
 
 
@@ -42,18 +48,11 @@ export class FormBookingComponent {
     this.userId = 1;
     this.elementId = +this.activatedRoute.snapshot.params['id'];
 
-      this.priceItem = sessionStorage.getItem("price");
-    let item: any;
+      // this.priceItem = sessionStorage.getItem("price");
+      this.booking?.forEach(b =>{
+        this.priceItem = b.price;
+      })
 
-    if (this.priceItem && typeof this.priceItem === "string") {
-      item = JSON.parse(this.priceItem);
-    }
-
-    if (item) {
-      this.price = item;
-      console.log(this.price);
-      console.log("bonjour item")
-    }
 
 //
     let amount = this.priceItem
@@ -82,28 +81,12 @@ export class FormBookingComponent {
 
     );
 
-    this.price.valueChanges.subscribe(() => {
-      this.calculateTotalPrice();
-    });
-
-    this.nbPeople.valueChanges.subscribe(() => {
-      this.calculateTotalPrice();
-    });
-
-    //
 
 
   }
 
-  // {
-//            "nbPeople": 2,
-//            "beginDate": "2023-09-20T12:00:00+00:00",
-//            "endDate": "2023-09-21T12:00:00+00:00",
-//            "price": 200,
-//            "priceTotal": 400,
-//            "elementId": 3,
-//            "userId": 1
-//        }
+
+
 
   public pricing(event:HTMLInputElement){
     this.price = event.value;
@@ -125,7 +108,7 @@ export class FormBookingComponent {
     this.priceTotal = this.price.value * this.nbPeople.value;
   }
 
-  onSend(nbPeople: any,price:any){
+  onSend(nbPeople: any){
 
     const beginDateValue = this.form.get('beginDate')
     const endDateValue = this.form.get('endDate');
@@ -137,8 +120,8 @@ export class FormBookingComponent {
 
     const formData : FormData = new FormData();
     formData.append('nbPeople',nbPeople)
-    formData.append('price',price)
-    formData.append('priceTotal',price)
+    formData.append('price',this.element.price.toString())
+    formData.append('priceTotal',this.element.price.toString())
     formData.append('beginDate',this.newBeginDate.toISOString())
     formData.append('endDate',this.newEndDate.toISOString())
     formData.append('elementId',this.elementId)
@@ -169,6 +152,48 @@ export class FormBookingComponent {
     // this.router.navigateByUrl('/readme');
   }
 
+//=====================================
+  disablePeriode(bookings: Booking[]) {
+    const arrayOfDate: { beginDate: Date, endDate: Date }[] = [];
 
+    bookings.forEach(booking => {
+      const beginDate = new Date(booking.beginDate);
+      const endDate = new Date(booking.endDate);
+
+      arrayOfDate.push({ beginDate, endDate });
+    });
+
+    console.log(arrayOfDate)
+    return arrayOfDate;
+  }
+
+
+  arrayOfDatesBooked:Date[] = [
+  ];
+
+  parseToEnglishDate(date:string){
+    let parts = date.split(" ");
+    let datePart = parts[0].split("-");
+    let year = datePart[0];
+    let month = datePart[1];
+    let day = datePart[2];
+    return `${month}/${day}/${year}`
+  }
+
+  myHolidayFilter = (d: Date | null): boolean => {
+    this.booking.forEach(booking => {
+      const startDate = new Date(this.parseToEnglishDate(booking.beginDate));
+      const endDate = new Date(this.parseToEnglishDate(booking.endDate));
+      for (let currentDate = startDate; currentDate <= endDate; currentDate.setDate(currentDate.getDate() + 1)) {
+        this.arrayOfDatesBooked.push(new Date(currentDate));
+      }
+    });
+    if(d == null){
+      return false;
+    }
+    const time=d.getTime();
+    return !this.arrayOfDatesBooked.find(x=>x.getTime()==time);
+  }
+//=====================================
 
 }

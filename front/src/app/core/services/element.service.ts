@@ -203,6 +203,10 @@ export class ElementService {
   getElementById(elementId: number): Observable<Root>{ //@todo created  slug properties
     return this.http.get<Root>(`${environment.urlApi}/element/${elementId}`)
   }
+  getElementByUserId(userId: number): Observable<Root[]>{
+    return this.http.get<Root[]>(`${environment.urlApi}/elements/user/${userId}`)
+  }
+
 
   /**
    * nouvelle enregistrement
@@ -210,6 +214,9 @@ export class ElementService {
    */
   add(formData:FormData):Observable<any>{
     return this.http.post<any>(`${environment.urlApi}/element/add`,formData)
+  }
+  remove(elementId:number):Observable<any>{
+    return this.http.get<any>(`${environment.urlApi}/element/delete/${elementId}`) //@todo replace by http.delete
   }
 
 }
