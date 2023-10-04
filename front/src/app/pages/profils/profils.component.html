@@ -70,38 +70,38 @@
 <nz-divider></nz-divider>
 
 <div class="container">
-  <mat-card>
+  <nz-card nzHoverable>
     <mat-card-title style="text-align: center">Mes Réservations</mat-card-title>
-  </mat-card>
+  </nz-card>
 </div>
 <div *ngIf="bookings$ | async as bookings">
 
-  <div *ngIf="bookings != null; else elseBlock" class="site-page-header-ghost-wrapper">
-    <nz-page-header *ngFor="let booking of bookings; let i = index">
-      <nz-page-header-title>Réservation</nz-page-header-title>
-      <nz-page-header-subtitle>N°{{i + 1}}</nz-page-header-subtitle>
-      <nz-page-header-extra>
-        <nz-space>
-          <button routerLink="/elements/{{booking.elementId}}" *nzSpaceItem  nz-button>Voir</button>
-          <button [disabled]="isDeleteButtonDisabled" nz-popconfirm nzPopconfirmTitle="Êtes-vous sûrs ?"  (nzOnConfirm)="deleteBookingById(booking.id)"
+  <nz-card nzHoverable  *ngIf="bookings != null; else elseBlock" class="site-page-header-ghost-wrapper">
+    <nz-page-header  *ngFor="let booking of bookings; let i = index">
+        <nz-page-header-title>Réservation</nz-page-header-title>
+        <nz-page-header-subtitle>N°{{i + 1}}</nz-page-header-subtitle>
+        <nz-page-header-extra>
+          <nz-space>
+            <button routerLink="/elements/{{booking.elementId}}" *nzSpaceItem  nz-button>Voir</button>
+            <button [disabled]="isDeleteButtonDisabled" nz-popconfirm nzPopconfirmTitle="Êtes-vous sûrs ?"  (nzOnConfirm)="deleteBookingById(booking.id)"
 
-                  *nzSpaceItem nz-button nzType="primary" nzDanger>Annuler</button>
+                    *nzSpaceItem nz-button nzType="primary" nzDanger>Annuler</button>
 
-        </nz-space>
-      </nz-page-header-extra>
-      <nz-page-header-content>
-        <nz-descriptions nzSize="small" [nzColumn]="3">
-          <nz-descriptions-item nzTitle="Nombre de personne" [nzSpan]="1">{{booking.nbPeople}}</nz-descriptions-item>
-          <nz-descriptions-item nzTitle="A partir du" [nzSpan]="1">{{ formatBookingDate(booking.beginDate)}}</nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Jusqu'au" [nzSpan]="1">{{formatBookingDate(booking.endDate)}}</nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Prix" [nzSpan]="1"><a>{{booking.priceTotal}} GNF/MOIS</a></nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Taille" [nzSpan]="2">
-            90  m²
-          </nz-descriptions-item>
-        </nz-descriptions>
-      </nz-page-header-content>
+          </nz-space>
+        </nz-page-header-extra>
+        <nz-page-header-content>
+          <nz-descriptions nzSize="small" [nzColumn]="3">
+            <nz-descriptions-item nzTitle="Nombre de personne" [nzSpan]="1">{{booking.nbPeople}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="A partir du" [nzSpan]="1">{{ formatBookingDate(booking.beginDate)}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Jusqu'au" [nzSpan]="1">{{formatBookingDate(booking.endDate)}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Prix" [nzSpan]="1"><a>{{booking.priceTotal}} GNF/MOIS</a></nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Taille" [nzSpan]="2">
+              90  m²
+            </nz-descriptions-item>
+          </nz-descriptions>
+        </nz-page-header-content>
     </nz-page-header>
-  </div>
+  </nz-card>
 </div>
 <ng-template #elseBlock>
   <nz-page-header >
@@ -119,13 +119,13 @@
 <!--debut Mes logements-->
 
 <div class="container">
-  <mat-card>
+  <nz-card nzHoverable>
     <mat-card-title style="text-align: center">Mes logements</mat-card-title>
-  </mat-card>
+  </nz-card>
 </div>
 
 <div *ngIf="elements$ | async as elements">
-  <div *ngIf="listOfData != null; else elseBlock" class="site-page-header-ghost-wrapper">
+  <nz-card nzHoverable *ngIf="listOfData != null; else elseBlock" class="site-page-header-ghost-wrapper">
     <nz-page-header *ngFor="let element of elements; let i = index">
       <nz-page-header-title>Logement</nz-page-header-title>
       <nz-page-header-subtitle>N°{{i +1}}</nz-page-header-subtitle>
@@ -149,7 +149,7 @@
         </nz-descriptions>
       </nz-page-header-content>
     </nz-page-header>
-  </div>
+  </nz-card>
 </div>
 
 <ng-template #elseBlock>

@@ -10,6 +10,7 @@ import {NzSelectModule} from "ng-zorro-antd/select";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzCardModule} from "ng-zorro-antd/card";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {NzIconModule} from "ng-zorro-antd/icon";
     NzSelectModule,
     NzButtonModule,
     NzDatePickerModule,
-    NzIconModule
+    NzIconModule,
+    NzCardModule
   ]
 })
 export class FiltreModule { }
