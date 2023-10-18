@@ -11,6 +11,7 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzCardModule} from "ng-zorro-antd/card";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -20,17 +21,18 @@ import {NzCardModule} from "ng-zorro-antd/card";
   exports: [
     FiltreComponent
   ],
-  imports: [
-    CommonModule,
-    FiltreRoutingModule,
-    NzDrawerModule,
-    NzFormModule,
-    NzInputModule,
-    NzSelectModule,
-    NzButtonModule,
-    NzDatePickerModule,
-    NzIconModule,
-    NzCardModule
-  ]
+    imports: [
+        CommonModule,
+        FiltreRoutingModule,
+        NzDrawerModule,
+        NzFormModule,
+        NzInputModule,
+        NzSelectModule,
+        NzButtonModule,
+        NzDatePickerModule,
+        NzIconModule,
+        NzCardModule,
+        FormsModule
+    ]
 })
 export class FiltreModule { }

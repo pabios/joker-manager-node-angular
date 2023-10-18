@@ -15,23 +15,29 @@
       <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="" >Home</a>
+            <a routerLink="" >Accueil</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/elements">Elements</a>
+            <a routerLink="/elements">Logements</a>
           </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/reative">Reative</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Welcome</a>
-          </li>
+<!--          <li nz-menu-item nzMatchRouter>-->
+<!--            <a routerLink="/reative">Filtre</a>-->
+<!--          </li>-->
+<!--          <li nz-menu-item nzMatchRouter>-->
+<!--            <a routerLink="/welcome">Welcome</a>-->
+<!--          </li>-->
         </ul>
       </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
+      <li nz-submenu nzOpen nzTitle="Raccourcis" nzIcon="form">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
+            <a routerLink="/elements/add">Soumettre un Logement</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/elements/add">Nous Contacter</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/elements/add">Réservations</a>
           </li>
         </ul>
       </li>
@@ -46,14 +52,33 @@
                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
             ></span>
         </span>
+        <span (click)="showLarge()" class="filtre_icon" nz-icon nzType="file-search" nzTheme="outline"></span>
+
         <span class="search__bar">
           <app-search-global></app-search-global>
-
         </span>
-        <button routerLink="/filtre" nz-button nzType="primary">
-          <span nz-icon nzType="search"></span>
-          Filtre
-        </button>
+
+<!--        <button routerLink="/filtre" nz-button nzType="primary">-->
+<!--          <span nz-icon nzType="search"></span>-->
+<!--          Filtre-->
+<!--        </button>-->
+<!--        (736px)-->
+        <nz-drawer
+          [nzSize]="size"
+          [nzVisible]="visible"
+          nzPlacement="right"
+          [nzTitle]="title"
+          [nzExtra]="extra"
+          (nzOnClose)="close()"
+        >
+          <ng-container *nzDrawerContent>
+            <app-state-list></app-state-list>
+          </ng-container>
+        </nz-drawer>
+        <ng-template #extra>
+          <button nz-button nzType="primary" (click)="close()">OK</button>
+        </ng-template>
+
 <!--        <nz-list-item-meta-->
 <!--          [nzTitle]="''"-->
 <!--          routerLink="/profils"-->
@@ -74,6 +99,8 @@
         <router-outlet></router-outlet>
       </div>
     </nz-content>
-    <nz-footer>Footer ils nous font confiance</nz-footer>
+    <nz-footer>
+        <app-footer></app-footer>
+    </nz-footer>
   </nz-layout>
 </nz-layout>

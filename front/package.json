@@ -31,6 +31,7 @@
     "bootstrap": "^5.2.3",
     "creditcardpayments": "^1.0.3",
     "date-fns-tz": "^2.0.0",
+    "flag-icons": "^6.11.1",
     "js-sha512": "^0.8.0",
     "leaflet": "^1.9.4",
     "ng-zorro-antd": "^15.1.0",

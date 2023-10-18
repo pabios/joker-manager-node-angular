@@ -3,33 +3,33 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 -16px;
-
-  .card-link{
-    width: 100%;
-    text-decoration: none;
-    display: block
-
-  }
-  @media only screen and (max-width: 600px) {
+}
+.city-cards .card-link {
+  width: 100%;
+  text-decoration: none;
+  display: block;
+}
+@media only screen and (max-width: 600px) {
+  .city-cards {
     flex-direction: column;
   }
 }
-.city-card{
-  mat-icon{
-     margin-right: 15px;
-  }
+
+.city-card mat-icon {
+  margin-right: 15px;
 }
-.titre-icon-region{
+
+.titre-icon-region {
   display: flex;
   justify-content: space-between;
-
-      .name{
-        display: block;
-        margin-top: -25px;
-        margin-left: 28px;
-      }
 }
-.icon-text{
+.titre-icon-region .name {
+  display: block;
+  margin-top: -25px;
+  margin-left: 28px;
+}
+
+.icon-text {
   display: flex;
 }
 
@@ -39,10 +39,11 @@
   padding: 16px;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-
-  @media only screen and (max-width: 600px) {
+}
+@media only screen and (max-width: 600px) {
+  .city-card {
     width: 100%;
     margin: 16px 0;
   }
@@ -50,9 +51,8 @@
 
 .city-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 0 0 2px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
-
 
 .city-card img {
   width: 100%;
@@ -73,40 +73,27 @@
   margin: 0;
 }
 
-
-//
 .sec-stats {
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
-
-  .sec-stats-item{
-    span{
-      font-size: 25px;
-      &:hover{
-        font-size: 27px;
-
-      }
-    }
-  }
-  nz-card{
-    &:hover{
-      background-color:#1890ff;
-      color: white;
-    }
-  }
-
+  justify-content: space-between;
 }
-
-
+.sec-stats .sec-stats-item span {
+  font-size: 25px;
+}
+.sec-stats .sec-stats-item span:hover {
+  font-size: 27px;
+}
+.sec-stats nz-card:hover {
+  background-color: #1890ff;
+  color: white;
+}
 
 @media (max-width: 768px) {
   .sec-stats {
     flex-direction: column;
   }
 }
-//
-
 [nz-carousel-content] {
   text-align: center;
   height: 160px;
@@ -122,14 +109,12 @@ h3 {
   user-select: none;
 }
 
-.banner {
-  h3{
-    color:red;
-    font-size: 48px;
-   position: absolute;
-    top: 20px;
-    left: 20%;
-  }
-
+.banner h3 {
+  color: red;
+  font-size: 48px;
+  position: absolute;
+  top: 20px;
+  left: 20%;
 }
 
+/*# sourceMappingURL=landing-page.component.css.map */

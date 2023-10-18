@@ -1,18 +1,63 @@
-<form  [formGroup]="snapForm">
-  <div class="form-card">
-    <h2>Connexion</h2>
-    <div class="form-group">
-      <label for="email">Pseudo</label>
-      <input #email type="text" id="email">
-    </div>
-    <div class="form-group">
-      <label for="password">Mot de passe</label>
-      <input #password type="password" id="password">
-    </div>
-    <div class="action-buttons">
-      <button type="submit" #signIn (click)="onLogin(email.value,password.value)">Connexion</button>
-    </div>
-   <span class="action-buttons"> ou  <button routerLink="/auth/signUp">s'inscrire</button></span>
-  </div>
+<!--<form  [formGroup]="snapForm">-->
+<!--  <div class="form-card">-->
+<!--    <h2>Connexion</h2>-->
+<!--    <div class="form-group">-->
+<!--      <label for="email">Pseudo</label>-->
+<!--      <input #email type="text" id="email">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="password">Mot de passe</label>-->
+<!--      <input #password type="password" id="password">-->
+<!--    </div>-->
+<!--    <div class="action-buttons">-->
+<!--      <button type="submit" #signIn (click)="onLogin(email.value,password.value)">Connexion</button>-->
+<!--    </div>-->
+<!--   <span class="action-buttons"> ou  <button routerLink="/auth/signUp">s'inscrire</button></span>-->
+<!--  </div>-->
+<!--</form>-->
+
+
+<form nz-form  [formGroup]="validateForm" (ngSubmit)="submitForm()" >
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Numéro de téléphone</nz-form-label>
+    <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      [nzValidateStatus]="validateForm.controls['phoneNumber']"
+      nzErrorTip="Veuillez saisir votre numéro de téléphone!"
+    >
+      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+        <ng-template #addOnBeforeTemplate>
+          <nz-select class="phone-select" required  formControlName="phoneNumberPrefix" nzShowSearch nzAllowClear nzPlaceHolder="pays">
+            <nz-option *ngFor="let country of countries" #phoneNumberPrefix  [nzLabel]="country.label" [nzValue]="country.value" nzCustomContent >
+              <span class="fi {{country.flag}}"></span>
+              {{country.label}}
+            </nz-option>
+          </nz-select>
+
+        </ng-template>
+        <input formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="628451000"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Mot de passe</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Veuillez saisir votre mot de passe!">
+      <input
+        nz-input
+        type="password"
+        id="password"
+        #password
+        formControlName="password"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button nz-button nzType="primary"   >S'inscrire</button>
+    </nz-form-control>
+  </nz-form-item>
 </form>
 

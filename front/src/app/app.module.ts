@@ -27,6 +27,9 @@ import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {SearchGlobalModule} from "./search-global/search-global.module";
 import {NzListModule} from "ng-zorro-antd/list";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzSpaceModule} from "ng-zorro-antd/space";
+import {NzDrawerModule} from "ng-zorro-antd/drawer";
+import {ReactiveStateModule} from "./reactive-state/reactive-state.module";
 
 registerLocaleData(fr);
 
@@ -47,7 +50,7 @@ registerLocaleData(fr);
     // NgbModule,
     GoogleMapsModule,
     SharedModule, //   le SharedModule
-    ToastrModule.forRoot(), FormsModule, HttpClientModule, IconsProviderModule, NzLayoutModule, NzMenuModule, NzAvatarModule, SearchGlobalModule, NzListModule, NzButtonModule
+    ToastrModule.forRoot(), FormsModule, HttpClientModule, IconsProviderModule, NzLayoutModule, NzMenuModule, NzAvatarModule, SearchGlobalModule, NzListModule, NzButtonModule, NzSpaceModule, NzDrawerModule, ReactiveStateModule
 
   ],
   providers: [

@@ -27,6 +27,9 @@ export class StateListComponent implements OnInit{
 
   searchCtrl!: FormControl;
   searchTypeCtrl!: FormControl;
+  dateDebutCtrl!:FormControl;
+  dateFinCtrl!:FormControl
+
 
   searchTypeOptions!:{
     value: StateSearchType,
@@ -58,16 +61,23 @@ export class StateListComponent implements OnInit{
     this.size = "768px";
     this.visible = true;
     this.title = "le drawer"
+    //
+
+
+
 
   }
 
   private initForm(){
     this.searchCtrl = this.formBuilder.control('');
-    this.searchTypeCtrl = this.formBuilder.control(StateSearchType.NAME);
+    this.searchTypeCtrl = this.formBuilder.control(StateSearchType.LOCATE);
+
+    this.dateDebutCtrl = this.formBuilder.control(null);
+    this.dateFinCtrl = this.formBuilder.control(null);
+
     this.searchTypeOptions = [
-      {value:StateSearchType.NAME, label:'Nom'},
       {value:StateSearchType.LOCATE, label:'Localisation'},
-      {value:StateSearchType.CONTENT, label:'Contenue'}
+      {value:StateSearchType.PRICE, label:'Prix'},
     ]
   }
 
@@ -80,19 +90,61 @@ export class StateListComponent implements OnInit{
     const searchType$: Observable<StateSearchType> = this.searchTypeCtrl.valueChanges.pipe(
       startWith(this.searchTypeCtrl.value)
     );
-    this.elements$ = combineLatest([
-        search$,
-        searchType$,
-        this.stateService.states$
-      ]
-    ).pipe(
-      map(([search, searchType, elements]) => elements.filter(element => element[searchType]
-        .toLowerCase()
-        .includes(search as string))
-      )
+
+    const dateDebut$ = this.dateDebutCtrl.valueChanges.pipe(
+      startWith(this.dateDebutCtrl.value)
+    );
+
+    const dateFin$ = this.dateFinCtrl.valueChanges.pipe(
+      startWith(this.dateFinCtrl.value)
     );
 
 
+
+    // this.elements$ = combineLatest([
+    //     search$,
+    //     searchType$,
+    //     dateDebut$,
+    //     dateFin$,
+    //     this.stateService.states$
+    //   ]
+    // ).pipe(
+    //   map(([search, searchType,dateDebut, dateFin, elements]) => elements.filter(element => element[searchType]
+    //     .toString()
+    //     .toLowerCase()
+    //     .includes(search as string))
+    //   )
+    // );
+
+    this.elements$ = combineLatest([
+      search$,
+      searchType$,
+      dateDebut$,
+      dateFin$,
+      this.stateService.states$
+    ]).pipe(
+      map(([search, searchType, dateDebut, dateFin, elements]) => {
+        return elements.filter(element => {
+          const searchLower = search.toString().toLowerCase();
+          const elementValue = element[searchType]?.toString().toLowerCase();
+          const dateDebutValid = !( !dateDebut || (element.beginDate && new Date(element.beginDate) < new Date(dateDebut))  );
+          const dateFinValid = !( !dateFin || (element.endDate && new Date(element.endDate) > new Date(dateFin)) );
+
+          // Condition pour vérifier les dates de début et de fin saisies
+          const dateDebutSaisiValide = !dateDebut || !element.beginDate || new Date(element.beginDate) < new Date(dateDebut);
+          const dateFinSaisiValide = !dateFin || !element.endDate || new Date(element.endDate) > new Date(dateFin);
+
+          return elementValue.includes(searchLower) && dateDebutValid && dateFinValid && dateDebutSaisiValide && dateFinSaisiValide;
+        });
+      })
+    );
+  }
+
+    parseCustomDate(dateString: string): Date {
+    const [datePart, timePart] = dateString.split(' ');
+    const [year, month, day] = datePart.split('-');
+    const [hour, minutes, seconds] = timePart.split(':');
+    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day), parseInt(hour), parseInt(minutes), parseInt(seconds));
   }
 
   goSingle(id: number){

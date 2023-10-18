@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'profils', loadChildren: () => import('./pages/profils/profils.module').then(m => m.ProfilsModule) },
   { path: 'search', loadChildren: () => import('./search-global/search-global.module').then(m => m.SearchGlobalModule) },
   { path: 'filtre', loadChildren: () => import('./filtre/filtre.module').then(m => m.FiltreModule) },
+  { path: 'spec', loadChildren: () => import('./spec-pages/spec-pages.module').then(m => m.SpecPagesModule) },
   { path: '', loadChildren: () => import('./landing-page/landing-page.module').then(m => m.LandingPageModule) },
 
   // { path: '', pathMatch: 'full', redirectTo: '/welcome' },

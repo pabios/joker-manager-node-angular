@@ -42,7 +42,8 @@
 
 
 
-$them-color : rgb(13, 1, 21);
+$them-color :  #001628;
+//$them-color:rgb(255, 144, 110);
 
 .laSideNav{
   //background-color: $them-color;
@@ -60,9 +61,9 @@ $them-color : rgb(13, 1, 21);
   text-align: center;
 }
 
-.head-them__blue{
-  background-color: $them-color;
-}
+//.head-them__blue{
+//  background-color: $them-color;
+//}
 
 .list-content {
   display: flex;
@@ -88,6 +89,10 @@ footer{
     text-decoration: none;
     color: white;
   }
+  h4{
+    color:white;
+  }
+
 }
 
 /***************************************

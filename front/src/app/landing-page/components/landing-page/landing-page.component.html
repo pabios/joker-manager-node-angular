@@ -1,4 +1,7 @@
-<app-filtre></app-filtre>
+<!--<app-filtre></app-filtre>-->
+
+
+<app-state-list></app-state-list>
 <div class="container">
   <div class="city-cards">
 
@@ -18,13 +21,41 @@
           </p>
         </a>
       </div>
-
-
   </div>
 </div>
 
+  <section class="sec-stats">
+    <nz-card nzHoverable class="sec-stats-item">
+      <span class="sec-item__icon" nz-icon nzType="usergroup-delete" nzTheme="outline"></span>
+      <p>Nombre d'utilisateurs</p>
+      <p>{{34}}</p>
+    </nz-card>
+    <nz-card nzHoverable  class="sec-stats-item">
+      <span nz-icon nzType="user-switch" nzTheme="outline"></span>
+      <p>Nombre de partenaires</p>
+      <p>{{30}}</p>
+    </nz-card>
+    <nz-card nzHoverable  class="sec-stats-item">
+      <span nz-icon nzType="eye" nzTheme="outline"></span>
+      <p>Nombre de visiteurs</p>
+      <p>{{50}}</p>
+    </nz-card>
+    <nz-card nzHoverable  class="sec-stats-item">
+      <span nz-icon nzType="shop" nzTheme="outline"></span>
+      <p>Nombre de logements</p>
+      <p>{{90}}</p>
+    </nz-card>
 
+  </section>
 
-
+<nz-result
+  nzStatus="success"
+  nzTitle="Obtenir le badge Vert"
+  nzSubTitle="C'est garantir la conformité de ces logements"
+>
+  <div nz-result-extra>
+    <button nz-button nzType="primary">l'obtenir</button>
+  </div>
+</nz-result>
 
 

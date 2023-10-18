@@ -27,29 +27,8 @@ button {
   margin: 20px auto;
 }
 
-// zorro
-form{
-  width: 900px;
-}
-input{
-  width:100%;
-}
-nz-card{
-  //background-color:#2F96B4;
-}
-[nz-form] {
- // max-width: 600px;
-}
-
 .phone-select {
   width: 100px;
 }
 
-.register-are {
-  margin-bottom: 8px;
-}
-
-.custom-text { // condition general
-  font-weight: bold; /* Met en gras */
-  font-style: italic; /* Met en italique */
-}
+/*# sourceMappingURL=login.component.css.map */

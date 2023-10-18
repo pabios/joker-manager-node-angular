@@ -64,7 +64,14 @@ nz-header {
 }
 .app-header .search__bar {
   width: 70%;
-  padding: 10px 24px;
+  padding: 12px 24px;
+}
+.app-header .filtre_icon {
+  margin-top: 20px;
+  font-size: 24px;
+}
+.app-header .filtre_icon:hover {
+  color: #1890ff;
 }
 .app-header .trigger {
   float: left;
@@ -76,7 +83,8 @@ nz-header {
 .app-header .user-icon {
   font-size: 20px;
   float: right;
-  padding: 10px 24px;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 .app-header .user-icon:hover {
   color: #1890ff;
@@ -90,6 +98,10 @@ nz-content {
   padding: 24px;
   background: #fff;
   height: auto;
+}
+
+nz-footer {
+  background-color: #001628;
 }
 
 /*# sourceMappingURL=app.component.css.map */

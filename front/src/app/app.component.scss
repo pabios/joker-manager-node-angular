@@ -73,7 +73,14 @@ nz-header {
   .search__bar{
     //background-color: #0ae848;
     width:70%;
-    padding: 10px 24px;
+    padding: 12px 24px;
+  }
+  .filtre_icon{
+    margin-top:20px;
+    font-size: 24px;
+    &:hover{
+      color: #1890ff;
+    }
   }
   .trigger{
     float: left;
@@ -86,7 +93,9 @@ nz-header {
     //background-color: #0092ff;
     font-size: 20px;
     float: right;
-    padding: 10px 24px;
+    margin-top:20px;
+    margin-right: 20px;
+
 
 
     &:hover{
@@ -106,6 +115,11 @@ nz-content {
 }
 
 //
+$them-color :  #001628;
+
+nz-footer{
+  background-color: $them-color;
+}
 
 
 

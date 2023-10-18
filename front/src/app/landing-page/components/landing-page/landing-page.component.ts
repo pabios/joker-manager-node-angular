@@ -18,6 +18,12 @@ export class LandingPageComponent implements OnInit {
   region$!: Observable<any>;
   category$!: Observable<Category[]>
 
+  array = ["BASSE GUINEE",
+    "MOYENNE GUINEE",
+    "HAUTE GUINEE",
+    "GUINEE FORESTIERE"];
+  effect = 'scrollx';
+
   constructor(
     private countryService: CountryService,
     private catergoryService: CategoryService,

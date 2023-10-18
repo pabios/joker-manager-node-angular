@@ -10,10 +10,6 @@
   text-align: center;
 }
 
-.head-them__blue {
-  background-color: #0d0115;
-}
-
 .list-content {
   display: flex;
   align-items: center;
@@ -28,13 +24,16 @@ footer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: #0d0115;
+  background-color: #001628;
   color: white;
   padding-left: 5%;
   padding-right: 20%;
 }
 footer a {
   text-decoration: none;
+  color: white;
+}
+footer h4 {
   color: white;
 }
 
@@ -76,7 +75,7 @@ footer a {
 }
 
 .manage-account {
-  background-color: #0d0115;
+  background-color: #001628;
 }
 .manage-account mat-icon {
   color: white;
