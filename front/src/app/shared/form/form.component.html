@@ -1,6 +1,6 @@
 <div  class="containerForme__preview">
   <div class="form-card">
-<!--  <div>-->
+
     <mat-card style="margin: 20px;text-align: center">
       <mat-card-title class="mat-headline">Ajout d'un logement</mat-card-title>
     </mat-card>
@@ -24,9 +24,9 @@
       <p>
         <mat-form-field style="width: 100%" appearance="fill">
           <mat-label>Dites nous en plus sur le logement</mat-label>
-          <input formControlName="content"   #content  matInput placeholder="dite nous plus sur logement">
+          <input formControlName="content"   #content  matInput placeholder="dite nous plus sur le logement">
           <mat-icon matSuffix>description</mat-icon>
-          <mat-hint>Content</mat-hint>
+          <mat-hint>Plus de Details</mat-hint>
         </mat-form-field>
       </p>
 
@@ -41,10 +41,10 @@
 
       <p>
         <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>Precisez la taille de votre logement </mat-label>
-          <input formControlName="sizee" #sizee matInput placeholder="vos type de lit">
+          <mat-label>Donnez la surface de votre logement </mat-label>
+          <input formControlName="sizee" #sizee matInput placeholder="Surface du logement">
           <mat-icon matSuffix>category</mat-icon>
-          <mat-hint>Localisation</mat-hint>
+          <mat-hint>Surface du logement</mat-hint>
         </mat-form-field>
       </p>
 
@@ -53,7 +53,7 @@
           <mat-label>Donner un prix mensuel a votre logement  </mat-label>
           <input formControlName="price"  #price matInput placeholder="Donner un prix mensuel ">
           <mat-icon matSuffix>Prix</mat-icon>
-          <mat-hint>Prix</mat-hint>
+          <mat-hint>Prix par jour</mat-hint>
         </mat-form-field>
       </p>
       <p>
@@ -77,20 +77,12 @@
       <div class="upload-wrapper">
         <label for="file-input" class="file-label">
           <mat-icon class="upload-icon">cloud_upload</mat-icon>
-          <span class="upload-text">Choisir 5 images pour le logement</span>
+          <span class="upload-text">Choisir 4 images pour le logement</span>
         </label>
         <input id="file-input" type="file" class="file-input" multiple accept="image/*" #fichier (change)="onFileChangeImage($event)">
 
         <span class="file-name" *ngIf="fichier.files?.length">{{ imageSrc.name }}</span>
       </div>
-
-<!--      <button mat-raised-button color="primary"-->
-<!--              (click)="onSend(title.value,description.value,location.value,price.value,sizee.value,typeBed.value)"-->
-<!--              [disabled]="elementForm.invalid || !fileFormatStatus"-->
-<!--      >-->
-<!--        Publier-->
-<!--      </button>-->
-
       <button mat-raised-button color="primary"
               (click)="onSend(name.value,content.value,description.value,location.value,price.value,sizee.value)"
       >
@@ -105,21 +97,20 @@
 
 
 
-  <!--<div id="edit" [froalaEditor]>Hello, Froala!</div>-->
 
 <!--  <div *ngIf="elementProview$ | async as state-list">-->
   <div class="face-snap-cardnap-card" *ngIf="elementProview$ | async as element">
     <mat-card style="margin: 20px;text-align: center">
-      <mat-card-title class="mat-headline">Preview due logement</mat-card-title>
+      <mat-card-title class="mat-headline">Visualisation sans images</mat-card-title>
     </mat-card>
     <h3>Titre:{{ element.name | uppercase }}</h3>
     <p>Mis en ligne {{ element.createdDate | date: 'à HH:mm, le d MMMM yyyy' }}</p>
 
     <img src="https://placehold.co/600x400" [alt]="element.name">
-    <p>{{ element.description }}</p>
-    <p>{{ element.locate }}</p>
-    <p>{{ element.content }}</p>
-    <p>{{ element.price }}</p>
+    <p>Description: {{ element.description }}</p>
+<!--    <p>Localisation: {{ element.locate }}</p>-->
+    <p>Details: {{ element.content }}</p>
+    <p>Prix: {{ element.price }}</p>
   </div>
 </div>
 

@@ -10,9 +10,10 @@ export class Root {
   locate!: string
   price!:number
   size!:number
-  verified!: string
+  verified!: boolean
   stars!: string
   categorie_id!:number
+  user_id!:string
 
 
   images!: Images[]

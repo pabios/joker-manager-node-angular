@@ -2,13 +2,13 @@
     <footer>
       <div class="apropos leDiv">
         <h4>A propos</h4>
-        <p><a [routerLink]="['spec/about', 'Articles']">Articles</a></p>
+        <p><a [routerLink]="['spec/about', 'Articles']">Logements</a></p>
         <p><a [routerLink]="['spec/about', 'Fonctionnement-du-site']">Fonctionnement du site</a></p>
         <p><a [routerLink]="['spec/about', 'Donnees-et-confidentialite']">Données et confidentialité</a></p>
 
       </div>
       <div class="hebergement leDiv">
-        <h4>Nos Articles</h4>
+        <h4>Nos Logements</h4>
         <p><a [routerLink]="['spec/about', 'Charte-qualite']">Charte qualité</a></p>
 
 
@@ -16,8 +16,8 @@
       </div>
       <div class="assistance leDiv">
         <h4>Assistance</h4>
-        <p><a href="https://discord.gg/dZqgXHy"  target="_blank">Discord</a> </p>
-        <p><a routerLink="channel/chat">Nous Contacter</a> </p>
+        <p><a (click)="onSendMail('Dites-nous comment nous pouvons vous aider.')"  target="_blank">Email</a> </p>
+        <p>Koloma-Ratoma Li , Connackry - Guinée </p>
       </div>
     </footer>
 

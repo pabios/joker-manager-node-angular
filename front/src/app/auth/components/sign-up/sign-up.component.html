@@ -21,13 +21,20 @@
 
 <!--<span class="fi fi-gn"></span>-->
 
-<!--<nz-card nzHoverable style="width:240px"  >-->
+
+<nz-card nzHoverable class="sign-form" >
+  <div class="logo">
+    <span class="image">
+      <img src="assets/img/logo.png" alt="">
+    </span>
+    <span class="text__logo">
+            Inscription
+    </span>
+  </div>
 <form nz-form  [formGroup]="validateForm" (ngSubmit)="submitForm()" >
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Numéro de téléphone</nz-form-label>
+<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Numéro de téléphone</nz-form-label>-->
     <nz-form-control
-      [nzSm]="14"
-      [nzXs]="24"
       [nzValidateStatus]="validateForm.controls['phoneNumber']"
       nzErrorTip="Veuillez saisir votre numéro de téléphone!"
     >
@@ -41,29 +48,30 @@
           </nz-select>
 
         </ng-template>
-        <input formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="628451000"/>
+        <input formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="Téléphone"/>
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Mot de passe</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Veuillez saisir votre mot de passe!">
+<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Mot de passe</nz-form-label>-->
+    <nz-form-control  nzErrorTip="Veuillez saisir votre mot de passe!">
       <input
         nz-input
         type="password"
         id="password"
         #password
         formControlName="password"
+        placeholder="Veuillez saisir votre mot de passe!"
         (ngModelChange)="updateConfirmValidator()"
       />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirmez le mot de passe</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
-      <input nz-input type="password" #checkPassword formControlName="checkPassword" id="checkPassword" />
+<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirmez le mot de passe</nz-form-label>-->
+    <nz-form-control   [nzErrorTip]="errorTpl">
+      <input nz-input type="password" #checkPassword formControlName="checkPassword" id="checkPassword" placeholder="Confirmez le mot de passe" />
       <ng-template #errorTpl let-control>
         <ng-container *ngIf="control.hasError('required')">Veuillez confirmer votre mot de passe!</ng-container>
         <ng-container *ngIf="control.hasError('confirm')">
@@ -73,38 +81,45 @@
     </nz-form-control>
   </nz-form-item>
 
-  <nz-form-item>
-    <nz-form-label
-      [nzSm]="6"
-      [nzXs]="24"
-      nzFor="fullName"
-      nzRequired
-      nzTooltipTitle="Comment veux-tu que les autres t'appellent"
-    >
-      <span>Nom et prénom</span>
-    </nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="S'il-vous-plaît, entrer votre prénom et votre nom!">
-      <input nz-input id="fullName" #fullName formControlName="fullName" />
+  <nz-form-item >
+<!--    <nz-form-label-->
+<!--      [nzSm]="6"-->
+<!--      [nzXs]="24"-->
+<!--      nzFor="fullName"-->
+<!--      nzRequired-->
+<!--      nzTooltipTitle="Comment veux-tu que les autres t'appellent"-->
+<!--    >-->
+<!--      <span>Nom et prénom</span>-->
+<!--    </nz-form-label>-->
+    <nz-form-control   nzErrorTip="S'il-vous-plaît, entrer votre prénom et votre nom!">
+      <input nz-input id="fullName" #fullName formControlName="fullName" placeholder="Nom et prénom" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item nz-row class="register-area">
-    <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <label nz-checkbox formControlName="agree">
-            <span>
+    <nz-form-control [nzValidateStatus]="validateForm.get('agree') ? 'error' : 'success'"
+                      >
+      <!--            nzErrorTip="Veuillez lire  les conditions générales"         -->
+
+      <div *ngIf="!validateForm.get('agree')?.value">
+        Veuillez lire les conditions générales.
+      </div>
+      <label  nz-checkbox formControlName="agree">
+            <span >
               J'ai lu
               <a nz-button (click)="open()">les conditions générales</a>
             </span>
       </label>
     </nz-form-control>
   </nz-form-item>
+
   <nz-form-item nz-row class="register-area">
-    <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <button nz-button nzType="primary"   >S'inscrire</button>
+    <nz-form-control  >
+      <button nz-button class="sign-form-button sign-form-margin" nzType="primary"   >S'inscrire</button>
     </nz-form-control>
   </nz-form-item>
 </form>
-
+</nz-card>
 <nz-drawer
   [nzClosable]="false"
   [nzVisible]="visible"

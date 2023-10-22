@@ -4,6 +4,12 @@ import {environment} from "../../../environments/environment";
 import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
+import jwt_decode from 'jwt-decode';
+import {Root} from "../models/element.model";
+import {User} from "../models/user.model";
+
+const TOKEN_KEY = 'TOKEN_KEY';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +19,7 @@ export class AuthService{
   private token!: string;
   public userId!:any; //@todo number
   public  id!:any;
+
 
   countries: any[] = [
     // Pays d'Afrique
@@ -43,15 +50,18 @@ export class AuthService{
     { label: 'Mexique', value: '+52', flag: 'fi-mx' }
     // Ajoutez d'autres pays d'Amérique du Nord au besoin
   ];
-  constructor(private http: HttpClient) {
+  redirectUrl!: string;
+  constructor(
+    private http: HttpClient,
+    private router :Router) {
   }
   login():void{
     this.token='ismatoken'
 
   }
-  getToken(): string{
-    return environment.token
-  }
+  // getToken(): string{
+  //   return environment.token
+  // }
 
   /**
    * connexion
@@ -89,6 +99,45 @@ export class AuthService{
     };
 
     return this.http.post<any>(`${environment.urlApi}/signin`, form);
+  }
+  getUserById(userId: number): Observable<User>{
+    return this.http.get<User>(`${environment.urlApi}/user/${userId}`)
+  }
+
+  //
+  // GESTION TOKEN
+  public saveToken(token : string): void {
+    window.sessionStorage.removeItem(TOKEN_KEY);
+    window.sessionStorage.setItem(TOKEN_KEY, token);
+  }
+  public getToken(): string | null {
+    return window.sessionStorage.getItem(TOKEN_KEY) !== null ? window.sessionStorage.getItem(TOKEN_KEY) : null;
+  }
+  public getUser():string | null{
+    const jwtToken = this.getToken();
+    const decodedToken: any = this.getToken() != null ? jwt_decode(jwtToken as string) : null;
+    const userId = decodedToken != null ? decodedToken?.sub : null;
+    return userId;
+  }
+  public getUserId():string | null{
+    const jwtToken = this.getToken();
+    const decodedToken: any = this.getToken() != null ? jwt_decode(jwtToken as string) : null;
+    const userId = decodedToken != null ? decodedToken?.id : null;
+    return userId;
+  }
+  public getRole(){
+    const jwtToken = this.getToken();
+    const decodedToken: any = this.getToken() != null ? jwt_decode(jwtToken as string) : null;
+    const userRole = decodedToken != null ? decodedToken?.role : null;
+    return userRole;
+  }
+
+  signOut(): void {
+    window.sessionStorage.clear();
+    this.router.navigate([''])
+      .then(() => {
+        window.location.reload();
+      });
   }
 
 

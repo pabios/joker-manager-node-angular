@@ -102,7 +102,7 @@ export class SignUpComponent implements OnInit {
       checkPassword: ['', [Validators.required, this.confirmationValidator]],
       fullName: ['', [Validators.required]],
       phoneNumberPrefix: ['', [Validators.required]],
-      agree: [false]
+      agree: [true,[Validators.required]]
     });
 
   }
@@ -137,7 +137,18 @@ export class SignUpComponent implements OnInit {
       console.log(this.validateForm.value.phoneNumberPrefix)
 
       this.auth.signUp(this.validateForm).subscribe(res=>{
-        console.log(res)
+        // console.log(res)
+        //
+        // this.router.navigate(['elements']);
+
+        if(res!=null){
+          this.auth.saveToken(res)
+          this.router.navigateByUrl('/profils').then(() => {
+            this.notif.showSuccess('votre logement a bien été publier','')
+            // Rechargez la page
+            window.location.reload();
+          });
+        }
       })
     }else{
       console.log('nop erreur s est produite')
@@ -195,5 +206,7 @@ export class SignUpComponent implements OnInit {
   //
 
 
-
+  getFormControl(name: string) {
+    return this.validateForm.get(name);
+  }
 }

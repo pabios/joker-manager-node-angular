@@ -5,6 +5,23 @@
   justify-content: space-between;
 }
 
+@media (max-width: 768px) {
+  .containerForme__preview {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .face-snap-cardnap-card {
+    width: 100%;
+  }
+  .face-snap-cardnap-card img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
 .chat-design {
   display: flex;
   flex-direction: column;

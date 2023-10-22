@@ -1,0 +1,66 @@
+
+<!--<div *ngIf="user$ | async as user">-->
+<!--  <nz-comment>-->
+<!--    <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="this.api_back+user.imgUrl"></nz-avatar>-->
+<!--    <nz-comment-content>-->
+<!--      <nz-form-item>-->
+<!--        <textarea [(ngModel)]="inputValue" nz-input rows="4"></textarea>-->
+<!--      </nz-form-item>-->
+<!--      <nz-form-item>-->
+<!--        <button nz-button nzType="primary" [nzLoading]="submitting" [disabled]="!inputValue" (click)="handleSubmit()">-->
+<!--          envoyez ce message-->
+<!--        </button>-->
+<!--      </nz-form-item>-->
+<!--    </nz-comment-content>-->
+<!--  </nz-comment>-->
+<!--</div>-->
+
+
+<!--affichage-->
+  <nz-card nzHoverable class="card-channel" *ngIf="messagesWithUsers$ | async as messages;else noMessage">
+    <div *ngIf="messages.length >0;else loadingMessages">
+      <nz-list *ngFor="let message of messages"  [nzDataSource]="messages"  [nzItemLayout]="'horizontal'">
+          <nz-comment [nzAuthor]="message.user.fullName" [nzDatetime]="message.createdAt">
+            <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="api_back+message.user.imgUrl"></nz-avatar>
+            <nz-comment-content>
+              <p>{{ message.messageContent }}</p>
+            </nz-comment-content>
+            <nz-comment-action *ngIf="message.user.id != this.currentUserId">
+              <a  (click)="showModal(message.user.id,message.user.fullName)">Répondre {{message.user.fullName}}</a>
+            </nz-comment-action>
+          </nz-comment>
+      </nz-list>
+    </div>
+
+  </nz-card>
+
+<!--//-->
+
+<ng-template #loadingMessages>
+  <nz-skeleton [nzAvatar]="true" [nzParagraph]="{ rows: 4 }"></nz-skeleton>
+</ng-template>
+
+<!--//-->
+
+<ng-template #noMessage>
+  <nz-result nzStatus="404" nzTitle="Aucun message reçu ou envoyé" nzSubTitle="Revenez plus tard si vous attendez une réponse.">
+  </nz-result>
+</ng-template>
+<!--//-->
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Envoyer un message à  {{this.receiverName}}"
+  (nzOnCancel)="handleCancel()"
+  [nzOkLoading]="isOkLoading"
+  [nzFooter]="footerTp"
+>
+  <p *nzModalContent>
+    <app-send-form [receiverId]="this.receiverId" ></app-send-form>
+  </p>
+</nz-modal>
+
+<ng-template #footerTp>
+    <button nz-button style="margin-right: 8px;" (click)="handleCancel()">Fermer</button>
+</ng-template>
+

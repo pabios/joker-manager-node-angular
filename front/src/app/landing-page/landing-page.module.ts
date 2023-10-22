@@ -10,6 +10,7 @@ import {NzCardModule} from "ng-zorro-antd/card";
 import {NzCarouselModule} from "ng-zorro-antd/carousel";
 import {NzResultModule} from "ng-zorro-antd/result";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzAvatarModule} from "ng-zorro-antd/avatar";
 
 
 
@@ -17,18 +18,19 @@ import {NzButtonModule} from "ng-zorro-antd/button";
   declarations: [
     LandingPageComponent
   ],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    LandingPageRoutingModule,
-    FiltreModule,
-    ReactiveStateModule,
-    NzIconModule,
-    NzCardModule,
-    NzCarouselModule,
-    NzResultModule,
-    NzButtonModule
-  ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        LandingPageRoutingModule,
+        FiltreModule,
+        ReactiveStateModule,
+        NzIconModule,
+        NzCardModule,
+        NzCarouselModule,
+        NzResultModule,
+        NzButtonModule,
+        NzAvatarModule
+    ],
   exports:[
     LandingPageComponent
   ]

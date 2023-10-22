@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { AboutComponent } from './about/about.component';
 import {SpecPagesRoutingModule} from "./spec-pages.routing.module";
 import {MatCardModule} from "@angular/material/card";
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzAvatarModule} from "ng-zorro-antd/avatar";
+import {NzResultModule} from "ng-zorro-antd/result";
 
 
 
@@ -13,7 +16,10 @@ import {MatCardModule} from "@angular/material/card";
   imports: [
     CommonModule,
     SpecPagesRoutingModule,
-    MatCardModule
+    MatCardModule,
+    NzCardModule,
+    NzAvatarModule,
+    NzResultModule
   ],
   exports:[
     AboutComponent

@@ -1,15 +1,15 @@
 <!--<nz-page-header nzBackIcon="left" [nzGhost]="false">-->
 <!--  <nz-page-header-title>Retour</nz-page-header-title>-->
 <!--</nz-page-header>-->
-<nz-overflow-container  class="container__element">
+<nz-overflow-container   class="container__element">
   <mat-paginator [length]="numberOfElements"
                  [pageSize]="pageSize"
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="onPageChange($event)"
                  aria-label="Select page">
   </mat-paginator>
-  <nz-content  class="container-element__item" nz-row  [nzGutter]="8" *ngIf="elements$ | async as element">
-    <app-element style="margin-bottom: 20px" nz-col [nzSpan]="8"  *ngFor="let element of getCardsForPage(element)" [element]="element" [images]="filterImagesByElement(element)"></app-element>
+  <nz-content  class="container container-element__item"  *ngIf="elements$ | async as element">
+    <app-element style="margin-bottom: 20px"   *ngFor="let element of getCardsForPage(element)" [element]="element" [images]="filterImagesByElement(element)"></app-element>
   </nz-content>
   <mat-paginator [length]="numberOfElements"
                  [pageSize]="pageSize"

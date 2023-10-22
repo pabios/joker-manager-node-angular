@@ -1,44 +1,276 @@
-<mat-toolbar class="toolbar">
-  <div class="left-content">
-    <a routerLink="/" class="logo-link">
-<!--      <img src="monimba-logo.png" alt="Logo de Monimba">-->
-      Nimba
-    </a>
+<!--<mat-toolbar class="toolbar">-->
+<!--  <div class="left-content">-->
+<!--    <a routerLink="/" class="logo-link">-->
+<!--&lt;!&ndash;      <img src="monimba-logo.png" alt="Logo de Monimba">&ndash;&gt;-->
+<!--      Nimba-->
+<!--    </a>-->
 
-    <a routerLink="/accueil" class="nav-link">
-      <mat-icon>home</mat-icon>
-      Accueil
-    </a>
+<!--    <a routerLink="/accueil" class="nav-link">-->
+<!--      <mat-icon>home</mat-icon>-->
+<!--      Accueil-->
+<!--    </a>-->
 
-    <a routerLink="/hebergement" class="nav-link">
-      <mat-icon>hotel</mat-icon>
-      Hébergement
-    </a>
+<!--    <a routerLink="/hebergement" class="nav-link">-->
+<!--      <mat-icon>hotel</mat-icon>-->
+<!--      Hébergement-->
+<!--    </a>-->
 
-    <a routerLink="/reservation" class="nav-link">
-      <mat-icon>event_seat</mat-icon>
-      Réservation
-    </a>
+<!--    <a routerLink="/reservation" class="nav-link">-->
+<!--      <mat-icon>event_seat</mat-icon>-->
+<!--      Réservation-->
+<!--    </a>-->
 
-    <a routerLink="/elements/add" class="nav-link">
-      <mat-icon>add_location</mat-icon>
-      Publier un établissement
-    </a>
+<!--    <a routerLink="/elements/add" class="nav-link">-->
+<!--      <mat-icon>add_location</mat-icon>-->
+<!--      Publier un établissement-->
+<!--    </a>-->
+<!--  </div>-->
+
+<!--  <span class="example-spacer"></span>-->
+
+<!--  <div class="right-content">-->
+<!--    <a routerLink="/recherche" class="nav-link">-->
+<!--      <mat-icon>search</mat-icon>-->
+<!--      Recherche-->
+<!--    </a>-->
+
+
+
+<!--    <a routerLink="/connexion" class="nav-link">-->
+<!--      <mat-icon>account_circle</mat-icon>-->
+<!--      Connexion-->
+<!--    </a>-->
+<!--  </div>-->
+<!--</mat-toolbar>-->
+
+
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="plus" viewBox="0 0 32 32">
+    <circle cx="16" cy="16" r="14" fill="#000000" />
+    <line x1="8" y1="16" x2="24" y2="16" stroke="#FFFFFF" stroke-width="4" />
+    <line x1="16" y1="8" x2="16" y2="24" stroke="#FFFFFF" stroke-width="4" />
+  </symbol>
+  <symbol id="bootstrap" viewBox="0 0 118 94">
+    <title>Bootstrap</title>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
+  </symbol>
+  <symbol id="home" viewBox="0 0 16 16">
+    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+  </symbol>
+  <symbol id="speedometer2" viewBox="0 0 16 16">
+    <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z"/>
+    <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z"/>
+  </symbol>
+  <symbol id="table" viewBox="0 0 16 16">
+    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
+  </symbol>
+  <symbol id="people-circle" viewBox="0 0 16 16">
+    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+  </symbol>
+  <symbol id="grid" viewBox="0 0 16 16">
+    <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+  </symbol>
+  <svg width="16" height="16" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+    <path d="M1.646 0.146a.5.5 0 0 1 .708 0l3.5 3.5a.5.5 0 0 1 0 .708L3.354 6.854a1.5 1.5 0 0 1 .353 1.768l1.5 4.5a1.5 1.5 0 0 0 2.051.854l2.586-1.293a11.21 11.21 0 0 0 1.652.966l1.5 4.5a.5.5 0 0 1-.854.51L12 13.31a.5.5 0 0 1-.216-.5 7.51 7.51 0 0 1 1.097-2.33l-1.63-.816a.5.5 0 0 1-.183-.845l4.085-3.073a.5.5 0 0 1 .854.51l-1.5 4.5a7.52 7.52 0 0 1-2.578-1.51.5.5 0 0 1 .03-.76l3.5-3.5a.5.5 0 0 1 .708 0l3.5 3.5a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708 0l-2.586-2.586a10.96 10.96 0 0 1-1.183-.966l-1.064-3.191A7.491 7.491 0 0 1 3.811.685a.5.5 0 0 1 .072-.539l1.585-1.585a.5.5 0 0 1 .268-.122z"/>
+  </svg>
+</svg>
+
+<header >
+<!--  <div class="px-3 py-2 bg-dark text-white ">-->
+    <div class="bg-dark text-white"  >
+    <div   style="background-color: #FF9F57">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+          <div class="logo">
+            <span class="image">
+              <img src="assets/img/logo.png" alt="">
+           </span>
+            <span class="text__logo">
+            monimba
+          </span>
+          </div>
+        </a>
+
+        <ul class="  la_nav justify-content-center my-2" >
+<!--          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small" style="flex-wrap: nowrap;">-->
+          <li>
+            <a href="#"  routerLink="/elements/add" class="nav-link text-white">
+              <div class="icon-et__label">
+                <span class="le__icon" nz-icon nzType="plus-circle" nzTheme="twotone" style="font-size: 28px;" [nzTwotoneColor]="'#52c41a'"></span>
+                <span class="label__icon">Publier</span>
+              </div>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" routerLink="/elements" class="nav-link text-white">
+              <div class="icon-et__label">
+                <span class="le__icon">
+                  <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
+                </span>
+                <span class="label__icon">Logements</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#" routerLink="" class="nav-link text-white">
+              <div class="icon-et__label">
+                <span class="le__icon">
+                  <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>
+                </span>
+                <span class="label__icon">Regions</span>
+
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#"  routerLink="/profils" class="nav-link text-white">
+              <div class="icon-et__label">
+                <span class="le__icon">
+                  <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
+                </span>
+                <span class="label__icon">Dashboard</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a   (click)="open()" class="nav-link text-white">
+              <div class="icon-et__label">
+                <span class="le__icon">
+                  <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
+                </span>
+                <span class="label__icon">Profils</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="px-3 py-2 border-bottom mb-3">
+    <div class="container d-flex align-items-center">
+      <form class="w-100 me-3">
+        <input  (keydown)="onKeyDown($event)" (click)="this.utilsService.showSearchModal()" type="search" class="form-control" placeholder="Trouvez votre logement...." aria-label="Search">
+      </form>
+      <div  class="flex-shrink-0 dropdown call-icon">
+        <a routerLink="chat">
+          <span nz-icon nzType="wechat" nzTheme="fill" class="phone-icon"></span>
+
+        </a>
+      </div>
+    </div>
+
   </div>
 
-  <span class="example-spacer"></span>
 
-  <div class="right-content">
-    <a routerLink="/recherche" class="nav-link">
-      <mat-icon>search</mat-icon>
-      Recherche
-    </a>
+  <nz-modal
+    [(nzVisible)]="this.utilsService.isVisibleSearch"
+    nzTitle="Trouvez votre logement."
+    (nzOnCancel)="this.utilsService.handleCancel()"
+    (nzOnOk)="this.utilsService.handleOk()"
+    [nzOkLoading]="this.utilsService.isOkLoading"
+    class="custom-modal"
+    style="width: 800px"
+    [nzCancelText]="'Fermer'"
+    [nzOkText]="'Valider'"
+    [nzFooter]="null"
+
+  >
+    <div   *nzModalContent>
+      <app-state-list></app-state-list>
+    </div>
+  </nz-modal>
+
+</header>
+
+<div *ngIf="loginStatus">
+<nz-drawer class="le_drawer"
+           [nzPlacement]="'left'"
+           *ngIf="user$ | async as user"
+           [nzVisible]="visible"
+           [nzClosable]="false"
+           (nzOnClose)="close()"
+           [nzFooter]="footerTpl">
+
+    <ng-container  *nzDrawerContent>
+      <p class="title" style=" margin-bottom: 24px;">Profil utilisateur</p>
+      <nz-descriptions [nzColumn]="2" nzTitle="Informations">
+        <nz-descriptions-item   nzTitle="Nom complet" [nzSpan]="1">{{user.fullName}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="badge" [nzSpan]="1">{{user.badge}} </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="age" [nzSpan]="1">{{user.age}} ans</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Téléphone" [nzSpan]="1">{{user.telephone}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Bio" [nzSpan]="2">
+          {{user.bio}}
+        </nz-descriptions-item>
+      </nz-descriptions>
+
+      <nz-divider></nz-divider>
+      <nz-descriptions [nzColumn]="2" nzTitle="Badges"></nz-descriptions>
+
+      <nz-ribbon *ngIf="user.badge !== nimbaBadge; else garantieTemplate" nzText="Sans garantie">
+        <nz-card nzTitle="Votre Badge {{user.badge}}" nzSize="small"> Vous permet de publier sans Garantie <nz-badge nzStatus="error"></nz-badge> </nz-card>
+      </nz-ribbon>
+      <br />
+      <ng-template #garantieTemplate>
+        <nz-ribbon nzText="Garantie par l'agence" nzColor="green">
+          <nz-card nzTitle="Votre Badge {{user.badge}}" nzSize="small">Vos publications seront certifiées.
+            <nz-badge nzStatus="processing"></nz-badge>
+            <nz-badge nzStatus="processing"></nz-badge>
+            <nz-badge nzStatus="processing"></nz-badge>
+          </nz-card>
+        </nz-ribbon>
+      </ng-template>
+      <nz-divider></nz-divider>
+      <nz-result *ngIf="user.badge !== nimbaBadge; else statusTemplate " nzStatus="500" nzTitle="Vérification" nzSubTitle="Nous pouvons garantir la conformité de vos logements">
+        <div nz-result-extra>
+          <button (click)="this.utilsService.sendEmail('Envoyer nous votre pièce d identité en pièce Jointe')"nz-button nzType="primary">J'envois ma pièce d'identité</button>
+        </div>
+      </nz-result>
+      <ng-template #statusTemplate>
+        <nz-result  nzStatus="success" nzTitle="Certifié" nzSubTitle="Vous êtes déjà certifié.">
+          <div nz-result-extra>
+            Publier sans limite et avec le badge Nimba.
+          </div>
+        </nz-result>
+      </ng-template>
+    </ng-container>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="close()">Fermer</button>
+      <button nz-button nzType="primary" (click)="goLogin()">
+        {{ loginStatus ? 'Déconnexion' : 'Connexion' }}
+      </button>
+
+    </div>
+  </ng-template>
+</nz-drawer>
+
+</div>
 
 
+<nz-drawer  class="le_drawer"
+            [nzPlacement]="'left'"
+            *ngIf="!loginStatus"
+            [nzVisible]="visible"
+            [nzClosable]="false"
+            (nzOnClose)="close()"
+            [nzFooter]="footerTp">
+  <ng-container  *nzDrawerContent>
+    <p class="title" style=" margin-bottom: 24px;">Profil utilisateur</p>
+    <nz-result nzStatus="403" nzTitle="Connexion requise" nzSubTitle="Veuillez vous connecter avant de continuer.">
+      <div nz-result-extra>
+        <a nz-button (click)="goLogin()" >Connexion</a>
+      </div>
+    </nz-result>
+  </ng-container>
 
-    <a routerLink="/connexion" class="nav-link">
-      <mat-icon>account_circle</mat-icon>
-      Connexion
-    </a>
-  </div>
-</mat-toolbar>
+  <ng-template #footerTp>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="close()">Fermer</button>
+      <button nz-button nzType="primary" (click)="goLogin()">{{ loginStatus ? 'Déconnexion' : 'Connexion' }}</button>
+    </div>
+  </ng-template>
+</nz-drawer>

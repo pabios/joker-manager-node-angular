@@ -10,6 +10,7 @@ import {Category} from "../../core/models/category.model";
 import {CategoryService} from "../../core/services/category.service";
 import {ItemService} from "../../core/services/item.service";
 import {NotificationService} from "../../core/services/notification.service";
+import {AuthService} from "../../core/services/auth.service";
 
 @Component({
   selector: 'app-form',
@@ -44,7 +45,8 @@ export class FormComponent {
               private catergoryService: CategoryService,
               private itemsService: ItemService,
               private router:Router,
-              private notificationService:NotificationService
+              private notificationService:NotificationService,
+              private auth:AuthService
     ) { }
 
   ngOnInit(): void {
@@ -87,7 +89,7 @@ export class FormComponent {
     // console.log(this.auth.userId);console.log('********** dans new post')
     // this.user_id = localStorage.getItem('user_id');
     // this.user_id = sessionStorage.getItem('user_id');
-    this.user_id = 1;
+    this.user_id = this.auth.getUserId();
   }
 
   // onSubmitForm():void{
@@ -121,7 +123,7 @@ export class FormComponent {
     // console.log('hello fichier---------')
     this.fichierRegex = /([a-zA-Z0-9\s_\\.\-\(\):])+(.md)$/;
 
-    console.log(fileList)
+    // console.log(fileList)
 
 
 
@@ -233,8 +235,16 @@ export class FormComponent {
       (response) => {
 
         let rep = response.toString();
-        console.log('Réponse du serveur :', response);
-        this.notificationService.showSuccess(rep,"cool")
+        if (rep != null){
+          // console.log('Réponse du serveur :', response);
+          // this.notificationService.showSuccess(rep,"")
+          this.router.navigateByUrl('/profils').then(() => {
+            this.notificationService.showSuccess('votre logement a bien été publier','')
+            // Rechargez la page
+            window.location.reload();
+          });
+        }
+
 
       },
       (error) => {

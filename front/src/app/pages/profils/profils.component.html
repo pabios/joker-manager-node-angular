@@ -1,23 +1,25 @@
+<div *ngIf="user$ | async as user">
+
 <span *ngIf="isDeleteButtonDisabled">
    <nz-alert nzType="success" nzMessage="Success Tips" nzShowIcon></nz-alert>
 </span>
 <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
   <ng-template #item let-item>
-    <nz-list-item [nzActions]="[viewAction]">
+    <nz-list-item [nzActions]="[viewAction]" style="padding-left:2%; padding-right:2%">
       <ng-template #viewAction>
         <a (click)="open()">
-<!--          <span class="icon__size" nz-icon nzType="setting" nzTheme="twotone"></span>-->
           <span class="icon__size" nz-icon nzType="eye" nzTheme="twotone"></span>
         </a>
       </ng-template>
       <nz-list-item-meta
         [nzTitle]="nzTitle"
         (click)="open()"
-        nzAvatar="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
-        nzDescription="628 31 96 45"
+        nzAvatar="{{avatar+user.imgUrl}}"
+        nzDescription="{{user.telephone}}"
+
       >
         <ng-template #nzTitle>
-          <a (click)="open()">{{ item.name }}</a>
+          <a (click)="open()">{{ user.fullName }}</a>
         </ng-template>
       </nz-list-item-meta>
     </nz-list-item>
@@ -25,44 +27,48 @@
 </nz-list>
 
 
-<nz-drawer [nzVisible]="visible" [nzWidth]="640" [nzClosable]="false" (nzOnClose)="close()">
+<nz-drawer   [nzVisible]="visible"   [nzClosable]="false" (nzOnClose)="close()" [nzPlacement]="'left'">
   <ng-container *nzDrawerContent>
     <p class="title" style=" margin-bottom: 24px;">Profil utilisateur</p>
     <nz-descriptions [nzColumn]="2" nzTitle="Informations">
-      <nz-descriptions-item   nzTitle="Nom complet" [nzSpan]="1">Balde</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="Email" [nzSpan]="1">BALDE@example.com</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="Ville" [nzSpan]="1">BALDE</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="pays de résidence" [nzSpan]="1">Guinee </nz-descriptions-item>
-      <nz-descriptions-item nzTitle="age" [nzSpan]="1">99 ans</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="Téléphone" [nzSpan]="1">628 31 88 88</nz-descriptions-item>
+      <nz-descriptions-item   nzTitle="Nom complet" [nzSpan]="1">{{user.fullName}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="badge" [nzSpan]="1">{{user.badge}} </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="age" [nzSpan]="1">{{user.age}} ans</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Téléphone" [nzSpan]="1">{{user.telephone}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Bio" [nzSpan]="2">
-        Rendre les choses aussi simples que possible, mais pas plus simples.
+        {{user.bio}}
       </nz-descriptions-item>
     </nz-descriptions>
 
     <nz-divider></nz-divider>
     <nz-descriptions [nzColumn]="2" nzTitle="Badges"></nz-descriptions>
 
-    <nz-ribbon nzText="Sans garantie">
-      <nz-card nzTitle="Badge simple utilisateur" nzSize="small"> Publier sans Garantie <nz-badge nzStatus="error"></nz-badge> </nz-card>
+    <nz-ribbon *ngIf="user.badge !== nimbaBadge; else garantieTemplate" nzText="Sans garantie">
+      <nz-card nzTitle="Votre Badge {{user.badge}}" nzSize="small"> Vous permet de publier sans Garantie <nz-badge nzStatus="error"></nz-badge> </nz-card>
     </nz-ribbon>
     <br />
-    <nz-ribbon nzText="Garantie par l'agence" nzColor="green">
-      <nz-card nzTitle="Badge Garantie" nzSize="small"> Veuillez nous contacter
-        <nz-badge nzStatus="processing"></nz-badge>
-        <nz-badge nzStatus="processing"></nz-badge>
-        <nz-badge nzStatus="processing"></nz-badge>
-
-      </nz-card>
-    </nz-ribbon>
-
-
+    <ng-template #garantieTemplate>
+      <nz-ribbon nzText="Garantie par l'agence" nzColor="green">
+        <nz-card nzTitle="Votre Badge {{user.badge}}" nzSize="small">Vos publications seront certifiées.
+          <nz-badge nzStatus="processing"></nz-badge>
+          <nz-badge nzStatus="processing"></nz-badge>
+          <nz-badge nzStatus="processing"></nz-badge>
+        </nz-card>
+      </nz-ribbon>
+    </ng-template>
     <nz-divider></nz-divider>
-    <nz-result nzStatus="500" nzTitle="Vérification" nzSubTitle="Nous pouvons garantir la conformité de vos logements">
+    <nz-result *ngIf="user.badge !== nimbaBadge; else statusTemplate " nzStatus="500" nzTitle="Vérification" nzSubTitle="Nous pouvons garantir la conformité de vos logements">
       <div nz-result-extra>
         <button (click)="sendEmail()" nz-button nzType="primary">J'envois ma pièce d'identité</button>
       </div>
     </nz-result>
+    <ng-template #statusTemplate>
+      <nz-result  nzStatus="success" nzTitle="Certifié" nzSubTitle="Vous êtes déjà certifié.">
+        <div nz-result-extra>
+          Publier sans limite et avec le badge Nimba.
+        </div>
+      </nz-result>
+    </ng-template>
   </ng-container>
 </nz-drawer>
 
@@ -76,7 +82,7 @@
 </div>
 <div *ngIf="bookings$ | async as bookings">
 
-  <nz-card nzHoverable  *ngIf="bookings != null; else elseBlock" class="site-page-header-ghost-wrapper">
+  <nz-card  *ngIf="bookings && bookings.length > 0; else elseBlock" class="site-page-header-ghost-wrapper">
     <nz-page-header  *ngFor="let booking of bookings; let i = index">
         <nz-page-header-title>Réservation</nz-page-header-title>
         <nz-page-header-subtitle>N°{{i + 1}}</nz-page-header-subtitle>
@@ -94,7 +100,7 @@
             <nz-descriptions-item nzTitle="Nombre de personne" [nzSpan]="1">{{booking.nbPeople}}</nz-descriptions-item>
             <nz-descriptions-item nzTitle="A partir du" [nzSpan]="1">{{ formatBookingDate(booking.beginDate)}}</nz-descriptions-item>
             <nz-descriptions-item nzTitle="Jusqu'au" [nzSpan]="1">{{formatBookingDate(booking.endDate)}}</nz-descriptions-item>
-            <nz-descriptions-item nzTitle="Prix" [nzSpan]="1"><a>{{booking.priceTotal}} GNF/MOIS</a></nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Prix" [nzSpan]="1"><a>{{booking.priceTotal}} GNF/JOUR</a></nz-descriptions-item>
             <nz-descriptions-item nzTitle="Taille" [nzSpan]="2">
               90  m²
             </nz-descriptions-item>
@@ -104,12 +110,9 @@
   </nz-card>
 </div>
 <ng-template #elseBlock>
-  <nz-page-header >
-    <nz-page-header-title> Mes Réservation</nz-page-header-title>
-  </nz-page-header>
   <nz-result [nzIcon]="'smile-twotone'" [nzTitle]="'Vous n\'avez aucune réservation'">
     <div nz-result-extra>
-      <button nz-button nzType="primary">Voir les Logements</button>
+      <button nz-button nzType="primary" (click)="goElements()">Voir les Logements</button>
     </div>
   </nz-result>
 </ng-template>
@@ -125,7 +128,7 @@
 </div>
 
 <div *ngIf="elements$ | async as elements">
-  <nz-card nzHoverable *ngIf="listOfData != null; else elseBlock" class="site-page-header-ghost-wrapper">
+  <nz-card nzHoverable *ngIf="elements && elements.length > 0; else elseBlockHouse" class="site-page-header-ghost-wrapper">
     <nz-page-header *ngFor="let element of elements; let i = index">
       <nz-page-header-title>Logement</nz-page-header-title>
       <nz-page-header-subtitle>N°{{i +1}}</nz-page-header-subtitle>
@@ -142,7 +145,7 @@
           <nz-descriptions-item nzTitle="Nom" [nzSpan]="1">{{element.name}}</nz-descriptions-item>
           <nz-descriptions-item nzTitle="Description" [nzSpan]="1">{{element.description}}</nz-descriptions-item>
           <nz-descriptions-item nzTitle="Localisation" [nzSpan]="1">{{element.locate}}</nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Prix" [nzSpan]="1"><a>{{element.price}} GNF/MOIS</a></nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Prix" [nzSpan]="1"><a>{{element.price}} GNF/JOUR</a></nz-descriptions-item>
           <nz-descriptions-item nzTitle="Taille" [nzSpan]="2">
             90  m²
           </nz-descriptions-item>
@@ -152,16 +155,14 @@
   </nz-card>
 </div>
 
-<ng-template #elseBlock>
-  <nz-page-header >
-    <nz-page-header-title> Mes Réservation</nz-page-header-title>
-  </nz-page-header>
-  <nz-result [nzIcon]="'smile-twotone'" [nzTitle]="'Vous n\'avez aucune réservation'">
+<ng-template #elseBlockHouse>
+  <nz-result [nzIcon]="'smile-twotone'" [nzTitle]="'Vous n\'avez publier aucun logement'">
     <div nz-result-extra>
-      <button nz-button nzType="primary">Voir les Logements</button>
+      <button nz-button nzType="primary" (click)="goAddHouse()">publier un logement</button>
     </div>
   </nz-result>
 </ng-template>
+</div>
 
 
 

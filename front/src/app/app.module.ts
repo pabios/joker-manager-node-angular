@@ -30,9 +30,18 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzSpaceModule} from "ng-zorro-antd/space";
 import {NzDrawerModule} from "ng-zorro-antd/drawer";
 import {ReactiveStateModule} from "./reactive-state/reactive-state.module";
+import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
+
+import { JwtModule } from "@auth0/angular-jwt";
+import {environment} from "../environments/environment";
+import {NzBreadCrumbModule} from "ng-zorro-antd/breadcrumb";
+import {NzModalModule} from "ng-zorro-antd/modal";
 
 registerLocaleData(fr);
 
+export function tokenGetter() {
+  return sessionStorage.getItem("TOKEN_KEY");
+}
 
 @NgModule({
   declarations: [
@@ -40,19 +49,35 @@ registerLocaleData(fr);
     // LandingPageComponent,
     MaintenceDayComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    CoreModule,
-    AuthModule,
-    // NgbModule,
-    GoogleMapsModule,
-    SharedModule, //   le SharedModule
-    ToastrModule.forRoot(), FormsModule, HttpClientModule, IconsProviderModule, NzLayoutModule, NzMenuModule, NzAvatarModule, SearchGlobalModule, NzListModule, NzButtonModule, NzSpaceModule, NzDrawerModule, ReactiveStateModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        CoreModule,
+        AuthModule,
+        // NgbModule,
+        GoogleMapsModule,
+        SharedModule, //   le SharedModule
+        ToastrModule.forRoot(), FormsModule, HttpClientModule, IconsProviderModule, NzLayoutModule, NzMenuModule, NzAvatarModule, SearchGlobalModule, NzListModule, NzButtonModule, NzSpaceModule, NzDrawerModule, ReactiveStateModule,
+        //
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter,
+                allowedDomains: [`${environment.urlApi}`],  //add all your allowed domain
+                disallowedRoutes: [],
+            },
+        }),
+        //
+        NgxGoogleAnalyticsModule.forRoot('G-KQ36257PE0'), NzBreadCrumbModule,
+        // NgxGoogleAnalyticsRouterModule.forRoot({
+        //   include: ['', '/elements'], // Inclure la page d'accueil et tous les elements
+        //   exclude: ['/admin/*'] // Exclure toutes les pages sous /admin/
+        // }),
+        //
+        NgbModule, NzModalModule
 
-  ],
+    ],
   providers: [
     // { provide: LOCALE_ID, useValue: 'fr-FR' },
     // httpInterceptorProviders

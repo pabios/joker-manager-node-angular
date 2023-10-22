@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {SpecPagesService} from "../service/spec-pages.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-about',
@@ -10,6 +11,8 @@ import {SpecPagesService} from "../service/spec-pages.service";
 export class AboutComponent {
 
   pageContent!:string;
+  avatarLogo!:string;
+  pageName!:string;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -21,11 +24,11 @@ export class AboutComponent {
 
     // Récupérez le nom de la page à partir des paramètres de l'URL
     this.route.params.subscribe(params => {
-      const pageName = params['articleName'];
-      console.log(pageName)
+        this.pageName = params['articleName'];
+      console.log(this.pageName)
 
       // Utilisez le service pour récupérer la page par son nom
-      const page = this.specPagesService.getPageByName(pageName);
+      const page = this.specPagesService.getPageByName(this.pageName);
 
       // Vérifiez si la page existe et accédez à son contenu
       if (page) {
@@ -36,6 +39,8 @@ export class AboutComponent {
       }
     });
 
+    //
+    this.avatarLogo = environment.backend+"/public/img/avatar-nimba.png"
   }
 
 

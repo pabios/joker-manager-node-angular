@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
   constructor(private auth:AuthService,
               private router: Router,
               private fb: NonNullableFormBuilder,
-              private  notif: NotificationService) { }
+              private  notif: NotificationService
+               ) { }
 
   ngOnInit(): void {
     this.snapForm = new UntypedFormGroup({
@@ -61,14 +62,25 @@ export class LoginComponent implements OnInit {
 
   submited() {
     if(this.validateForm.value){
-      console.log(this.validateForm.value.phoneNumberPrefix)
 
       this.auth.logIn(this.validateForm).subscribe(res=>{
-        console.log(res)
+        // console.log(res)
+        // console.log("sont les res")
+        if(res!=null){
+          this.auth.saveToken(res)
+          const redirectUrl = this.auth.redirectUrl || '';
+          this.router.navigate([redirectUrl]);
+        }else{
+          this.notif.showError('Identifiant incorrect','')
+        }
+        //
+        // Réinitialiser redirectUrl
+        this.auth.redirectUrl = '';
+
       })
     }else{
-      console.log('nop erreur s est produite')
-      console.log('bonsoir')
+      // console.log('nop erreur s est produite')
+      // console.log('bonsoir')
 
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -77,6 +89,10 @@ export class LoginComponent implements OnInit {
         }
       });
     }
+
+    // console.log('sesion bien sauve voyons');
+    // console.log(this.auth.getUserId());
+
   }
   submitForm(): void {
     if (this.validateForm.valid) {

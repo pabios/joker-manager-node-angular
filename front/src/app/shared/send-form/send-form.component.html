@@ -1,0 +1,23 @@
+<!--je repond a {{this.receiverId}}-->
+<div *ngIf="user$ | async as user;else noUserLoged">
+  <nz-comment>
+    <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="this.api_back+user.imgUrl"></nz-avatar>
+    <nz-comment-content>
+      <nz-form-item>
+        <textarea [(ngModel)]="inputValue" nz-input rows="4"></textarea>
+      </nz-form-item>
+      <nz-form-item>
+        <button nz-button nzType="primary" [nzLoading]="submitting" [disabled]="!inputValue" (click)="handleSubmit()">
+          envoyez ce message
+        </button>
+      </nz-form-item>
+    </nz-comment-content>
+  </nz-comment>
+</div>
+<ng-template #noUserLoged>
+  <nz-result nzStatus="404" nzTitle="Vous n'êtes pas connecté. " nzSubTitle="Revenez plus tard après votre connexion.">
+  </nz-result>
+  <div style="text-align: center"> <!-- Ajoutez la classe "text-center" pour centrer le contenu -->
+    <a nz-button (click)="goLogin()">connexion</a>
+  </div>
+</ng-template>

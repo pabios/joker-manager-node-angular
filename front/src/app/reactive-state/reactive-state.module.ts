@@ -27,6 +27,9 @@ import {NzGridModule} from "ng-zorro-antd/grid";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzResultModule} from "ng-zorro-antd/result";
+import {NzProgressModule} from "ng-zorro-antd/progress";
+import {NzEmptyModule} from "ng-zorro-antd/empty";
 
 
 @NgModule({
@@ -34,31 +37,34 @@ import {NzSelectModule} from "ng-zorro-antd/select";
         StateListComponent,
         SingleStateComponent
     ],
-    imports: [
-        CommonModule,
-        ReactiveStateRoutingModule,
-        SharedModule,
-        MatProgressSpinnerModule,
-        MatListModule,
-        MatLineModule,
-        ElementModule,
-        CarouselComponent,
-        CarouselControlComponent,
-        CarouselIndicatorsComponent,
-        CarouselInnerComponent,
-        CarouselItemComponent,
-        NzDrawerModule,
-        NzButtonModule,
-        MatDatepickerModule,
-        FormsModule,
-        NzCardModule,
-        NzDatePickerModule,
-        NzFormModule,
-        NzGridModule,
-        NzIconModule,
-        NzInputModule,
-        NzSelectModule
-    ],
+  imports: [
+    CommonModule,
+    ReactiveStateRoutingModule,
+    SharedModule,
+    MatProgressSpinnerModule,
+    MatListModule,
+    MatLineModule,
+    ElementModule,
+    CarouselComponent,
+    CarouselControlComponent,
+    CarouselIndicatorsComponent,
+    CarouselInnerComponent,
+    CarouselItemComponent,
+    NzDrawerModule,
+    NzButtonModule,
+    MatDatepickerModule,
+    FormsModule,
+    NzCardModule,
+    NzDatePickerModule,
+    NzFormModule,
+    NzGridModule,
+    NzIconModule,
+    NzInputModule,
+    NzSelectModule,
+    NzResultModule,
+    NzProgressModule,
+    NzEmptyModule
+  ],
     exports: [
         StateListComponent
     ],
