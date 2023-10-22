@@ -9,6 +9,7 @@ import {render} from "creditcardpayments/creditCardPayments";
 import {NotificationService} from "../../core/services/notification.service";
 import {Booking} from "../../core/models/booking.model";
 import {Root} from "../../core/models/element.model";
+import {AuthService} from "../../core/services/auth.service";
 
 @Component({
   selector: 'app-form-booking',
@@ -36,7 +37,8 @@ export class FormBookingComponent {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private bookingService:BookingService,
-              private notificationService:NotificationService
+              private notificationService:NotificationService,
+              private auth:AuthService
               ) {
   }
 
@@ -45,7 +47,7 @@ export class FormBookingComponent {
 
 
     //
-    this.userId = 1;
+    this.userId = this.auth.getUserId()
     this.elementId = +this.activatedRoute.snapshot.params['id'];
 
       // this.priceItem = sessionStorage.getItem("price");
@@ -112,11 +114,11 @@ export class FormBookingComponent {
 
     const beginDateValue = this.form.get('beginDate')
     const endDateValue = this.form.get('endDate');
-    console.log(beginDateValue)
-
-    console.log(nbPeople)
-     // this.priceTotal
-    console.log('est le nb peupleeeee')
+    // console.log(beginDateValue)
+    //
+    // console.log(nbPeople)
+    //  // this.priceTotal
+    // console.log('est le nb peupleeeee')
 
     const formData : FormData = new FormData();
     formData.append('nbPeople',nbPeople)
@@ -127,28 +129,27 @@ export class FormBookingComponent {
     formData.append('elementId',this.elementId)
     formData.append('userId',this.userId)
 
-    console.log(formData.get('beginDate'))
-    console.log(formData.get('endDate'))
+    // console.log(formData.get('beginDate'))
+    // console.log(formData.get('endDate'))
 
     this.bookingService.add(formData).subscribe(
       (response) => {
-        // Traitez la réponse du serveur ici
-        console.log('Réponse du serveur :', response);
-        this.notificationService.showSuccess(response,"cool")
-
-
+        this.router.navigateByUrl('/profils').then(() => {
+          this.notificationService.showSuccess(response,'')
+          window.location.reload();
+        });
       },
       (error) => {
         // Traitez les erreurs ici
-        console.error('Erreur lors de l\'envoi des données au serveur :', error);
-        this.notificationService.showError(error,"error")
+        // console.error('Erreur lors de l\'envoi des données au serveur :', error);
+        this.notificationService.showError(error,"")
 
       }
     );
 
     // this.notificationService.showInfo("response","succes")
 
-    sessionStorage.clear();
+    // sessionStorage.clear();
     // this.router.navigateByUrl('/readme');
   }
 

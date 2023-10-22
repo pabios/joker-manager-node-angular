@@ -49,6 +49,7 @@ nz-header {
   padding: 0;
   width: 100%;
   z-index: 2;
+  margin-bottom:80px;
 }
 
 .header-trigger {
@@ -73,7 +74,14 @@ nz-header {
   .search__bar{
     //background-color: #0ae848;
     width:70%;
-    padding: 10px 24px;
+    padding: 12px 24px;
+  }
+  .filtre_icon{
+    margin-top:20px;
+    font-size: 24px;
+    &:hover{
+      color: #1890ff;
+    }
   }
   .trigger{
     float: left;
@@ -86,7 +94,9 @@ nz-header {
     //background-color: #0092ff;
     font-size: 20px;
     float: right;
-    padding: 10px 24px;
+    margin-top:20px;
+    margin-right: 20px;
+
 
 
     &:hover{
@@ -100,15 +110,43 @@ nz-content {
 }
 
 .inner-content {
-  padding: 24px;
+  //padding: 24px;
   background: #fff;
   height: auto;
 }
+@media (max-width: 768px) { // mobile
+  .inner-content {
+    margin-top: 23%;
+    background: #fff;
+    height: auto;
+  }
+}
 
 //
+$them-color :  #001628;
+
+nz-footer{
+  background-color: $them-color;
+}
 
 
+// nouveau bootsrap
+.chat-button {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+}
 
+.chat-button:hover {
+  background-color: #0056b3;
+}
 
 
 

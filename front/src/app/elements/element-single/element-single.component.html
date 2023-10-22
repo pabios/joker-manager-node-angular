@@ -59,19 +59,24 @@
     </mat-grid-tile>
   </mat-grid-list>
 
-  <nz-tag nzColor="#34cc94">
+  <nz-tag nzColor="#34cc94" *ngIf="element.verified;else badgeNoVerified">
     <span nz-icon  nzType="safety-certificate" nzTheme="twotone" nzTwotoneColor="#34cc94"></span>
     <span>Garantie par l'agence</span>
   </nz-tag>
+  <ng-template #badgeNoVerified>
+    <nz-tag nzColor="#94cc14" >
+      <span nz-icon  nzType="safety-certificate" nzTheme="twotone" nzTwotoneColor="#FF0000"></span>
+      <span>Ce logement n'est pas garanti</span>
+    </nz-tag>
+  </ng-template>
 
-  <nz-result
+  <nz-result *ngIf="element.verified;else notVirified"
     nzStatus="success"
     nzTitle="Arrivée garantie par l'Agence, images conformes!"
     nzSubTitle="Nous garantissons que vous arriverez en toute sécurité et que les images du logement correspondent à la réalité."
   >
   <div nz-result-extra>
       <button (click)="goBooking(element.id,element.price)" nz-button nzType="primary">Réserver</button>
-<!--      <button nz-button>Buy Again</button>-->
       <button nz-button (click)="showModal()">
         <span>Comprendre la Garantie</span>
       </button>
@@ -89,6 +94,33 @@
       </nz-modal>
     </div>
   </nz-result>
+
+  <ng-template #notVirified>
+    <nz-result
+               nzStatus="warning"
+               nzTitle="Arrivée non garantie par l'Agence, images non contractuelles."
+               nzSubTitle="Veuillez noter que nous ne pouvons pas garantir votre arrivée en toute sécurité ni que les images du logement correspondent exactement à la réalité."
+    >
+      <div nz-result-extra>
+        <button (click)="goBooking(element.id,element.price)" nz-button nzType="primary">Réserver</button>
+        <button nz-button (click)="showModal()">
+          <span>Prendre des précautions</span>
+        </button>
+        <nz-modal
+          [(nzVisible)]="isVisible"
+          nzTitle="Garantie"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="isOkLoading"
+        >
+          <p *nzModalContent>
+            Veuillez noter que ce logement n'est pas garanti par notre agence. Nous vous encourageons à entrer en contact avec le propriétaire avant votre arrivée pour discuter des détails de votre séjour.
+            En cas de problème ou d'annulation imprévue, n'hésitez pas à nous contacter. Nous ferons de notre mieux pour vous aider dans ces situations.
+          </p>
+        </nz-modal>
+      </div>
+    </nz-result>
+  </ng-template>
 
 
 <!--  -->

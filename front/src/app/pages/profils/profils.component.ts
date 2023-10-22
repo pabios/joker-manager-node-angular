@@ -7,6 +7,10 @@ import {Root} from "../../core/models/element.model";
 // import format from "@popperjs/core/lib/utils/format";
 import { format } from 'date-fns-tz';
 import {NotificationService} from "../../core/services/notification.service";
+import {AuthService} from "../../core/services/auth.service";
+import {User} from "../../core/models/user.model";
+import {environment} from "../../../environments/environment";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -15,6 +19,7 @@ import {NotificationService} from "../../core/services/notification.service";
   styleUrls: ['./profils.component.scss']
 })
 export class ProfilsComponent implements OnInit {
+
   data = [
     {
       name: 'Balde'
@@ -40,10 +45,12 @@ export class ProfilsComponent implements OnInit {
   ];
   bookings$!: Observable<Booking[]>;
   elements$!: Observable<Root[]>;
+  user$!: Observable<User>;
   delete$!: Observable<any>;
   //
   isDeleteButtonDisabled = false;
-
+  avatar!:string;
+  nimbaBadge!:string;
 
   open(): void {
     this.visible = true;
@@ -55,13 +62,25 @@ export class ProfilsComponent implements OnInit {
   constructor(
     private bookingService:BookingService,
     private elementService:ElementService,
-    private notificationService:NotificationService
+    private notificationService:NotificationService,
+    private auth: AuthService,
+    private router: Router
   ) {
   }
 
   ngOnInit() {
-    this.bookings$ = this.bookingService.getBookingByUserId(1);
-    this.elements$ = this.elementService.getElementByUserId(1);
+    let curentIdUser = Number(this.auth.getUserId());
+
+    this.bookings$ = this.bookingService.getBookingByUserId(curentIdUser);
+    this.elements$ = this.elementService.getElementByUserId(curentIdUser);
+    console.log(curentIdUser)
+    console.log("est le user loger")
+    //
+    this.user$ = this.auth.getUserById(curentIdUser);
+    this.avatar = environment.backend+"/";
+    //
+    this.nimbaBadge = "nimba"
+
 
 
 
@@ -123,4 +142,13 @@ export class ProfilsComponent implements OnInit {
     return `${formattedDate}`;
   }
 
+  protected readonly length = length;
+
+  goAddHouse() {
+    this.router.navigateByUrl('elements/add')
+  }
+
+  goElements() {
+    this.router.navigateByUrl('elements')
+  }
 }

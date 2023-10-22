@@ -30,7 +30,7 @@ export class StateService{
       return;
     }
     this.setLoadingStatus(true);
-    this.http.get<StateModel[]>(`${environment.urlApi}/elements`).pipe(
+    this.http.get<StateModel[]>(`${environment.urlApi}/element/search`).pipe(
       delay(1000),
       tap(elements =>{
         this.lastElementsLoad = Date.now();

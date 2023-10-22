@@ -1,26 +1,145 @@
-<form [formGroup]="snapFormSign">
-  <div class="form-card">
-    <h2>Inscription</h2>
+<!--<form [formGroup]="snapFormSign">-->
+<!--  <div class="form-card">-->
+<!--    <h2>Inscription</h2>-->
 
-    <div class="form-group">
-      <label for="email">Pseudo</label>
-      <input #email type="text" id="email"  formControlName="email">
-    </div>
-    <div class="form-group">
-      <label for="password">Mot de passe</label>
-      <input #password type="password" id="password" formControlName="password">
-    </div>
-    <div class="action-buttons">
-      <button type="submit" #signIn (click)="signUp(email.value,password.value)"  [disabled]="snapFormSign.invalid">
-        je m'inscrit
-      </button>
-    </div>
-    <span class="action-buttons"> ou  <button routerLink="/auth/login">se connecter</button></span>
+<!--    <div class="form-group">-->
+<!--      <label for="email">Pseudo</label>-->
+<!--      <input #email type="text" id="email"  formControlName="email">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="password">Mot de passe</label>-->
+<!--      <input #password type="password" id="password" formControlName="password">-->
+<!--    </div>-->
+<!--    <div class="action-buttons">-->
+<!--      <button type="submit" #signIn (click)="signUp(email.value,password.value)"  [disabled]="snapFormSign.invalid">-->
+<!--        je m'inscrit-->
+<!--      </button>-->
+<!--    </div>-->
+<!--    <span class="action-buttons"> ou  <button routerLink="/auth/login">se connecter</button></span>-->
+<!--  </div>-->
+<!--</form>-->
+
+<!--<span class="fi fi-gn"></span>-->
+
+
+<nz-card nzHoverable class="sign-form" >
+  <div class="logo">
+    <span class="image">
+      <img src="assets/img/logo.png" alt="">
+    </span>
+    <span class="text__logo">
+            Inscription
+    </span>
   </div>
+<form nz-form  [formGroup]="validateForm" (ngSubmit)="submitForm()" >
+  <nz-form-item>
+<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Numéro de téléphone</nz-form-label>-->
+    <nz-form-control
+      [nzValidateStatus]="validateForm.controls['phoneNumber']"
+      nzErrorTip="Veuillez saisir votre numéro de téléphone!"
+    >
+      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+        <ng-template #addOnBeforeTemplate>
+          <nz-select class="phone-select" required  formControlName="phoneNumberPrefix" nzShowSearch nzAllowClear nzPlaceHolder="pays">
+            <nz-option *ngFor="let country of countries" #phoneNumberPrefix  [nzLabel]="country.label" [nzValue]="country.value" nzCustomContent >
+              <span class="fi {{country.flag}}"></span>
+              {{country.label}}
+            </nz-option>
+          </nz-select>
+
+        </ng-template>
+        <input formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="Téléphone"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Mot de passe</nz-form-label>-->
+    <nz-form-control  nzErrorTip="Veuillez saisir votre mot de passe!">
+      <input
+        nz-input
+        type="password"
+        id="password"
+        #password
+        formControlName="password"
+        placeholder="Veuillez saisir votre mot de passe!"
+        (ngModelChange)="updateConfirmValidator()"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirmez le mot de passe</nz-form-label>-->
+    <nz-form-control   [nzErrorTip]="errorTpl">
+      <input nz-input type="password" #checkPassword formControlName="checkPassword" id="checkPassword" placeholder="Confirmez le mot de passe" />
+      <ng-template #errorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">Veuillez confirmer votre mot de passe!</ng-container>
+        <ng-container *ngIf="control.hasError('confirm')">
+          Les deux mots de passe que vous saisissez sont incohérents!
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item >
+<!--    <nz-form-label-->
+<!--      [nzSm]="6"-->
+<!--      [nzXs]="24"-->
+<!--      nzFor="fullName"-->
+<!--      nzRequired-->
+<!--      nzTooltipTitle="Comment veux-tu que les autres t'appellent"-->
+<!--    >-->
+<!--      <span>Nom et prénom</span>-->
+<!--    </nz-form-label>-->
+    <nz-form-control   nzErrorTip="S'il-vous-plaît, entrer votre prénom et votre nom!">
+      <input nz-input id="fullName" #fullName formControlName="fullName" placeholder="Nom et prénom" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzValidateStatus]="validateForm.get('agree') ? 'error' : 'success'"
+                      >
+      <!--            nzErrorTip="Veuillez lire  les conditions générales"         -->
+
+      <div *ngIf="!validateForm.get('agree')?.value">
+        Veuillez lire les conditions générales.
+      </div>
+      <label  nz-checkbox formControlName="agree">
+            <span >
+              J'ai lu
+              <a nz-button (click)="open()">les conditions générales</a>
+            </span>
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control  >
+      <button nz-button class="sign-form-button sign-form-margin" nzType="primary"   >S'inscrire</button>
+    </nz-form-control>
+  </nz-form-item>
 </form>
+</nz-card>
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="visible"
+  nzPlacement="right"
+  nzTitle="Conditions Générales"
+  (nzOnClose)="close()"
+>
+  <ng-container *nzDrawerContent>
+    <ol>
+      <li>
+        <span class="custom-text"> Confidentialité et Sécurité des Données :</span> Nous accordons une grande importance à la confidentialité et à la sécurité de vos données personnelles. Toutes les informations que vous partagez avec nous lors de votre inscription seront traitées de manière confidentielle. Nous utilisons des mesures de sécurité avancées pour protéger vos données contre tout accès non autorisé ou toute utilisation abusive. Vos informations ne seront en aucun cas vendues, échangées ou partagées avec des tiers sans votre consentement explicite.
+      </li>
+      <li>
+        <span class="custom-text">Responsabilités de l'Utilisateur :</span> En vous inscrivant sur notre plateforme, vous acceptez de fournir des informations précises, complètes et à jour. Vous êtes responsable de la confidentialité de votre compte et de vos identifiants de connexion. Vous vous engagez à ne pas partager votre compte avec d'autres personnes. Vous acceptez également de respecter nos règles d'utilisation et de ne pas publier de contenu offensant, diffamatoire ou illégal sur notre plateforme.
+      </li>
+      <li>
+        <span class="custom-text">Modifications des Conditions Générales : </span>Nos conditions générales d'inscription peuvent être sujettes à des modifications périodiques. Nous nous réservons le droit de mettre à jour ou de modifier ces conditions à tout moment, sans préavis. Il est de votre responsabilité de vérifier régulièrement ces conditions pour rester informé des éventuelles modifications. En continuant à utiliser notre service après toute modification apportée à ces conditions, vous acceptez les nouvelles conditions générales.
+      </li>
+    </ol>
+  </ng-container>
+</nz-drawer>
 
-
-<!--<mat-form-field class="example-full-width">-->
-<!--  <input matInput placeholder="Last Name" formControlName="like">-->
-<!--  <mat-error *ngIf="like?.invalid"> {{lastNameError()}} </mat-error>-->
-<!--</mat-form-field>-->
+<!--</nz-card>-->

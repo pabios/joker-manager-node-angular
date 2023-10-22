@@ -1,3 +1,4 @@
+
 export interface StateModel {
   id: number
   user_id: number
@@ -8,5 +9,8 @@ export interface StateModel {
   size: number
   price: number
   description: string
-  createdDate: string
+  createdDate: string,
+  beginDate:string,
+  endDate:string,
+  images: any[]
 }

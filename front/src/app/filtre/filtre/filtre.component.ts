@@ -9,6 +9,7 @@ export class FiltreComponent {
 
   visible = false;
   selectedValue = null;
+  inputValue: string | null = null;
   open(): void {
     this.visible = true;
   }

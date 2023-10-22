@@ -11,6 +11,16 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzModalModule} from "ng-zorro-antd/modal";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {ReactiveStateModule} from "../reactive-state/reactive-state.module";
+import {NzBadgeModule} from "ng-zorro-antd/badge";
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzDescriptionsModule} from "ng-zorro-antd/descriptions";
+import {NzDividerModule} from "ng-zorro-antd/divider";
+import {NzDrawerModule} from "ng-zorro-antd/drawer";
+import {NzResultModule} from "ng-zorro-antd/result";
 
 
 
@@ -19,17 +29,27 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     HeaderComponent,
     FooterComponent
   ],
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    RouterModule,
-    HttpClientModule,
-    MatSidenavModule,
-    MatListModule,
-    MatMenuModule,
-    MatIconModule,
-    MatToolbarModule
-  ],
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        RouterModule,
+        HttpClientModule,
+        MatSidenavModule,
+        MatListModule,
+        MatMenuModule,
+        MatIconModule,
+        MatToolbarModule,
+        NzIconModule,
+        NzModalModule,
+        NzButtonModule,
+        ReactiveStateModule,
+        NzBadgeModule,
+        NzCardModule,
+        NzDescriptionsModule,
+        NzDividerModule,
+        NzDrawerModule,
+        NzResultModule
+    ],
   exports:[
     HeaderComponent,
     FooterComponent

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatCardModule} from "@angular/material/card";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -19,6 +19,13 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzDescriptionsModule} from "ng-zorro-antd/descriptions";
 import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
 import {NzPopoverModule} from "ng-zorro-antd/popover";
+import { SendFormComponent } from './send-form/send-form.component';
+import {NzCommentModule} from "ng-zorro-antd/comment";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzAvatarModule} from "ng-zorro-antd/avatar";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzResultModule} from "ng-zorro-antd/result";
+import {RouterLink} from "@angular/router";
 // import {NzSpaceModule} from "ng-zorro-antd/space";
 // import {NzTransitionPatchModule} from "ng-zorro-antd/core/transition-patch/transition-patch.module";
 // import {NzWaveModule} from "ng-zorro-antd/core/wave";
@@ -50,30 +57,38 @@ import {NzPopoverModule} from "ng-zorro-antd/popover";
 @NgModule({
   declarations: [
     FormComponent,
-    FormBookingComponent
+    FormBookingComponent,
+    SendFormComponent
   ],
-    imports: [
-        CommonModule,
-        MatToolbarModule,
-        MatCardModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatRadioModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        MatIconModule,
-        // BrowserModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        NzButtonModule,
-        NzDescriptionsModule,
-        NzPageHeaderModule,
-        NzPopoverModule,
-        // NzSpaceModule,
-        // NzTransitionPatchModule,
-        // NzWaveModule,
-    ],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatRadioModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule,
+    // BrowserModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NzButtonModule,
+    NzDescriptionsModule,
+    NzPageHeaderModule,
+    NzPopoverModule,
+    NzCommentModule,
+    NzFormModule,
+    NzAvatarModule,
+    FormsModule,
+    NzInputModule,
+    NzResultModule,
+    RouterLink,
+    // NzSpaceModule,
+    // NzTransitionPatchModule,
+    // NzWaveModule,
+  ],
   exports: [
     CommonModule,
     MatToolbarModule,
@@ -87,6 +102,7 @@ import {NzPopoverModule} from "ng-zorro-antd/popover";
     MatIconModule,
     FormComponent,
     FormBookingComponent,
+    SendFormComponent,
   ]
 })
 export class SharedModule { }

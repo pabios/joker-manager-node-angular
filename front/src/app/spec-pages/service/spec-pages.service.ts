@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
+import {Injectable, OnInit} from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SpecPagesService {
+export class SpecPagesService implements OnInit{
 
   private pages: { name: string, content: string }[] = [
     {
@@ -57,21 +57,69 @@ export class SpecPagesService {
     },
     {
       name: "Donnees-et-confidentialite",
-      content: "Contenu de la page Données et confidentialité..."
+      content: "Confidentialité et Sécurité des Données : Nous accordons une grande importance à la confidentialité et à la sécurité de vos données personnelles. Toutes les informations que vous partagez avec nous lors de votre inscription seront traitées de manière confidentielle. Nous utilisons des mesures de sécurité avancées pour protéger vos données contre tout accès non autorisé ou toute utilisation abusive. Vos informations ne seront en aucun cas vendues, échangées ou partagées avec des tiers sans votre consentement explicite.\n" +
+        "Responsabilités de l'Utilisateur : En vous inscrivant sur notre plateforme, vous acceptez de fournir des informations précises, complètes et à jour. Vous êtes responsable de la confidentialité de votre compte et de vos identifiants de connexion. Vous vous engagez à ne pas partager votre compte avec d'autres personnes. Vous acceptez également de respecter nos règles d'utilisation et de ne pas publier de contenu offensant, diffamatoire ou illégal sur notre plateforme.\n" +
+        "Modifications des Conditions Générales : Nos conditions générales d'inscription peuvent être sujettes à des modifications périodiques. Nous nous réservons le droit de mettre à jour ou de modifier ces conditions à tout moment, sans préavis. Il est de votre responsabilité de vérifier régulièrement ces conditions pour rester informé des éventuelles modifications. En continuant à utiliser notre service après toute modification apportée à ces conditions, vous acceptez les nouvelles conditions générales."
     },
     {
       name: "Charte-qualite",
-      content: "Contenu de la page Charte qualité..."
+      content:  `
+          Bienvenue sur Monimba, votre plateforme de confiance pour la réservation de logements de qualité. Nous nous engageons à vous offrir une expérience exceptionnelle tout au long de votre séjour. Notre charte qualité résume nos engagements envers nos utilisateurs.
+          1. Qualité et Confort : Nous sélectionnons avec soin chaque logement pour vous assurer un séjour confortable. Tous les logements disponibles sur Monimba répondent à des normes de qualité élevées et sont régulièrement inspectés pour garantir votre satisfaction.
+
+          2. Transparence et Fiabilité : Nous croyons en la transparence totale. Les informations sur chaque logement, y compris les photos, les équipements et les services disponibles, sont précises et à jour. Vous pouvez faire confiance à la fiabilité des informations fournies sur notre plateforme.
+
+          3. Confidentialité et Sécurité des Données : Nous accordons une grande importance à la confidentialité et à la sécurité de vos données personnelles. Toutes les informations que vous partagez avec nous sont traitées de manière confidentielle. Nous utilisons des mesures de sécurité avancées pour protéger vos données contre tout accès non autorisé ou toute utilisation abusive.
+
+          4. Responsabilités de l'Utilisateur : En vous inscrivant sur notre plateforme, vous acceptez de fournir des informations précises, complètes et à jour. Vous êtes responsable de la confidentialité de votre compte et de vos identifiants de connexion. Vous vous engagez à ne pas partager votre compte avec d'autres personnes et à respecter nos règles d'utilisation. Tout contenu offensant, diffamatoire ou illégal ne sera pas toléré.
+
+          5. Support Client Réactif : Notre équipe de support client est disponible pour répondre à toutes vos questions et préoccupations. Nous nous efforçons de résoudre rapidement tous les problèmes que vous pourriez rencontrer lors de votre utilisation de notre plateforme.
+
+          6. Modifications des Conditions Générales : Nos conditions générales d'utilisation peuvent être sujettes à des modifications périodiques. Nous nous réservons le droit de mettre à jour ou de modifier ces conditions à tout moment, sans préavis. Il est de votre responsabilité de vérifier régulièrement ces conditions pour rester informé des éventuelles modifications. En continuant à utiliser notre service après toute modification apportée à ces conditions, vous acceptez les nouvelles conditions générales.
+
+          Nous vous remercions de faire confiance à Monimba pour vos réservations de logements. Nous sommes là pour rendre votre séjour aussi agréable que possible. Si vous avez des questions ou des commentaires, n'hésitez pas à nous contacter. Bon séjour sur Monimba !
+                `
     }
   ];
+
+
+  contenuCharteQualite!:string;
   constructor() {
   }
   getPages() {
     return this.pages;
   }
 
+
   getPageByName(name: string) {
     return this.pages.find(page => page.name === name);
   }
+
+  ngOnInit(): void {
+    this.setCharte();
+  }
+
+  setCharte(){
+   return  `
+    <div class="container">
+      <h2>Charte Qualité de Monimba</h2>
+
+      <div class="content">
+        <p><strong>1. Qualité et Confort :</strong> Nous sélectionnons avec soin chaque logement pour vous assurer un séjour confortable. Tous les logements disponibles sur Monimba répondent à des normes de qualité élevées et sont régulièrement inspectés pour garantir votre satisfaction.</p>
+
+        <p><strong>2. Transparence et Fiabilité :</strong> Nous croyons en la transparence totale. Les informations sur chaque logement, y compris les photos, les équipements et les services disponibles, sont précises et à jour. Vous pouvez faire confiance à la fiabilité des informations fournies sur notre plateforme.</p>
+
+        <p><strong>3. Confidentialité et Sécurité des Données :</strong> Nous accordons une grande importance à la confidentialité et à la sécurité de vos données personnelles. Toutes les informations que vous partagez avec nous sont traitées de manière confidentielle. Nous utilisons des mesures de sécurité avancées pour protéger vos données contre tout accès non autorisé ou toute utilisation abusive.</p>
+
+        <p><strong>4. Responsabilités de l'Utilisateur :</strong> En vous inscrivant sur notre plateforme, vous acceptez de fournir des informations précises, complètes et à jour. Vous êtes responsable de la confidentialité de votre compte et de vos identifiants de connexion. Vous vous engagez à ne pas partager votre compte avec d'autres personnes et à respecter nos règles d'utilisation. Tout contenu offensant, diffamatoire ou illégal ne sera pas toléré.</p>
+
+        <p><strong>5. Support Client Réactif :</strong> Notre équipe de support client est disponible pour répondre à toutes vos questions et préoccupations. Nous nous efforçons de résoudre rapidement tous les problèmes que vous pourriez rencontrer lors de votre utilisation de notre plateforme.</p>
+
+        <p><strong>6. Modifications des Conditions Générales :</strong> Nos conditions générales d'utilisation peuvent être sujettes à des modifications périodiques. Nous nous réservons le droit de mettre à jour ou de modifier ces conditions à tout moment, sans préavis. Il est de votre responsabilité de vérifier régulièrement ces conditions pour rester informé des éventuelles modifications. En continuant à utiliser notre service après toute modification apportée à ces conditions, vous acceptez les nouvelles conditions générales.</p>
+      </div>
+    </div>
+`;
+  }
+
 
 }

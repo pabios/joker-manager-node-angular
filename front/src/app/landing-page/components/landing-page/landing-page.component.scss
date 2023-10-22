@@ -72,3 +72,64 @@
   color: #999;
   margin: 0;
 }
+
+
+//
+.sec-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+
+  .sec-stats-item{
+    span{
+      font-size: 25px;
+      &:hover{
+        font-size: 27px;
+
+      }
+    }
+  }
+  nz-card{
+    &:hover{
+      background-color:#1890ff;
+      color: white;
+    }
+  }
+
+}
+
+
+
+@media (max-width: 768px) {
+  .sec-stats {
+    flex-direction: column;
+  }
+}
+//
+
+[nz-carousel-content] {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  color: #fff;
+  overflow: hidden;
+}
+
+h3 {
+  color: #fff;
+  margin-bottom: 0;
+  user-select: none;
+}
+
+.banner {
+  h3{
+    color:red;
+    font-size: 48px;
+   position: absolute;
+    top: 20px;
+    left: 20%;
+  }
+
+}
+

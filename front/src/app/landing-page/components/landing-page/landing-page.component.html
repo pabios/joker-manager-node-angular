@@ -1,4 +1,7 @@
-<app-filtre></app-filtre>
+<!--<app-filtre></app-filtre>-->
+
+
+<!--<app-state-list></app-state-list>-->
 <div class="container">
   <div class="city-cards">
 
@@ -18,13 +21,52 @@
           </p>
         </a>
       </div>
-
-
   </div>
 </div>
 
+<!--  <section class="sec-stats">-->
+<!--    <nz-card nzHoverable class="sec-stats-item">-->
+<!--      <span class="sec-item__icon" nz-icon nzType="usergroup-delete" nzTheme="outline"></span>-->
+<!--      <p>Nombre d'utilisateurs</p>-->
+<!--      <p>{{34}}</p>-->
+<!--    </nz-card>-->
+<!--    <nz-card nzHoverable  class="sec-stats-item">-->
+<!--      <span nz-icon nzType="user-switch" nzTheme="outline"></span>-->
+<!--      <p>Nombre de partenaires</p>-->
+<!--      <p>{{30}}</p>-->
+<!--    </nz-card>-->
+<!--    <nz-card nzHoverable  class="sec-stats-item">-->
+<!--      <span nz-icon nzType="eye" nzTheme="outline"></span>-->
+<!--      <p>Nombre de visiteurs</p>-->
+<!--      <p>{{50}}</p>-->
+<!--    </nz-card>-->
+<!--    <nz-card nzHoverable  class="sec-stats-item">-->
+<!--      <span nz-icon nzType="shop" nzTheme="outline"></span>-->
+<!--      <p>Nombre de logements</p>-->
+<!--      <p>{{90}}</p>-->
+<!--    </nz-card>-->
+<!--  </section>-->
 
+<nz-result
+  nzStatus="success"
+  nzTitle="Avoir le badge Vert"
+  nzSubTitle="C'est garantir la conformité de ces logements"
+>
+  <div nz-result-extra>
+    <button nz-button nzType="primary" (click)="utilsService.sendEmail('Envoyez-nous votre pièce d\'identité en pièce Jointe et votre identifiant (seulement le numéro de téléphone ) ')">Faire une demande</button>
+  </div>
+</nz-result>
 
+<nz-card style="width: 100%;margin-top: 16px">
+  <nz-card-meta
+    [nzAvatar]="avatarTemplate"
+    nzTitle="Légalité GN.TCC.2023.B.09490"
+    nzDescription="immatriculée au tribunal de commerce de Conakry."
+  ></nz-card-meta>
+</nz-card>
 
+<ng-template #avatarTemplate>
+  <nz-avatar nzSrc="{{this.avatarLogo}}"></nz-avatar>
+</ng-template>
 
 

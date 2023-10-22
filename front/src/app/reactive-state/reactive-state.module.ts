@@ -18,13 +18,25 @@ import {
 } from "@coreui/angular";
 import {NzDrawerModule} from "ng-zorro-antd/drawer";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {FormsModule} from "@angular/forms";
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzGridModule} from "ng-zorro-antd/grid";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzResultModule} from "ng-zorro-antd/result";
+import {NzProgressModule} from "ng-zorro-antd/progress";
+import {NzEmptyModule} from "ng-zorro-antd/empty";
 
 
 @NgModule({
-  declarations: [
-    StateListComponent,
-    SingleStateComponent
-  ],
+    declarations: [
+        StateListComponent,
+        SingleStateComponent
+    ],
   imports: [
     CommonModule,
     ReactiveStateRoutingModule,
@@ -39,10 +51,25 @@ import {NzButtonModule} from "ng-zorro-antd/button";
     CarouselInnerComponent,
     CarouselItemComponent,
     NzDrawerModule,
-    NzButtonModule
+    NzButtonModule,
+    MatDatepickerModule,
+    FormsModule,
+    NzCardModule,
+    NzDatePickerModule,
+    NzFormModule,
+    NzGridModule,
+    NzIconModule,
+    NzInputModule,
+    NzSelectModule,
+    NzResultModule,
+    NzProgressModule,
+    NzEmptyModule
   ],
-  providers:[
-    StateService
-  ]
+    exports: [
+        StateListComponent
+    ],
+    providers: [
+        StateService
+    ]
 })
 export class ReactiveStateModule { }

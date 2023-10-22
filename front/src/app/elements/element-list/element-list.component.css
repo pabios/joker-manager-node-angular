@@ -1,3 +1,4 @@
+@charset "UTF-8";
 nz-carousel-content {
   text-align: center;
   height: 160px;
@@ -39,11 +40,35 @@ ng-template nz-carousel {
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
 }
 .container__element .container-element__item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
   height: 100%;
 }
+.container__element app-element {
+  width: calc(25% - 20px);
+  /* 25% pour 4 éléments par ligne, moins la marge */
+  margin-bottom: 20px;
+}
 
+@media (max-width: 768px) {
+  .container__element {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 15px;
+  }
+  .container__element .container-element__item {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
 mat-card {
   margin-bottom: 20px;
 }

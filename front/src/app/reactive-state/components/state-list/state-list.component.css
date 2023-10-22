@@ -1,3 +1,52 @@
+@charset "UTF-8";
+.card {
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  /* Largeur maximale de la carte */
+  margin: 0 auto;
+  /* Centrer la carte horizontalement */
+}
+
+.submit-button {
+  background-color: #1890ff;
+  /* Couleur de fond du bouton */
+  color: #fff;
+  /* Couleur du texte du bouton */
+  border: none;
+  /* Supprime la bordure du bouton */
+  border-radius: 4px;
+  /* Coins arrondis */
+  padding: 10px 20px;
+  /* Espacement intérieur du bouton */
+  cursor: pointer;
+  /* Curseur de type pointeur au survol */
+  font-size: 16px;
+  /* Taille de la police du bouton */
+}
+
+.submit-button:hover {
+  background-color: #096dd9;
+  /* Couleur de fond au survol */
+}
+
+@media screen and (max-width: 768px) {
+  /* Sur les appareils mobiles, un champ par ligne */
+  .card {
+    max-width: none;
+    flex-direction: column;
+  }
+
+  .card .nz-form-item {
+    margin-bottom: 12px;
+  }
+}
 mat-nav-list a {
   display: flex;
   justify-content: space-between;
@@ -128,6 +177,16 @@ at-card-header {
   display: flex;
   justify-content: flex-end;
   margin-top: 16px;
+}
+
+/* styles.css (ou votre fichier de styles personnalisé) */
+.custom-input .mat-form-field-wrapper {
+  font-size: 14px;
+  /* Ajustez la taille de la police selon vos préférences */
+  line-height: 1.5;
+  /* Ajustez la hauteur de ligne selon vos préférences */
+  padding: 8px 12px;
+  /* Ajustez le rembourrage selon vos préférences */
 }
 
 /*# sourceMappingURL=state-list.component.css.map */

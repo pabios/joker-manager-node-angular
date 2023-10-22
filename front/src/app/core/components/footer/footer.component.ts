@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {CommonService} from "../../services/common.service";
+import {UtilsService} from "../../services/utils.service";
 
 @Component({
   selector: 'app-footer',
@@ -19,7 +20,8 @@ export class FooterComponent  implements OnInit {
   style$!: Observable<any>;
 
   constructor(private router:Router,
-              private commomService:CommonService) {
+              private commomService:CommonService,
+              private utilsService:UtilsService) {
   }
   ngOnInit(): void {
     this.agencyName = 'nimba'
@@ -35,6 +37,10 @@ export class FooterComponent  implements OnInit {
     //     }
     //   }
     // )
+  }
+
+  onSendMail(msg:string){
+    this.utilsService.sendEmail(msg);
   }
 
 

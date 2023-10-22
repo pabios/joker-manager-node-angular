@@ -43,6 +43,7 @@ nz-header {
   padding: 0;
   width: 100%;
   z-index: 2;
+  margin-bottom: 80px;
 }
 
 .header-trigger {
@@ -64,7 +65,14 @@ nz-header {
 }
 .app-header .search__bar {
   width: 70%;
-  padding: 10px 24px;
+  padding: 12px 24px;
+}
+.app-header .filtre_icon {
+  margin-top: 20px;
+  font-size: 24px;
+}
+.app-header .filtre_icon:hover {
+  color: #1890ff;
 }
 .app-header .trigger {
   float: left;
@@ -76,7 +84,8 @@ nz-header {
 .app-header .user-icon {
   font-size: 20px;
   float: right;
-  padding: 10px 24px;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 .app-header .user-icon:hover {
   color: #1890ff;
@@ -87,9 +96,36 @@ nz-content {
 }
 
 .inner-content {
-  padding: 24px;
   background: #fff;
   height: auto;
+}
+
+@media (max-width: 768px) {
+  .inner-content {
+    margin-top: 23%;
+    background: #fff;
+    height: auto;
+  }
+}
+nz-footer {
+  background-color: #001628;
+}
+
+.chat-button {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.chat-button:hover {
+  background-color: #0056b3;
 }
 
 /*# sourceMappingURL=app.component.css.map */

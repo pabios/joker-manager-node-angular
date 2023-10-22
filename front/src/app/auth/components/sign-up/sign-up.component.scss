@@ -1,3 +1,4 @@
+$color-header: #FF9F57;
 .form-card {
   box-sizing: border-box;
   width: 50%;
@@ -25,4 +26,85 @@ input, textarea {
 button {
   display: block;
   margin: 20px auto;
+}
+
+// zorro
+
+nz-card{
+  //background-color:#2F96B4;
+}
+[nz-form] {
+ // max-width: 600px;
+}
+
+.phone-select {
+  width: 100px;
+}
+
+.register-are {
+  margin-bottom: 8px;
+}
+
+.custom-text { // condition general
+  font-weight: bold; /* Met en gras */
+  font-style: italic; /* Met en italique */
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; /* Espace en bas de la div logo (ajustez selon vos préférences) */
+}
+
+.logo .image img {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.logo .text__logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+
+//
+.sign-form {
+
+
+
+  background-color: $color-header;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  //
+  max-width: 50%;
+  margin:0 auto;
+  padding: 0;
+  form{
+    width: 420px;
+  }
+  input{
+    width:100%;
+  }
+}
+/* Styles pour les écrans mobiles (largeur inférieure à 768px) */
+@media (max-width: 768px) {
+  .sign-form {
+    max-width: 100%; /* Changez la largeur à 100% pour les écrans mobiles */
+    form{
+      width: 300px;
+    }
+    input{
+      width:100%;
+    }
+  }
+}
+.sign-form-button {
+  width: 100%;
 }

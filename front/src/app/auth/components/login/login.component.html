@@ -1,18 +1,118 @@
-<form  [formGroup]="snapForm">
-  <div class="form-card">
-    <h2>Connexion</h2>
-    <div class="form-group">
-      <label for="email">Pseudo</label>
-      <input #email type="text" id="email">
-    </div>
-    <div class="form-group">
-      <label for="password">Mot de passe</label>
-      <input #password type="password" id="password">
-    </div>
-    <div class="action-buttons">
-      <button type="submit" #signIn (click)="onLogin(email.value,password.value)">Connexion</button>
-    </div>
-   <span class="action-buttons"> ou  <button routerLink="/auth/signUp">s'inscrire</button></span>
+<!--<form  [formGroup]="snapForm">-->
+<!--  <div class="form-card">-->
+<!--    <h2>Connexion</h2>-->
+<!--    <div class="form-group">-->
+<!--      <label for="email">Pseudo</label>-->
+<!--      <input #email type="text" id="email">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="password">Mot de passe</label>-->
+<!--      <input #password type="password" id="password">-->
+<!--    </div>-->
+<!--    <div class="action-buttons">-->
+<!--      <button type="submit" #signIn (click)="onLogin(email.value,password.value)">Connexion</button>-->
+<!--    </div>-->
+<!--   <span class="action-buttons"> ou  <button routerLink="/auth/signUp">s'inscrire</button></span>-->
+<!--  </div>-->
+<!--</form>-->
+
+
+<nz-card nzHoverable class="login-form" >
+  <div class="logo">
+    <span class="image">
+      <img src="assets/img/logo.png" alt="">
+    </span>
+    <span class="text__logo">
+            connexion
+    </span>
   </div>
+<form nz-form  [formGroup]="validateForm" (ngSubmit)="submitForm()"  >
+  <nz-form-item>
+<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Téléphone</nz-form-label>-->
+    <nz-form-control
+      [nzValidateStatus]="validateForm.controls['phoneNumber']"
+      nzErrorTip="Veuillez saisir votre numéro de téléphone!"
+    >
+      <nz-input-group nzPrefixIcon="user" [nzAddOnBefore]="addOnBeforeTemplate">
+        <ng-template #addOnBeforeTemplate>
+          <nz-select class="phone-select" required  formControlName="phoneNumberPrefix" nzShowSearch nzAllowClear nzPlaceHolder="pays">
+            <nz-option *ngFor="let country of countries" #phoneNumberPrefix  [nzLabel]="country.label" [nzValue]="country.value" nzCustomContent >
+              <span class="fi {{country.flag}}"></span>
+              {{country.label}}
+            </nz-option>
+          </nz-select>
+
+        </ng-template>
+        <input   formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="628451000"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item >
+<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Mot de passe</nz-form-label>-->
+    <nz-form-control   nzErrorTip="Veuillez saisir votre mot de passe!">
+      <nz-input-group nzPrefixIcon="lock">
+        <input
+          nz-input
+          type="password"
+          id="password"
+          #password
+          formControlName="password"
+          placeholder="Mot de passe"
+        />
+      </nz-input-group>
+
+    </nz-form-control>
+  </nz-form-item>
+
+  <div nz-row class="login-form-margin">
+<!--    <div nz-col [nzSpan]="12">-->
+<!--      <label nz-checkbox formControlName="remember">-->
+<!--        <span>Se souvenir de moi</span>-->
+<!--      </label>-->
+<!--    </div>-->
+    <div nz-col [nzSpan]="12">
+      <a class="login-form-link">Mot de passe oublié</a>
+    </div>
+  </div>
+  <nz-form-control >
+     <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Se connecter</button>
+  </nz-form-control>
+  Ou
+  <a routerLink="/auth/signUp" class="login-form-link">S'inscrire maintenant !</a>
+
+
 </form>
 
+</nz-card>
+
+
+<!--<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">-->
+<!--  <nz-form-item>-->
+<!--    <nz-form-control nzErrorTip="Please input your username!">-->
+<!--      <nz-input-group nzPrefixIcon="user">-->
+<!--        <input type="text" nz-input formControlName="userName" placeholder="Username" />-->
+<!--      </nz-input-group>-->
+<!--    </nz-form-control>-->
+<!--  </nz-form-item>-->
+<!--  <nz-form-item>-->
+<!--    <nz-form-control nzErrorTip="Please input your Password!">-->
+<!--      <nz-input-group nzPrefixIcon="lock">-->
+<!--        <input type="password" nz-input formControlName="password" placeholder="Password" />-->
+<!--      </nz-input-group>-->
+<!--    </nz-form-control>-->
+<!--  </nz-form-item>-->
+<!--  <div nz-row class="login-form-margin">-->
+<!--    <div nz-col [nzSpan]="12">-->
+<!--      <label nz-checkbox formControlName="remember">-->
+<!--        <span>Remember me</span>-->
+<!--      </label>-->
+<!--    </div>-->
+<!--    <div nz-col [nzSpan]="12">-->
+<!--      <a class="login-form-forgot">Forgot password</a>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>-->
+<!--  Or-->
+<!--  <a>register now!</a>-->
+<!--</form>-->

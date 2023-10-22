@@ -1,40 +1,40 @@
+<nz-card nzHoverable>
   <form nz-form  class="card">
-        <nz-form-item>
-          <nz-form-label>Région</nz-form-label>
-          <nz-form-control>
-            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Please select an Region">
-              <nz-option nzLabel="Basse Guinée" nzValue="basse"></nz-option>
-              <nz-option nzLabel="Moyenne Guinée" nzValue="moyenne"></nz-option>
-              <nz-option nzLabel="Haute Guinée" nzValue="haute"></nz-option>
-              <nz-option nzLabel="Guinée Forestière" nzValue="foret"></nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label>Type</nz-form-label>
-          <nz-form-control>
-            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Please choose the type">
-              <nz-option nzLabel="Maison" nzValue="Maison"></nz-option>
-              <nz-option nzLabel="Chambre" nzValue="Chambre"></nz-option>
-              <nz-option nzLabel="Appartement" nzValue="Appartement"></nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label>Période</nz-form-label>
-          <nz-form-control>
-            <nz-range-picker></nz-range-picker>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-control>
-            <button  nz-button nzType="primary">
-              <span nz-icon nzType="search"></span>
-              Search
-            </button>
-          </nz-form-control>
-        </nz-form-item>
-  </form>
+          <nz-form-item>
+            <nz-form-label>Filtre</nz-form-label>
+            <nz-form-control>
+              <nz-input-group>
+                <input type="text" nz-input [(ngModel)]="inputValue" placeholder="Filtrer les résultats" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label>Terme</nz-form-label>
+            <nz-form-control>
+              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Choisissez un terme">
+                <nz-option nzLabel="Maison" nzValue="Maison"></nz-option>
+                <nz-option nzLabel="Chambre" nzValue="Chambre"></nz-option>
+                <nz-option nzLabel="Appartement" nzValue="Appartement"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label>Période</nz-form-label>
+            <nz-form-control>
+              <nz-range-picker></nz-range-picker>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button  nz-button nzType="primary">
+                <span nz-icon nzType="search"></span>
+                Search
+              </button>
+            </nz-form-control>
+          </nz-form-item>
+    </form>
+</nz-card>
 
 
 <!--drawwer-->

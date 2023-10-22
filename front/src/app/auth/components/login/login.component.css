@@ -1,0 +1,84 @@
+@charset "UTF-8";
+.form-card {
+  box-sizing: border-box;
+  width: 50%;
+  margin: 20px auto;
+  padding: 10px 30px;
+  box-shadow: lightgray 4px 4px 20px;
+}
+
+.form-group {
+  margin: 10px auto;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.action-buttons {
+  width: 100%;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+}
+
+.phone-select {
+  width: 100px;
+}
+
+.login-form {
+  background-color: #FF9F57;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 50%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Styles pour les écrans mobiles (largeur inférieure à 768px) */
+@media (max-width: 768px) {
+  .login-form {
+    max-width: 100%;
+    /* Changez la largeur à 100% pour les écrans mobiles */
+  }
+}
+.login-form-margin {
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.login-form-link {
+  color: white;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  /* Espace en bas de la div logo (ajustez selon vos préférences) */
+}
+
+.logo .image img {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.logo .text__logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/*# sourceMappingURL=login.component.css.map */
