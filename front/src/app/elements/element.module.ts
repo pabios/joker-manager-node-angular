@@ -37,6 +37,8 @@ import {NzTagModule} from "ng-zorro-antd/tag";
 import {NzResultModule} from "ng-zorro-antd/result";
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {FiltreModule} from "../filtre/filtre.module";
+import {NzStepsModule} from "ng-zorro-antd/steps";
+import {NzDividerModule} from "ng-zorro-antd/divider";
 
 
 
@@ -84,6 +86,8 @@ import {FiltreModule} from "../filtre/filtre.module";
     NzResultModule,
     NzModalModule,
     FiltreModule,
+    NzStepsModule,
+    NzDividerModule,
   ],
   exports:[
     ElementAddComponent,

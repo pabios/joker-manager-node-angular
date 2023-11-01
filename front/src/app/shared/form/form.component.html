@@ -1,57 +1,85 @@
 <div  class="containerForme__preview">
   <div class="form-card">
-
     <mat-card style="margin: 20px;text-align: center">
       <mat-card-title class="mat-headline">Ajout d'un logement</mat-card-title>
     </mat-card>
     <form [formGroup]="elementForm" enctype="multipart/form-data">
       <p>
         <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>Donne un titre a ton logement</mat-label>
-          <input formControlName="name"   #name  matInput placeholder="Donne un titre a ton logement">
-          <mat-icon matSuffix>title</mat-icon>
-          <mat-hint>Titre</mat-hint>
+          <mat-label>choisir le type du logement</mat-label>
+          <mat-select #name formControlName="name">
+            <mat-option   *ngFor="let elementType of elementType$|async" value="{{elementType.name}}">{{elementType.name}}</mat-option>
+          </mat-select>
+          <mat-hint>Type du logement</mat-hint>
         </mat-form-field>
       </p>
+
+<!--      <p>-->
+<!--        <mat-form-field style="width: 100%" appearance="fill">-->
+<!--          <mat-label>Titre a ton logement</mat-label>-->
+<!--          <input formControlName="name"   #name  matInput placeholder="mettre liste deroulant">-->
+<!--          <mat-icon matSuffix>title</mat-icon>-->
+<!--          <mat-hint>Titre</mat-hint>-->
+<!--        </mat-form-field>-->
+<!--      </p>-->
       <p>
         <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>Donne une description a ton logement</mat-label>
-          <input formControlName="description"   #description  matInput placeholder="description du logement">
+          <mat-label>Description  du logement</mat-label>
+          <input formControlName="description"   #description  matInput placeholder="Description du logement">
           <mat-icon matSuffix>description</mat-icon>
-          <mat-hint>Titre</mat-hint>
+          <mat-hint>Description</mat-hint>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field style="width: 100%" appearance="fill">
           <mat-label>Dites nous en plus sur le logement</mat-label>
-          <input formControlName="content"   #content  matInput placeholder="dite nous plus sur le logement">
+          <input formControlName="content"   #content  matInput placeholder="exemple: parking, piscine ...">
           <mat-icon matSuffix>description</mat-icon>
           <mat-hint>Plus de Details</mat-hint>
         </mat-form-field>
       </p>
-
       <p>
         <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>Precisez ou se trouve votre logement </mat-label>
-          <input formControlName="location" #location matInput placeholder="localisation du logement">
+          <mat-label>Choisir une région administrative</mat-label>
+          <mat-select formControlName="category">
+            <mat-option   *ngFor="let category of category$|async" value="{{category.id}}">{{category.name}}</mat-option>
+          </mat-select>
+          <mat-hint>Région administrative</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>Localisation du logement </mat-label>
+          <input formControlName="location" #location matInput placeholder="exemple (ville,commune)">
           <mat-icon matSuffix>category</mat-icon>
           <mat-hint>Localisation</mat-hint>
         </mat-form-field>
       </p>
 
+<!--      nouveau champs-->
+
       <p>
         <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>Donnez la surface de votre logement </mat-label>
-          <input formControlName="sizee" #sizee matInput placeholder="Surface du logement">
-          <mat-icon matSuffix>category</mat-icon>
+          <mat-label>Quartier </mat-label>
+          <input formControlName="exactLocate" #exactLocate matInput placeholder="Quartier/District">
+          <mat-icon matSuffix>location_on</mat-icon>
+          <mat-hint>Quartier ou District</mat-hint>
+        </mat-form-field>
+      </p>
+<!--      //-->
+      <p>
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>Surface </mat-label>
+          <input formControlName="sizee" #sizee matInput placeholder="Surface">
+          <mat-icon matSuffix>crop</mat-icon>
           <mat-hint>Surface du logement</mat-hint>
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>Donner un prix mensuel a votre logement  </mat-label>
-          <input formControlName="price"  #price matInput placeholder="Donner un prix mensuel ">
+          <mat-label>Prix par jour  </mat-label>
+          <input formControlName="price"  #price matInput placeholder="Prix par jour ">
           <mat-icon matSuffix>Prix</mat-icon>
           <mat-hint>Prix par jour</mat-hint>
         </mat-form-field>
@@ -64,39 +92,49 @@
           </mat-select>
         </mat-form-field>
       </p>
-      <p>
-        <mat-form-field style="width: 100%" appearance="fill">
-            <mat-label>choisir une region geographique</mat-label>
-          <mat-select formControlName="category">
-            <mat-option   *ngFor="let category of category$|async" value="{{category.id}}">{{category.name}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
+
 
 
       <div class="upload-wrapper">
         <label for="file-input" class="file-label">
           <mat-icon class="upload-icon">cloud_upload</mat-icon>
-          <span class="upload-text">Choisir 4 images pour le logement</span>
+          <span class="upload-text">Choisir les images pour le logement</span>
         </label>
         <input id="file-input" type="file" class="file-input" multiple accept="image/*" #fichier (change)="onFileChangeImage($event)">
 
-        <span class="file-name" *ngIf="fichier.files?.length">{{ imageSrc.name }}</span>
+<!--        <span class="file-name" *ngIf="fichier.files?.length">{{ fichier.name }}</span>-->
+        <span class="file-name" *ngIf="imagesSrc.length > 0">
+            <nz-progress [nzPercent]="imagesSrc.length" nzType="circle" [nzFormat]="formatPhotos"></nz-progress>
+          </span>
+
       </div>
+
+
+      <!--      <ng-template #noToDisplay>-->
+<!--         oups affichage-->
+<!--      </ng-template>-->
       <button mat-raised-button color="primary"
-              (click)="onSend(name.value,content.value,description.value,location.value,price.value,sizee.value)"
+              (click)="onSend(content.value,description.value,location.value,exactLocate.value,price.value,sizee.value)"
       >
         Publier
       </button>
 
+<!--      //-->
+<!--      <nz-upload nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" [nzTransformFile]="transformFile">-->
+<!--          <span nz-icon nzType="upload"></span>-->
+<!--          <input nz-button id="file-input_" type="file" class="file-input" multiple accept="image/*" #fichier (change)="onFileChangeImage($event)">-->
+<!--      </nz-upload>-->
 
     </form>
   </div>
+<!--  <div *ngFor="let img of imagesSrc ">-->
+<!--      {{img[0].name}}-->
+<!--  </div>-->
 
 
 
 
-
+<!--  <h3 *ngIf="elementType$  | async as et">Titre:{{et[0].name}}</h3>-->
 
 <!--  <div *ngIf="elementProview$ | async as state-list">-->
   <div class="face-snap-cardnap-card" *ngIf="elementProview$ | async as element">

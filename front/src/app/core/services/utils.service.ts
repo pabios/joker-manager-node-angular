@@ -4,6 +4,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {ItemType} from "../models/Piece.model";
 import {NotificationService} from "./notification.service";
+import {Site} from "../models/site.model";
 
 @Injectable({
   providedIn: 'root'
@@ -48,4 +49,16 @@ export class UtilsService {
     this.notifService.showSuccess(message,title)
   }
 
+
+  likesSite(value:string,siteId:string):Observable<any>{ // si 0 decremente et si 1 increment
+    const formData = new FormData();
+    formData.append('value',  value);
+    formData.append('site_id', environment.siteId);
+
+    return this.http.post<any>(`${environment.urlApi}/site/like/add`,formData)
+  }
+
+  getSite(id:number) {
+    return this.http.get<Site>(`${environment.urlApi}/site/${id}`);
+  }
 }

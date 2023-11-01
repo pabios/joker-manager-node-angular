@@ -1,0 +1,36 @@
+<nz-content>
+
+<div class="container">
+  <ng-container *ngIf="showPageHeader">
+    <nz-page-header nzBackIcon="arrow-left" [nzGhost]="false"></nz-page-header>
+  </ng-container>
+
+  <div class="city-cards"  >
+    <div class="city-card" *ngFor="let categoryItem of category$ | async">
+      <a [routerLink]="'/elements/list/' + categoryItem.id" class="card-link">
+        <nz-card style="width:100%;" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit]">
+          <nz-card-meta
+            nzTitle="{{ categoryItem.name }}"
+            nzDescription="{{ categoryItem.nombreElement }} logements"
+            [nzAvatar]="avatarTemplate"
+          ></nz-card-meta>
+        </nz-card>
+      </a>
+
+
+      <ng-template #avatarTemplate>
+        <nz-avatar [nzSrc]="api_url+categoryItem.imageUrl"></nz-avatar>
+      </ng-template>
+      <ng-template #coverTemplate>
+        <img   [src]="api_url+categoryItem.imageUrl"  alt="{{ categoryItem.name }}"/>
+      </ng-template>
+      <ng-template #actionSetting>
+        <span nz-icon nzType="eye" nzTheme="twotone">Voir...</span>
+      </ng-template>
+      <ng-template #actionEdit>
+        <span nz-icon nzType="more"> {{ categoryItem.info }}</span>
+      </ng-template>
+    </div>
+  </div>
+</div>
+</nz-content>

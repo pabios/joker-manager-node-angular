@@ -36,6 +36,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 import {environment} from "../environments/environment";
 import {NzBreadCrumbModule} from "ng-zorro-antd/breadcrumb";
 import {NzModalModule} from "ng-zorro-antd/modal";
+import {CookieService} from "ngx-cookie-service";
 
 registerLocaleData(fr);
 
@@ -81,7 +82,7 @@ export function tokenGetter() {
   providers: [
     // { provide: LOCALE_ID, useValue: 'fr-FR' },
     // httpInterceptorProviders
-
+    CookieService,
     { provide: NZ_I18N, useValue: fr_FR }
   ],
   bootstrap: [AppComponent]

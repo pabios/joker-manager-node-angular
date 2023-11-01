@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Property, PropertyType} from "../../core/models/form-proporty.model";
 import {FormControl, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
-import {map, Observable, tap} from "rxjs";
+import {map, Observable, Observer, tap} from "rxjs";
 import {Element} from "../../core/models/element.model";
 import {ElementService} from "../../core/services/element.service";
 import {Router} from "@angular/router";
@@ -11,6 +11,9 @@ import {CategoryService} from "../../core/services/category.service";
 import {ItemService} from "../../core/services/item.service";
 import {NotificationService} from "../../core/services/notification.service";
 import {AuthService} from "../../core/services/auth.service";
+import {NzUploadFile} from "ng-zorro-antd/upload";
+import {ElementType} from "../../core/models/elementType.model";
+import {ElementTypeService} from "../../core/services/elementType.service";
 
 @Component({
   selector: 'app-form',
@@ -22,6 +25,8 @@ export class FormComponent {
 
   @Input() propertyType!: PropertyType;
   property!: { price: number; description: string; title: string; type: PropertyType }
+
+  housingType: { id: number, type: string }[] = [];
 
   //
   elementForm!: UntypedFormGroup;
@@ -37,13 +42,18 @@ export class FormComponent {
   itemTypeGroup!: FormGroup;
   category$!: Observable<Category[]>
   items$!: Observable<ItemType[]>
+  elementType$!: Observable<ElementType[]>
 
   imageForPreview!:any;
+
+  formatPhotos = (percent: number): string => `${percent} Images`;
+   selectedElementTypeName!: string;
 
   constructor(private  formBuilder: UntypedFormBuilder,
               private elementService: ElementService,
               private catergoryService: CategoryService,
               private itemsService: ItemService,
+              private elementTypeService:ElementTypeService,
               private router:Router,
               private notificationService:NotificationService,
               private auth:AuthService
@@ -56,21 +66,26 @@ export class FormComponent {
 
     this.category$ = this.catergoryService.getAllCategory();
     this.items$ = this.itemsService.getAllItems();
+    this.elementType$ = this.elementTypeService.getAllElementType();
     // end new
     //
     this.urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/;
     this.fichierRegex = /([a-zA-Z0-9\s_\\.\-\(\):])+(.md)$/;
 
+
+    //
+
     this.elementForm = this.formBuilder.group({
-        name:[null,Validators.required],
+        name:['',Validators.required],
         description: [null,Validators.required],
         content: [null,Validators.required],
         imageUrl: [null,[Validators.required,Validators.pattern(this.urlRegex)]],
-        sizee:[null],
-        price:[null],
+        sizee:[null,Validators.required],
+        price:[null,Validators.required],
         item:[null,Validators.required],
         category:[null,Validators.required],
-        location:[''],
+        location:['',Validators.required],
+        exactLocate:['',Validators.required],
         // fichier:['',[Validators.required,Validators.pattern(this.fichierRegex)]]
       },{
         updateOn: 'blur' // formulaire mis a jours lorsqu'on change de champs
@@ -78,6 +93,9 @@ export class FormComponent {
 
     );
 
+
+
+    //
     this.elementProview$ = this.elementForm.valueChanges.pipe(
       map(elementForm => ({
         ...elementForm,
@@ -90,6 +108,9 @@ export class FormComponent {
     // this.user_id = localStorage.getItem('user_id');
     // this.user_id = sessionStorage.getItem('user_id');
     this.user_id = this.auth.getUserId();
+    //
+    this.selectedElementTypeName = ''
+
   }
 
   // onSubmitForm():void{
@@ -152,21 +173,7 @@ export class FormComponent {
     }
   }
 
-  // ok mais juste 1
-  // onFileChangeImage(event: any) {
-  //   const files = event.target.files;
-  //   if (files) {
-  //     for (let i = 0; i < files.length; i++) {
-  //       const reader = new FileReader();
-  //       const file = files[i];
-  //       const fileName = file.name; // Nom du fichier
-  //
-  //
-  //       this.imagesSrc = file;
-  //       console.log('Nom du fichier :', fileName);
-  //     }
-  //   }
-  // }
+
 
   onFileChangeImage(event: any) {
     const files = event.target.files;
@@ -176,51 +183,86 @@ export class FormComponent {
 
       console.log("le nombre de fichier")
       console.log(files.length)
+      console.log(this.selectedElementTypeName)
+      console.log('le selectedNameType')
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const fileName = file.name; // Nom du fichier
 
-        // Ajoutez le fichier au tableau this.imagesSrc
+        // Ajoutez le fichier au tableau
+        // this.imagesSrc
         this.imagesSrc.push(file);
+
 
         // Accédez au nom du fichier ici
         console.log('Nom du fichier :', fileName);
+
       }
+      console.log('Nom du fichier :', this.imagesSrc);
+
       this.imageForPreview = this.imagesSrc[0];
     }
   }
+  // zorro upload
+  transformFile = (file: NzUploadFile): Observable<Blob> =>
+    new Observable((observer: Observer<Blob>) => {
+      const reader = new FileReader();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      reader.readAsDataURL(file as any);
+      reader.onload = () => {
+        const canvas = document.createElement('canvas');
+        const img = document.createElement('img');
+        img.src = reader.result as string;
+        img.onload = () => {
+          const ctx = canvas.getContext('2d')!;
+          ctx.drawImage(img, 0, 0);
+          ctx.fillStyle = 'red';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('Ant Design', 20, 20);
+          canvas.toBlob(blob => {
+            observer.next(blob!);
+            observer.complete();
+          });
+        };
+      };
+    });
 
 
-
+  getTypeHoussingById(id: number): string  {
+    const housingItem = this.housingType.find(item => item.id === id);
+    return housingItem ? housingItem.type : ''
+  }
 
   /**
    *  nouvelle enregistrement
-   * @param name
    * @param content
    * @param description
    * @param location
+   * @param exactLocate
    * @param price
    * @param size
    */
 // (click)="onSend(title.value,description.value,locate.value,price.value,sizee.value,typeBed.value,region.value)"
 
-  onSend(name: string,content:string, description: string, location: string,price:string,  size:string){
-    const selectedCategoryId = this.elementForm!.get('category')?.value;
+  onSend(content:string, description: string, location: string,exactLocate:string,price:string,  size:string){
+    let selectedCategoryId = this.elementForm!.get('category')?.value;
     //
-    console.log('ID de la catégorie sélectionnée :', selectedCategoryId);
-    const selectedItemId = this.elementForm!.get('item')?.value;
+    // console.log('ID de la catégorie sélectionnée :', selectedCategoryId);
+    let selectedItemId = this.elementForm!.get('item')?.value;
     //
-    console.log('ID de la item sélectionnée :', selectedItemId);
+    // console.log('ID de la item sélectionnée :', selectedItemId);
+    let selectedElementTypeName = this.elementForm!.get('name')?.value;
+    // console.log(selectedElementTypeName)
 
-    console.log("le nome ")
 
-    console.log(name)
+    //console.log(name)
     const formData : FormData = new FormData();
-    formData.append('name',name)
+    formData.append('name', selectedElementTypeName)
     formData.append('content',content)
     formData.append('description',description)
     formData.append('locate',location)
+    formData.append('exactLocate',exactLocate)
     formData.append('price',price)
     formData.append('size',size)
 

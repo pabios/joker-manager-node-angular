@@ -51,10 +51,10 @@
   <nz-form-item >
 <!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Mot de passe</nz-form-label>-->
     <nz-form-control   nzErrorTip="Veuillez saisir votre mot de passe!">
-      <nz-input-group nzPrefixIcon="lock">
+      <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
         <input
           nz-input
-          type="password"
+          [type]="passwordVisible ? 'text' : 'password'"
           id="password"
           #password
           formControlName="password"
@@ -64,6 +64,13 @@
 
     </nz-form-control>
   </nz-form-item>
+  <ng-template #suffixTemplate>
+      <span
+        nz-icon
+        [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+        (click)="passwordVisible = !passwordVisible"
+      ></span>
+  </ng-template>
 
   <div nz-row class="login-form-margin">
 <!--    <div nz-col [nzSpan]="12">-->
@@ -71,9 +78,9 @@
 <!--        <span>Se souvenir de moi</span>-->
 <!--      </label>-->
 <!--    </div>-->
-    <div nz-col [nzSpan]="12">
-      <a class="login-form-link">Mot de passe oublié</a>
-    </div>
+<!--    <div nz-col [nzSpan]="12">-->
+<!--      <a class="login-form-link">Mot de passe oublié</a>-->
+<!--    </div>-->
   </div>
   <nz-form-control >
      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Se connecter</button>

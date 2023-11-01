@@ -22,6 +22,9 @@ import {NotificationService} from "../../../core/services/notification.service";
 export class LoginComponent implements OnInit {
   snapForm!: UntypedFormGroup;
   //
+  passwordVisible = false;
+  password?: string;
+  //
   countries!: any[];
   validateForm!: FormGroup<{
     phoneNumber: FormControl<string>;

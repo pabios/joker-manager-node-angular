@@ -20,10 +20,11 @@ import {NzSpaceModule} from "ng-zorro-antd/space";
 import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import {MatCardModule} from "@angular/material/card";
 import {NzAlertModule} from "ng-zorro-antd/alert";
+import {NzAvatarModule} from "ng-zorro-antd/avatar";
 
 
 @NgModule({
-    imports: [ProfilsRoutingModule, NzListModule, NzDrawerModule, NzDescriptionsModule, NzDividerModule, NzIconModule, NzProgressModule, NzResultModule, NzButtonModule, NzBadgeModule, NzCardModule, NzTableModule, NgForOf, NzPageHeaderModule, NzSpaceModule, NzPopconfirmModule, NgIf, MatCardModule, AsyncPipe, NzAlertModule],
+    imports: [ProfilsRoutingModule, NzListModule, NzDrawerModule, NzDescriptionsModule, NzDividerModule, NzIconModule, NzProgressModule, NzResultModule, NzButtonModule, NzBadgeModule, NzCardModule, NzTableModule, NgForOf, NzPageHeaderModule, NzSpaceModule, NzPopconfirmModule, NgIf, MatCardModule, AsyncPipe, NzAlertModule, NzAvatarModule],
   declarations: [ProfilsComponent],
   exports: [ProfilsComponent]
 })

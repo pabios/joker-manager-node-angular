@@ -1,51 +1,61 @@
-<!--<app-filtre></app-filtre>-->
+
+<nz-switch [(ngModel)]="loading"></nz-switch>
+<nz-list [nzDataSource]="listDataBanner" [nzRenderItem]="item" [nzItemLayout]="'vertical'">
+  <ng-template #item let-item>
+    <nz-list-item
+      [nzContent]="loading ? ' ' : item.content"
+      [nzExtra]="loading ? null : extra"
+      class="custom-list-item"
+    >
+      <nz-skeleton [nzLoading]="loading" [nzActive]="true" [nzAvatar]="true">
+
+        <nz-list-item-meta [nzAvatar]="item.avatar" [nzTitle]="nzTitle" >
+          <ng-template #nzTitle>
+            <a href="{{ item.href }}">{{ item.title }}</a>
+          </ng-template>
+        </nz-list-item-meta>
+        <ng-template #extra>
+          <a href="elements">
+            <img width="272" alt="region administrative guinee" src="assets/img/guinea_regions.png"  />
+          </a>
+        </ng-template>
+      </nz-skeleton>
+    </nz-list-item>
+  </ng-template>
+</nz-list>
+
+<!-- //-->
+<div class="container d-flex justify-content-center align-items-center">
+  <p class="display-4 text-center"> Région Administrative</p>
+</div>
+<app-categories></app-categories>
 
 
-<!--<app-state-list></app-state-list>-->
+<!--//-->
+<div class="container d-flex justify-content-center align-items-center">
+  <p class="display-4 text-center">La plateforme</p>
+</div>
+
 <div class="container">
   <div class="city-cards">
-
-      <div class="city-card" *ngFor="let categoryItem of category$ | async">
-        <a [routerLink]="'elements/list/' + categoryItem.id" class="card-link">
-          <img [src]="categoryItem.imageUrl" alt="{{ categoryItem.name }}">
+      <div class="page-card city-card " *ngFor="let page of pages ">
+        <a [routerLink]="'spec/about/' + page.name" class="card-link">
+          <div class="photo">
+            <img src="assets/img/{{page.imageUrl}}" alt="{{ page.imageUrl }}">
+          </div>
           <div class="titre-icon-region">
             <p>
-              <mat-icon>location_city</mat-icon> <span class="name">{{ categoryItem.name }}</span>
+              <mat-icon>settings</mat-icon> <span class="name">{{ page.name }}</span>
             </p>
             <p>
-              <mat-icon>people</mat-icon> <span class="name">≈ {{ categoryItem.info }} habitants</span>
+              <mat-icon>eye</mat-icon> <span class="name">Lire plus ...</span>
             </p>
           </div>
-          <p class="icon-text">
-            <mat-icon>hotel</mat-icon> {{ categoryItem.nombreElement }} logements
-          </p>
+
         </a>
       </div>
   </div>
 </div>
-
-<!--  <section class="sec-stats">-->
-<!--    <nz-card nzHoverable class="sec-stats-item">-->
-<!--      <span class="sec-item__icon" nz-icon nzType="usergroup-delete" nzTheme="outline"></span>-->
-<!--      <p>Nombre d'utilisateurs</p>-->
-<!--      <p>{{34}}</p>-->
-<!--    </nz-card>-->
-<!--    <nz-card nzHoverable  class="sec-stats-item">-->
-<!--      <span nz-icon nzType="user-switch" nzTheme="outline"></span>-->
-<!--      <p>Nombre de partenaires</p>-->
-<!--      <p>{{30}}</p>-->
-<!--    </nz-card>-->
-<!--    <nz-card nzHoverable  class="sec-stats-item">-->
-<!--      <span nz-icon nzType="eye" nzTheme="outline"></span>-->
-<!--      <p>Nombre de visiteurs</p>-->
-<!--      <p>{{50}}</p>-->
-<!--    </nz-card>-->
-<!--    <nz-card nzHoverable  class="sec-stats-item">-->
-<!--      <span nz-icon nzType="shop" nzTheme="outline"></span>-->
-<!--      <p>Nombre de logements</p>-->
-<!--      <p>{{90}}</p>-->
-<!--    </nz-card>-->
-<!--  </section>-->
 
 <nz-result
   nzStatus="success"
@@ -56,6 +66,45 @@
     <button nz-button nzType="primary" (click)="utilsService.sendEmail('Envoyez-nous votre pièce d\'identité en pièce Jointe et votre identifiant (seulement le numéro de téléphone ) ')">Faire une demande</button>
   </div>
 </nz-result>
+
+<nz-switch [(ngModel)]="loading"></nz-switch>
+<nz-list [nzDataSource]="listData" [nzRenderItem]="item" [nzItemLayout]="'vertical'">
+  <ng-template #item let-item>
+    <nz-list-item
+      [nzContent]="loading ? ' ' : item.content"
+      [nzActions]="loading ? [] : [starAction, likeAction]"
+      [nzExtra]="loading ? null : extra"
+    >
+      <nz-skeleton [nzLoading]="loading" [nzActive]="true" [nzAvatar]="true">
+
+        <ng-template  #starAction>
+          <span>
+             <span  nz-icon nzType="star-o" style="margin-right: 8px;"></span>
+            {{this.likeCount}}
+          </span>
+        </ng-template>
+        <ng-template #likeAction>
+          <!--          <a (click)="addLike()" nz-button> <span nz-icon nzType="like-o" style="margin-right: 8px;"></span></a>-->
+          <a (click)="likes()" nz-button [nzType]="isLiked ? 'primary' : 'default'" [ngClass]="{'liked': isLiked}">
+            <span nz-icon [nzType]="isLiked ? 'dislike' : 'like-o'" style="margin-right: 8px;"></span>
+            <!--            {{ isLiked ? 'disLike' : 'Like' }}-->
+          </a>
+
+        </ng-template>
+        <nz-list-item-meta [nzAvatar]="item.avatar" [nzTitle]="nzTitle" [nzDescription]="item.description">
+          <ng-template #nzTitle>
+            <a href="{{ item.href }}">{{ item.title }}</a>
+          </ng-template>
+        </nz-list-item-meta>
+        <ng-template #extra>
+          <a href="elements">
+            <img width="272" alt="region administrative guinee" src="assets/img/guinea_regions.png"  />
+          </a>
+        </ng-template>
+      </nz-skeleton>
+    </nz-list-item>
+  </ng-template>
+</nz-list>
 
 <nz-card style="width: 100%;margin-top: 16px">
   <nz-card-meta
@@ -68,5 +117,6 @@
 <ng-template #avatarTemplate>
   <nz-avatar nzSrc="{{this.avatarLogo}}"></nz-avatar>
 </ng-template>
+
 
 

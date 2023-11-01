@@ -26,6 +26,9 @@ import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzResultModule} from "ng-zorro-antd/result";
 import {RouterLink} from "@angular/router";
+import {NzUploadModule} from "ng-zorro-antd/upload";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzProgressModule} from "ng-zorro-antd/progress";
 // import {NzSpaceModule} from "ng-zorro-antd/space";
 // import {NzTransitionPatchModule} from "ng-zorro-antd/core/transition-patch/transition-patch.module";
 // import {NzWaveModule} from "ng-zorro-antd/core/wave";
@@ -85,6 +88,9 @@ import {RouterLink} from "@angular/router";
     NzInputModule,
     NzResultModule,
     RouterLink,
+    NzUploadModule,
+    NzIconModule,
+    NzProgressModule,
     // NzSpaceModule,
     // NzTransitionPatchModule,
     // NzWaveModule,

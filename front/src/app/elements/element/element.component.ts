@@ -48,7 +48,7 @@ export class ElementComponent {
       this.badgeInfo.badge = "Garantie";
       this.badgeInfo.color = "green";
     } else {
-      this.badgeInfo.badge = "Sans Garantie";
+      this.badgeInfo.badge = "Vérification en cours";
       this.badgeInfo.color = "volcano";
     }
   }

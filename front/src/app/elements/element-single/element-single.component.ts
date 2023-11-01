@@ -33,7 +33,7 @@ export class ElementSingleComponent implements  OnInit,AfterViewInit{
     lng:6.188186803578728
   };
   api_url!:string;
-
+  userAvatar!:string
   //
   hGutter = 16;
   vGutter = 16;
@@ -80,6 +80,7 @@ export class ElementSingleComponent implements  OnInit,AfterViewInit{
     this.images$ = this.imageService.getImagesForElement(this.elementId);
     //
     //
+    this.userAvatar = this.api_url +"/"
 
   }
 
