@@ -2,10 +2,6 @@
 .phone-icon {
   font-size: 24px;
   /* Taille de l'icône (ajustez selon vos besoins) */
-  color: white;
-  /* Couleur de l'icône (blanc pour le contraste avec le fond) */
-  background-color: #FF9F57;
-  /* Couleur de fond du cercle */
   border-radius: 50%;
   /* Appliquer la forme de cercle */
   width: 36px;

@@ -29,6 +29,12 @@ import {RouterLink} from "@angular/router";
 import {NzUploadModule} from "ng-zorro-antd/upload";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzProgressModule} from "ng-zorro-antd/progress";
+import {ButtonModule} from "primeng/button";
+import {MessagesModule} from "primeng/messages";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {BadgeModule} from "primeng/badge";
+import {CardModule} from "primeng/card";
+import {MultiSelectModule} from "primeng/multiselect";
 // import {NzSpaceModule} from "ng-zorro-antd/space";
 // import {NzTransitionPatchModule} from "ng-zorro-antd/core/transition-patch/transition-patch.module";
 // import {NzWaveModule} from "ng-zorro-antd/core/wave";
@@ -63,38 +69,44 @@ import {NzProgressModule} from "ng-zorro-antd/progress";
     FormBookingComponent,
     SendFormComponent
   ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatRadioModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatIconModule,
-    // BrowserModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    NzButtonModule,
-    NzDescriptionsModule,
-    NzPageHeaderModule,
-    NzPopoverModule,
-    NzCommentModule,
-    NzFormModule,
-    NzAvatarModule,
-    FormsModule,
-    NzInputModule,
-    NzResultModule,
-    RouterLink,
-    NzUploadModule,
-    NzIconModule,
-    NzProgressModule,
-    // NzSpaceModule,
-    // NzTransitionPatchModule,
-    // NzWaveModule,
-  ],
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatRadioModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatIconModule,
+        // BrowserModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        NzButtonModule,
+        NzDescriptionsModule,
+        NzPageHeaderModule,
+        NzPopoverModule,
+        NzCommentModule,
+        NzFormModule,
+        NzAvatarModule,
+        FormsModule,
+        NzInputModule,
+        NzResultModule,
+        RouterLink,
+        NzUploadModule,
+        NzIconModule,
+        NzProgressModule,
+        ButtonModule,
+        MessagesModule,
+        ProgressSpinnerModule,
+        BadgeModule,
+        CardModule,
+        MultiSelectModule,
+        // NzSpaceModule,
+        // NzTransitionPatchModule,
+        // NzWaveModule,
+    ],
   exports: [
     CommonModule,
     MatToolbarModule,

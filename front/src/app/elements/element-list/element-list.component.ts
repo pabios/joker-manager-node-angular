@@ -71,7 +71,7 @@ export class ElementListComponent implements OnInit {
     this.pageSize = 3;
     this.setPageSizeOptions();
 
-    this.addMarker();
+    // this.addMarker();
     //
 
 
@@ -101,9 +101,6 @@ export class ElementListComponent implements OnInit {
       // Appelez la fonction de préchargement ici
       const imageUrlsToPreload = this.imagesList.map(image => image.url);
       this.preloadImages(imageUrlsToPreload);
-
-
-      console.log(this.imagesList);
     });
 
 
@@ -128,6 +125,7 @@ export class ElementListComponent implements OnInit {
     });
   }
   filterImagesByElement(element: Root) {
+    console.log(this.imagesList.filter(image => image.elementId === element.id))
     return this.imagesList.filter(image => image.elementId === element.id);
   }
 

@@ -17,7 +17,7 @@ import {ToastrModule} from "ngx-toastr";
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { fr_FR } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
+import {HashLocationStrategy, LocationStrategy, registerLocaleData} from '@angular/common';
 import fr from '@angular/common/locales/fr';
 import { HttpClientModule } from '@angular/common/http';
 import { IconsProviderModule } from './icons-provider.module';
@@ -83,7 +83,8 @@ export function tokenGetter() {
     // { provide: LOCALE_ID, useValue: 'fr-FR' },
     // httpInterceptorProviders
     CookieService,
-    { provide: NZ_I18N, useValue: fr_FR }
+    { provide: NZ_I18N, useValue: fr_FR },
+    { provide: LocationStrategy, useClass: HashLocationStrategy } // ajoute un # au url
   ],
   bootstrap: [AppComponent]
 })

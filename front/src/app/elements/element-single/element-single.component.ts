@@ -72,7 +72,7 @@ export class ElementSingleComponent implements  OnInit,AfterViewInit{
 
     this.api_url = environment.backend+"/";
 
-    this.addMarker();
+    // this.addMarker();
     //
     this.array = new Array(this.count)
 

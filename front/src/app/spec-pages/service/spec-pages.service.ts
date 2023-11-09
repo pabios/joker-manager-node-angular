@@ -91,7 +91,7 @@ export class SpecPagesService implements OnInit{
 
   pages = [
     {name: "Charte-qualite",imageUrl:"quality.jpg",content:this.getCharte()},
-    {name: "Donnees-et-confidentialite",imageUrl:"confidentiality.jpg",content:this.getConfidentialite()},
+    {name: "Donnees-et-confidentialite",imageUrl:"quality.jpg",content:this.getConfidentialite()},
     {name: "Fonctionnement-du-site",imageUrl:"fonctionnement.jpg",content:this.getFonctionnement()},
     {name: "Articles",imageUrl:"articles.png",content:this.getArticles()}
   ];

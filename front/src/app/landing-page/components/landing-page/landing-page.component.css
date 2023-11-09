@@ -20,29 +20,26 @@
   animation: bounce 1s;
 }
 
-.custom-list-item {
-  background-color: #f9f9f9;
-  /* Couleur d'arrière-plan */
-  border: 1px solid #ccc;
-  /* Bordure */
-  border-radius: 5px;
-  /* Coins arrondis */
-  padding: 20px;
-  /* Espacement intérieur */
+.hero-section {
+  background: url("/../../../assets/img/bg_blog.png") center/cover no-repeat;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 2rem;
   margin-bottom: 10px;
-  /* Marge en bas */
 }
 
-.custom-list-item a {
-  color: #007bff;
-  /* Couleur du lien */
-  text-decoration: none;
-  /* Pas de soulignement */
-}
-
-.custom-list-item img {
-  max-width: 100%;
-  /* Assurez-vous que l'image ne dépasse pas la largeur du conteneur */
+.hero-content p {
+  font-size: 1rem;
 }
 
 .city-cards {

@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Property, PropertyType} from "../../core/models/form-proporty.model";
-import {FormControl, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {map, Observable, Observer, tap} from "rxjs";
 import {Element} from "../../core/models/element.model";
 import {ElementService} from "../../core/services/element.service";
@@ -14,6 +14,9 @@ import {AuthService} from "../../core/services/auth.service";
 import {NzUploadFile} from "ng-zorro-antd/upload";
 import {ElementType} from "../../core/models/elementType.model";
 import {ElementTypeService} from "../../core/services/elementType.service";
+import {City, SpecVille, SubPrefecture} from "../../core/models/specVille.model";
+import {SpecVilleService} from "../../core/services/specVille.service";
+import {SelectItemGroup} from "primeng/api";
 
 @Component({
   selector: 'app-form',
@@ -36,6 +39,18 @@ export class FormComponent {
   user_id!:any;
 
   fileFormatStatus = true;
+  //
+  specVilleForm!: FormGroup;
+  specVille$!: Observable<SpecVille[]>;
+  cities$!: Observable<City[]>;
+  subPref$!: Observable<SubPrefecture[]>;
+  selectedCities!: City[];
+  groupedCities!: SpecVille[];
+  selectedRegionId!:any
+  selectedCityId!:any
+
+
+  //
 
   // hello new
   itemType!: ItemType;
@@ -50,12 +65,14 @@ export class FormComponent {
    selectedElementTypeName!: string;
 
   constructor(private  formBuilder: UntypedFormBuilder,
+              private fb: FormBuilder,
               private elementService: ElementService,
               private catergoryService: CategoryService,
               private itemsService: ItemService,
               private elementTypeService:ElementTypeService,
               private router:Router,
               private notificationService:NotificationService,
+              private specVilleService:SpecVilleService,
               private auth:AuthService
     ) { }
 
@@ -67,12 +84,28 @@ export class FormComponent {
     this.category$ = this.catergoryService.getAllCategory();
     this.items$ = this.itemsService.getAllItems();
     this.elementType$ = this.elementTypeService.getAllElementType();
+    //
+    this.specVille$ = this.specVilleService.getAll();
+
+      this.specVilleService.getAll().subscribe(cities => {
+          this.groupedCities = cities;
+    });
+      //
+
+
+
+    //
+
+
+
+    this.specVilleForm = this.fb.group({
+      region: [''],
+      city: ['']
+    });
     // end new
     //
     this.urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/;
     this.fichierRegex = /([a-zA-Z0-9\s_\\.\-\(\):])+(.md)$/;
-
-
     //
 
     this.elementForm = this.formBuilder.group({
@@ -85,13 +118,31 @@ export class FormComponent {
         item:[null,Validators.required],
         category:[null,Validators.required],
         location:['',Validators.required],
-        exactLocate:['',Validators.required],
+        exactLocate:[''], //sous prefecture
+        region:['',Validators.required],
+        city:['',Validators.required],
         // fichier:['',[Validators.required,Validators.pattern(this.fichierRegex)]]
       },{
         updateOn: 'blur' // formulaire mis a jours lorsqu'on change de champs
       }
 
     );
+
+    //
+      this.elementForm.get('region')?.valueChanges.subscribe((regionId: number) => {
+        this.selectedRegionId = regionId;
+        this.cities$ = this.getCitiesByRegion(this.selectedRegionId);
+      });
+
+    this.specVilleForm.get('city')?.setValue('');
+
+    this.elementForm.get('city')?.valueChanges.subscribe((ville_id: number) => {
+      this.selectedCityId = ville_id;
+      console.log(this.selectedCityId)
+      this.subPref$ = this.getSubPrefByCityId(this.selectedCityId);
+    });
+
+    this.specVilleForm.get('exactLocate')?.setValue('');
 
 
 
@@ -103,76 +154,26 @@ export class FormComponent {
         // snaps:0
       }))
     );
-
-    // console.log(this.auth.userId);console.log('********** dans new post')
-    // this.user_id = localStorage.getItem('user_id');
-    // this.user_id = sessionStorage.getItem('user_id');
     this.user_id = this.auth.getUserId();
     //
     this.selectedElementTypeName = ''
+    //
+    let selectedRegion = this.elementForm!.get('region')?.value;
+    console.log("######")
+    console.log(selectedRegion)
+    console.log("######")
+
 
   }
 
-  // onSubmitForm():void{
-  //   //console.log(this.snapForm.value);
-  //   this.faceSnapsService.addFaceSnap(this.snapForm.value);
-  //   this.router.navigateByUrl('/facesnaps');
-  // }
 
-  onSubmitForm():void{
-    // this.elementService.addFaceSnap(this.snapForm.value).pipe(
-    //   tap(() => this.router.navigateByUrl('/readme'))
-    // ).subscribe();
-  }
 
   /*---- file upload----*/
   imageSrc:any = '';
-  // imagesSrc: { url: string[], alt: string } = { url: [], alt: 'this is an image' };
-  // imagesSrc: any = ''
   imagesSrc: any[] = [];
 
 
   status:boolean = false
-
-
-  onFileChange(event:any) {
-    const fileList: FileList = event.target.files;
-    //check whether file is selected or not
-    //
-    // console.log('hello fichier---------')
-    // console.log(fileList);
-    // console.log('hello fichier---------')
-    this.fichierRegex = /([a-zA-Z0-9\s_\\.\-\(\):])+(.md)$/;
-
-    // console.log(fileList)
-
-
-
-    if (fileList.length > 0) {
-
-      const file = fileList[0];
-      //get file information such as name, size and type
-      console.log('finfo',file.name,file.size,file.type);
-
-      if (this.fichierRegex.test(file.name)) {
-        console.log("Valid");
-        if((file.size/1048576)<=5) //max file size is 4 mb
-        {
-          this.imageSrc = file;
-
-          this.fileFormatStatus = true;
-
-        }else{
-          this.fileFormatStatus = false;
-
-        }
-      } else {
-        this.fileFormatStatus = false;
-      }
-
-    }
-  }
-
 
 
   onFileChangeImage(event: any) {
@@ -311,4 +312,45 @@ export class FormComponent {
   goChat(){
     this.router.navigateByUrl('/channel/chat');
   }
+
+  //
+  // Dans votre composant
+  getSelectedRegionCities(): any[] {
+    const selectedRegionId = this.elementForm.get('locality')?.value
+    const selectedRegion = this.groupedCities.find(region => region === selectedRegionId);
+
+    if (selectedRegion) {
+      return selectedRegion.cities;
+    }
+
+    return [];
+  }
+
+  getCitiesByRegion(regionId: any) {
+    this.cities$ = this.specVille$
+      .pipe(
+        map(specVilles => {
+          const specVille = specVilles.find(spec => spec.region.id === regionId);
+          console.log(specVille)
+          return specVille ? specVille.cities : [];
+        })
+      );
+
+    return this.cities$;
+  }
+
+  getSubPrefByCityId(cityId: number): Observable<SubPrefecture[]> {
+    this.subPref$ =  this.specVille$
+      .pipe(
+        map(specVilles => {
+          const specVille = specVilles.find(spec => {
+            const city = spec.cities.find(c => c.id === cityId);
+            return city !== undefined;
+          });
+          return specVille ? specVille.subPrefectures : [];
+        })
+      );
+    return this.subPref$;
+  }
+
 }

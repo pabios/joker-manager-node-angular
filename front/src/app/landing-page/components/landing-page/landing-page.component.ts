@@ -47,7 +47,7 @@ export class LandingPageComponent implements OnInit {
   loading = false;
   listData = new Array(1).fill({}).map((_i, index) => ({
     href: '/',
-    title: `Mamadou Siradjo `,
+    title: `Baldé Mamadou Siradjo `,
     avatar: 'assets/img/pdg.png',
     description: 'PDG de monimba',
     content:' Trouver un logement  stable et décent ou un foncier reste une expérience très difficile et partagée par de nombreux guinéens et visiteurs de notre pays. C’est avec ce constat que nous avons ressenti le besoin pressant de créer une entreprise permettant de pallier ce problème et rendre notre pays très attractif. Notre objectif est de vous offrir plus qu’une simple plateforme de réservation, nous vous offrons un espace où vous trouverez des biens immobiliers et fonciers en vente. \n' +
@@ -55,13 +55,31 @@ export class LandingPageComponent implements OnInit {
 
   }));
 
-  listDataBanner = new Array(1).fill({}).map((_i, index) => ({
-    href: '/',
-    title: `confort et la fiabilité `,
-    avatar: 'assets/img/pdg.png',
-    description: 'PDG de monimba',
-    content:'Transformez l\'expérience de trouver un logement en une aventure sans stress. Faites-nous confiance pour dénicher votre oasis de tranquillité au cœur de la Guinée'
-  }));
+
+//
+  heroTitle: string = "Transformez l'expérience de trouver un logement";
+  heroText: string = "En une aventure sans stress. pour dénicher votre oasis de tranquillité au cœur de la Guinée.";
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 3,
+      numScroll: 3
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 2,
+      numScroll: 2
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+      numScroll: 1
+    }
+  ];
+  numVisible: number = 3; // Définissez une valeur par défaut
+
+  //
+
 
   constructor(
     private countryService: CountryService,
@@ -104,6 +122,17 @@ export class LandingPageComponent implements OnInit {
     }else{
       this.isLiked = false;
     }
+    //
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024) {
+        this.numVisible = 3;
+      } else if (window.innerWidth >= 768) {
+        this.numVisible = 2;
+      } else {
+        this.numVisible = 1;
+      }
+    });
 
   }
 
@@ -134,5 +163,9 @@ export class LandingPageComponent implements OnInit {
 
 
       this.cookieService.set('isLiked', String(this.isLiked), expirationDate);
+  }
+
+  goRead(name:string) {
+    this.router.navigateByUrl('spec/about/'+name)
   }
 }

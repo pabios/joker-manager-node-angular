@@ -1,72 +1,71 @@
 
-<nz-switch [(ngModel)]="loading"></nz-switch>
-<nz-list [nzDataSource]="listDataBanner" [nzRenderItem]="item" [nzItemLayout]="'vertical'">
-  <ng-template #item let-item>
-    <nz-list-item
-      [nzContent]="loading ? ' ' : item.content"
-      [nzExtra]="loading ? null : extra"
-      class="custom-list-item"
-    >
-      <nz-skeleton [nzLoading]="loading" [nzActive]="true" [nzAvatar]="true">
-
-        <nz-list-item-meta [nzAvatar]="item.avatar" [nzTitle]="nzTitle" >
-          <ng-template #nzTitle>
-            <a href="{{ item.href }}">{{ item.title }}</a>
-          </ng-template>
-        </nz-list-item-meta>
-        <ng-template #extra>
-          <a href="elements">
-            <img width="272" alt="region administrative guinee" src="assets/img/guinea_regions.png"  />
-          </a>
-        </ng-template>
-      </nz-skeleton>
-    </nz-list-item>
-  </ng-template>
-</nz-list>
-
-<!-- //-->
-<div class="container d-flex justify-content-center align-items-center">
-  <p class="display-4 text-center"> Région Administrative</p>
+<div class="hero-section" >
+  <div class="hero-content">
+    <h1>{{ heroTitle }}</h1>
+    <p>{{ heroText }}</p>
+  </div>
 </div>
-<app-categories></app-categories>
+<!-- //-->
 
+<!--<p-carousel [value]="pages" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">-->
+<!--  <ng-template let-product pTemplate="item">-->
+<!--    <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">-->
+<!--      <div class="mb-3">-->
+<!--        <p-image [preview]="false" width="250"  src="assets/img/{{product.imageUrl}}" alt="{{ product.name }}"></p-image>-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <h4 class="mb-1">{{ product.name }}</h4>-->
+<!--        <h6 class="mt-0 mb-3">{{ '$' + product.price }}</h6>-->
+<!--        <p-tag [value]="product.name"  ></p-tag>-->
+<!--        <div class="car-buttons mt-5">-->
+<!--          <p-button type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search"></p-button>-->
+<!--          <p-button type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-star-fill"></p-button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+<!--</p-carousel>-->
 
 <!--//-->
+<div class="container d-flex justify-content-center align-items-center mt-2">
+  <h1> Dans quelle Région Administrative <i class="pi pi-table mr-4 p-text-secondary" severity="warning" pBadge style="font-size: 2rem" value="8"></i>
+  </h1>
+</div>
+<app-categories></app-categories>
+<!--//-->
 <div class="container d-flex justify-content-center align-items-center">
-  <p class="display-4 text-center">La plateforme</p>
+  <h1 >La plateforme <i class="pi pi-spin pi-cog"   severity="warning" pBadge style="font-size: 2rem" value="{{pages.length}}"></i></h1>
 </div>
-
-<div class="container">
-  <div class="city-cards">
-      <div class="page-card city-card " *ngFor="let page of pages ">
-        <a [routerLink]="'spec/about/' + page.name" class="card-link">
-          <div class="photo">
-            <img src="assets/img/{{page.imageUrl}}" alt="{{ page.imageUrl }}">
-          </div>
-          <div class="titre-icon-region">
-            <p>
-              <mat-icon>settings</mat-icon> <span class="name">{{ page.name }}</span>
-            </p>
-            <p>
-              <mat-icon>eye</mat-icon> <span class="name">Lire plus ...</span>
-            </p>
-          </div>
-
-        </a>
+<!--[responsiveOptions]="responsiveOptions"-->
+<p-carousel  [value]="pages" [numVisible]="1" [numScroll]="1"  orientation="vertical" verticalViewPortHeight="490px"  [responsiveOptions]="responsiveOptions" >
+  <ng-template let-product pTemplate="item">
+    <div (click)="goRead(product.name)" class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+      <div class="mb-3 photo">
+        <p-image [preview]="false" width="250"  src="assets/img/{{product.imageUrl}}" alt="{{ product.name }}"></p-image>
       </div>
-  </div>
-</div>
+      <div>
+        <p-tag class="mb-1" [value]="product.name" [severity]="'true'"></p-tag>
+        <div class="car-buttons mt-5">
+          <p-button [routerLink]="'spec/about/' + product.name" type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-spin pi-cog"></p-button>
+          <p-button [routerLink]="'spec/about/' + product.name" type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-eye"></p-button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>
 
-<nz-result
-  nzStatus="success"
-  nzTitle="Avoir le badge Vert"
-  nzSubTitle="C'est garantir la conformité de ces logements"
->
-  <div nz-result-extra>
-    <button nz-button nzType="primary" (click)="utilsService.sendEmail('Envoyez-nous votre pièce d\'identité en pièce Jointe et votre identifiant (seulement le numéro de téléphone ) ')">Faire une demande</button>
-  </div>
-</nz-result>
+<!--//-->
+<!--<nz-result-->
+<!--  nzStatus="success"-->
+<!--  nzTitle="Avoir le badge Vert"-->
+<!--  nzSubTitle="C'est garantir la conformité de ces logements"-->
+<!--&gt;-->
+<!--  <div nz-result-extra>-->
+<!--    <button nz-button nzType="primary" (click)="utilsService.sendEmail('Envoyez-nous votre pièce d\'identité en pièce Jointe et votre identifiant (seulement le numéro de téléphone ) ')">Faire une demande</button>-->
+<!--  </div>-->
+<!--</nz-result>-->
 
+<!--//-->
 <nz-switch [(ngModel)]="loading"></nz-switch>
 <nz-list [nzDataSource]="listData" [nzRenderItem]="item" [nzItemLayout]="'vertical'">
   <ng-template #item let-item>

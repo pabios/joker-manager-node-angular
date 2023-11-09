@@ -7,8 +7,9 @@ export const environment = {
   // urlApi:'http://localhost/api',
   // backend:'http://localhost',
   //
-  urlApi:'http://gn.api.monimba.com/api',
-  backend:'http://gn.api.monimba.com',
+  urlApi:'https://gn.api.monimba.com/api',
+  backend:'https://gn.api.monimba.com',
+  specVilleApi:'http://localhost:3000/api',
 
   apiUrl:"https://api.pabiosoft.com/index.php",
   url:'http://localhost:3000',

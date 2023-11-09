@@ -8,7 +8,8 @@
     <nz-list-item [nzActions]="[viewAction]" style="padding-left:2%; padding-right:2%">
       <ng-template #viewAction>
         <a (click)="open()">
-          <span class="icon__size" nz-icon nzType="eye" nzTheme="twotone"></span>
+<!--          <span class="icon__size" nz-icon nzType="eye" nzTheme="twotone"></span>-->
+          <i class="pi pi-spin pi-cog" style="font-size: 2rem"></i>
         </a>
       </ng-template>
       <nz-list-item-meta
@@ -146,8 +147,8 @@
           <nz-descriptions-item nzTitle="Description" [nzSpan]="1">{{element.description}}</nz-descriptions-item>
           <nz-descriptions-item nzTitle="Localisation" [nzSpan]="1">{{element.locate}}</nz-descriptions-item>
           <nz-descriptions-item nzTitle="Prix" [nzSpan]="1"><a>{{element.price}} GNF/JOUR</a></nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Taille" [nzSpan]="2">
-            90  m²
+          <nz-descriptions-item nzTitle="Surface" [nzSpan]="2">
+            {{element.size}}  m²
           </nz-descriptions-item>
         </nz-descriptions>
       </nz-page-header-content>

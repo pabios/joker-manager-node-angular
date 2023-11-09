@@ -6,11 +6,12 @@
   </ng-container>
 
   <div class="city-cards"  >
-    <div class="city-card" *ngFor="let categoryItem of category$ | async">
+    <div class="city-card" (mouseenter)="showIcon = true" (mouseleave)="showIcon = false" *ngFor="let categoryItem of category$ | async">
       <a [routerLink]="'/elements/list/' + categoryItem.id" class="card-link">
         <nz-card style="width:100%;" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit]">
+<!--          <i *ngIf="showIcon" class="pi pi-eye"></i>-->
           <nz-card-meta
-            nzTitle="{{ categoryItem.name }}"
+            nzTitle="Dans la {{ categoryItem.name }}"
             nzDescription="{{ categoryItem.nombreElement }} logements"
             [nzAvatar]="avatarTemplate"
           ></nz-card-meta>
@@ -25,10 +26,11 @@
         <img   [src]="api_url+categoryItem.imageUrl"  alt="{{ categoryItem.name }}"/>
       </ng-template>
       <ng-template #actionSetting>
-        <span nz-icon nzType="eye" nzTheme="twotone">Voir...</span>
+        <p-tag severity="warning" icon="pi pi-eye" value="Voir"></p-tag>
       </ng-template>
       <ng-template #actionEdit>
-        <span nz-icon nzType="more"> {{ categoryItem.info }}</span>
+                <p-tag icon="pi pi-list" value="{{ categoryItem.info }}"></p-tag>
+<!--        <p-splitButton label="Small" styleClass="p-button-sm mr-2 mb-2" [model]="items" trigger="hover"></p-splitButton>-->
       </ng-template>
     </div>
   </div>

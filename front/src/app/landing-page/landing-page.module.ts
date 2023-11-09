@@ -17,6 +17,12 @@ import {FormsModule} from "@angular/forms";
 import {NzListModule} from "ng-zorro-antd/list";
 import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 import {CategoriesModule} from "../categories/categories.module";
+import {CalendarModule} from "primeng/calendar";
+import {CardModule} from "primeng/card";
+import {ImageModule} from "primeng/image";
+import {CarouselModule} from "primeng/carousel";
+import {TagModule} from "primeng/tag";
+import {BadgeModule} from "primeng/badge";
 
 
 
@@ -41,7 +47,13 @@ import {CategoriesModule} from "../categories/categories.module";
         FormsModule,
         NzListModule,
         NzSkeletonModule,
-        CategoriesModule
+        CategoriesModule,
+        CalendarModule,
+        CardModule,
+        ImageModule,
+        CarouselModule,
+        TagModule,
+        BadgeModule
     ],
   exports:[
     LandingPageComponent

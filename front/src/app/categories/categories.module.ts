@@ -8,6 +8,9 @@ import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
+import {ButtonModule} from "primeng/button";
+import {TagModule} from "primeng/tag";
+import {SplitButtonModule} from "primeng/splitbutton";
 
 
 @NgModule({
@@ -15,14 +18,17 @@ import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
   exports: [
     CategoriesComponent
   ],
-  imports: [
-    CommonModule,
-    CategoriesRoutingModule,
-    NzCardModule,
-    NzAvatarModule,
-    NzIconModule,
-    NzLayoutModule,
-    NzPageHeaderModule
-  ]
+    imports: [
+        CommonModule,
+        CategoriesRoutingModule,
+        NzCardModule,
+        NzAvatarModule,
+        NzIconModule,
+        NzLayoutModule,
+        NzPageHeaderModule,
+        ButtonModule,
+        TagModule,
+        SplitButtonModule
+    ]
 })
 export class CategoriesModule { }
