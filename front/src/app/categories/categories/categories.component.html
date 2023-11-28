@@ -8,10 +8,9 @@
   <div class="city-cards"  >
     <div class="city-card" (mouseenter)="showIcon = true" (mouseleave)="showIcon = false" *ngFor="let categoryItem of category$ | async">
       <a [routerLink]="'/elements/list/' + categoryItem.id" class="card-link">
-        <nz-card style="width:100%;" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit]">
-<!--          <i *ngIf="showIcon" class="pi pi-eye"></i>-->
+        <nz-card class="city-card-nz-card" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit]">
           <nz-card-meta
-            nzTitle="Dans la {{ categoryItem.name }}"
+            nzTitle="{{ categoryItem.name }}"
             nzDescription="{{ categoryItem.nombreElement }} logements"
             [nzAvatar]="avatarTemplate"
           ></nz-card-meta>
@@ -23,15 +22,16 @@
         <nz-avatar [nzSrc]="api_url+categoryItem.imageUrl"></nz-avatar>
       </ng-template>
       <ng-template #coverTemplate>
-        <img   [src]="api_url+categoryItem.imageUrl"  alt="{{ categoryItem.name }}"/>
+        <img class="card-image"  [src]="api_url+categoryItem.imageUrl"  alt="{{ categoryItem.name }}"/>
       </ng-template>
-      <ng-template #actionSetting>
-        <p-tag severity="warning" icon="pi pi-eye" value="Voir"></p-tag>
-      </ng-template>
-      <ng-template #actionEdit>
-                <p-tag icon="pi pi-list" value="{{ categoryItem.info }}"></p-tag>
-<!--        <p-splitButton label="Small" styleClass="p-button-sm mr-2 mb-2" [model]="items" trigger="hover"></p-splitButton>-->
-      </ng-template>
+      <span class="action-card-bouton">
+         <ng-template #actionSetting>
+              <p-tag severity="warning" icon="pi pi-eye" value="Voir"></p-tag>
+        </ng-template>
+        <ng-template #actionEdit>
+                  <p-tag icon="pi pi-list" value="{{ categoryItem.info }}"></p-tag>
+        </ng-template>
+      </span>
     </div>
   </div>
 </div>

@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {ItemType} from "../models/Piece.model";
 import {NotificationService} from "./notification.service";
 import {Site} from "../models/site.model";
+import {sha512} from "js-sha512";
+import {MatPaginatorIntl} from "@angular/material/paginator";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,22 @@ export class UtilsService {
     const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     window.open(mailtoLink);
+  }
+  sendWhatsapp(numeroTelephone:string,message:string){
+
+    const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroTelephone}&text=${encodeURIComponent(message)}`;
+
+    window.open(urlWhatsApp, '_blank');
+  }
+  decifer512(chaine:string){
+    return sha512.hmac(environment.token, chaine);
+  }
+  customPaginator() {
+    const customPaginatorIntl = new MatPaginatorIntl();
+
+    customPaginatorIntl.itemsPerPageLabel = 'Logement par page:';
+
+    return customPaginatorIntl;
   }
 
   handleOk(): void {

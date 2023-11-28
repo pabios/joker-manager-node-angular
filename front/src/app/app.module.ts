@@ -37,6 +37,7 @@ import {environment} from "../environments/environment";
 import {NzBreadCrumbModule} from "ng-zorro-antd/breadcrumb";
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {CookieService} from "ngx-cookie-service";
+import {MatPaginatorIntl} from "@angular/material/paginator";
 
 registerLocaleData(fr);
 
@@ -84,7 +85,9 @@ export function tokenGetter() {
     // httpInterceptorProviders
     CookieService,
     { provide: NZ_I18N, useValue: fr_FR },
-    { provide: LocationStrategy, useClass: HashLocationStrategy } // ajoute un # au url
+    { provide: LocationStrategy, useClass: HashLocationStrategy }, // ajoute un # au url
+    // { provide: MatPaginatorIntl, useValue:  CustomPaginator()}
+
   ],
   bootstrap: [AppComponent]
 })

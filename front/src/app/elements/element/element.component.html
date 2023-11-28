@@ -1,14 +1,21 @@
 
-<div class="laCard">
-  <nz-ribbon nzColor="{{this.badgeInfo.color}}" style="width:300px;" nzText="{{this.badgeInfo.badge}}">
+<div >
+  <nz-ribbon  class="largeCard" nzColor="{{this.badgeInfo.color}}"  nzText="{{this.badgeInfo.badge}}">
     <nz-card (click)="onViewElement()"  nzTitle="{{element.name}}" nzSize="small">
+      <nz-badge nzStatus="warning" nzText="{{element.desired}}"></nz-badge>
+      <br/>
       <nz-badge nzStatus="success" nzText="{{element.locate}}"></nz-badge>
       <br/>
+      <ng-template *ngIf="element.desired ==='Location';else noLocation">
       <nz-badge nzStatus="warning" nzText="{{element.price}} GNF / Jour"></nz-badge>
+      </ng-template>
+      <ng-template #noLocation>
+      <nz-badge nzStatus="warning" nzText="{{element.price}} GNF"></nz-badge>
+      </ng-template>
     </nz-card>
   </nz-ribbon>
 
-  <nz-card  style="width:300px;" [nzCover]="carouselTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+  <nz-card   class="largeCard" [nzCover]="carouselTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
       <nz-card-meta
         nzTitle="Surface : {{element.size}} m²"
         nzDescription="{{element.description}} "
@@ -32,14 +39,20 @@
   </ng-template>
 
   <ng-template #actionSetting>
-<!--    <span nz-icon [nzType]="'credit-card'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></span>-->
-    <span nz-icon nzType="dollar-circle"  (click)="goBooking(element.id,element.price)" nzTheme="twotone" [nzTwotoneColor]="'#ee0518'" ></span>
+      <span (click)="goBooking(element.id,element.price)">
+        <button *ngIf="element.verified; else noVerif" mat-raised-button style="background-color: #237923;color:white">réserver</button>
+        <ng-template #noVerif>
+            <button mat-raised-button color="warn">réserver</button>
+        </ng-template>
+    </span>
   </ng-template>
   <ng-template #actionEdit>
-    <span nz-icon [nzType]="'eye'" (click)="onViewElement()" [nzTheme]="'twotone'" [nzTwotoneColor]="'#c7be0a'"></span>
+    <span style="font-size: 25px" nz-icon [nzType]="'eye'" (click)="onViewElement()" [nzTheme]="'twotone'" [nzTwotoneColor]="'#c7be0a'"></span>
+    <span (click)="showModal(element.user_id)">voir</span>
   </ng-template>
-  <ng-template #actionEllipsis>
-        <span (click)="showModal(element.user_id)" nz-icon nzType="message"   nzTheme="twotone" [nzTwotoneColor]="'#06e006'"></span>
+  <ng-template #actionEllipsis >
+        <span   (click)="showModal(element.user_id)" nz-icon nzType="message"   nzTheme="twotone" [nzTwotoneColor]="'#06e006'"></span>
+        <span (click)="showModal(element.user_id)">message</span>
   </ng-template>
 
 </div>

@@ -10,15 +10,22 @@
       <nz-page-header-extra>
         <nz-space>
           <!--          <button *nzSpaceItem nz-button>Modifier si proprio</button>-->
-          <button *nzSpaceItem nz-button nzType="primary" (click)="goBooking(element.id,element.price)">Réserver</button>
+<!--          <button *nzSpaceItem nz-button nzType="primary" (click)="goBooking(element.id,element.price)">Réserver</button>-->
+          <button (click)="goBooking(element.id,element.price)" pButton pRipple label="Réserver" icon="pi pi-check"></button>
         </nz-space>
       </nz-page-header-extra>
     </nz-page-header>
 
   <nz-list-item-meta [nzAvatar]="this.userAvatar+element.user_avatar" [nzTitle]="nzTitle" [nzDescription]="">
     <ng-template #nzTitle>
-      <button  nz-button nz-popover nzPopoverTitle="Explication" [nzPopoverContent]="'Le prix par jour en money Local'" nzPopoverTrigger="hover">
-        {{ element.price | number:'1.0-0' }} GNF/Jour
+      <button  nz-button nz-popover nzPopoverTitle="Explication" [nzPopoverContent]="'Le prix en money Local'" nzPopoverTrigger="hover">
+        <ng-template *ngIf="element.desired ==='Location';else noLocation">
+          {{ element.price | number:'1.0-0' }} GNF/Jour
+        </ng-template>
+
+        <ng-template #noLocation>
+          {{ element.price | number:'1.0-0' }} GNF
+        </ng-template>
       </button>
     </ng-template>
   </nz-list-item-meta>
@@ -45,17 +52,27 @@
 <!--      {{ keyValuePair.key === 'date' ? 'le '+ formatDate(keyValuePair.value.toString())  : keyValuePair.value }}-->
 <!--    </div>-->
 
-    <nz-steps [nzCurrent]="7" nzDirection="vertical" nzSize="small">
-      <nz-step nzTitle="Nature du Logement" nzDescription="{{element.name}}"></nz-step>
+    <nz-steps [nzCurrent]="10" nzDirection="vertical" nzSize="small">
+      <nz-step nzTitle="Type du Logement" nzDescription="{{element.name}}"></nz-step>
+      <nz-step nzTitle="Nature du Logement" nzDescription="{{element.desired}}"></nz-step>
       <nz-step nzTitle="Région" nzDescription="{{element.category}}"></nz-step>
+      <nz-step nzTitle="Ville" nzDescription="{{element.city}}"></nz-step>
+      <nz-step nzTitle="Adresse" nzDescription="{{element.exactLocate}}"></nz-step>
       <nz-step nzTitle="Le Propriétaire" nzDescription="{{element.user}}"></nz-step>
-      <nz-step nzTitle="Prix" nzDescription=" {{ element.price | number:'1.0-0' }} GNF/Jour"></nz-step>
+      <ng-template *ngIf="element.desired ==='Location';else vente">
+        <nz-step nzTitle="Prix" nzDescription=" {{ element.price | number:'1.0-0' }} GNF/Jour"></nz-step>
+      </ng-template>
+
+      <ng-template #vente>
+        <nz-step nzTitle="Prix" nzDescription=" {{ element.price | number:'1.0-0' }} GNF"></nz-step>
+      </ng-template>
+
       <nz-step nzTitle="Localisation" nzDescription="{{element.locate}}"></nz-step>
       <nz-step nzTitle="Quartier/District" nzDescription="{{element.exactLocate}}"></nz-step>
       <nz-step nzTitle="Numéro de téléphone" nzDescription="après réservation"></nz-step>
       <nz-step nzTitle="Surface" nzDescription="{{ element.size }} m²"></nz-step>
-      <nz-step nzTitle="Description" nzDescription="{{ element.description }}"></nz-step>
       <nz-step  nzTitle="Détails" nzDescription="{{ element.content }}"></nz-step>
+      <nz-step nzTitle="Description" nzDescription="{{ element.description }}"></nz-step>
     </nz-steps>
   </nz-card>
 

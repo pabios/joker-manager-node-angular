@@ -1,40 +1,24 @@
 
+
+
+<!--bonjour new hero-->
 <div class="hero-section" >
   <div class="hero-content">
+    <span class="mobile-display">Monimba</span>
     <h1>{{ heroTitle }}</h1>
     <p>{{ heroText }}</p>
   </div>
 </div>
-<!-- //-->
-
-<!--<p-carousel [value]="pages" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">-->
-<!--  <ng-template let-product pTemplate="item">-->
-<!--    <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">-->
-<!--      <div class="mb-3">-->
-<!--        <p-image [preview]="false" width="250"  src="assets/img/{{product.imageUrl}}" alt="{{ product.name }}"></p-image>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <h4 class="mb-1">{{ product.name }}</h4>-->
-<!--        <h6 class="mt-0 mb-3">{{ '$' + product.price }}</h6>-->
-<!--        <p-tag [value]="product.name"  ></p-tag>-->
-<!--        <div class="car-buttons mt-5">-->
-<!--          <p-button type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search"></p-button>-->
-<!--          <p-button type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-star-fill"></p-button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </ng-template>-->
-<!--</p-carousel>-->
-
-<!--//-->
 <div class="container d-flex justify-content-center align-items-center mt-2">
-  <h1> Dans quelle Région Administrative <i class="pi pi-table mr-4 p-text-secondary" severity="warning" pBadge style="font-size: 2rem" value="8"></i>
-  </h1>
+
+
+  <h2> Dans quelle Région <i class="pi pi-table mr-4 p-text-secondary" severity="warning" pBadge style="font-size: 2rem" value="8"></i>
+  </h2>
 </div>
 <app-categories></app-categories>
 <!--//-->
 <div class="container d-flex justify-content-center align-items-center">
-  <h1 >La plateforme <i class="pi pi-spin pi-cog"   severity="warning" pBadge style="font-size: 2rem" value="{{pages.length}}"></i></h1>
+  <h2 >La plateforme <i class="pi pi-spin pi-cog"   severity="warning" pBadge style="font-size: 2rem" value="{{pages.length}}"></i></h2>
 </div>
 <!--[responsiveOptions]="responsiveOptions"-->
 <p-carousel  [value]="pages" [numVisible]="1" [numScroll]="1"  orientation="vertical" verticalViewPortHeight="490px"  [responsiveOptions]="responsiveOptions" >

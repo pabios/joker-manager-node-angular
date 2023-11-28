@@ -75,7 +75,7 @@ export class ElementComponent {
   showModal(  id: string): void {
     this.isVisible = true;
     this.receiverAdminId = id
-    console.log("bonjour show modal is cliquer")
+    //console.log("bonjour show modal is cliquer")
   }
   handleCancel(): void {
     this.isVisible = false;

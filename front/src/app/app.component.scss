@@ -8,7 +8,18 @@
 .app-layout {
   //height: 100vh;
 
+  //perspective: 1000px; /* Ajustez la valeur en fonction de l'effet souhaité */
+  //background: linear-gradient(45deg, #2196F3, #FF4081); /* Choisissez les couleurs souhaitées */
+  //transform-style: preserve-3d;
+
+
+  //transform: rotateX(25deg) rotateY(45deg);
+  //height: 100vh; /* Ajustez la hauteur en fonction de votre mise en page */
+  //overflow: hidden;
 }
+
+
+
 
 .menu-sidebar {
   position: relative;
@@ -50,6 +61,11 @@ nz-header {
   width: 100%;
   z-index: 2;
   margin-bottom:80px;
+  @media (max-width: 768px)
+  {
+    margin-bottom:10px;
+
+  }
 }
 
 .header-trigger {
@@ -120,13 +136,26 @@ nz-content {
     background: #fff;
     height: auto;
   }
+  nz-content{
+    width:100%;
+    margin: 0 0 20px;
+  }
 }
 
 //
-$them-color :  #001628;
+//$them-color :  #001628;
+$theme-color: (
+  perspective: 1000px,
+  background: linear-gradient(45deg, #2196F3, #FF4081),
+  transform-style: preserve-3d
+);
 
 nz-footer{
-  background-color: $them-color;
+  //background-color: $them-color;
+
+  @each $property, $value in $theme-color {
+    #{$property}: $value;
+  }
 }
 
 
@@ -150,3 +179,25 @@ nz-footer{
 
 
 
+
+//sub footer
+/* Styles pour la sub-footer */
+.sub-footer {
+  perspective: 1000px; /* Ajustez la valeur en fonction de l'effet souhaité */
+  /* Appliquer un effet de rotation 3D sur le fond */
+  background: linear-gradient(45deg, rgba(236, 103, 6, 0.96), #69ff40); /* Choisissez les couleurs souhaitées */
+  transform-style: preserve-3d;
+
+
+  padding: 10px 0; /* Espace intérieur de la sub-footer */
+  text-align: center;
+  margin-bottom:-23px;
+  width:100%;
+}
+
+.sub-footer p {
+  margin: 0; /* Supprime les marges par défaut du paragraphe */
+  font-size: 14px; /* Taille de police */
+  color: #555; /* Couleur du texte */
+  font-weight:bold;
+}

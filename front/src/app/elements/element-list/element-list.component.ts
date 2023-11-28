@@ -6,13 +6,17 @@ import {catchError, concatMap, forkJoin, map, mergeMap, Observable, of, switchMa
 import {Images, Root} from "../../core/models/element.model";
 import {ImageService} from "../../core/services/imageService";
 import {ActivatedRoute} from "@angular/router";
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import {CustomPaginator} from "../../core/services/custom/custom-paginator.service";
+
 
 @Component({
   selector: 'app-elements-list',
   templateUrl: './element-list.component.html',
   styleUrls: ['./element-list.component.scss'],
   providers: [
-    { provide: CarouselConfig, useValue: { interval: 4000, noPause: true, showIndicators: true } }
+    { provide: CarouselConfig, useValue: { interval: 4000, noPause: true, showIndicators: true } },
+    { provide: MatPaginatorIntl, useValue:  CustomPaginator()}
   ]
 })
 
@@ -29,6 +33,7 @@ export class ElementListComponent implements OnInit {
     lng:6.188186803578728
   };
   slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
+
 
   cards!: any[];
 
@@ -51,7 +56,13 @@ export class ElementListComponent implements OnInit {
     private route: ActivatedRoute
   ) {
   }
+  customPaginator() {
+    const customPaginatorIntl = new MatPaginatorIntl();
 
+    customPaginatorIntl.itemsPerPageLabel = 'Logement par page:';
+
+    return customPaginatorIntl;
+  }
 
 
   ngOnInit() {

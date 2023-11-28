@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {UtilsService} from "../../services/utils.service";
 import {Observable} from "rxjs";
 import {User} from "../../models/user.model";
@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit{
   notLogin = false;
   nimbaBadge!:string;
   loginStatus!: boolean ;
+  isFixedSearch = false;
 
 
 
@@ -78,6 +79,12 @@ export class HeaderComponent implements OnInit{
         // Effectuer des actions supplémentaires après la redirection
       });
     }
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const offset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.isFixedSearch = offset > 50; // Ajoutez ou supprimez la classe en fonction de la position de défilement
   }
 
 }

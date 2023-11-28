@@ -208,6 +208,7 @@ button.toast-close-button {
 
 .toast-error {
   background-color: #BD362F;
+  width: 50rem !important;
 }
 
 .toast-info {

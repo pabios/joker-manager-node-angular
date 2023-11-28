@@ -1,4 +1,28 @@
 @charset "UTF-8";
+.mobile-icon-displaying {
+  display: none;
+}
+
+.fixed-search-bar {
+  background-color: #FF9F57;
+  position: relative;
+}
+
+@keyframes colorAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.header-container-bg {
+  background-color: #FF9F57;
+}
+
 .phone-icon {
   font-size: 24px;
   /* Taille de l'icône (ajustez selon vos besoins) */
@@ -95,6 +119,43 @@ header {
   }
 }
 @media (max-width: 768px) {
+  .fixed-search-bar {
+    background-color: #FF9F57;
+    position: fixed;
+    top: 30px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .mobile-displaying {
+    margin-top: -35px;
+  }
+
+  ul {
+    width: 100%;
+  }
+
+  .la_nav {
+    width: 100%;
+    margin: 0;
+    padding-left: -10px !important;
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+    justify-content: initial;
+  }
+
+  .mobile-icon-displaying {
+    display: initial;
+    margin-top: 3px;
+    margin-left: -2px !important;
+    margin-right: 50px !important;
+  }
+
+  .logo {
+    display: none;
+  }
+
   .le_drawer {
     width: 70%;
   }

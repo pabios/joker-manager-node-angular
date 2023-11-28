@@ -1,4 +1,4 @@
 export enum StateSearchType{
-  LOCATE='locate',
+  LOCATE='city',
   PRICE='price'
 }

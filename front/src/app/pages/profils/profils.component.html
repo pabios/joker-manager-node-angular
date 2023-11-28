@@ -8,8 +8,7 @@
     <nz-list-item [nzActions]="[viewAction]" style="padding-left:2%; padding-right:2%">
       <ng-template #viewAction>
         <a (click)="open()">
-<!--          <span class="icon__size" nz-icon nzType="eye" nzTheme="twotone"></span>-->
-          <i class="pi pi-spin pi-cog" style="font-size: 2rem"></i>
+          <i class="pi   pi-cog" style="font-size: 2rem"></i>
         </a>
       </ng-template>
       <nz-list-item-meta
@@ -34,11 +33,6 @@
     <nz-descriptions [nzColumn]="2" nzTitle="Informations">
       <nz-descriptions-item   nzTitle="Nom complet" [nzSpan]="1">{{user.fullName}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="badge" [nzSpan]="1">{{user.badge}} </nz-descriptions-item>
-      <nz-descriptions-item nzTitle="age" [nzSpan]="1">{{user.age}} ans</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="Téléphone" [nzSpan]="1">{{user.telephone}}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="Bio" [nzSpan]="2">
-        {{user.bio}}
-      </nz-descriptions-item>
     </nz-descriptions>
 
     <nz-divider></nz-divider>
@@ -72,98 +66,80 @@
     </ng-template>
   </ng-container>
 </nz-drawer>
-
 <!--debut booking list-->
 <nz-divider></nz-divider>
 
-<div class="container">
-  <nz-card nzHoverable>
-    <mat-card-title style="text-align: center">Mes Réservations</mat-card-title>
-  </nz-card>
-</div>
-<div *ngIf="bookings$ | async as bookings">
+<!--  //-->
 
-  <nz-card  *ngIf="bookings && bookings.length > 0; else elseBlock" class="site-page-header-ghost-wrapper">
-    <nz-page-header  *ngFor="let booking of bookings; let i = index">
-        <nz-page-header-title>Réservation</nz-page-header-title>
-        <nz-page-header-subtitle>N°{{i + 1}}</nz-page-header-subtitle>
-        <nz-page-header-extra>
-          <nz-space>
-            <button routerLink="/elements/{{booking.elementId}}" *nzSpaceItem  nz-button>Voir</button>
-            <button [disabled]="isDeleteButtonDisabled" nz-popconfirm nzPopconfirmTitle="Êtes-vous sûrs ?"  (nzOnConfirm)="deleteBookingById(booking.id)"
-
-                    *nzSpaceItem nz-button nzType="primary" nzDanger>Annuler</button>
-
-          </nz-space>
-        </nz-page-header-extra>
-        <nz-page-header-content>
-          <nz-descriptions nzSize="small" [nzColumn]="3">
-            <nz-descriptions-item nzTitle="Nombre de personne" [nzSpan]="1">{{booking.nbPeople}}</nz-descriptions-item>
-            <nz-descriptions-item nzTitle="A partir du" [nzSpan]="1">{{ formatBookingDate(booking.beginDate)}}</nz-descriptions-item>
-            <nz-descriptions-item nzTitle="Jusqu'au" [nzSpan]="1">{{formatBookingDate(booking.endDate)}}</nz-descriptions-item>
-            <nz-descriptions-item nzTitle="Prix" [nzSpan]="1"><a>{{booking.priceTotal}} GNF/JOUR</a></nz-descriptions-item>
-            <nz-descriptions-item nzTitle="Taille" [nzSpan]="2">
-              90  m²
-            </nz-descriptions-item>
-          </nz-descriptions>
-        </nz-page-header-content>
-    </nz-page-header>
-  </nz-card>
-</div>
-<ng-template #elseBlock>
-  <nz-result [nzIcon]="'smile-twotone'" [nzTitle]="'Vous n\'avez aucune réservation'">
-    <div nz-result-extra>
-      <button nz-button nzType="primary" (click)="goElements()">Voir les Logements</button>
+  <div *ngIf="bookings$ | async as bookings"  class="container">
+    <h2 style="text-align: center">Mes Réservations</h2>
+    <div  *ngIf="bookings && bookings.length > 0; else elseBlock" class="row flex-wrap"  >
+      <div  *ngFor="let booking of bookings; let i = index" class="col-lg-4 col-md-6 col-sm-12 mb-3">
+        <p-card header="{{booking.element[0].city}}" subheader="{{booking.element[0].exactLocate}}" [style]="{ width: '360px' }">
+          <p-tag severity="success" value="En {{booking.element[0].desired}}"></p-tag>
+          <p-tag class="float-end"  severity="success" value="{{booking.element[0].price}} GNF"></p-tag>
+          <ng-template pTemplate="header">
+            <p-tag icon="pi pi-user" value="Réservation N°{{i + 1}}"></p-tag>
+            <p-tag severity="success" class="float-end"  value=" {{booking.element[0].name}}"></p-tag>
+            <p-message severity="success" text=" Au {{formatBookingDate(booking.endDate)}}"></p-message>
+            <p-message severity="warn" text=" Au {{formatBookingDate(booking.beginDate)}}"></p-message>
+          </ng-template>
+          <p>
+            {{ getFirstWords(booking.element[0].description, 5) }}...
+          </p>
+          <ng-template pTemplate="footer">
+            <p-button label="Voir"  routerLink="/elements/{{booking.elementId}}"  icon="pi pi-check"></p-button>
+            <p-toast></p-toast>
+            <p-confirmPopup></p-confirmPopup>
+            <p-button label="Annuler" icon="pi pi-times" (click)="confirm($event,booking.id)" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+          </ng-template>
+        </p-card>
+      </div>
     </div>
-  </nz-result>
-</ng-template>
+  </div>
+    <ng-template #elseBlock>
+      <nz-result [nzIcon]="'smile-twotone'" [nzTitle]="'Vous n\'avez aucune réservation'">
+        <div nz-result-extra>
+          <button nz-button nzType="primary" (click)="goElements()">Voir les Logements</button>
+        </div>
+      </nz-result>
+    </ng-template>
 
-<nz-divider></nz-divider>
+    <nz-divider></nz-divider>
 
-<!--debut Mes logements-->
+    <!--debut Mes logements-->
+    <div *ngIf="elements$ | async as elements"  class="container">
+      <h2 style="text-align: center">Mes Logement</h2>
+      <div  *ngIf="elements && elements.length > 0; else elseBlockHouse" class="row flex-wrap"  >
+        <div   *ngFor="let element of elements; let i = index" class="col-lg-4 col-md-6 col-sm-12 mb-3">
+          <p-card header="{{element.name}}" subheader="{{element.exactLocate}}" [style]="{ width: '360px' }">
+            <p-tag severity="success" value="En {{element.desired}}"></p-tag>
+            <p-tag class="float-end"  severity="success" value="{{element.price}} GNF"></p-tag>
+            <ng-template pTemplate="header">
+              <p-tag icon="pi pi-user" value="Mon Logement N°{{i + 1}}"></p-tag>
+              <p-tag severity="success" class="float-end"  value=" {{element.size}} m²"></p-tag>
+              <p-message severity="success" text="{{element.name}}"></p-message>
+              <p-message severity="warn" text=" A {{element.exactLocate}}"></p-message>
+            </ng-template>
+            <p>
+              {{ getFirstWords(element.description, 5) }}...
+            </p>
+            <ng-template pTemplate="footer">
+              <p-button label="Voir" routerLink="/elements/{{element.id}}"  icon="pi pi-check"></p-button>
+              <p-toast></p-toast>
+              <p-confirmPopup></p-confirmPopup>
+              <p-button label="Supprimer" icon="pi pi-times" (click)="confirmDeleteElement($event,element.id)" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+            </ng-template>
+          </p-card>
+        </div>
+      </div>
 
-<div class="container">
-  <nz-card nzHoverable>
-    <mat-card-title style="text-align: center">Mes logements</mat-card-title>
-  </nz-card>
-</div>
-
-<div *ngIf="elements$ | async as elements">
-  <nz-card nzHoverable *ngIf="elements && elements.length > 0; else elseBlockHouse" class="site-page-header-ghost-wrapper">
-    <nz-page-header *ngFor="let element of elements; let i = index">
-      <nz-page-header-title>Logement</nz-page-header-title>
-      <nz-page-header-subtitle>N°{{i +1}}</nz-page-header-subtitle>
-      <nz-page-header-extra>
-        <nz-space>
-          <button routerLink="/elements/{{element.id}}" *nzSpaceItem nz-button>Voir</button>
-          <button nz-popconfirm nzPopconfirmTitle="Êtes-vous sûrs ?"  (nzOnConfirm)="deleteElementById(element.id)"
-                  *nzSpaceItem nz-button nzType="primary" nzDanger>Supprimer</button>
-
-        </nz-space>
-      </nz-page-header-extra>
-      <nz-page-header-content>
-        <nz-descriptions nzSize="small" [nzColumn]="3">
-          <nz-descriptions-item nzTitle="Nom" [nzSpan]="1">{{element.name}}</nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Description" [nzSpan]="1">{{element.description}}</nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Localisation" [nzSpan]="1">{{element.locate}}</nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Prix" [nzSpan]="1"><a>{{element.price}} GNF/JOUR</a></nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Surface" [nzSpan]="2">
-            {{element.size}}  m²
-          </nz-descriptions-item>
-        </nz-descriptions>
-      </nz-page-header-content>
-    </nz-page-header>
-  </nz-card>
-</div>
-
-<ng-template #elseBlockHouse>
-  <nz-result [nzIcon]="'smile-twotone'" [nzTitle]="'Vous n\'avez publier aucun logement'">
-    <div nz-result-extra>
-      <button nz-button nzType="primary" (click)="goAddHouse()">publier un logement</button>
+      <ng-template #elseBlockHouse>
+        <nz-result [nzIcon]="'smile-twotone'" [nzTitle]="'Vous n\'avez publier aucun logement'">
+          <div nz-result-extra>
+            <button nz-button nzType="primary" (click)="goAddHouse()">publier un logement</button>
+          </div>
+        </nz-result>
+      </ng-template>
     </div>
-  </nz-result>
-</ng-template>
 </div>
-
-
-

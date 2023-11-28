@@ -22,6 +22,7 @@ export class FormBookingComponent {
   @Input() element!: Root ;
 
   form!: FormGroup;
+  formCouchdb!:FormGroup;
   elementId!: any;
   userId!:any;
   price!:any
@@ -101,6 +102,18 @@ export class FormBookingComponent {
       updateOn: 'blur'
     });
 
+      // couche db
+
+    this.formCouchdb = this.formBuilder.group(
+      {
+        idSalle:[0],
+        idEtage:[0],
+        nameSalle:[]
+      },{
+        updateOn:'blur'
+      }
+    )
+
 
 
 
@@ -128,6 +141,38 @@ export class FormBookingComponent {
   calculateTotalPrice() {
     this.priceTotal = this.price.value * this.nbPeople.value;
   }
+
+  /*
+  onSendCouch(idSalle: string, idEtage: string, nameSalle: string) {
+
+    const formData : FormData = new FormData();
+    formData.append('idSalle',idSalle)
+    formData.append('nameSalle',nameSalle)
+    formData.append('idEtage',idEtage)
+
+
+    this.bookingService.addInCouchdb(formData).subscribe(
+      (response) => {
+
+        // this.router.navigateByUrl('/profils').then(() => {
+        //   this.notificationService.showSuccess(response,'')
+        //   window.location.reload();
+        // });
+          this.notificationService.showSuccess(response,'bien jouer')
+
+
+      },
+      (error) => {
+        // Traitez les erreurs ici
+        this.notificationService.showError(error,"")
+
+        this.loading = false;
+        this.erreurBooking.push({ status: true, msg: "cette erreur c'est produite" });
+
+      });
+
+  }
+  */
 
   onSend(nbPeople: any){
 
@@ -235,5 +280,6 @@ export class FormBookingComponent {
     return !this.arrayOfDatesBooked.find(x=>x.getTime()==time);
   }
 //=====================================
+
 
 }

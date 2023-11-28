@@ -25,10 +25,12 @@
     <span class="text__logo">
             Authentification
     </span>
+    <div *ngIf="validateForm.get('phoneNumber')?.dirty">
+      <p-message severity="info" text="Exemple: |Guinee|628323232|"></p-message>
+    </div>
   </div>
 <form nz-form  [formGroup]="validateForm" (ngSubmit)="submitForm()"  >
   <nz-form-item>
-<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Téléphone</nz-form-label>-->
     <nz-form-control
       [nzValidateStatus]="validateForm.controls['phoneNumber']"
       nzErrorTip="Veuillez saisir votre numéro de téléphone!"
@@ -43,13 +45,23 @@
           </nz-select>
 
         </ng-template>
-        <input   formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="628451000"/>
+        <input   formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="Telephone (Ex: 628451000)"/>
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
 
+<!--  new-->
+<!--  <nz-form-item>-->
+<!--    <nz-form-control nzErrorTip="Please input your username!">-->
+<!--      <nz-input-group nzPrefixIcon="user">-->
+<!--        <input formControlName="phoneNumber" nz-input placeholder="Telephone" />-->
+<!--      </nz-input-group>-->
+<!--    </nz-form-control>-->
+<!--  </nz-form-item>-->
+
+
+<!--  fin new-->
   <nz-form-item >
-<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Mot de passe</nz-form-label>-->
     <nz-form-control   nzErrorTip="Veuillez saisir votre mot de passe!">
       <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
         <input
@@ -85,8 +97,9 @@
   <nz-form-control >
      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Se connecter</button>
   </nz-form-control>
-  Ou
-  <a routerLink="/auth/signUp" class="login-form-link">S'inscrire maintenant !</a>
+  Oubien
+<!--  <a routerLink="/auth/signUp" class="login-form-link">S'inscrire maintenant !</a>-->
+  <button routerLink="/auth/signUp" pButton pRipple label="S'inscrire maintenant !" icon="pi pi-lock"></button>
 
 
 </form>

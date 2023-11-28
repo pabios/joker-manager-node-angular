@@ -6,6 +6,7 @@ import {ChatService} from "../../core/services/chat.service";
 import {AuthService} from "../../core/services/auth.service";
 import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
+import {UtilsService} from "../../core/services/utils.service";
 
 @Component({
   selector: 'app-chat',
@@ -40,6 +41,7 @@ export class ChatComponent implements OnInit{
   constructor(
     private chatService:ChatService,
     private auth: AuthService,
+    public utilsService:UtilsService,
     private router:Router) {
   }
   ngOnInit(): void {

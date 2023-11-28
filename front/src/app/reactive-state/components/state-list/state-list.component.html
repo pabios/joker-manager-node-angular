@@ -80,7 +80,7 @@
 
   <ng-container *ngIf="elements$ | async as elements; else noElements">
     <div *ngIf="elements.length > 0; else noElements">
-      <mat-card *ngFor="let element of elements">
+      <mat-card *ngFor="let element of elements" (click)="goSingle(element.id)">
         <div class="card-content">
           <div class="container-img-maps">
             <div class="image-container">
@@ -97,10 +97,10 @@
               </c-carousel>
             </div>
             <div class="description">
-              <p><strong><mat-icon>attach_money</mat-icon> </strong> <span> <b>Loyer :</b> {{element.price}} GNF/Jour</span></p>
-              <p><strong><mat-icon>location_on</mat-icon>  </strong> <span> <b>Localisation :</b>  {{element.locate}} </span></p>
-              <p><strong><mat-icon>square</mat-icon>  </strong> <span> <b>Surface :</b>  {{element.size}} m2  </span></p>
-              <p><strong><mat-icon>description</mat-icon> </strong>
+              <p><strong><i class="pi pi-money-bill" style="color: green"></i> </strong> <span> <b>Prix :</b> {{element.price}} GNF</span></p>
+              <p><strong><i class="pi pi-spin pi-map" style="color: green"></i>  </strong> <span> <b>Ville :</b>  {{element.city}} </span></p>
+              <p><strong><i class="pi pi-building" style="color: green"></i>  </strong> <span> <b>Surface :</b>  {{element.size}} m2  </span></p>
+              <p><strong><i class="pi pi-book" style="color: green"></i>  </strong>
                 <span> <b>Description :</b>
 <!--                  {{element.description}}-->
                   {{ truncateDescription(element.description) }}

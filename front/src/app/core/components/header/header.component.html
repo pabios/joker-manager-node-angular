@@ -79,8 +79,8 @@
 
 <header >
 <!--  <div class="px-3 py-2 bg-dark text-white ">-->
-    <div class="bg-dark text-white"  >
-    <div   style="background-color: #FF9F57">
+    <div   class="header-container-bg" >
+    <div    >
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
           <div class="logo">
@@ -94,7 +94,17 @@
         </a>
 
         <ul class="  la_nav justify-content-center my-2" >
-<!--          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small" style="flex-wrap: nowrap;">-->
+
+          <li class="mobile-icon-displaying">
+            <a href="#"  routerLink="/" class="nav-link text-white">
+              <div class="icon-et__label">
+                <span style="color:white" class="le__icon" nz-icon nzType="home" nzTheme="outline" ></span>
+                <span class="label__icon">Accueil</span>
+              </div>
+            </a>
+          </li>
+
+
           <li>
             <a href="#"  routerLink="/elements/add" class="nav-link text-white">
               <div class="icon-et__label">
@@ -148,29 +158,27 @@
         </ul>
       </div>
     </div>
-  </div>
-  <div class="px-3 py-2 border-bottom mb-3">
-    <div class="container d-flex align-items-center">
-      <form class="w-100 me-3">
-        <input  (keydown)="onKeyDown($event)" (click)="this.utilsService.showSearchModal()" type="search" class="form-control" placeholder="Trouvez votre logement...." aria-label="Search">
-      </form>
-      <div  class="flex-shrink-0 dropdown call-icon">
-        <a routerLink="chat">
-<!--          <span nz-icon nzType="wechat" nzTheme="fill" class="phone-icon"></span>-->
+
+<!--      recherche-->
+      <div class="px-3 py-2 border-bottom mb-3 mobile-displaying" [class.fixed-search-bar]="isFixedSearch">
+        <div class="container d-flex align-items-center ">
+          <form class="w-100 me-3">
+            <input  (keydown)="onKeyDown($event)" (click)="this.utilsService.showSearchModal()" type="search" class="form-control" placeholder="Trouvez votre logement...." aria-label="Search">
+          </form>
+          <div  class="flex-shrink-0 dropdown call-icon">
+            <a routerLink="chat">
           <span class="phone-icon">
-<!--            <i class="pi pi-comments   " pBadge style="color:white;font-size: 2rem" value="?"></i>-->
-          <i class="pi pi-comments text-3xl" pBadge value="chat" style="font-size: 2rem"></i>
-
+          <i class="pi pi-comments text-3xl" pBadge value="messages" style="font-size: 2rem"></i>
           </span>
-<!--          <i class="pi pi-bell text-3xl" pBadge value="2" style="font-size: 2rem"></i>-->
-
-
-
-        </a>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
 
   </div>
+
+
+
 
 
   <nz-modal
@@ -207,11 +215,11 @@
       <nz-descriptions [nzColumn]="2" nzTitle="Informations">
         <nz-descriptions-item   nzTitle="Nom complet" [nzSpan]="1">{{user.fullName}}</nz-descriptions-item>
         <nz-descriptions-item nzTitle="badge" [nzSpan]="1">{{user.badge}} </nz-descriptions-item>
-        <nz-descriptions-item nzTitle="age" [nzSpan]="1">{{user.age}} ans</nz-descriptions-item>
-        <nz-descriptions-item nzTitle="Téléphone" [nzSpan]="1">{{user.telephone}}</nz-descriptions-item>
-        <nz-descriptions-item nzTitle="Bio" [nzSpan]="2">
-          {{user.bio}}
-        </nz-descriptions-item>
+<!--        <nz-descriptions-item nzTitle="age" [nzSpan]="1">{{user.age}} ans</nz-descriptions-item>-->
+<!--        <nz-descriptions-item nzTitle="Téléphone" [nzSpan]="1">{{user.telephone}}</nz-descriptions-item>-->
+<!--        <nz-descriptions-item nzTitle="Bio" [nzSpan]="2">-->
+<!--          {{user.bio}}-->
+<!--        </nz-descriptions-item>-->
       </nz-descriptions>
 
       <nz-divider></nz-divider>

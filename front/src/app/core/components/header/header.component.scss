@@ -1,175 +1,39 @@
 $toolbar-height: 64px; // Hauteur de la barre d'outils
 $color-link: black;
-//$color-header: #F29E01;
 $color-header: #FF9F57;
 
-//.toolbar {
-//  display: flex;
-//  flex-wrap: wrap;
-//  justify-content: space-between;
-//  align-items: center;
-//  background-color: $color-header ;
+.mobile-icon-displaying{
+  display:none;
+}
+.fixed-search-bar {
+  background-color:$color-header;
+  position: relative;
+}
 //
-//  .left-content {
-//    display: flex;
-//    align-items: center;
-//    margin-right: 24px;
-//
-//    .logo-link {
-//      display: block;
-//      height: $toolbar-height;
-//      padding: 0 16px;
-//      line-height: $toolbar-height;
-//
-//      img {
-//        height: 36px;
-//      }
-//    }
-//
-//    .nav-link {
-//      display: flex;
-//      align-items: center;
-//      height: $toolbar-height;
-//      padding: 0 16px;
-//      font-size: 16px;
-//      line-height: $toolbar-height;
-//
-//      color: $color-link;
-//      font-weight: bold;
-//      text-decoration: none;
-//
-//
-//      mat-icon {
-//        margin-right: 8px;
-//        font-size: 24px;
-//      }
-//    }
-//  }
-//
-//  .right-content {
-//    display: flex;
-//    align-items: center;
-//
-//    .nav-link {
-//      display: flex;
-//      align-items: center;
-//      height: $toolbar-height;
-//      padding: 0 16px;
-//      font-size: 16px;
-//      line-height: $toolbar-height;
-//      color: $color-link;
-//      font-weight: bold;
-//      text-decoration: none;
-//
-//      mat-icon {
-//        margin-right: 8px;
-//        font-size: 24px;
-//      }
-//    }
-//  }
-//
-//  .example-spacer {
-//    flex: 1 1 auto;
-//  }
-//
-//  @media (max-width: 768px) {
-//    .left-content {
-//      margin-right: 0;
-//
-//      .logo-link {
-//        padding-left: 16px;
-//        padding-right: 8px;
-//      }
-//    }
-//
-//    .right-content {
-//      display: none;
-//    }
-//
-//    .nav-link {
-//      display: block;
-//      width: 100%;
-//      padding: 16px;
-//      text-align: center;
-//      font-size: 20px;
-//      line-height: 1.5;
-//      border-bottom: 1px solid #ddd;
-//      cursor: pointer;
-//
-//      mat-icon {
-//        margin-right: 16px;
-//        font-size: 28px;
-//      }
-//    }
-//
-//    .menu-button {
-//      display: flex;
-//      align-items: center;
-//      height: $toolbar-height;
-//      padding: 0 16px;
-//      font-size: 24px;
-//      cursor: pointer;
-//
-//      mat-icon {
-//        margin-right: 8px;
-//        font-size: 32px;
-//      }
-//    }
-//
-//    .menu-items {
-//      position: absolute;
-//      top: $toolbar-height;
-//      left: 0;
-//      right: 0;
-//      background-color: #fff;
-//      box-shadow: 0 2px 2px rgba(0,0,0,0.2);
-//      overflow: hidden;
-//      max-height: 0;
-//      transition: max-height 0.2s ease-out;
-//      z-index: 1;
-//
-//      &.open {
-//        max-height: 300px; // Hauteur maximale du menu
-//      }
-//
-//      .nav-link {
-//        border-bottom: none;
-//      }
-//    }
-//  }
-//
-//  @media (max-width: 1024px) {
-//    .nav-link {
-//      font-size: 18px;
-//
-//      mat-icon {
-//        font-size: 28px;
-//      }
-//    }
-//  }
-//}
-//
-//
-//version bootstrap
-//
-//header{
-//  width: 100%;
-//}
-//.bd-placeholder-img {
-//  font-size: 1.125rem;
-//  text-anchor: middle;
-//  -webkit-user-select: none;
-//  -moz-user-select: none;
-//  user-select: none;
-//}
-//
-//@media (min-width: 768px) {
-//  .bd-placeholder-img-lg {
-//    font-size: 3.5rem;
-//  }
-//}
+@keyframes colorAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
 
+
+//
+//$color-header: #FF9F57;
+
+.header-container-bg {
+  background-color: $color-header;
+  //perspective: 1000px; /* Ajustez la valeur en fonction de l'effet souhaité */
+  //background: linear-gradient(45deg, $color-header, $color-header); /* Choisissez les couleurs souhaitées */
+  //transform-style: preserve-3d;
+
+}
 // nouveau try designe header samedi
 .phone-icon {
   font-size: 24px; /* Taille de l'icône (ajustez selon vos besoins) */
@@ -258,6 +122,39 @@ header{
 
 @media (max-width: 768px) { // mobile
 
+  .fixed-search-bar {
+    background-color:$color-header;
+    position: fixed;
+    top: 30px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .mobile-displaying{
+    margin-top:-35px;
+  }
+  ul{
+    width:100%;
+  }
+  .la_nav{
+    width:100%;
+      //background-color:red;
+    margin:0;
+    padding-left:-10px !important;
+    margin-top:10px !important;
+    margin-bottom:20px !important;
+    justify-content:initial;
+  }
+  .mobile-icon-displaying{
+    display: initial;
+    margin-top:3px;
+    margin-left:-2px !important;
+    margin-right:50px !important;
+  }
+  .logo{
+    display:none;
+  }
   .le_drawer{ // [nzWidth]="640"
     width:70%
   }

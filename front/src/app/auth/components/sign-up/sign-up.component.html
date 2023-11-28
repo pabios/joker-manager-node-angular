@@ -22,6 +22,8 @@
 <!--<span class="fi fi-gn"></span>-->
 
 
+
+
 <nz-card nzHoverable class="sign-form" >
   <div class="logo">
     <span class="image">
@@ -30,10 +32,12 @@
     <span class="text__logo">
             Inscription
     </span>
+    <div *ngIf="validateForm.get('phoneNumber')?.dirty">
+      <p-message severity="info" text="Exemple: |Guinee|628323232|"></p-message>
+    </div>
   </div>
 <form nz-form  [formGroup]="validateForm" (ngSubmit)="submitForm()" >
   <nz-form-item>
-<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Numéro de téléphone</nz-form-label>-->
     <nz-form-control
       [nzValidateStatus]="validateForm.controls['phoneNumber']"
       nzErrorTip="Veuillez saisir votre numéro de téléphone!"
@@ -48,7 +52,8 @@
           </nz-select>
 
         </ng-template>
-        <input formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="Téléphone"/>
+        <input formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="Téléphone (Ex: 628298900)"/>
+
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
@@ -116,6 +121,8 @@
   <nz-form-item nz-row class="register-area">
     <nz-form-control  >
       <button nz-button class="sign-form-button sign-form-margin" nzType="primary"   >S'inscrire</button>
+      oubien
+      <button routerLink="/auth/login" pButton pRipple label="Se connecter !" icon="pi pi-lock"></button>
     </nz-form-control>
   </nz-form-item>
 </form>

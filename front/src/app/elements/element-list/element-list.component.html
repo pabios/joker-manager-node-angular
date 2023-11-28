@@ -6,7 +6,8 @@
                  [pageSize]="pageSize"
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="onPageChange($event)"
-                 aria-label="Select page">
+                 aria-label="Select page"
+                  >
   </mat-paginator>
   <nz-content  class="container container-element__item"  *ngIf="elements$ | async as element">
     <app-element style="margin-bottom: 20px"   *ngFor="let element of getCardsForPage(element)" [element]="element" [images]="filterImagesByElement(element)"></app-element>

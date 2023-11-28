@@ -6,9 +6,11 @@ export class Root {
   content!: string
   description!: string
   name!: string
+  desired!: string
   createdDate!: string
   locate!: string
   exactLocate!:string
+  city!:string
   price!:number
   size!:number
   verified!: boolean

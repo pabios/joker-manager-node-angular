@@ -8,10 +8,12 @@ export const environment = {
   // backend:'http://localhost',
   //
   urlApi:'https://gn.api.monimba.com/api',
+  // urlApi:'http://localhost:8000/api',
   backend:'https://gn.api.monimba.com',
-  specVilleApi:'http://localhost:3000/api',
+  // specVilleApi:'http://localhost:3000/api',
+  specVilleApi:'https://gn-locate.onrender.com/api',
 
-  apiUrl:"https://api.pabiosoft.com/index.php",
+  // apiUrl:"https://api.pabiosoft.com/index.php",
   url:'http://localhost:3000',
   token: '8c4d00f041c970d8fcb4a562b078e3d1efa40736b7ac2372683592242e186951',
   googleMapsApiKey: 'AIzaSyDhVDyZazCKAmDr32sIMeM5H2E-KDRBIFE',

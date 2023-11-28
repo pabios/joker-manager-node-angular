@@ -12,7 +12,7 @@ export class SpecVilleService {
   }
 
   getAll(){
-    return this.http.get<SpecVille[]>(`${environment.specVilleApi}/gn/regions`);
+    return this.http.get<SpecVille[]>(`${environment.specVilleApi}/gn/decoupage`);
   }
 
 
