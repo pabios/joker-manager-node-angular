@@ -144,7 +144,7 @@ export class LandingPageComponent implements OnInit {
   likes(): void {
     this.isLiked = !this.isLiked;
 
-    console.log(String(this.isLiked))
+    // console.log(String(this.isLiked))
     let expirationDate = new Date();
     expirationDate.setFullYear(expirationDate.getFullYear() + 1);
     //
@@ -155,10 +155,13 @@ export class LandingPageComponent implements OnInit {
       } else {
        this.likeCount--;
       }
-      console.log(String(this.likeCount));
+      // console.log(String(this.likeCount));
       this.newLike$ = this.utilsService.likesSite(String(this.likeCount),environment.siteId);
       this.newLike$.subscribe(res=>{
-        console.log(res)
+        if(res){
+
+        }
+        // console.log(res)
       })
 
 

@@ -5,11 +5,11 @@ export const environment = {
   adminId:'1',
   //
   // urlApi:'http://localhost/api',
-  // backend:'http://localhost',
+  // backend:'http://localhost:8000', //local
   //
-  urlApi:'https://gn.api.monimba.com/api',
-  // urlApi:'http://localhost:8000/api',
-  backend:'https://gn.api.monimba.com',
+  urlApi:'https://gn.api.monimba.com/api', //prod
+  // urlApi:'http://localhost:8000/api', // local api
+  backend:'https://gn.api.monimba.com', //prod
   // specVilleApi:'http://localhost:3000/api',
   specVilleApi:'https://gn-locate.onrender.com/api',
 

@@ -1,28 +1,3 @@
-<!--<form [formGroup]="snapFormSign">-->
-<!--  <div class="form-card">-->
-<!--    <h2>Inscription</h2>-->
-
-<!--    <div class="form-group">-->
-<!--      <label for="email">Pseudo</label>-->
-<!--      <input #email type="text" id="email"  formControlName="email">-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--      <label for="password">Mot de passe</label>-->
-<!--      <input #password type="password" id="password" formControlName="password">-->
-<!--    </div>-->
-<!--    <div class="action-buttons">-->
-<!--      <button type="submit" #signIn (click)="signUp(email.value,password.value)"  [disabled]="snapFormSign.invalid">-->
-<!--        je m'inscrit-->
-<!--      </button>-->
-<!--    </div>-->
-<!--    <span class="action-buttons"> ou  <button routerLink="/auth/login">se connecter</button></span>-->
-<!--  </div>-->
-<!--</form>-->
-
-<!--<span class="fi fi-gn"></span>-->
-
-
-
 
 <nz-card nzHoverable class="sign-form" >
   <div class="logo">
@@ -32,49 +7,63 @@
     <span class="text__logo">
             Inscription
     </span>
-    <div *ngIf="validateForm.get('phoneNumber')?.dirty">
-      <p-message severity="info" text="Exemple: |Guinee|628323232|"></p-message>
+    <div *ngIf="validateForm.get('phoneEmail')?.dirty">
+      <p-message severity="info" text="Ex: email@abc.com ou +2628323232"></p-message>
     </div>
   </div>
 <form nz-form  [formGroup]="validateForm" (ngSubmit)="submitForm()" >
-  <nz-form-item>
-    <nz-form-control
-      [nzValidateStatus]="validateForm.controls['phoneNumber']"
-      nzErrorTip="Veuillez saisir votre numéro de téléphone!"
-    >
-      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
-        <ng-template #addOnBeforeTemplate>
-          <nz-select class="phone-select" required  formControlName="phoneNumberPrefix" nzShowSearch nzAllowClear nzPlaceHolder="pays">
-            <nz-option *ngFor="let country of countries" #phoneNumberPrefix  [nzLabel]="country.label" [nzValue]="country.value" nzCustomContent >
-              <span class="fi {{country.flag}}"></span>
-              {{country.label}}
-            </nz-option>
-          </nz-select>
+<!--  pays + numero-->
+<!--  <nz-form-item>-->
+<!--    <nz-form-control-->
+<!--      [nzValidateStatus]="validateForm.controls['phoneNumber']"-->
+<!--      nzErrorTip="Veuillez saisir votre numéro de téléphone!"-->
+<!--    >-->
+<!--      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">-->
+<!--        <ng-template #addOnBeforeTemplate>-->
+<!--          <nz-select class="phone-select" required  formControlName="phoneNumberPrefix" nzShowSearch nzAllowClear nzPlaceHolder="pays">-->
+<!--            <nz-option *ngFor="let country of countries" #phoneNumberPrefix  [nzLabel]="country.label" [nzValue]="country.value" nzCustomContent >-->
+<!--              <span class="fi {{country.flag}}"></span>-->
+<!--              {{country.label}}-->
+<!--            </nz-option>-->
+<!--          </nz-select>-->
+<!--        </ng-template>-->
+<!--        <input formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="Téléphone (Ex: 628298900)"/>-->
+<!--      </nz-input-group>-->
+<!--    </nz-form-control>-->
+<!--  </nz-form-item>-->
+<!-- fin pays + numero-->
 
-        </ng-template>
-        <input formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="Téléphone (Ex: 628298900)"/>
+<!--  nom et prenom-->
+  <!--  <nz-form-item >-->
+  <!--    <nz-form-control   nzErrorTip="S'il-vous-plaît, entrer votre prénom et votre nom!">-->
+  <!--      <input nz-input id="fullName" #fullName formControlName="fullName" placeholder="Nom et prénom" />-->
+  <!--    </nz-form-control>-->
+  <!--  </nz-form-item>-->
+  <!--  nom et prenom-->
 
-      </nz-input-group>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Saisir un email ou un telephone!">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nz-input #phoneEmail  formControlName="phoneEmail" placeholder="Email ou téléphone(+224628455400)" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-control  nzErrorTip="Veuillez saisir votre mot de passe!">
+          <input
+            nz-input
+            type="password"
+            id="password"
+            #password
+            formControlName="password"
+            placeholder="Veuillez saisir votre mot de passe!"
+            (ngModelChange)="updateConfirmValidator()"
+          />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Mot de passe</nz-form-label>-->
-    <nz-form-control  nzErrorTip="Veuillez saisir votre mot de passe!">
-      <input
-        nz-input
-        type="password"
-        id="password"
-        #password
-        formControlName="password"
-        placeholder="Veuillez saisir votre mot de passe!"
-        (ngModelChange)="updateConfirmValidator()"
-      />
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirmez le mot de passe</nz-form-label>-->
     <nz-form-control   [nzErrorTip]="errorTpl">
       <input nz-input type="password" #checkPassword formControlName="checkPassword" id="checkPassword" placeholder="Confirmez le mot de passe" />
       <ng-template #errorTpl let-control>
@@ -83,21 +72,6 @@
           Les deux mots de passe que vous saisissez sont incohérents!
         </ng-container>
       </ng-template>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item >
-<!--    <nz-form-label-->
-<!--      [nzSm]="6"-->
-<!--      [nzXs]="24"-->
-<!--      nzFor="fullName"-->
-<!--      nzRequired-->
-<!--      nzTooltipTitle="Comment veux-tu que les autres t'appellent"-->
-<!--    >-->
-<!--      <span>Nom et prénom</span>-->
-<!--    </nz-form-label>-->
-    <nz-form-control   nzErrorTip="S'il-vous-plaît, entrer votre prénom et votre nom!">
-      <input nz-input id="fullName" #fullName formControlName="fullName" placeholder="Nom et prénom" />
     </nz-form-control>
   </nz-form-item>
 

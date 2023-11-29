@@ -35,7 +35,11 @@ export class ElementComponent {
     this.api_url = environment.backend+"/";
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log('Route demandée :', event.url);
+        // console.log('Route demandée :', event.url);
+
+        if(event.url){
+
+        }
       }
     });
     //

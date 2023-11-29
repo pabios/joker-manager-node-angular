@@ -27,9 +27,8 @@ export class LoginComponent implements OnInit {
   //
   countries!: any[];
   validateForm!: FormGroup<{
-    phoneNumber: FormControl<string>;
+    phoneEmail: FormControl<string>;
     password: FormControl<string>;
-    phoneNumberPrefix: FormControl<string>;
   }>;
 
 
@@ -47,9 +46,8 @@ export class LoginComponent implements OnInit {
 
     this.countries = this.auth.countries;
     this.validateForm = this.fb.group({
-      phoneNumber: ['', [Validators.required]],
+      phoneEmail: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      phoneNumberPrefix: ['', [Validators.required]],
     });
   }
 

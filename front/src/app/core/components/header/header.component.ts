@@ -54,10 +54,10 @@ export class HeaderComponent implements OnInit{
     let curentIdUser = Number(this.auth.getUserId());
     this.user$ = this.auth.getUserById(curentIdUser);
     this.visible = true;
-    console.log( Number(this.auth.getUserId()) );
-    console.log('hello le  monde ')
+    // console.log( Number(this.auth.getUserId()) );
+    // console.log('hello le  monde ')
     this.loginStatus = curentIdUser != 0;
-    console.log(this.loginStatus)
+    // console.log(this.loginStatus)
     // if(Number(this.auth.getUserId()) ==0){
     //   this.notLogin = true;
     // }else {

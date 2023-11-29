@@ -78,8 +78,8 @@ export class ProfilsComponent implements OnInit {
 
     this.bookings$ = this.bookingService.getBookingByUserId(curentIdUser);
     this.elements$ = this.elementService.getElementByUserId(curentIdUser);
-    console.log(curentIdUser)
-    console.log("est le user loger")
+    // console.log(curentIdUser)
+    // console.log("est le user loger")
     //
     this.user$ = this.auth.getUserById(curentIdUser);
     this.avatar = environment.backend+"/";
@@ -114,7 +114,10 @@ export class ProfilsComponent implements OnInit {
     this.delete$ = this.bookingService.remove(parseInt(bookingId));
 
     this.delete$.subscribe(res =>{
-      console.log(res)
+      // console.log(res)
+      if(res){
+
+      }
     })
     this.isDeleteButtonDisabled = true;
 
@@ -131,7 +134,10 @@ export class ProfilsComponent implements OnInit {
     this.delete$ = this.elementService.remove(parseInt(elementId));
 
     this.delete$.subscribe(res =>{
-      console.log(res)
+      // console.log(res)
+      if(res){
+
+      }
     })
 
     this.isDeleteButtonDisabled = true;

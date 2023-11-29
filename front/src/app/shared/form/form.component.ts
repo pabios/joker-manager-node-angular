@@ -159,7 +159,7 @@ export class FormComponent {
     this.elementForm.get('city')?.valueChanges.subscribe((ville_id: number) => {
 
       this.selectedCityId = ville_id; // ==> [id,nomVille]
-      console.log(this.selectedCityId[0])
+      // console.log(this.selectedCityId[0])
       this.subPref$ = this.getSubPrefByCityId(Number(this.selectedCityId[0]));
     });
     //
@@ -175,13 +175,13 @@ export class FormComponent {
     this.selectedElementTypeName = ''
     //
     let selectedRegion = this.elementForm!.get('region')?.value;
-    console.log("######")
+    // console.log("######")
     // console.log(selectedRegion)
 
     let selectedDesired = this.elementForm!.get('desired')?.value;
 
-    console.log(selectedDesired)
-    console.log(" #hello ######")
+    // console.log(selectedDesired)
+    // console.log(" #hello ######")
 
     if (selectedDesired == "Location"){
       this.priceLabel = "le prix par Jours"

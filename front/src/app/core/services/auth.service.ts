@@ -75,9 +75,9 @@ export class AuthService{
       }),
     };
     const form = new FormData();
-    form.append('telephone', formData.value.phoneNumberPrefix + formData.value.phoneNumber);
+    form.append('phoneEmail', formData.value.phoneEmail);
     form.append('password', formData.value.password);
-    form.append('fullName', formData.value.fullName);
+    // form.append('fullName', formData.value.fullName);
     form.append('age',"99");
     form.append('imgUrl',"public/img/avatar.png");
     form.append('role',"user");
@@ -87,7 +87,7 @@ export class AuthService{
   }
   logIn(formData:FormGroup):Observable<any> {
     const form = new FormData();
-    form.append('telephone', formData.value.phoneNumberPrefix + formData.value.phoneNumber);
+    form.append('phoneEmail', formData.value.phoneEmail);
     form.append('password', formData.value.password);
     form.append('site_id',`${environment.siteId}`);
     form.append('TOKEN',`${environment.token}`);

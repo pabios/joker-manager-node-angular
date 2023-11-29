@@ -58,7 +58,7 @@
       <nz-step nzTitle="Région" nzDescription="{{element.category}}"></nz-step>
       <nz-step nzTitle="Ville" nzDescription="{{element.city}}"></nz-step>
       <nz-step nzTitle="Adresse" nzDescription="{{element.exactLocate}}"></nz-step>
-      <nz-step nzTitle="Le Propriétaire" nzDescription="{{element.user}}"></nz-step>
+<!--      <nz-step nzTitle="Le Propriétaire" nzDescription="{{element.user}}"></nz-step>-->
       <ng-template *ngIf="element.desired ==='Location';else vente">
         <nz-step nzTitle="Prix" nzDescription=" {{ element.price | number:'1.0-0' }} GNF/Jour"></nz-step>
       </ng-template>
@@ -76,7 +76,6 @@
     </nz-steps>
   </nz-card>
 
-
 <!--  // garantie ou pas -->
 
   <nz-result *ngIf="element.verified;else notVirified"
@@ -84,8 +83,9 @@
     nzTitle="Arrivée garantie par l'Agence, images conformes!"
     nzSubTitle="Nous garantissons que vous arriverez en toute sécurité et que les images du logement correspondent à la réalité."
   >
+
   <div nz-result-extra>
-      <button (click)="goBooking(element.id,element.price)" nz-button nzType="primary">Réserver</button>
+    <button (click)="goBooking(element.id,element.price)" nz-button nzType="primary">Réserver</button>
       <button nz-button (click)="showModal()">
         <span>Comprendre la Garantie</span>
       </button>
@@ -131,6 +131,8 @@
       </div>
     </nz-result>
   </ng-template>
+<!--  <button (click)="goBooking(element.id,element.price)" nz-button nzType="primary">Message</button>-->
+
 </div>
 
 

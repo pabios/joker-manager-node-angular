@@ -97,7 +97,7 @@ export class ElementListComponent implements OnInit {
 
         // Comptez le nombre d'éléments
         this.numberOfElements = elements.length;
-        console.log('Nombre d\'éléments :', this.numberOfElements);
+        // console.log('Nombre d\'éléments :', this.numberOfElements);
 
         // Utilisez forkJoin pour attendre que toutes les requêtes se terminent
         return forkJoin(observables);
@@ -120,7 +120,7 @@ export class ElementListComponent implements OnInit {
   public catExiste(){
     this.route.paramMap.subscribe((params) => {
       const categoryId = params.get('categoryId');
-      console.log(categoryId)
+      // console.log(categoryId)
 
       if (categoryId) {
         // Si categoryId existe, filtrez les éléments par categoryId
@@ -136,7 +136,7 @@ export class ElementListComponent implements OnInit {
     });
   }
   filterImagesByElement(element: Root) {
-    console.log(this.imagesList.filter(image => image.elementId === element.id))
+    // console.log(this.imagesList.filter(image => image.elementId === element.id))
     return this.imagesList.filter(image => image.elementId === element.id);
   }
 

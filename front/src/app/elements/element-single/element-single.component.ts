@@ -80,7 +80,8 @@ export class ElementSingleComponent implements  OnInit,AfterViewInit{
     this.images$ = this.imageService.getImagesForElement(this.elementId);
     //
     //
-    this.userAvatar = this.api_url +"/"
+    // this.userAvatar = this.api_url +"/"
+    this.userAvatar = this.api_url;
 
   }
 
