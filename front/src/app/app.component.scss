@@ -64,7 +64,14 @@ nz-header {
   @media (max-width: 768px)
   {
     margin-bottom:10px;
+  }
+}
 
+nz-content{
+  @media (max-width: 768px)
+  {
+    //background-color:darkcyan;
+    margin-top:-35px !important;
   }
 }
 
@@ -185,8 +192,11 @@ nz-footer{
 .sub-footer {
   perspective: 1000px; /* Ajustez la valeur en fonction de l'effet souhaité */
   /* Appliquer un effet de rotation 3D sur le fond */
-  background: linear-gradient(45deg, rgba(236, 103, 6, 0.96), #69ff40); /* Choisissez les couleurs souhaitées */
+  //background: linear-gradient(45deg, rgba(236, 103, 6, 0.96), #69ff40); /* Choisissez les couleurs souhaitées */
+  background: linear-gradient(45deg, rgb(245, 233, 7), rgba(236, 103, 6, 0.96)); /* Choisissez les couleurs souhaitées */
   transform-style: preserve-3d;
+  $color-header: #FF9F57;
+  //background:$color-header;
 
 
   padding: 10px 0; /* Espace intérieur de la sub-footer */

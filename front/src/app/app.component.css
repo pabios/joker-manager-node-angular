@@ -52,6 +52,12 @@ nz-header {
   }
 }
 
+@media (max-width: 768px) {
+  nz-content {
+    margin-top: -35px !important;
+  }
+}
+
 .header-trigger {
   height: 64px;
   padding: 20px 24px;
@@ -146,7 +152,7 @@ nz-footer {
   perspective: 1000px;
   /* Ajustez la valeur en fonction de l'effet souhaité */
   /* Appliquer un effet de rotation 3D sur le fond */
-  background: linear-gradient(45deg, rgba(236, 103, 6, 0.96), #69ff40);
+  background: linear-gradient(45deg, #f5e907, rgba(236, 103, 6, 0.96));
   /* Choisissez les couleurs souhaitées */
   transform-style: preserve-3d;
   padding: 10px 0;

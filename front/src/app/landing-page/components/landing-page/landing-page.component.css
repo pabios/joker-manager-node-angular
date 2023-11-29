@@ -27,10 +27,9 @@
   }
 
   .hero-section {
-    z-index: 99;
+    z-index: 9;
     position: relative;
     height: 60px !important;
-    margin-top: -30px;
     overflow: hidden;
     /* Assurez-vous que le contenu ne dépasse pas le hero */
     background: linear-gradient(45deg, #ff9f57, #ff3e9e);

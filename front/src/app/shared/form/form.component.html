@@ -43,35 +43,50 @@
         <p>
           <mat-form-field style="width: 100%" appearance="outline">
             <mat-label>{{this.priceLabel}}  </mat-label>
-            <input formControlName="price"  #price matInput placeholder="{{this.priceLabel}} ">
-            <mat-hint>Prix par jour</mat-hint>
+            <input class="large-100" formControlName="price"  #price matInput placeholder="{{this.priceLabel}} ">
+            <mat-hint>{{this.priceLabel}}</mat-hint>
           </mat-form-field>
         </p>
+<!--        <p>-->
+<!--          <mat-form-field style="width: 100%" appearance="outline">-->
+<!--            <mat-label>Description  du logement</mat-label>-->
+<!--            <input class="hide-outline-color" formControlName="description"   #description  matInput placeholder="Description du logement">-->
+<!--            <mat-hint>Description</mat-hint>-->
+<!--          </mat-form-field>-->
+<!--        </p>-->
         <p>
           <mat-form-field style="width: 100%" appearance="outline">
             <mat-label>Description  du logement</mat-label>
-            <input class="hide-outline-color" formControlName="description"   #description  matInput placeholder="Description du logement">
-            <mat-hint>Description</mat-hint>
+            <textarea  matInput class="large-100 hide-outline-color" formControlName="description"   #description  placeholder="Description du logement"></textarea>
           </mat-form-field>
         </p>
+
+
+<!--        <p>-->
+<!--          <mat-form-field style="width: 100%" appearance="outline" class="custom-outline">-->
+<!--            <mat-label>Dites nous en plus sur le logement</mat-label>-->
+<!--            <input class="hide-outline-color" formControlName="content"   #content  matInput placeholder="exemple: parking, piscine ...">-->
+<!--            <mat-hint>Plus de Details</mat-hint>-->
+<!--          </mat-form-field>-->
+<!--        </p>-->
         <p>
-          <mat-form-field style="width: 100%" appearance="outline" class="custom-outline">
+          <mat-form-field style="width: 100%" appearance="outline">
             <mat-label>Dites nous en plus sur le logement</mat-label>
-            <input class="hide-outline-color" formControlName="content"   #content  matInput placeholder="exemple: parking, piscine ...">
+            <textarea   class="large-100 hide-outline-color" formControlName="content"   #content  matInput placeholder="exemple: parking, piscine ..."></textarea>
             <mat-hint>Plus de Details</mat-hint>
           </mat-form-field>
         </p>
         <p>
           <mat-form-field style="width: 100%" appearance="outline">
             <mat-label>Précisez l'adresse de votre logement</mat-label>
-            <input formControlName="location" #location matInput placeholder="Ex:A 10 minute du stade...">
+            <input class="large-100" formControlName="location" #location matInput placeholder="Ex:A 10 minute du stade...">
             <mat-hint>Localisation</mat-hint>
           </mat-form-field>
         </p>
         <p>
           <mat-form-field style="width: 100%" appearance="outline">
             <mat-label>Surface </mat-label>
-            <input formControlName="sizee" #sizee matInput placeholder="Ex: 40" >
+            <input  class="large-100" formControlName="sizee" #sizee matInput placeholder="Ex: 40" >
             <mat-hint>Surface du logement</mat-hint>
           </mat-form-field>
         </p>
@@ -84,13 +99,13 @@
           </mat-form-field>
         </p>
       </p-fieldset>
-      <p-fieldset>
+      <p-fieldset *ngIf=" specVille$  | async as regions">
         <ng-template pTemplate="header">
           <div class="flex align-items-center text-primary">
             <span class="font-bold text-lg">Localisation de votre Logement</span>
           </div>
         </ng-template>
-        <p *ngIf=" specVille$  | async as regions">
+        <p >
           <mat-form-field  style="width: 100%" appearance="outline">
             <mat-label>Choisir une région</mat-label>
             <mat-select formControlName="region">
