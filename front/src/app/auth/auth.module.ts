@@ -12,6 +12,9 @@ import {NzCardModule} from "ng-zorro-antd/card";
 import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzDrawerModule} from "ng-zorro-antd/drawer";
+import {MessageModule} from "primeng/message";
+import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
 
 
 
@@ -31,7 +34,10 @@ import {NzDrawerModule} from "ng-zorro-antd/drawer";
     NzCardModule,
     NzCheckboxModule,
     NzIconModule,
-    NzDrawerModule
+    NzDrawerModule,
+    MessageModule,
+    ButtonModule,
+    RippleModule
   ]
 })
 export class AuthModule { }

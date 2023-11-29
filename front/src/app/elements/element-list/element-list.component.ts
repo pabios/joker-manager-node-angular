@@ -6,13 +6,17 @@ import {catchError, concatMap, forkJoin, map, mergeMap, Observable, of, switchMa
 import {Images, Root} from "../../core/models/element.model";
 import {ImageService} from "../../core/services/imageService";
 import {ActivatedRoute} from "@angular/router";
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import {CustomPaginator} from "../../core/services/custom/custom-paginator.service";
+
 
 @Component({
   selector: 'app-elements-list',
   templateUrl: './element-list.component.html',
   styleUrls: ['./element-list.component.scss'],
   providers: [
-    { provide: CarouselConfig, useValue: { interval: 4000, noPause: true, showIndicators: true } }
+    { provide: CarouselConfig, useValue: { interval: 4000, noPause: true, showIndicators: true } },
+    { provide: MatPaginatorIntl, useValue:  CustomPaginator()}
   ]
 })
 
@@ -29,6 +33,7 @@ export class ElementListComponent implements OnInit {
     lng:6.188186803578728
   };
   slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
+
 
   cards!: any[];
 
@@ -51,7 +56,13 @@ export class ElementListComponent implements OnInit {
     private route: ActivatedRoute
   ) {
   }
+  customPaginator() {
+    const customPaginatorIntl = new MatPaginatorIntl();
 
+    customPaginatorIntl.itemsPerPageLabel = 'Logement par page:';
+
+    return customPaginatorIntl;
+  }
 
 
   ngOnInit() {
@@ -71,7 +82,7 @@ export class ElementListComponent implements OnInit {
     this.pageSize = 3;
     this.setPageSizeOptions();
 
-    this.addMarker();
+    // this.addMarker();
     //
 
 
@@ -86,7 +97,7 @@ export class ElementListComponent implements OnInit {
 
         // Comptez le nombre d'éléments
         this.numberOfElements = elements.length;
-        console.log('Nombre d\'éléments :', this.numberOfElements);
+        // console.log('Nombre d\'éléments :', this.numberOfElements);
 
         // Utilisez forkJoin pour attendre que toutes les requêtes se terminent
         return forkJoin(observables);
@@ -101,9 +112,6 @@ export class ElementListComponent implements OnInit {
       // Appelez la fonction de préchargement ici
       const imageUrlsToPreload = this.imagesList.map(image => image.url);
       this.preloadImages(imageUrlsToPreload);
-
-
-      console.log(this.imagesList);
     });
 
 
@@ -112,7 +120,7 @@ export class ElementListComponent implements OnInit {
   public catExiste(){
     this.route.paramMap.subscribe((params) => {
       const categoryId = params.get('categoryId');
-      console.log(categoryId)
+      // console.log(categoryId)
 
       if (categoryId) {
         // Si categoryId existe, filtrez les éléments par categoryId
@@ -128,6 +136,7 @@ export class ElementListComponent implements OnInit {
     });
   }
   filterImagesByElement(element: Root) {
+    // console.log(this.imagesList.filter(image => image.elementId === element.id))
     return this.imagesList.filter(image => image.elementId === element.id);
   }
 

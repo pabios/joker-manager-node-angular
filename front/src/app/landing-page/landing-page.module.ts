@@ -11,6 +11,18 @@ import {NzCarouselModule} from "ng-zorro-antd/carousel";
 import {NzResultModule} from "ng-zorro-antd/result";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzAvatarModule} from "ng-zorro-antd/avatar";
+import {NzDividerModule} from "ng-zorro-antd/divider";
+import {NzSwitchModule} from "ng-zorro-antd/switch";
+import {FormsModule} from "@angular/forms";
+import {NzListModule} from "ng-zorro-antd/list";
+import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
+import {CategoriesModule} from "../categories/categories.module";
+import {CalendarModule} from "primeng/calendar";
+import {CardModule} from "primeng/card";
+import {ImageModule} from "primeng/image";
+import {CarouselModule} from "primeng/carousel";
+import {TagModule} from "primeng/tag";
+import {BadgeModule} from "primeng/badge";
 
 
 
@@ -29,7 +41,19 @@ import {NzAvatarModule} from "ng-zorro-antd/avatar";
         NzCarouselModule,
         NzResultModule,
         NzButtonModule,
-        NzAvatarModule
+        NzAvatarModule,
+        NzDividerModule,
+        NzSwitchModule,
+        FormsModule,
+        NzListModule,
+        NzSkeletonModule,
+        CategoriesModule,
+        CalendarModule,
+        CardModule,
+        ImageModule,
+        CarouselModule,
+        TagModule,
+        BadgeModule
     ],
   exports:[
     LandingPageComponent

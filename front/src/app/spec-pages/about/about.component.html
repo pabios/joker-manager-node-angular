@@ -1,21 +1,30 @@
+<ng-container>
+  <nz-page-header nzBackIcon="arrow-left" [nzGhost]="false"></nz-page-header>
+</ng-container>
 
 <nz-card style="width: 100%;margin-top: 16px">
   <nz-card-meta
     [nzAvatar]="avatarTemplate"
     nzTitle="{{this.pageName}}"
-    nzDescription="{{this.pageContent}}"
+    [nzDescription]="contentPage"
   ></nz-card-meta>
+
+  <!--//-->
+  <nz-result
+    nzStatus="success"
+    nzTitle=" GN.TCC.2023.B.09490  "
+    nzSubTitle="Monimba est une startup immatriculée au tribunal de commerce de Conakry."
+  >
+  </nz-result>
 </nz-card>
 
 <ng-template #avatarTemplate>
   <nz-avatar nzSrc="{{this.avatarLogo}}"></nz-avatar>
 </ng-template>
 
+<ng-template #contentPage>
+  <nz-card nzHoverable [innerHTML]="this.pageContent"></nz-card>
+</ng-template>
 
-<!--//-->
-<nz-result
-  nzStatus="success"
-  nzTitle=" GN.TCC.2023.B.09490  "
-  nzSubTitle="Monimba est une startup immatriculée au tribunal de commerce de Conakry."
->
-</nz-result>
+
+

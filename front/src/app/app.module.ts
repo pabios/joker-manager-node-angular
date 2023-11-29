@@ -17,7 +17,7 @@ import {ToastrModule} from "ngx-toastr";
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { fr_FR } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
+import {HashLocationStrategy, LocationStrategy, registerLocaleData} from '@angular/common';
 import fr from '@angular/common/locales/fr';
 import { HttpClientModule } from '@angular/common/http';
 import { IconsProviderModule } from './icons-provider.module';
@@ -36,6 +36,8 @@ import { JwtModule } from "@auth0/angular-jwt";
 import {environment} from "../environments/environment";
 import {NzBreadCrumbModule} from "ng-zorro-antd/breadcrumb";
 import {NzModalModule} from "ng-zorro-antd/modal";
+import {CookieService} from "ngx-cookie-service";
+import {MatPaginatorIntl} from "@angular/material/paginator";
 
 registerLocaleData(fr);
 
@@ -81,8 +83,11 @@ export function tokenGetter() {
   providers: [
     // { provide: LOCALE_ID, useValue: 'fr-FR' },
     // httpInterceptorProviders
+    CookieService,
+    { provide: NZ_I18N, useValue: fr_FR },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }, // ajoute un # au url
+    // { provide: MatPaginatorIntl, useValue:  CustomPaginator()}
 
-    { provide: NZ_I18N, useValue: fr_FR }
   ],
   bootstrap: [AppComponent]
 })

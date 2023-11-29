@@ -1,61 +1,96 @@
-<!--<app-filtre></app-filtre>-->
 
 
-<!--<app-state-list></app-state-list>-->
-<div class="container">
-  <div class="city-cards">
 
-      <div class="city-card" *ngFor="let categoryItem of category$ | async">
-        <a [routerLink]="'elements/list/' + categoryItem.id" class="card-link">
-          <img [src]="categoryItem.imageUrl" alt="{{ categoryItem.name }}">
-          <div class="titre-icon-region">
-            <p>
-              <mat-icon>location_city</mat-icon> <span class="name">{{ categoryItem.name }}</span>
-            </p>
-            <p>
-              <mat-icon>people</mat-icon> <span class="name">≈ {{ categoryItem.info }} habitants</span>
-            </p>
-          </div>
-          <p class="icon-text">
-            <mat-icon>hotel</mat-icon> {{ categoryItem.nombreElement }} logements
-          </p>
-        </a>
-      </div>
+<!--bonjour new hero-->
+<div class="hero-section" >
+  <div class="hero-content">
+    <span class="mobile-display">Monimba</span>
+    <h1>{{ heroTitle }}</h1>
+    <p>{{ heroText }}</p>
   </div>
 </div>
+<!--section promoted card-->
 
-<!--  <section class="sec-stats">-->
-<!--    <nz-card nzHoverable class="sec-stats-item">-->
-<!--      <span class="sec-item__icon" nz-icon nzType="usergroup-delete" nzTheme="outline"></span>-->
-<!--      <p>Nombre d'utilisateurs</p>-->
-<!--      <p>{{34}}</p>-->
-<!--    </nz-card>-->
-<!--    <nz-card nzHoverable  class="sec-stats-item">-->
-<!--      <span nz-icon nzType="user-switch" nzTheme="outline"></span>-->
-<!--      <p>Nombre de partenaires</p>-->
-<!--      <p>{{30}}</p>-->
-<!--    </nz-card>-->
-<!--    <nz-card nzHoverable  class="sec-stats-item">-->
-<!--      <span nz-icon nzType="eye" nzTheme="outline"></span>-->
-<!--      <p>Nombre de visiteurs</p>-->
-<!--      <p>{{50}}</p>-->
-<!--    </nz-card>-->
-<!--    <nz-card nzHoverable  class="sec-stats-item">-->
-<!--      <span nz-icon nzType="shop" nzTheme="outline"></span>-->
-<!--      <p>Nombre de logements</p>-->
-<!--      <p>{{90}}</p>-->
-<!--    </nz-card>-->
-<!--  </section>-->
 
-<nz-result
-  nzStatus="success"
-  nzTitle="Avoir le badge Vert"
-  nzSubTitle="C'est garantir la conformité de ces logements"
->
-  <div nz-result-extra>
-    <button nz-button nzType="primary" (click)="utilsService.sendEmail('Envoyez-nous votre pièce d\'identité en pièce Jointe et votre identifiant (seulement le numéro de téléphone ) ')">Faire une demande</button>
-  </div>
-</nz-result>
+
+<!--section promoted card-->
+<div class="container d-flex justify-content-center align-items-center mt-2">
+  <h2> Dans quelle Région <i class="pi pi-table mr-4 p-text-secondary" severity="warning" pBadge style="font-size: 2rem" value="8"></i>
+  </h2>
+</div>
+<app-categories></app-categories>
+<!--//-->
+<div class="container d-flex justify-content-center align-items-center">
+  <h2 >La plateforme <i class="pi pi-spin pi-cog"   severity="warning" pBadge style="font-size: 2rem" value="{{pages.length}}"></i></h2>
+</div>
+<!--[responsiveOptions]="responsiveOptions"-->
+<p-carousel  [value]="pages" [numVisible]="1" [numScroll]="1"  orientation="vertical" verticalViewPortHeight="490px"  [responsiveOptions]="responsiveOptions" >
+  <ng-template let-product pTemplate="item">
+    <div (click)="goRead(product.name)" class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+      <div class="mb-3 photo">
+        <p-image [preview]="false" width="250"  src="assets/img/{{product.imageUrl}}" alt="{{ product.name }}"></p-image>
+      </div>
+      <div>
+        <p-tag class="mb-1" [value]="product.name" [severity]="'true'"></p-tag>
+        <div class="car-buttons mt-5">
+          <p-button [routerLink]="'spec/about/' + product.name" type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-spin pi-cog"></p-button>
+          <p-button [routerLink]="'spec/about/' + product.name" type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-eye"></p-button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>
+
+<!--//-->
+<!--<nz-result-->
+<!--  nzStatus="success"-->
+<!--  nzTitle="Avoir le badge Vert"-->
+<!--  nzSubTitle="C'est garantir la conformité de ces logements"-->
+<!--&gt;-->
+<!--  <div nz-result-extra>-->
+<!--    <button nz-button nzType="primary" (click)="utilsService.sendEmail('Envoyez-nous votre pièce d\'identité en pièce Jointe et votre identifiant (seulement le numéro de téléphone ) ')">Faire une demande</button>-->
+<!--  </div>-->
+<!--</nz-result>-->
+
+<!--//-->
+<nz-switch [(ngModel)]="loading"></nz-switch>
+<nz-list [nzDataSource]="listData" [nzRenderItem]="item" [nzItemLayout]="'vertical'">
+  <ng-template #item let-item>
+    <nz-list-item
+      [nzContent]="loading ? ' ' : item.content"
+      [nzActions]="loading ? [] : [starAction, likeAction]"
+      [nzExtra]="loading ? null : extra"
+    >
+      <nz-skeleton [nzLoading]="loading" [nzActive]="true" [nzAvatar]="true">
+
+        <ng-template  #starAction>
+          <span>
+             <span  nz-icon nzType="star-o" style="margin-right: 8px;"></span>
+            {{this.likeCount}}
+          </span>
+        </ng-template>
+        <ng-template #likeAction>
+          <!--          <a (click)="addLike()" nz-button> <span nz-icon nzType="like-o" style="margin-right: 8px;"></span></a>-->
+          <a (click)="likes()" nz-button [nzType]="isLiked ? 'primary' : 'default'" [ngClass]="{'liked': isLiked}">
+            <span nz-icon [nzType]="isLiked ? 'dislike' : 'like-o'" style="margin-right: 8px;"></span>
+            <!--            {{ isLiked ? 'disLike' : 'Like' }}-->
+          </a>
+
+        </ng-template>
+        <nz-list-item-meta [nzAvatar]="item.avatar" [nzTitle]="nzTitle" [nzDescription]="item.description">
+          <ng-template #nzTitle>
+            <a href="{{ item.href }}">{{ item.title }}</a>
+          </ng-template>
+        </nz-list-item-meta>
+        <ng-template #extra>
+          <a href="elements">
+            <img width="272" alt="region administrative guinee" src="assets/img/guinea_regions.png"  />
+          </a>
+        </ng-template>
+      </nz-skeleton>
+    </nz-list-item>
+  </ng-template>
+</nz-list>
 
 <nz-card style="width: 100%;margin-top: 16px">
   <nz-card-meta
@@ -68,5 +103,6 @@
 <ng-template #avatarTemplate>
   <nz-avatar nzSrc="{{this.avatarLogo}}"></nz-avatar>
 </ng-template>
+
 
 

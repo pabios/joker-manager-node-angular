@@ -1,0 +1,160 @@
+img {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sec-stats {
+    flex-direction: column;
+  }
+}
+.city-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 -16px;
+}
+.city-cards .card-link {
+  width: 100%;
+  text-decoration: none;
+  display: block;
+}
+.city-cards .city-card {
+  flex-grow: 4;
+  width: calc(30% - 32px);
+  margin: 16px;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(236, 103, 6, 0.96), 0 0 0 1px #bf40ff;
+  transition: all 0.3s ease;
+}
+.city-cards .city-card a {
+  font-size: 40px;
+}
+.city-cards .city-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(236, 103, 6, 0.96), 0 0 0 2px rgba(236, 103, 6, 0.96);
+  background-color: #FF9F57;
+}
+.city-cards .city-card:hover p {
+  color: white;
+}
+@media only screen and (max-width: 600px) {
+  .city-cards .city-card {
+    width: calc(50% - 32px);
+    margin: 16px 1px 16px 10px;
+    height: 150px;
+    padding: 2px 4px 16px 2px;
+  }
+  .city-cards .city-card ::ng-deep.ant-card-body {
+    padding: 16px 0;
+  }
+  .city-cards .city-card ::ng-deep .pi-list:before {
+    display: none;
+  }
+  .city-cards .city-card ::ng-deep.p-tag-icon, .city-cards .city-card .p-tag-value, .city-cards .city-card .p-tag-icon.pi {
+    line-height: 1.5;
+    font-size: 8px;
+  }
+  .city-cards .city-card ::ng-deep.ant-card-meta-title {
+    font-weight: 500;
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .city-cards {
+    flex-wrap: wrap;
+  }
+}
+
+.city-card-nz-card {
+  width: 100%;
+}
+
+.titre-icon-region {
+  display: flex;
+  justify-content: space-between;
+}
+.titre-icon-region .name {
+  display: block;
+  margin-top: -25px;
+  margin-left: 28px;
+}
+
+.icon-text {
+  display: flex;
+}
+
+nz-skeleton {
+  display: flex;
+}
+.page-card:hover {
+  margin-bottom: 2px;
+}
+
+.photo {
+  background-color: white;
+}
+.photo:hover {
+  background-color: white;
+}
+
+.city-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.city-card h3 {
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
+.city-card p {
+  font-size: 16px;
+  color: #999;
+  margin: 0;
+}
+
+.sec-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.sec-stats .sec-stats-item span {
+  font-size: 25px;
+}
+.sec-stats .sec-stats-item span:hover {
+  font-size: 27px;
+}
+.sec-stats nz-card:hover {
+  background-color: #1890ff;
+  color: white;
+}
+
+[nz-carousel-content] {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  color: #fff;
+  overflow: hidden;
+}
+
+h3 {
+  color: #fff;
+  margin-bottom: 0;
+  user-select: none;
+}
+
+.banner h3 {
+  color: red;
+  font-size: 48px;
+  position: absolute;
+  top: 20px;
+  left: 20%;
+}
+
+/*# sourceMappingURL=categories.component.css.map */

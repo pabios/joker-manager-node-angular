@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :host {
   display: flex;
   text-rendering: optimizeLegibility;
@@ -44,6 +45,17 @@ nz-header {
   width: 100%;
   z-index: 2;
   margin-bottom: 80px;
+}
+@media (max-width: 768px) {
+  nz-header {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  nz-content {
+    margin-top: -35px !important;
+  }
 }
 
 .header-trigger {
@@ -106,9 +118,16 @@ nz-content {
     background: #fff;
     height: auto;
   }
+
+  nz-content {
+    width: 100%;
+    margin: 0 0 20px;
+  }
 }
 nz-footer {
-  background-color: #001628;
+  perspective: 1000px;
+  background: linear-gradient(45deg, #2196F3, #FF4081);
+  transform-style: preserve-3d;
 }
 
 .chat-button {
@@ -126,6 +145,31 @@ nz-footer {
 
 .chat-button:hover {
   background-color: #0056b3;
+}
+
+/* Styles pour la sub-footer */
+.sub-footer {
+  perspective: 1000px;
+  /* Ajustez la valeur en fonction de l'effet souhaité */
+  /* Appliquer un effet de rotation 3D sur le fond */
+  background: linear-gradient(45deg, #f5e907, rgba(236, 103, 6, 0.96));
+  /* Choisissez les couleurs souhaitées */
+  transform-style: preserve-3d;
+  padding: 10px 0;
+  /* Espace intérieur de la sub-footer */
+  text-align: center;
+  margin-bottom: -23px;
+  width: 100%;
+}
+
+.sub-footer p {
+  margin: 0;
+  /* Supprime les marges par défaut du paragraphe */
+  font-size: 14px;
+  /* Taille de police */
+  color: #555;
+  /* Couleur du texte */
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=app.component.css.map */

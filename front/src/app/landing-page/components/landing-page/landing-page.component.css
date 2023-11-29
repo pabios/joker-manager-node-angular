@@ -1,3 +1,129 @@
+@charset "UTF-8";
+.mobile-display {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sec-stats {
+    flex-direction: column;
+  }
+
+  .mobile-display {
+    display: initial;
+  }
+
+  .hero-content p {
+    display: none;
+    margin: 0;
+    color: #3b365e;
+    /* Choisissez la couleur du texte selon vos préférences */
+  }
+  .hero-content h1 {
+    margin: 0;
+    font-weight: 900;
+    font-size: 14px;
+    text-transform: capitalize;
+    color: white;
+  }
+
+  .hero-section {
+    z-index: 9;
+    position: relative;
+    height: 60px !important;
+    overflow: hidden;
+    /* Assurez-vous que le contenu ne dépasse pas le hero */
+    background: linear-gradient(45deg, #ff9f57, #ff3e9e);
+    /* Choisissez les couleurs souhaitées */
+    background-size: 200% 200%;
+    animation: colorAnimation 8s infinite;
+    /* Ajustez la durée de l'animation selon vos besoins */
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    color: white;
+    /* Couleur du texte, ajustez selon votre choix */
+  }
+}
+h1 {
+  margin: 0 0 1rem 0;
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  color: white;
+}
+
+.hero-content p {
+  margin: 0;
+  font-size: 1rem;
+  /* Ajustez la taille de la police selon vos préférences */
+  color: #3b365e;
+  /* Choisissez la couleur du texte selon vos préférences */
+}
+
+.liked {
+  background-color: #FF9F57;
+  /* ou toute autre propriété de style que vous souhaitez appliquer */
+  animation: bounce 1s;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+.liked {
+  animation: bounce 1s;
+}
+
+@keyframes colorAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.hero-section {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  /* Assurez-vous que le contenu ne dépasse pas le hero */
+  background: linear-gradient(45deg, #ff9f57, #ff3e9e);
+  /* Choisissez les couleurs souhaitées */
+  background-size: 200% 200%;
+  animation: colorAnimation 8s infinite;
+  /* Ajustez la durée de l'animation selon vos besoins */
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  /* Couleur du texte, ajustez selon votre choix */
+}
+
+.hero-content h1,
+.hero-content p {
+  margin: 0;
+}
+
 .city-cards {
   display: flex;
   flex-wrap: wrap;
@@ -33,14 +159,21 @@
   display: flex;
 }
 
+nz-skeleton {
+  display: flex;
+}
 .city-card {
-  width: calc(50% - 32px);
+  flex-grow: 4;
+  width: calc(30% - 32px);
   margin: 16px;
   padding: 16px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+}
+.city-card photo {
+  height: 200px;
 }
 @media only screen and (max-width: 600px) {
   .city-card {
@@ -49,15 +182,30 @@
   }
 }
 
+.page-card:hover {
+  margin-bottom: 2px;
+}
+
+.photo {
+  background-color: white;
+}
+.photo:hover {
+  background-color: white;
+}
+
 .city-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(0, 0, 0, 0.1);
+  background-color: #FF9F57;
+}
+.city-card:hover p {
+  color: white;
 }
 
 .city-card img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 4px;
   margin-bottom: 16px;
 }
@@ -89,11 +237,6 @@
   color: white;
 }
 
-@media (max-width: 768px) {
-  .sec-stats {
-    flex-direction: column;
-  }
-}
 [nz-carousel-content] {
   text-align: center;
   height: 160px;

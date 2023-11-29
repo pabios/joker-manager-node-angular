@@ -6,6 +6,7 @@ import {MatCardModule} from "@angular/material/card";
 import {NzCardModule} from "ng-zorro-antd/card";
 import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {NzResultModule} from "ng-zorro-antd/result";
+import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
 
 
 
@@ -13,14 +14,15 @@ import {NzResultModule} from "ng-zorro-antd/result";
   declarations: [
     AboutComponent
   ],
-  imports: [
-    CommonModule,
-    SpecPagesRoutingModule,
-    MatCardModule,
-    NzCardModule,
-    NzAvatarModule,
-    NzResultModule
-  ],
+    imports: [
+        CommonModule,
+        SpecPagesRoutingModule,
+        MatCardModule,
+        NzCardModule,
+        NzAvatarModule,
+        NzResultModule,
+        NzPageHeaderModule
+    ],
   exports:[
     AboutComponent
   ]

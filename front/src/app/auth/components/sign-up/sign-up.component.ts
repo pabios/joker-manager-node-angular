@@ -60,11 +60,9 @@ export class SignUpComponent implements OnInit {
 
 
   validateForm!: FormGroup<{
-    phoneNumber: FormControl<string>;
+    phoneEmail: FormControl<string>;
     password: FormControl<string>;
     checkPassword: FormControl<string>;
-    fullName: FormControl<string>;
-    phoneNumberPrefix: FormControl<string>;
     agree: FormControl<boolean>;
   }>;
   captchaTooltipIcon: NzFormTooltipIcon = {
@@ -97,45 +95,16 @@ export class SignUpComponent implements OnInit {
     // zorro
 
     this.validateForm = this.fb.group({
-      phoneNumber: ['', [Validators.required]],
+      phoneEmail: ['', [Validators.required]],
       password: ['', [Validators.required]],
       checkPassword: ['', [Validators.required, this.confirmationValidator]],
-      fullName: ['', [Validators.required]],
-      phoneNumberPrefix: ['', [Validators.required]],
       agree: [true,[Validators.required]]
     });
 
   }
 
-
-  signUp(email:string,password:string):void {
-    //this.auth.login();
-
-    const formData : FormData = new FormData();
-      formData.append('email',email)
-      formData.append('password',password)
-
-      // this.auth.signUp(formData).subscribe(
-      //   (res=>{
-      //     sessionStorage.setItem('user_id',res);
-      //     this.auth.userId = sessionStorage.getItem('user_id');
-      //
-      //     if(res == 'emailExist'){
-      //       this.notif.showError("oups","cet email existe veuillez vous connecter");
-      //     }else{
-      //       this.notif.showSuccess("tu peux maintenant publier en te connectant","votre inscription est terminer");
-      //       this.router.navigateByUrl('/facesnaps');
-      //     }
-      //   })
-      // )
-
-  }
-  //
-
   submited() {
     if(this.validateForm.value){
-      console.log(this.validateForm.value.phoneNumberPrefix)
-
       this.auth.signUp(this.validateForm).subscribe(res=>{
         // console.log(res)
         //
@@ -143,6 +112,7 @@ export class SignUpComponent implements OnInit {
 
         if(res!=null){
           this.auth.saveToken(res)
+
           this.router.navigateByUrl('/profils').then(() => {
             this.notif.showSuccess('votre logement a bien été publier','')
             // Rechargez la page
@@ -151,8 +121,8 @@ export class SignUpComponent implements OnInit {
         }
       })
     }else{
-      console.log('nop erreur s est produite')
-      console.log('bonsoir')
+      // console.log('nop erreur s est produite')
+      // console.log('bonsoir')
 
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {

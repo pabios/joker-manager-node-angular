@@ -35,7 +35,11 @@ export class ElementComponent {
     this.api_url = environment.backend+"/";
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log('Route demandée :', event.url);
+        // console.log('Route demandée :', event.url);
+
+        if(event.url){
+
+        }
       }
     });
     //
@@ -48,7 +52,7 @@ export class ElementComponent {
       this.badgeInfo.badge = "Garantie";
       this.badgeInfo.color = "green";
     } else {
-      this.badgeInfo.badge = "Sans Garantie";
+      this.badgeInfo.badge = "Vérification en cours";
       this.badgeInfo.color = "volcano";
     }
   }
@@ -75,7 +79,7 @@ export class ElementComponent {
   showModal(  id: string): void {
     this.isVisible = true;
     this.receiverAdminId = id
-    console.log("bonjour show modal is cliquer")
+    //console.log("bonjour show modal is cliquer")
   }
   handleCancel(): void {
     this.isVisible = false;

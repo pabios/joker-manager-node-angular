@@ -80,7 +80,17 @@ footer{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: $them-color;
+  //background-color: $them-color;
+  font-size:18px;
+
+  //
+  perspective: 1000px; /* Ajustez la valeur en fonction de l'effet souhaité */
+  /* Appliquer un effet de rotation 3D sur le fond */
+  background: linear-gradient(45deg, #2196F3, #FF4081); /* Choisissez les couleurs souhaitées */
+  transform-style: preserve-3d;
+
+
+  //
   color: white;
   padding-left: 5%;
   padding-right: 20%;
@@ -89,8 +99,10 @@ footer{
     text-decoration: none;
     color: white;
   }
-  h4{
-    color:white;
+  h3{
+    color: #1b3044;
+    font-size:18px;
+
   }
 
 }
@@ -215,3 +227,6 @@ main {
   top: 10em;
   text-decoration: none;
 }
+
+
+

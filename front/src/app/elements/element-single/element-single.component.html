@@ -1,82 +1,91 @@
 <div class="container" *ngIf="element$ | async as element">
 
-  <div class="site-page-header-ghost-wrapper">
-    <nz-page-header nzBackIcon="left" [nzGhost]="false">
-      <nz-page-header-title>Retour</nz-page-header-title>
-      <nz-page-header-subtitle>{{ element.name }}</nz-page-header-subtitle>
+    <nz-page-header nzBackIcon="arrow-left" [nzGhost]="false">
+      <nz-page-header-subtitle>
+        <nz-tag nzColor="#34cc94" *ngIf="element.verified;else badgeNoVerified">
+          <span nz-icon  nzType="safety-certificate" nzTheme="twotone" nzTwotoneColor="#34cc94"></span>
+          <span>Garantie par l'agence</span>
+        </nz-tag>
+      </nz-page-header-subtitle>
       <nz-page-header-extra>
         <nz-space>
-<!--          <button *nzSpaceItem nz-button>Modifier si proprio</button>-->
-          <button *nzSpaceItem nz-button nzType="primary" (click)="goBooking(element.id,element.price)">Réserver</button>
+          <!--          <button *nzSpaceItem nz-button>Modifier si proprio</button>-->
+<!--          <button *nzSpaceItem nz-button nzType="primary" (click)="goBooking(element.id,element.price)">Réserver</button>-->
+          <button (click)="goBooking(element.id,element.price)" pButton pRipple label="Réserver" icon="pi pi-check"></button>
         </nz-space>
       </nz-page-header-extra>
-      <nz-page-header-content>
-        <nz-descriptions class="large-text" nzSize="small" [nzColumn]="3">
-          <nz-descriptions-item nzTitle="Prix" [nzSpan]="1">
-            <div class="d-flex align-items-center">
-<!--              <span class="large-text">{{element.price}} GNF/Mois</span>-->
-              <button  nz-button nz-popover nzPopoverTitle="Explication" [nzPopoverContent]="'Le prix par mois en money Local'" nzPopoverTrigger="hover">
-                {{ element.price | number:'1.0-0' }} GNF/Mois
-              </button>
-            </div>
-          </nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Localisation" [nzSpan]="1">
-            <div class="d-flex align-items-center">
-              <mat-icon>location_on</mat-icon>
-              <span>{{element.locate}}</span>
-            </div>
-
-          </nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Mis en ligne" [nzSpan]="1">
-            <div *ngFor="let keyValuePair of element.createdDate | keyvalue">
-              {{ keyValuePair.key === 'date' ? 'le '+ formatDate(keyValuePair.value.toString())  : keyValuePair.value }}
-            </div>
-          </nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Taille" [nzSpan]="1">
-            <div class="d-flex align-items-center">
-              <span>{{ element.size }} m²</span>
-            </div>
-          </nz-descriptions-item>
-          <nz-descriptions-item nzTitle="Description" [nzSpan]="2">
-            {{element.description}}
-          </nz-descriptions-item>
-        </nz-descriptions>
-      </nz-page-header-content>
     </nz-page-header>
-  </div>
 
-
-
-  <nz-list-item-meta [nzAvatar]="'https://placehold.co/600x400'" [nzTitle]="nzTitle" [nzDescription]="element.content">
+  <nz-list-item-meta [nzAvatar]="this.userAvatar+element.user_avatar" [nzTitle]="nzTitle" [nzDescription]="">
     <ng-template #nzTitle>
-      <a href="https://placehold.co/600x400">{{ element.name }}</a>
+      <button  nz-button nz-popover nzPopoverTitle="Explication" [nzPopoverContent]="'Le prix en money Local'" nzPopoverTrigger="hover">
+        <ng-template *ngIf="element.desired ==='Location';else noLocation">
+          {{ element.price | number:'1.0-0' }} GNF/Jour
+        </ng-template>
+
+        <ng-template #noLocation>
+          {{ element.price | number:'1.0-0' }} GNF
+        </ng-template>
+      </button>
     </ng-template>
   </nz-list-item-meta>
-
   <mat-grid-list cols="2" rowHeight="2:1" *ngIf="images$ | async as images">
     <mat-grid-tile  *ngFor="let img of  images">
       <img nz-image  nzSrc="{{api_url+img.url}}" alt="{{img.alt}}" />
     </mat-grid-tile>
   </mat-grid-list>
 
-  <nz-tag nzColor="#34cc94" *ngIf="element.verified;else badgeNoVerified">
-    <span nz-icon  nzType="safety-certificate" nzTheme="twotone" nzTwotoneColor="#34cc94"></span>
-    <span>Garantie par l'agence</span>
-  </nz-tag>
+
+
+
+
   <ng-template #badgeNoVerified>
     <nz-tag nzColor="#94cc14" >
       <span nz-icon  nzType="safety-certificate" nzTheme="twotone" nzTwotoneColor="#FF0000"></span>
-      <span>Ce logement n'est pas garanti</span>
+      <span>Ce logement est en cours de vérification</span>
     </nz-tag>
   </ng-template>
+
+  <nz-divider></nz-divider>
+  <nz-card class="container">
+<!--    <div *ngFor="let keyValuePair of element.createdDate | keyvalue">-->
+<!--      {{ keyValuePair.key === 'date' ? 'le '+ formatDate(keyValuePair.value.toString())  : keyValuePair.value }}-->
+<!--    </div>-->
+
+    <nz-steps [nzCurrent]="10" nzDirection="vertical" nzSize="small">
+      <nz-step nzTitle="Type du Logement" nzDescription="{{element.name}}"></nz-step>
+      <nz-step nzTitle="Nature du Logement" nzDescription="{{element.desired}}"></nz-step>
+      <nz-step nzTitle="Région" nzDescription="{{element.category}}"></nz-step>
+      <nz-step nzTitle="Ville" nzDescription="{{element.city}}"></nz-step>
+      <nz-step nzTitle="Adresse" nzDescription="{{element.exactLocate}}"></nz-step>
+<!--      <nz-step nzTitle="Le Propriétaire" nzDescription="{{element.user}}"></nz-step>-->
+      <ng-template *ngIf="element.desired ==='Location';else vente">
+        <nz-step nzTitle="Prix" nzDescription=" {{ element.price | number:'1.0-0' }} GNF/Jour"></nz-step>
+      </ng-template>
+
+      <ng-template #vente>
+        <nz-step nzTitle="Prix" nzDescription=" {{ element.price | number:'1.0-0' }} GNF"></nz-step>
+      </ng-template>
+
+      <nz-step nzTitle="Localisation" nzDescription="{{element.locate}}"></nz-step>
+      <nz-step nzTitle="Quartier/District" nzDescription="{{element.exactLocate}}"></nz-step>
+      <nz-step nzTitle="Numéro de téléphone" nzDescription="après réservation"></nz-step>
+      <nz-step nzTitle="Surface" nzDescription="{{ element.size }} m²"></nz-step>
+      <nz-step  nzTitle="Détails" nzDescription="{{ element.content }}"></nz-step>
+      <nz-step nzTitle="Description" nzDescription="{{ element.description }}"></nz-step>
+    </nz-steps>
+  </nz-card>
+
+<!--  // garantie ou pas -->
 
   <nz-result *ngIf="element.verified;else notVirified"
     nzStatus="success"
     nzTitle="Arrivée garantie par l'Agence, images conformes!"
     nzSubTitle="Nous garantissons que vous arriverez en toute sécurité et que les images du logement correspondent à la réalité."
   >
+
   <div nz-result-extra>
-      <button (click)="goBooking(element.id,element.price)" nz-button nzType="primary">Réserver</button>
+    <button (click)="goBooking(element.id,element.price)" nz-button nzType="primary">Réserver</button>
       <button nz-button (click)="showModal()">
         <span>Comprendre la Garantie</span>
       </button>
@@ -98,7 +107,7 @@
   <ng-template #notVirified>
     <nz-result
                nzStatus="warning"
-               nzTitle="Arrivée non garantie par l'Agence, images non contractuelles."
+               nzTitle="Veuillez noter que ce logement est actuellement en cours de vérification par notre agence."
                nzSubTitle="Veuillez noter que nous ne pouvons pas garantir votre arrivée en toute sécurité ni que les images du logement correspondent exactement à la réalité."
     >
       <div nz-result-extra>
@@ -114,13 +123,17 @@
           [nzOkLoading]="isOkLoading"
         >
           <p *nzModalContent>
-            Veuillez noter que ce logement n'est pas garanti par notre agence. Nous vous encourageons à entrer en contact avec le propriétaire avant votre arrivée pour discuter des détails de votre séjour.
-            En cas de problème ou d'annulation imprévue, n'hésitez pas à nous contacter. Nous ferons de notre mieux pour vous aider dans ces situations.
+            Nous vous encourageons à entrer en contact avec le propriétaire avant votre arrivée ou à attendre notre vérification de ce logement pour discuter des détails de votre séjour.
+            En cas de problème ou d'annulation imprévue, n'hésitez pas à nous contacter.
+            Nous ferons de notre mieux pour vous aider dans ces situations.
           </p>
         </nz-modal>
       </div>
     </nz-result>
   </ng-template>
+<!--  <button (click)="goBooking(element.id,element.price)" nz-button nzType="primary">Message</button>-->
+
+</div>
 
 
 <!--  -->
@@ -201,4 +214,3 @@
 
 
 
-</div>

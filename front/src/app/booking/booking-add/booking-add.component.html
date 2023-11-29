@@ -43,7 +43,7 @@
 <!--space-->
 
 <nz-space>
-  <button *nzSpaceItem nz-button nzType="primary" (click)="showLarge()">Voir le Calendrier</button>
+  <button style="margin-left:50%" *nzSpaceItem nz-button nzType="primary" (click)="showLarge()">Voir le Calendrier</button>
 </nz-space>
 <nz-drawer
   [nzSize]="size"
@@ -83,7 +83,6 @@
 <div *ngIf="element$ | async as element">
   <span *ngIf="bookings$ | async as booking">
   <app-form-booking  [booking]="booking" [element]="element" ></app-form-booking>
-
   </span>
 </div>
 

@@ -22,10 +22,13 @@ export class AboutComponent {
     // const page = this.specPagesService.getPageByName("Articles");
     // console.log(page?.content);
 
+    // console.log(this.specPagesService.getConfidentialite())
+
     // Récupérez le nom de la page à partir des paramètres de l'URL
     this.route.params.subscribe(params => {
+        console.log("bonjour le monde le monde le monde")
         this.pageName = params['articleName'];
-      console.log(this.pageName)
+      // console.log(this.pageName)
 
       // Utilisez le service pour récupérer la page par son nom
       const page = this.specPagesService.getPageByName(this.pageName);
@@ -33,14 +36,17 @@ export class AboutComponent {
       // Vérifiez si la page existe et accédez à son contenu
       if (page) {
         this.pageContent = page.content;
-        console.log(this.pageContent)
+        this.avatarLogo = "./assets/img/"+page.imageUrl
+
       } else {
         this.pageContent = 'Page non trouvée';
       }
     });
+    //
+
 
     //
-    this.avatarLogo = environment.backend+"/public/img/avatar-nimba.png"
+    // this.avatarLogo = environment.backend+"/public/img/avatar-nimba.png"
   }
 
 

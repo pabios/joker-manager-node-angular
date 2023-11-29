@@ -6,14 +6,22 @@ export class Root {
   content!: string
   description!: string
   name!: string
+  desired!: string
   createdDate!: string
   locate!: string
+  exactLocate!:string
+  city!:string
   price!:number
   size!:number
   verified!: boolean
   stars!: string
   categorie_id!:number
+
   user_id!:string
+  user!:string;
+  user_avatar!:string
+
+  category!:string
 
 
   images!: Images[]

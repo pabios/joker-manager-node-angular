@@ -21,6 +21,7 @@ import {NzDescriptionsModule} from "ng-zorro-antd/descriptions";
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NzDrawerModule} from "ng-zorro-antd/drawer";
 import {NzResultModule} from "ng-zorro-antd/result";
+import {BadgeModule} from "primeng/badge";
 
 
 
@@ -48,7 +49,8 @@ import {NzResultModule} from "ng-zorro-antd/result";
         NzDescriptionsModule,
         NzDividerModule,
         NzDrawerModule,
-        NzResultModule
+        NzResultModule,
+        BadgeModule
     ],
   exports:[
     HeaderComponent,

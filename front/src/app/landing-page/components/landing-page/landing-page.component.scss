@@ -1,3 +1,161 @@
+
+.mobile-display{
+  display:none;
+}
+@media (max-width: 768px) {
+  .sec-stats {
+    flex-direction: column;
+  }
+
+  //
+
+  .mobile-display{
+    display:initial;
+  }
+  .hero-content {
+    p{
+      display:none;
+      margin: 0;
+      //font-size: 9px; /* Ajustez la taille de la police selon vos préférences */
+      color: #3b365e; /* Choisissez la couleur du texte selon vos préférences */
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: capitalize;
+      color: white;
+    }
+  }
+  .hero-section {
+    //font-size: 10px; /* Ajustez la taille de la police selon vos préférences */
+    z-index:9;
+    position: relative;
+    height: 60px !important;
+    //margin-top:-2px;
+    overflow: hidden; /* Assurez-vous que le contenu ne dépasse pas le hero */
+    background: linear-gradient(45deg, #ff9f57, #ff3e9e); /* Choisissez les couleurs souhaitées */
+    background-size: 200% 200%;
+    animation: colorAnimation 8s infinite; /* Ajustez la durée de l'animation selon vos besoins */
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width:100%;
+    color: white; /* Couleur du texte, ajustez selon votre choix */
+  }
+
+}
+
+
+// hello old
+
+h1 {
+  margin: 0 0 1rem 0;
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  color: white;
+}
+
+.hero-content p {
+  margin: 0;
+  font-size: 1rem; /* Ajustez la taille de la police selon vos préférences */
+  color: #3b365e; /* Choisissez la couleur du texte selon vos préférences */
+}
+
+$color-header: #FF9F57;
+
+//
+.liked {
+  background-color: $color-header; /* ou toute autre propriété de style que vous souhaitez appliquer */
+  animation: bounce 1s;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.liked {
+  animation: bounce 1s;
+}
+//
+
+@keyframes colorAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.hero-section {
+  position: relative;
+  height: 300px;
+  overflow: hidden; /* Assurez-vous que le contenu ne dépasse pas le hero */
+  background: linear-gradient(45deg, #ff9f57, #ff3e9e); /* Choisissez les couleurs souhaitées */
+  background-size: 200% 200%;
+  animation: colorAnimation 8s infinite; /* Ajustez la durée de l'animation selon vos besoins */
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white; /* Couleur du texte, ajustez selon votre choix */
+}
+
+.hero-content h1,
+.hero-content p {
+  margin: 0;
+}
+//
+//.hero-section {
+//  border:2px solid black;
+//  background: url('/../../../assets/img/bg_blog.png') center/cover no-repeat;
+//  height: 300px;
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//  width: 100%; // Ajoutez cette ligne pour rendre le hero 100% de largeur
+//  background-size: contain; // Ajoutez cette ligne pour afficher l'image sans la couvrir
+//}
+
+//.hero-content {
+//  text-align: center;
+//  color: white;
+//}
+//
+//.hero-content h1 {
+//  font-size: 2rem;
+//  margin-bottom: 10px;
+//}
+//
+//.hero-content p {
+//  font-size: 1rem;
+//}
+
+
+
+
+//
+
 .city-cards {
   display: flex;
   flex-wrap: wrap;
@@ -33,8 +191,17 @@
   display: flex;
 }
 
+nz-skeleton{
+  display: flex;
+
+  @media only screen and (max-width: 600px) {
+    //flex-wrap: wrap;
+  }
+}
+
 .city-card {
-  width: calc(50% - 32px);
+  flex-grow: 4;
+  width: calc(30% - 32px);
   margin: 16px;
   padding: 16px;
   background-color: #fff;
@@ -42,22 +209,40 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
 
+  photo{
+    height: 200px;
+  }
   @media only screen and (max-width: 600px) {
     width: 100%;
     margin: 16px 0;
   }
 }
 
+.page-card:hover{
+  margin-bottom: 2px;
+}
+.photo{
+  background-color: white;
+  &:hover{
+    background-color: white;
+  }
+}
+
 .city-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 0 0 2px rgba(0,0,0,0.1);
+  background-color: #FF9F57;
+
+  p{
+    color:white;
+  }
 }
 
 
 .city-card img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 4px;
   margin-bottom: 16px;
 }
@@ -100,11 +285,7 @@
 
 
 
-@media (max-width: 768px) {
-  .sec-stats {
-    flex-direction: column;
-  }
-}
+
 //
 
 [nz-carousel-content] {

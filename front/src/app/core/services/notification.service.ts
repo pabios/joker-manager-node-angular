@@ -24,10 +24,8 @@ export class NotificationService {
     //   //console.log(data);
     //   this.info = data;
     // });
-
+    this.toastr.toastrConfig.positionClass = 'toast-top-center'; // Vous pouvez changer la classe de position ici
   }
-
-
 
   showSuccess(message:string, title:string){
     this.toastr.success(message, title)

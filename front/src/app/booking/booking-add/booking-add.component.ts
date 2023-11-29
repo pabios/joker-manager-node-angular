@@ -61,8 +61,8 @@ export class BookingAddComponent implements ngOnInit{
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric'
+      // hour: 'numeric',
+      // minute: 'numeric'
     };
     return new Intl.DateTimeFormat('fr-FR', options).format(date);
   }

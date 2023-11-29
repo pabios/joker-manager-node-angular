@@ -89,33 +89,6 @@ export class StateListComponent implements OnInit{
     this.title = "le drawer"
     this.charger = (): string => `Filtrer`;
 
-    //
-    // this.utilsService.isVisibleSearch = true;
-
-
-
-
-    // debut ng zorro
-
-  // send form une fois a garder pour new book
-    // this.validateForm = this.fb.group({
-    //   rangePicker: [null, Validators.required],
-    //   searchTerm: ['', [Validators.required]],
-    //   choix: ['', [Validators.required]],
-    // });
-    //
-    // this.formValueChangesSubscription = this.validateForm.valueChanges.subscribe(formValues => {
-    //   const rangePickerValue: Date[] | null = formValues.rangePicker !== undefined ? formValues.rangePicker : null;
-    //
-    //   const searchTermValue: string = formValues.searchTerm !== undefined ? formValues.searchTerm : '';
-    //   const choixValue: string = formValues.choix ?? '';
-    //
-    //   // Utilisez les valeurs comme bon vous semble
-    //   console.log('Range Picker Value:', rangePickerValue);
-    //   console.log('Search Term Value:', searchTermValue);
-    //   console.log('Choix Value:', choixValue);
-    // });
-    // send form une fois a garder pour new book
 
 
   }
@@ -136,7 +109,7 @@ private initForm(){
     this.dateFinCtrl = this.formBuilder.control(null);
 
     this.searchTypeOptions = [
-      {value:StateSearchType.LOCATE, label:'Localisation'},
+      {value:StateSearchType.LOCATE, label:'Ville'},
       {value:StateSearchType.PRICE, label:'Prix'},
     ]
   //

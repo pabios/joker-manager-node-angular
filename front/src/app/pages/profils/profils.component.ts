@@ -11,12 +11,15 @@ import {AuthService} from "../../core/services/auth.service";
 import {User} from "../../core/models/user.model";
 import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
+import {BookingElement} from "../../core/models/booking-element.model";
+import {ConfirmationService, MessageService} from "primeng/api";
 
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './profils.component.html',
-  styleUrls: ['./profils.component.scss']
+  styleUrls: ['./profils.component.scss'],
+  providers: [ConfirmationService, MessageService]
 })
 export class ProfilsComponent implements OnInit {
 
@@ -43,7 +46,7 @@ export class ProfilsComponent implements OnInit {
       address: 'London'
     }
   ];
-  bookings$!: Observable<Booking[]>;
+  bookings$!: Observable<BookingElement[]>;
   elements$!: Observable<Root[]>;
   user$!: Observable<User>;
   delete$!: Observable<any>;
@@ -64,7 +67,9 @@ export class ProfilsComponent implements OnInit {
     private elementService:ElementService,
     private notificationService:NotificationService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {
   }
 
@@ -73,8 +78,8 @@ export class ProfilsComponent implements OnInit {
 
     this.bookings$ = this.bookingService.getBookingByUserId(curentIdUser);
     this.elements$ = this.elementService.getElementByUserId(curentIdUser);
-    console.log(curentIdUser)
-    console.log("est le user loger")
+    // console.log(curentIdUser)
+    // console.log("est le user loger")
     //
     this.user$ = this.auth.getUserById(curentIdUser);
     this.avatar = environment.backend+"/";
@@ -109,7 +114,10 @@ export class ProfilsComponent implements OnInit {
     this.delete$ = this.bookingService.remove(parseInt(bookingId));
 
     this.delete$.subscribe(res =>{
-      console.log(res)
+      // console.log(res)
+      if(res){
+
+      }
     })
     this.isDeleteButtonDisabled = true;
 
@@ -126,7 +134,10 @@ export class ProfilsComponent implements OnInit {
     this.delete$ = this.elementService.remove(parseInt(elementId));
 
     this.delete$.subscribe(res =>{
-      console.log(res)
+      // console.log(res)
+      if(res){
+
+      }
     })
 
     this.isDeleteButtonDisabled = true;
@@ -151,4 +162,74 @@ export class ProfilsComponent implements OnInit {
   goElements() {
     this.router.navigateByUrl('elements')
   }
+
+
+
+  getFirstWords(description: string, numWords: number): string {
+    const words = description.split(' ');
+    const slicedWords = words.slice(0, numWords);
+    return slicedWords.join(' ');
+  }
+
+  confirm(event: Event,elementId:any) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Êtes-vous sûrs ?',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel:'Oui',
+      rejectLabel:'Non',
+      accept: () => {
+        this.messageService.add({ severity: 'info', summary: 'Confirmer', detail: 'On la retirer pour vous' });
+
+        // const id = typeof elementId === 'string' ? parseInt(elementId, 10) : elementId;
+
+        this.delete$ = this.elementService.remove(parseInt(elementId));
+
+        this.delete$.subscribe(res =>{
+          //console.log(res)
+        })
+
+        this.isDeleteButtonDisabled = true;
+
+        if(this.isDeleteButtonDisabled){
+          window.location.reload();
+        }
+
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'error', summary: 'D\'acoord', detail: 'on la garde' });
+      }
+    });
+  }
+
+  confirmDeleteElement(event: Event,elementId:any) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Êtes-vous sûrs ?',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Oui',
+      rejectLabel: 'Non',
+      accept: () => {
+        this.messageService.add({severity: 'info', summary: 'Confirmer', detail: 'On la supprimer pour vous'});
+
+        this.delete$ = this.elementService.remove(parseInt(elementId));
+
+        this.delete$.subscribe(res =>{
+          //console.log(res)
+        })
+
+        this.isDeleteButtonDisabled = true;
+
+        if(this.isDeleteButtonDisabled){
+          window.location.reload();
+        }
+
+      },
+      reject: () => {
+        this.messageService.add({severity: 'error', summary: 'D\'acoord', detail: 'on la garde'});
+      }
+    });
+
+  }
+
 }

@@ -1,0 +1,221 @@
+$color-header: #FF9F57;
+
+// ON MASQUE L'IMAGE DE LA CARD POUR L'INSTANT
+img{
+  display:none;
+}
+//MOBILE
+@media (max-width: 768px) {
+  .sec-stats {
+    flex-direction: column;
+  }
+}
+
+
+
+
+.city-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 -16px;
+
+  .card-link{
+    width: 100%;
+    text-decoration: none;
+    display: block
+  }
+  .city-card {
+    flex-grow: 4;
+    width: calc(30% - 32px);
+    margin: 16px;
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(236, 103, 6, 0.96), 0 0 0 1px rgb(191, 64, 255);
+    transition: all 0.3s ease;
+    a{
+      font-size:40px;
+    }
+
+    //.action-card-bouton{
+    //  ng-template{
+    //    width:100px;
+    //  }
+    //  display:flex;
+    //  flex-direction:row-reverse;
+    //}
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 8px rgba(236, 103, 6, 0.96), 0 0 0 2px rgba(236, 103, 6, 0.96);
+      background-color: #FF9F57;
+
+      p{
+        color:white;
+      }
+    }
+    @media only screen and (max-width: 600px) {
+      width: calc(50% - 32px);
+      margin: 16px 1px 16px 10px;
+
+      height:150px;
+      padding: 2px 4px 16px 2px;
+
+      ::ng-deep.ant-card-meta-detail {
+        //width:70%;
+        //background-color: aliceblue;
+
+      }
+      ::ng-deep.ant-card-body {
+        padding: 16px 0;
+      }
+      //::ng-deep.pi-list:before {
+      //  display:none;
+      //}
+
+      ::ng-deep .pi-list:before {
+        display: none;
+      }
+      ::ng-deep.p-tag-icon, .p-tag-value, .p-tag-icon.pi {
+        line-height: 1.5;
+        font-size: 8px;
+      }
+
+      ::ng-deep.ant-card-meta-title {
+        font-weight: 500;
+        font-size: 12px;
+        //white-space-collapse: collapse;
+        //text-wrap: nowrap;
+        //text-overflow: ellipsis;
+        //overflow: visible !important; /* Ajoutez cette ligne pour annuler la propriété overflow: hidden */
+        //visibility: visible !important; /* Ajoutez cette ligne pour annuler la propriété visibility: hidden */
+      }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    //flex-direction: column;
+    flex-wrap:wrap;
+  }
+}
+
+
+.city-card-nz-card{
+  width:100%;
+}
+
+
+
+.titre-icon-region{
+  display: flex;
+  justify-content: space-between;
+
+  .name{
+    display: block;
+    margin-top: -25px;
+    margin-left: 28px;
+  }
+}
+.icon-text{
+  display: flex;
+}
+
+nz-skeleton{
+  display: flex;
+
+  @media only screen and (max-width: 600px) {
+    //flex-wrap: wrap;
+  }
+}
+
+
+
+.page-card:hover{
+  margin-bottom: 2px;
+}
+.photo{
+  background-color: white;
+  &:hover{
+    background-color: white;
+  }
+}
+
+
+
+
+.city-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.city-card h3 {
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
+.city-card p {
+  font-size: 16px;
+  color: #999;
+  margin: 0;
+}
+
+
+//
+.sec-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+
+  .sec-stats-item{
+    span{
+      font-size: 25px;
+      &:hover{
+        font-size: 27px;
+
+      }
+    }
+  }
+  nz-card{
+    &:hover{
+      background-color:#1890ff;
+      color: white;
+    }
+  }
+
+}
+
+
+
+
+//
+
+[nz-carousel-content] {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  color: #fff;
+  overflow: hidden;
+}
+
+h3 {
+  color: #fff;
+  margin-bottom: 0;
+  user-select: none;
+}
+
+.banner {
+  h3{
+    color:red;
+    font-size: 48px;
+    position: absolute;
+    top: 20px;
+    left: 20%;
+  }
+
+}
+
+//

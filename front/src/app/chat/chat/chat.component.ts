@@ -6,6 +6,7 @@ import {ChatService} from "../../core/services/chat.service";
 import {AuthService} from "../../core/services/auth.service";
 import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
+import {UtilsService} from "../../core/services/utils.service";
 
 @Component({
   selector: 'app-chat',
@@ -40,6 +41,7 @@ export class ChatComponent implements OnInit{
   constructor(
     private chatService:ChatService,
     private auth: AuthService,
+    public utilsService:UtilsService,
     private router:Router) {
   }
   ngOnInit(): void {
@@ -52,7 +54,10 @@ export class ChatComponent implements OnInit{
     this.messages$ = this.chatService.getAllMessageByUser(currentId)
     this.user$ = this.auth.getUserById(currentId);
     this.messages$.subscribe(res=>{
-      console.log(res)
+      // console.log(res)
+      if (res){
+
+      }
     })
 
     //
@@ -75,12 +80,12 @@ export class ChatComponent implements OnInit{
             return messages.map(message => {
               // Recherchez l'utilisateur correspondant au message
               const user = users.find(u => u.id === message.user_id);
-              console.log("bonjour user")
-              console.log(user)
+              // console.log("bonjour user")
+              // console.log(user)
               if(user){
                 this.avatarCurrent = this.api_back+ user.imgUrl
-                console.log(this.avatarCurrent)
-                console.log('est le avatar current ')
+                // console.log(this.avatarCurrent)
+                // console.log('est le avatar current ')
               }else{
                 this.avatarCurrent = 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
               }
@@ -123,7 +128,7 @@ handleSubmit(): void {
       this.isVisible = true;
       this.receiverId = Number(id);
       this.receiverName = name;
-      console.log("bonjour show modal is cliquer")
+      // console.log("bonjour show modal is cliquer")
   }
 
   handleOk(): void {

@@ -23,38 +23,51 @@
       <img src="assets/img/logo.png" alt="">
     </span>
     <span class="text__logo">
-            connexion
+            Authentification
     </span>
+    <div *ngIf="validateForm.get('phoneEmail')?.dirty">
+      <p-message severity="info" text="Ex: amad@gmail.com ou +2246436594"></p-message>
+    </div>
   </div>
-<form nz-form  [formGroup]="validateForm" (ngSubmit)="submitForm()"  >
-  <nz-form-item>
-<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Téléphone</nz-form-label>-->
-    <nz-form-control
-      [nzValidateStatus]="validateForm.controls['phoneNumber']"
-      nzErrorTip="Veuillez saisir votre numéro de téléphone!"
-    >
-      <nz-input-group nzPrefixIcon="user" [nzAddOnBefore]="addOnBeforeTemplate">
-        <ng-template #addOnBeforeTemplate>
-          <nz-select class="phone-select" required  formControlName="phoneNumberPrefix" nzShowSearch nzAllowClear nzPlaceHolder="pays">
-            <nz-option *ngFor="let country of countries" #phoneNumberPrefix  [nzLabel]="country.label" [nzValue]="country.value" nzCustomContent >
-              <span class="fi {{country.flag}}"></span>
-              {{country.label}}
-            </nz-option>
-          </nz-select>
+<form nz-form  [formGroup]="validateForm" (ngSubmit)="submitForm()" >
 
-        </ng-template>
-        <input   formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="628451000"/>
+<!--  code et telephone-->
+<!--  <nz-form-item>-->
+<!--    <nz-form-control-->
+<!--      [nzValidateStatus]="validateForm.controls['phoneNumber']"-->
+<!--      nzErrorTip="Veuillez saisir votre numéro de téléphone!"-->
+<!--    >-->
+<!--      <nz-input-group nzPrefixIcon="user" [nzAddOnBefore]="addOnBeforeTemplate">-->
+<!--        <ng-template #addOnBeforeTemplate>-->
+<!--          <nz-select class="phone-select" required  formControlName="phoneNumberPrefix" nzShowSearch nzAllowClear nzPlaceHolder="pays">-->
+<!--            <nz-option *ngFor="let country of countries" #phoneNumberPrefix  [nzLabel]="country.label" [nzValue]="country.value" nzCustomContent >-->
+<!--              <span class="fi {{country.flag}}"></span>-->
+<!--              {{country.label}}-->
+<!--            </nz-option>-->
+<!--          </nz-select>-->
+
+<!--        </ng-template>-->
+<!--        <input   formControlName="phoneNumber" #phoneNumber id="'phoneNumber'" nz-input  placeholder="Telephone (Ex: 628451000)"/>-->
+<!--      </nz-input-group>-->
+<!--    </nz-form-control>-->
+<!--  </nz-form-item>-->
+<!--fin code et telephone-->
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Saisir un email ou un telephone!">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="text" nz-input #phoneEmail  formControlName="phoneEmail" placeholder="Email ou téléphone(+224628455400)" />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
 
+  <!--  fin new-->
   <nz-form-item >
-<!--    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Mot de passe</nz-form-label>-->
     <nz-form-control   nzErrorTip="Veuillez saisir votre mot de passe!">
-      <nz-input-group nzPrefixIcon="lock">
+      <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
         <input
           nz-input
-          type="password"
+          [type]="passwordVisible ? 'text' : 'password'"
           id="password"
           #password
           formControlName="password"
@@ -64,22 +77,23 @@
 
     </nz-form-control>
   </nz-form-item>
+  <ng-template #suffixTemplate>
+      <span
+        nz-icon
+        [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+        (click)="passwordVisible = !passwordVisible"
+      ></span>
+  </ng-template>
 
   <div nz-row class="login-form-margin">
-<!--    <div nz-col [nzSpan]="12">-->
-<!--      <label nz-checkbox formControlName="remember">-->
-<!--        <span>Se souvenir de moi</span>-->
-<!--      </label>-->
-<!--    </div>-->
-    <div nz-col [nzSpan]="12">
-      <a class="login-form-link">Mot de passe oublié</a>
-    </div>
+
   </div>
   <nz-form-control >
      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Se connecter</button>
   </nz-form-control>
-  Ou
-  <a routerLink="/auth/signUp" class="login-form-link">S'inscrire maintenant !</a>
+  Oubien
+<!--  <a routerLink="/auth/signUp" class="login-form-link">S'inscrire maintenant !</a>-->
+  <button routerLink="/auth/signUp" pButton pRipple label="S'inscrire maintenant !" icon="pi pi-lock"></button>
 
 
 </form>

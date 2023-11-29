@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FormControl, FormGroup, UntypedFormBuilder} from "@angular/forms";
+import {FormControl, FormGroup, UntypedFormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 import {BookingService} from "../../core/services/booking.service";
@@ -22,6 +22,7 @@ export class FormBookingComponent {
   @Input() element!: Root ;
 
   form!: FormGroup;
+  formCouchdb!:FormGroup;
   elementId!: any;
   userId!:any;
   price!:any
@@ -30,6 +31,10 @@ export class FormBookingComponent {
   priceTotal!:any
   newBeginDate!:any
   newEndDate!:any
+  //
+  loading = false;
+  erreurBooking: { status: boolean, msg: string }[] = [];
+
 
 
   minDate: any;
@@ -56,32 +61,59 @@ export class FormBookingComponent {
       })
 
 
-//
-    let amount = this.priceItem
-    render(
+//  PAYPAL
+//     let amount = this.priceItem
+//     render(
+//       {
+//         id:"#myPaypalButtons",
+//         currency:"USD",
+//         value:amount,
+//         onApprove:(details)=>{
+//           alert('paypayl ok ')
+//         }
+//       }
+//     )
+//  PAYPAL
+
+
+    // this.form = this.formBuilder.group({
+    //     nbPeople:new FormControl(0),
+    //     beginDate:  new FormControl(new Date()), // Utilisation de new FormControl()
+    //     endDate:  new FormControl(new Date()),
+    //     price: new FormControl(0),
+    //     priceTotal:new FormControl(0),
+    //
+    //   elementId: this.elementId,
+    //   userId:this.userId
+    //   },{
+    //     updateOn: 'blur' // formulaire mis a jours lorsqu'on change de champs
+    //   }
+    // );
+
+    this.form = this.formBuilder.group({
+      nbPeople: [0, [Validators.required, Validators.min(1)]], // Validator.required pour champ obligatoire et Validators.min pour valeur minimale
+      beginDate: [new Date(), Validators.required],
+      endDate: [new Date(), Validators.required],
+      price: [0, Validators.required],
+      priceTotal: [0, Validators.required],
+      elementId: [this.elementId, Validators.required],
+      userId: [this.userId, Validators.required]
+    }, {
+      updateOn: 'blur'
+    });
+
+      // couche db
+
+    this.formCouchdb = this.formBuilder.group(
       {
-        id:"#myPaypalButtons",
-        currency:"USD",
-        value:amount,
-        onApprove:(details)=>{
-          alert('paypayl ok ')
-        }
+        idSalle:[0],
+        idEtage:[0],
+        nameSalle:[]
+      },{
+        updateOn:'blur'
       }
     )
-    this.form = this.formBuilder.group({
-        nbPeople:new FormControl(0),
-        beginDate:  new FormControl(new Date()), // Utilisation de new FormControl()
-        endDate:  new FormControl(new Date()),
-        price: new FormControl(0),
-        priceTotal:new FormControl(0),
 
-      elementId: this.elementId,
-      userId:this.userId
-      },{
-        updateOn: 'blur' // formulaire mis a jours lorsqu'on change de champs
-      }
-
-    );
 
 
 
@@ -110,15 +142,57 @@ export class FormBookingComponent {
     this.priceTotal = this.price.value * this.nbPeople.value;
   }
 
+  /*
+  onSendCouch(idSalle: string, idEtage: string, nameSalle: string) {
+
+    const formData : FormData = new FormData();
+    formData.append('idSalle',idSalle)
+    formData.append('nameSalle',nameSalle)
+    formData.append('idEtage',idEtage)
+
+
+    this.bookingService.addInCouchdb(formData).subscribe(
+      (response) => {
+
+        // this.router.navigateByUrl('/profils').then(() => {
+        //   this.notificationService.showSuccess(response,'')
+        //   window.location.reload();
+        // });
+          this.notificationService.showSuccess(response,'bien jouer')
+
+
+      },
+      (error) => {
+        // Traitez les erreurs ici
+        this.notificationService.showError(error,"")
+
+        this.loading = false;
+        this.erreurBooking.push({ status: true, msg: "cette erreur c'est produite" });
+
+      });
+
+  }
+  */
+
   onSend(nbPeople: any){
 
     const beginDateValue = this.form.get('beginDate')
     const endDateValue = this.form.get('endDate');
-    // console.log(beginDateValue)
+
     //
-    // console.log(nbPeople)
-    //  // this.priceTotal
-    // console.log('est le nb peupleeeee')
+    if (this.form.valid) {
+       console.log('tout va bien')
+    } else {
+      this.erreurBooking.push({ status: true, msg: "Une erreur s'est produite : les dates et le nombre de personnes sont requis. " });
+    }
+    //
+    this.loading = true;
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+
+    //
 
     const formData : FormData = new FormData();
     formData.append('nbPeople',nbPeople)
@@ -129,28 +203,38 @@ export class FormBookingComponent {
     formData.append('elementId',this.elementId)
     formData.append('userId',this.userId)
 
-    // console.log(formData.get('beginDate'))
-    // console.log(formData.get('endDate'))
 
-    this.bookingService.add(formData).subscribe(
-      (response) => {
-        this.router.navigateByUrl('/profils').then(() => {
-          this.notificationService.showSuccess(response,'')
-          window.location.reload();
-        });
-      },
-      (error) => {
-        // Traitez les erreurs ici
-        // console.error('Erreur lors de l\'envoi des données au serveur :', error);
-        this.notificationService.showError(error,"")
+    setTimeout(() => {
+      //
+      this.bookingService.add(formData).subscribe(
+        (response) => {
 
-      }
-    );
+          this.router.navigateByUrl('/profils').then(() => {
+            this.notificationService.showSuccess(response,'')
+            window.location.reload();
+          });
+        },
+        (error) => {
+          // Traitez les erreurs ici
+          // console.error('Erreur lors de l\'envoi des données au serveur :', error);
+          this.notificationService.showError(error,"")
+
+          this.loading = false;
+          // Ajouter un nouvel élément à erreurBooking
+          this.erreurBooking.push({ status: true, msg: "cette erreur c'est produite" });
+
+
+
+        }
+      );
+    }, 2000);
+
 
     // this.notificationService.showInfo("response","succes")
 
     // sessionStorage.clear();
     // this.router.navigateByUrl('/readme');
+
   }
 
 //=====================================
@@ -196,5 +280,6 @@ export class FormBookingComponent {
     return !this.arrayOfDatesBooked.find(x=>x.getTime()==time);
   }
 //=====================================
+
 
 }

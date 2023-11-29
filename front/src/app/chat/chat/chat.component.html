@@ -17,7 +17,10 @@
 
 
 <!--affichage-->
+
   <nz-card nzHoverable class="card-channel" *ngIf="messagesWithUsers$ | async as messages;else noMessage">
+<!--    {{utilsService.decifer512("+222333")}}-->
+
     <div *ngIf="messages.length >0;else loadingMessages">
       <nz-list *ngFor="let message of messages"  [nzDataSource]="messages"  [nzItemLayout]="'horizontal'">
           <nz-comment [nzAuthor]="message.user.fullName" [nzDatetime]="message.createdAt">
