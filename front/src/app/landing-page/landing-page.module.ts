@@ -23,6 +23,7 @@ import {ImageModule} from "primeng/image";
 import {CarouselModule} from "primeng/carousel";
 import {TagModule} from "primeng/tag";
 import {BadgeModule} from "primeng/badge";
+import {PubModule} from "../pages/pub-home/pub.module";
 
 
 
@@ -53,7 +54,8 @@ import {BadgeModule} from "primeng/badge";
         ImageModule,
         CarouselModule,
         TagModule,
-        BadgeModule
+        BadgeModule,
+        PubModule
     ],
   exports:[
     LandingPageComponent

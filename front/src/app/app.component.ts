@@ -91,7 +91,7 @@ export class AppComponent {
   showModal(  id: string): void {
     this.isVisible = true;
     this.receiverAdminId = id
-    console.log("bonjour show modal is cliquer")
+    // console.log("bonjour show modal is cliquer")
   }
 
   handleOk(): void {

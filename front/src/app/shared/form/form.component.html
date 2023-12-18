@@ -5,7 +5,7 @@
     <p-messages severity="info">
       <ng-template pTemplate>
         <i class="pi  pi-verified" style="font-size: 2rem;color:green;margin-right:5px"></i>
-        <div class="ml-2"> Ajouter un logement</div>
+        <div class="ml-2"> Ajouter un bien (logement,Terrain,Magasin)</div>
       </ng-template>
     </p-messages>
     <form [formGroup]="elementForm" enctype="multipart/form-data">
@@ -13,12 +13,12 @@
       <p-fieldset >
         <ng-template pTemplate="header">
           <div class="flex align-items-center text-primary">
-            <span class="font-bold text-lg">Choisissez votre type de Logement</span>
+            <span class="font-bold text-lg">Choisissez votre type de bien</span>
           </div>
         </ng-template>
         <p>
           <mat-form-field style="width: 100%" appearance="outline">
-            <mat-label>choisir le type du logement</mat-label>
+            <mat-label>choisir le type du bien</mat-label>
             <mat-select #name formControlName="name">
               <mat-option   *ngFor="let elementType of elementType$|async" value="{{elementType.name}}">{{elementType.name}}</mat-option>
             </mat-select>
@@ -37,7 +37,7 @@
       <p-fieldset>
         <ng-template pTemplate="header">
           <div class="flex align-items-center text-primary">
-            <span class="font-bold text-lg">Décrivez votre Logement</span>
+            <span class="font-bold text-lg">Décrivez votre bien</span>
           </div>
         </ng-template>
         <p>
@@ -56,8 +56,8 @@
 <!--        </p>-->
         <p>
           <mat-form-field style="width: 100%" appearance="outline">
-            <mat-label>Description  du logement</mat-label>
-            <textarea  matInput class="large-100 hide-outline-color" formControlName="description"   #description  placeholder="Description du logement"></textarea>
+            <mat-label>Description  du bien</mat-label>
+            <textarea  matInput class="large-100 hide-outline-color" formControlName="description"   #description  placeholder="Description du bien"></textarea>
           </mat-form-field>
         </p>
 
@@ -71,14 +71,14 @@
 <!--        </p>-->
         <p>
           <mat-form-field style="width: 100%" appearance="outline">
-            <mat-label>Dites nous en plus sur le logement</mat-label>
+            <mat-label>Dites nous en plus sur le bien</mat-label>
             <textarea   class="large-100 hide-outline-color" formControlName="content"   #content  matInput placeholder="exemple: parking, piscine ..."></textarea>
             <mat-hint>Plus de Details</mat-hint>
           </mat-form-field>
         </p>
         <p>
           <mat-form-field style="width: 100%" appearance="outline">
-            <mat-label>Précisez l'adresse de votre logement</mat-label>
+            <mat-label>Précisez l'adresse de votre bien</mat-label>
             <input class="large-100" formControlName="location" #location matInput placeholder="Ex:A 10 minute du stade...">
             <mat-hint>Localisation</mat-hint>
           </mat-form-field>
@@ -87,7 +87,7 @@
           <mat-form-field style="width: 100%" appearance="outline">
             <mat-label>Surface </mat-label>
             <input  class="large-100" formControlName="sizee" #sizee matInput placeholder="Ex: 40" >
-            <mat-hint>Surface du logement</mat-hint>
+            <mat-hint>Surface du bien</mat-hint>
           </mat-form-field>
         </p>
         <p>
@@ -102,7 +102,7 @@
       <p-fieldset *ngIf=" specVille$  | async as regions">
         <ng-template pTemplate="header">
           <div class="flex align-items-center text-primary">
-            <span class="font-bold text-lg">Localisation de votre Logement</span>
+            <span class="font-bold text-lg">Localisation de votre bien</span>
           </div>
         </ng-template>
         <p >
@@ -139,7 +139,7 @@
       <div class="upload-wrapper"  >
         <label for="file-input" class="file-label">
           <i class="pi pi-paperclip" style="font-size: 2rem;color:green;"></i>
-          <span class="upload-text">Choisir 4 images pour le logement</span>
+          <span class="upload-text">Choisir 4 images pour le bien</span>
         </label>
         <input required id="file-input" type="file" class="file-input" multiple accept="image/*"  formControlName="fichier" #fichier (change)="onFileChangeImage($event)">
 

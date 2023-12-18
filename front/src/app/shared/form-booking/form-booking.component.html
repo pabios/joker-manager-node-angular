@@ -19,6 +19,9 @@
 </p-messages>
 
 
+
+
+
 <form [formGroup]="form">
 
   <mat-form-field>
@@ -50,7 +53,7 @@
 
 <!--  // decomente pour ajouter paypayl-->
 <!--  <div id="myPaypalButtons"></div>-->
-  <!--  // decomente pour ajouter paypayl-->
+<!--    // decomente pour ajouter paypayl-->
 
 
   <button  pButton label="Réserver" [disabled]="true" [loading]="loading" class="p-button-success"  type="submit" (click)="onSend(nbPeople.value)"></button>
@@ -59,6 +62,14 @@
 
 
 <!--<div id="socialshop-page">Veuillez patienter pendant le chargement de votre page Social Shop...</div><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.2.11/iframeResizer.min.js"></script><script type="text/javascript">(function(){ var socialshop=document.createElement("script"); socialshop.type="text/javascript"; socialshop.async=true; socialshop.src="https://ecommerce.paydunya.com/monimbazzJBkL.js"; (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(socialshop);})();</script><noscript>Veuillez activer JavaScript afin d'afficher <a href="https://ecommerce.paydunya.com/monimbazzJBkL">votre page Social Shop.</a></noscript>-->
+
+
+
+
+
+
+
+
 
 <!--debut couchdb-->
 <!--<form [formGroup]="formCouchdb">-->
@@ -76,5 +87,30 @@
 <!--    <mat-label>Numero etage</mat-label>-->
 <!--    <input #idEtage type="number" matInput formControlName="idEtage">-->
 <!--  </mat-form-field>-->
-<!--  <button  pButton label="ajouter une salle" [disabled]="false" [loading]="loading" class="p-button-success"  type="submit" (click)="onSendCouch(idSalle.value,idEtage.value,nameSalle.value)"></button>-->
+<!--  <button  pButton label="ajouter une salle" [disabled]="false" [loading]="loading"-->
+<!--           class="p-button-success"-->
+<!--           type="submit"-->
+<!--           (click)="onSendCouch()"></button>-->
 <!--</form>-->
+
+
+<!-- <div *ngFor="let salle of getObjectValues(tabOfCoucheDb)">>-->
+<!--  <div>-->
+<!--    <h2>Numéro de Salle: {{ salle.id }}</h2>-->
+<!--    <h4>Numéro Etage: {{ salle.etage }}</h4>-->
+<!--    <p>Nom de Salle: {{ salle.name }}</p>-->
+<!--    <p>Nombre de Places: {{ salle.nbPlace }}</p>-->
+<!--    &lt;!&ndash; Ajoutez d'autres propriétés selon votre modèle de salle &ndash;&gt;-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--<div *ngFor="let key of getObjectKeys(tabOfCoucheDb)">-->
+<!--  <div>-->
+<!--    <p>Numéro de Salle: {{ tabOfCoucheDb[key].idSalle }}</p>-->
+<!--    <p>Nom de Salle: {{ tabOfCoucheDb[key].nameSalle }}</p>-->
+<!--    <p>Nombre de Places: {{ tabOfCoucheDb[key].nbPlace }}</p>-->
+<!--    &lt;!&ndash; Ajoutez d'autres propriétés selon votre modèle de salle &ndash;&gt;-->
+<!--  </div>-->
+<!--</div>-->
+<!--FIN COUCHE DB-->

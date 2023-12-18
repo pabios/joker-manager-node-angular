@@ -4,12 +4,12 @@ export const environment = {
   siteId:'1',
   adminId:'1',
   //
-  // urlApi:'http://localhost/api',
-  // backend:'http://localhost:8000', //local
+  // urlApi:'http://localhost/api',  // local api url
+  // backend:'http://localhost:8000', //local backend
   //
-  urlApi:'https://gn.api.monimba.com/api', //prod
+  urlApi:'https://gn.api.monimba.com/api', //prod api url
   // urlApi:'http://localhost:8000/api', // local api
-  backend:'https://gn.api.monimba.com', //prod
+  backend:'https://gn.api.monimba.com', //prod backend
   // specVilleApi:'http://localhost:3000/api',
   specVilleApi:'https://gn-locate.onrender.com/api',
 

@@ -323,6 +323,7 @@ export class FormComponent {
 
             let rep = response.toString();
             if (rep != null){
+
               this.router.navigateByUrl('/profils').then(() => {
                 // this.notificationService.showSuccess('votre logement a bien été publier','')
                 this.messageService.add({ severity: 'info', summary: 'Confirmer', detail: 'votre logement a bien été publier' });

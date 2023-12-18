@@ -10,6 +10,7 @@ import {NotificationService} from "../../core/services/notification.service";
 import {Booking} from "../../core/models/booking.model";
 import {Root} from "../../core/models/element.model";
 import {AuthService} from "../../core/services/auth.service";
+import {CoucheDbService} from "../../core/services/coucheDb.service";
 
 @Component({
   selector: 'app-form-booking',
@@ -23,6 +24,11 @@ export class FormBookingComponent {
 
   form!: FormGroup;
   formCouchdb!:FormGroup;
+  tabOfCoucheDb: any[] = [];
+  sallesRows: any[] = [];
+
+
+
   elementId!: any;
   userId!:any;
   price!:any
@@ -46,6 +52,7 @@ export class FormBookingComponent {
               private auth:AuthService
               ) {
   }
+
 
 
   ngOnInit(){
@@ -103,21 +110,17 @@ export class FormBookingComponent {
     });
 
       // couche db
+    // this.formCouchdb = this.formBuilder.group({
+    //   idSalle: ['', Validators.required],
+    //   nameSalle: ['', Validators.required],
+    //   idEtage: ['', Validators.required]
+    // });
 
-    this.formCouchdb = this.formBuilder.group(
-      {
-        idSalle:[0],
-        idEtage:[0],
-        nameSalle:[]
-      },{
-        updateOn:'blur'
-      }
-    )
+   // this.getDocuments();
 
 
 
-
-  }
+    }
 
 
 
@@ -280,6 +283,81 @@ export class FormBookingComponent {
     return !this.arrayOfDatesBooked.find(x=>x.getTime()==time);
   }
 //=====================================
+
+
+
+  // COUCHE DB
+  // onSendCouch() {
+  //   if (this.formCouchdb.valid) {
+  //     const idSalle = this.formCouchdb.get('idSalle')?.value;
+  //     const nameSalle = this.formCouchdb.get('nameSalle')?.value;
+  //     const idEtage = this.formCouchdb.get('idEtage')?.value;
+  //
+  //     this.loading = true;
+  //
+  //     // Utilisation du service pour ajouter une salle
+  //     this.coucheDbService.createDocument(
+  //       { idSalle, nameSalle, idEtage },
+  //       idSalle
+  //     ).subscribe(
+  //       response => {
+  //         console.log('Document ajouté avec succès :', response);
+  //         this.loading = false;
+  //       },
+  //       error => {
+  //         console.error('Erreur lors de l\'ajout du document :', error);
+  //         this.loading = false;
+  //       }
+  //     );
+  //   }
+  // }
+
+  // getDocuments() {
+  //   this.coucheDbService.getAllDocuments().subscribe(
+  //     documents => {
+  //       this.tabOfCoucheDb = documents;
+  //       // Faites quelque chose avec this.tabOfCoucheDb, par exemple, transmettez-le à votre composant enfant
+  //       this.sallesRows.push(documents.rows);
+  //       console.log(this.sallesRows);
+  //
+  //       // Boucle sur this.sallesRows et passe les IDs à la fonction getOneDoucments
+  //       for (const row of this.sallesRows) {
+  //         for (const salle of row) {
+  //           // Supposons que 'id' est le champ qui contient l'ID du document
+  //           this.getOneDoucments(salle.id);
+  //         }
+  //       }
+  //     },
+  //     error => {
+  //       console.error('Erreur lors de la récupération des documents :', error);
+  //     }
+  //   );
+  // }
+
+
+  //
+
+
+  // getOneDoucments(id: any) {
+  //   this.coucheDbService.getDocument(id).subscribe(
+  //     doc => {
+  //       this.tabOfCoucheDb = this.tabOfCoucheDb || [];
+  //       this.tabOfCoucheDb[id] = doc;
+  //       console.log('bonjoure tabOfCoucheDb')
+  //       console.log(this.tabOfCoucheDb)
+  //     },
+  //     error => {
+  //       console.error('Erreur lors de la récupération du document :', error);
+  //     }
+  //   );
+  // }
+  //
+  // getObjectValues(obj: any): any[] {
+  //   return Object.values(obj);
+  // }
+  // getObjectKeys(obj: any): string[] {
+  //   return Object.keys(obj);
+  // }
 
 
 }
